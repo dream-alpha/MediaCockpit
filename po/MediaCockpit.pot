@@ -1,0 +1,602 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2019-08-13 14:35+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: src/Cockpit.py:81 src/Picture.py:71
+msgid "Pause/Resume"
+msgstr ""
+
+#: src/Cockpit.py:81 src/Picture.py:71 src/Picture.py:72
+msgid "Slideshow"
+msgstr ""
+
+#: src/Cockpit.py:82
+msgid "Previous page"
+msgstr ""
+
+#: src/Cockpit.py:83
+msgid "Next page"
+msgstr ""
+
+#: src/Cockpit.py:84 src/FileInfo.py:54 src/Picture.py:73 src/Picture.py:74
+msgid "Next picture"
+msgstr ""
+
+#: src/Cockpit.py:85 src/FileInfo.py:55 src/Picture.py:75 src/Picture.py:76
+msgid "Previous picture"
+msgstr ""
+
+#: src/Cockpit.py:86
+msgid "Previous line"
+msgstr ""
+
+#: src/Cockpit.py:87
+msgid "Next line"
+msgstr ""
+
+#: src/Cockpit.py:88 src/Cockpit.py:89 src/FileInfo.py:69
+msgid "Ok"
+msgstr ""
+
+#: src/Cockpit.py:90 src/Cockpit.py:126 src/Picture.py:70
+msgid "Information"
+msgstr ""
+
+#: src/Cockpit.py:91 src/Picture.py:69
+msgid "Settings"
+msgstr ""
+
+#: src/Cockpit.py:92
+msgid "Delete file"
+msgstr ""
+
+#: src/Cockpit.py:93 src/FileInfo.py:52 src/FileInfo.py:53 src/FileInfo.py:56
+#: src/FileInfo.py:57 src/Picture.py:79 src/Picture.py:80
+msgid "Exit"
+msgstr ""
+
+#: src/Cockpit.py:94
+msgid "Home"
+msgstr ""
+
+#: src/Cockpit.py:99
+msgid "Skin resolution other than Full HD is not supported yet"
+msgstr ""
+
+#: src/Cockpit.py:130 src/Cockpit.py:131
+msgid "Loading"
+msgstr ""
+
+#: src/Cockpit.py:204
+msgid "Page"
+msgstr ""
+
+#: src/Cockpit.py:207
+msgid "File"
+msgstr ""
+
+#: src/Cockpit.py:207
+msgid "Path"
+msgstr ""
+
+#: src/Cockpit.py:313
+msgid "Do you really want to delete the file?"
+msgstr ""
+
+#: src/Cockpit.py:332 src/ConfigScreen.py:351 src/ConfigScreen.py:352
+msgid "Select directory"
+msgstr ""
+
+#: src/ConfigInit.py:27
+msgid "No override"
+msgstr ""
+
+#: src/ConfigInit.py:28
+msgid "Video-button"
+msgstr ""
+
+#: src/ConfigInit.py:29
+msgid "TV-button"
+msgstr ""
+
+#: src/ConfigInit.py:30
+msgid "Radio-button"
+msgstr ""
+
+#: src/ConfigInit.py:31
+msgid "Quick-button"
+msgstr ""
+
+#: src/ConfigInit.py:32
+msgid "Timeshift-button"
+msgstr ""
+
+#: src/ConfigInit.py:37
+msgid "DD.MM.YYYY"
+msgstr ""
+
+#: src/ConfigInit.py:38
+msgid "WD DD.MM.YYYY"
+msgstr ""
+
+#: src/ConfigInit.py:40
+msgid "DD.MM.YYYY HH:MM"
+msgstr ""
+
+#: src/ConfigInit.py:41
+msgid "WD DD.MM.YYYY HH:MM"
+msgstr ""
+
+#: src/ConfigInit.py:43
+msgid "DD.MM. HH:MM"
+msgstr ""
+
+#: src/ConfigInit.py:44
+msgid "WD DD.MM. HH:MM"
+msgstr ""
+
+#: src/ConfigInit.py:46
+msgid "YYYY/MM/DD"
+msgstr ""
+
+#: src/ConfigInit.py:47
+msgid "WD YYYY/MM/DD"
+msgstr ""
+
+#: src/ConfigInit.py:49
+msgid "YYYY/MM/DD HH:MM"
+msgstr ""
+
+#: src/ConfigInit.py:50
+msgid "WD YYYY/MM/DD HH:MM"
+msgstr ""
+
+#: src/ConfigInit.py:52
+msgid "MM/DD HH:MM"
+msgstr ""
+
+#: src/ConfigInit.py:53
+msgid "WD MM/DD HH:MM"
+msgstr ""
+
+#: src/ConfigInit.py:58
+msgid "Date sort down"
+msgstr ""
+
+#: src/ConfigInit.py:59
+msgid "Date sort up"
+msgstr ""
+
+#: src/ConfigInit.py:60
+msgid "Alpha sort up"
+msgstr ""
+
+#: src/ConfigInit.py:61
+msgid "Alpha sort down"
+msgstr ""
+
+#: src/ConfigInit.py:75
+msgid "Crossfade"
+msgstr ""
+
+#: src/ConfigInit.py:75
+msgid "Ken Burns"
+msgstr ""
+
+#: src/ConfigInit.py:75
+msgid "Crossfade fast"
+msgstr ""
+
+#: src/ConfigInit.py:76
+msgid "Crossfade slow"
+msgstr ""
+
+#: src/ConfigInit.py:76
+msgid "Crossfade accelerated"
+msgstr ""
+
+#: src/ConfigInit.py:77
+msgid "Crossfade regular"
+msgstr ""
+
+#: src/ConfigInit.py:95 src/ConfigInit.py:96 src/ConfigInit.py:97
+#: src/ConfigInit.py:98 src/ConfigInit.py:99
+msgid "default"
+msgstr ""
+
+#: src/ConfigScreen.py:69 src/FileInfo.py:70
+msgid "Cancel"
+msgstr ""
+
+#: src/ConfigScreen.py:70
+msgid "Save"
+msgstr ""
+
+#: src/ConfigScreen.py:71
+msgid "Defaults"
+msgstr ""
+
+#: src/ConfigScreen.py:127
+msgid "PLUGIN"
+msgstr ""
+
+#: src/ConfigScreen.py:128
+msgid "About"
+msgstr ""
+
+#: src/ConfigScreen.py:128
+msgid "HELP About"
+msgstr ""
+
+#: src/ConfigScreen.py:129
+msgid "Start plugin with key"
+msgstr ""
+
+#: src/ConfigScreen.py:129
+msgid "Help Start plugin with key"
+msgstr ""
+
+#: src/ConfigScreen.py:130
+msgid "COCKPIT"
+msgstr ""
+
+#: src/ConfigScreen.py:131
+msgid "Start with home directory"
+msgstr ""
+
+#: src/ConfigScreen.py:131
+msgid "Help Start into home directory"
+msgstr ""
+
+#: src/ConfigScreen.py:132
+msgid "Home directory"
+msgstr ""
+
+#: src/ConfigScreen.py:132
+msgid "Help Home directory"
+msgstr ""
+
+#: src/ConfigScreen.py:133
+msgid "Sort"
+msgstr ""
+
+#: src/ConfigScreen.py:133
+msgid "Help Sort"
+msgstr ""
+
+#: src/ConfigScreen.py:134
+msgid "Sort across directories"
+msgstr ""
+
+#: src/ConfigScreen.py:134
+msgid "Help Sort across directories"
+msgstr ""
+
+#: src/ConfigScreen.py:135
+msgid "TV playback in background"
+msgstr ""
+
+#: src/ConfigScreen.py:135
+msgid "Help TV playback in background"
+msgstr ""
+
+#: src/ConfigScreen.py:136
+msgid "Tile foreground color"
+msgstr ""
+
+#: src/ConfigScreen.py:136
+msgid "Help Tile foreground color"
+msgstr ""
+
+#: src/ConfigScreen.py:137
+msgid "Tile background color"
+msgstr ""
+
+#: src/ConfigScreen.py:137
+msgid "Help Tile background color"
+msgstr ""
+
+#: src/ConfigScreen.py:138
+msgid "Tile selection foreground color"
+msgstr ""
+
+#: src/ConfigScreen.py:138
+msgid "Help Tile selection foreground color"
+msgstr ""
+
+#: src/ConfigScreen.py:139
+msgid "Tile selection background color"
+msgstr ""
+
+#: src/ConfigScreen.py:139
+msgid "Help Tile selection background color"
+msgstr ""
+
+#: src/ConfigScreen.py:140
+msgid "Tile selection size offset"
+msgstr ""
+
+#: src/ConfigScreen.py:140
+msgid "Help Tile selection size offset"
+msgstr ""
+
+#: src/ConfigScreen.py:141
+msgid "Tile selection font offset"
+msgstr ""
+
+#: src/ConfigScreen.py:141
+msgid "Help Tile selection font offset"
+msgstr ""
+
+#: src/ConfigScreen.py:142
+msgid "Tile selection frame"
+msgstr ""
+
+#: src/ConfigScreen.py:142
+msgid "Help Selection frame"
+msgstr ""
+
+#: src/ConfigScreen.py:143
+msgid "tile selection frame color"
+msgstr ""
+
+#: src/ConfigScreen.py:143
+msgid "Help Selection frame color"
+msgstr ""
+
+#: src/ConfigScreen.py:144
+msgid "VIDEO"
+msgstr ""
+
+#: src/ConfigScreen.py:145
+msgid "Show infobar"
+msgstr ""
+
+#: src/ConfigScreen.py:145
+msgid "Help Show movie info bar"
+msgstr ""
+
+#: src/ConfigScreen.py:146
+msgid "PLAYLIST"
+msgstr ""
+
+#: src/ConfigScreen.py:147
+msgid "Recurse directories"
+msgstr ""
+
+#: src/ConfigScreen.py:147
+msgid "Help Recurse directories"
+msgstr ""
+
+#: src/ConfigScreen.py:148
+msgid "DEBUG"
+msgstr ""
+
+#: src/ConfigScreen.py:149
+msgid "Debug log"
+msgstr ""
+
+#: src/ConfigScreen.py:149
+msgid "Help Debug"
+msgstr ""
+
+#: src/ConfigScreen.py:150
+msgid "Log file path"
+msgstr ""
+
+#: src/ConfigScreen.py:150
+msgid "Help Log file path"
+msgstr ""
+
+#: src/ConfigScreen.py:155
+msgid "PICTURE"
+msgstr ""
+
+#: src/ConfigScreen.py:156
+msgid "Foreground color"
+msgstr ""
+
+#: src/ConfigScreen.py:156
+msgid "Help Foreground color"
+msgstr ""
+
+#: src/ConfigScreen.py:157
+msgid "Background color"
+msgstr ""
+
+#: src/ConfigScreen.py:157
+msgid "Help Background color"
+msgstr ""
+
+#: src/ConfigScreen.py:158
+msgid "Show info bar"
+msgstr ""
+
+#: src/ConfigScreen.py:158
+msgid "Help Show picture info bar"
+msgstr ""
+
+#: src/ConfigScreen.py:159
+msgid "SLIDESHOW"
+msgstr ""
+
+#: src/ConfigScreen.py:160
+msgid "Duration"
+msgstr ""
+
+#: src/ConfigScreen.py:160
+msgid "Help Duration"
+msgstr ""
+
+#: src/ConfigScreen.py:161
+msgid "Animation"
+msgstr ""
+
+#: src/ConfigScreen.py:161
+msgid "Help Animation"
+msgstr ""
+
+#: src/ConfigScreen.py:162
+msgid "Endless loop"
+msgstr ""
+
+#: src/ConfigScreen.py:162
+msgid "Help Endless loop"
+msgstr ""
+
+#: src/ConfigScreen.py:198
+msgid "Really close without saving settings?"
+msgstr ""
+
+#: src/ConfigScreen.py:247
+msgid "Setup"
+msgstr ""
+
+#: src/ConfigScreen.py:253
+msgid "Loading default settings will overwrite all settings, really load them?"
+msgstr ""
+
+#: src/ConfigScreen.py:317
+msgid "Some changes require a GUI restart"
+msgstr ""
+
+#: src/ConfigScreen.py:317
+msgid "Restart GUI now?"
+msgstr ""
+
+#: src/ConfigScreen.py:370
+msgid ""
+"For the selected slideshow effect package python-merlinmusicplayer needs to "
+"be installed"
+msgstr ""
+
+#: src/ConfigScreen.py:377
+msgid "Path does not exist"
+msgstr ""
+
+#: src/FileInfo.py:58 src/FileInfo.py:72
+msgid "Thumbnail"
+msgstr ""
+
+#: src/FileInfo.py:65
+msgid "Media Infos"
+msgstr ""
+
+#: src/FileInfo.py:129
+msgid "Filename"
+msgstr ""
+
+#: src/FileInfo.py:131 src/FileInfo.py:148
+msgid "Date"
+msgstr ""
+
+#: src/FileInfo.py:139
+msgid "unknown"
+msgstr ""
+
+#: src/FileInfo.py:141
+msgid "not defined"
+msgstr ""
+
+#: src/FileInfo.py:144
+msgid "Model"
+msgstr ""
+
+#: src/FileInfo.py:146
+msgid "Producer"
+msgstr ""
+
+#: src/FileInfo.py:148
+msgid "Time"
+msgstr ""
+
+#: src/FileInfo.py:150
+msgid "Width"
+msgstr ""
+
+#: src/FileInfo.py:150
+msgid "Height"
+msgstr ""
+
+#: src/FileInfo.py:152
+msgid "Orientation"
+msgstr ""
+
+#: src/FileInfo.py:154
+msgid "Flash"
+msgstr ""
+
+#: src/FileInfo.py:156
+msgid "Metering Mode"
+msgstr ""
+
+#: src/FileInfo.py:158
+msgid "ISO Speed Rating"
+msgstr ""
+
+#: src/FileInfo.py:160
+msgid "Photographic Sensitivity"
+msgstr ""
+
+#: src/FileInfo.py:162
+msgid "Exposure Program"
+msgstr ""
+
+#: src/FileInfo.py:164
+msgid "Software"
+msgstr ""
+
+#: src/FileInfo.py:166
+msgid "GPS Altitude"
+msgstr ""
+
+#: src/FileInfo.py:168
+msgid "GPS Latitude"
+msgstr ""
+
+#: src/FileInfo.py:169
+msgid "GPS Longitude"
+msgstr ""
+
+#: src/FileInfo.py:171
+msgid "Exif Version"
+msgstr ""
+
+#: src/Movie.py:61
+msgid "End"
+msgstr ""
+
+#: src/Picture.py:72
+msgid "Stop"
+msgstr ""
+
+#: src/Picture.py:77
+msgid "Rotate picture"
+msgstr ""
+
+#: src/Picture.py:78
+msgid "Toggle info"
+msgstr ""
+
+#: src/Slideshow.py:96
+msgid "Package python-merlinmusicplayer is not installed"
+msgstr ""
+
+#: src/plugin.py:84
+msgid "MediaCockpit"
+msgstr ""
+
+#: src/plugin.py:85
+msgid "Pictures, Movies, and Slideshows"
+msgstr ""

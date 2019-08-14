@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2018-2019 by dream-alpha
+-->
+<skin>
+	<layouts>
+		<layout name="Color_Buttons">
+			<ePixmap pixmap="Default-FHD/skin_default/buttons/red.svg"
+				position="10,0" size="300,70" alphatest="blend"/>
+			<ePixmap pixmap="Default-FHD/skin_default/buttons/green.svg"
+				position="310,0" size="300,70" alphatest="blend"/>
+			<ePixmap pixmap="Default-FHD/skin_default/buttons/yellow.svg"
+				position="610,0" size="300,70" alphatest="blend"/>
+			<ePixmap pixmap="Default-FHD/skin_default/buttons/blue.svg"
+				position="910,0" size="300,70" alphatest="blend"/>
+		</layout>
+		<layout name="Color_Buttons_Labels">
+			<widget font="Regular;30" halign="center" name="key_red" position="10,0"
+				foregroundColor="white" shadowColor="black" shadowOffset="-2,-2"
+				size="300,70" transparent="1" valign="center" zPosition="1"/>
+			<widget font="Regular;30" halign="center" name="key_green" position="310,0"
+				foregroundColor="white" shadowColor="black" shadowOffset="-2,-2"
+				size="300,70" transparent="1" valign="center" zPosition="1"/>
+			<widget font="Regular;30" halign="center" name="key_yellow" position="610,0"
+				foregroundColor="white" shadowColor="black" shadowOffset="-2,-2"
+				size="300,70" transparent="1" valign="center" zPosition="1"/>
+			<widget font="Regular;30" halign="center" name="key_blue" position="910,0"
+				foregroundColor="white" shadowColor="black" shadowOffset="-2,-2"
+				size="300,70" transparent="1" valign="center" zPosition="1"/>
+		</layout>
+		<layout name="Time">
+			<widget font="Regular;34" halign="right" valign="center" position="1650,0"
+				render="Label" size="120,70" source="global.CurrentTime">
+				<convert type="ClockToText">Default</convert>
+			</widget>
+		</layout>
+		<layout name="Date">
+			<widget font="Regular;34" halign="right" valign="center" position="1240,0"
+				render="Label" size="400,70" source="global.CurrentTime">
+				<convert type="ClockToText">Date</convert>
+			</widget>
+		</layout>
+	</layouts>
+
+	<screen id="3" name="MDCSummary" position="0,0" size="400,240">
+		<ePixmap position="0,0" size="400,240"
+			pixmap="skin_default/display_bg.png" zPosition="-1" />
+		<widget source="parent.lcd_title" render="Label" position="0,10"
+			size="400,75" font="Display;75" halign="center" valign="top"
+			transparent="1" />
+		<widget source="parent.lcd_info" render="Label" position="0,100"
+			size="400,125" font="Display;60" halign="center" valign="center"
+			transparent="1" />
+	</screen>
+
+	<screen id="3" name="MDCMoviePlayerSummary" position="0,0"
+		size="400,240">
+		<ePixmap position="0,0" size="400,240"
+			pixmap="skin_default/display_bg.png" zPosition="-1"/>
+		<widget font="Display;60" halign="center" position="5,5"
+			render="Label" size="390,120" source="session.CurrentService"
+			valign="center" transparent="1">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget position="center,140" render="Progress" size="380,15"
+			borderWidth="1" source="Service" zPosition="2" transparent="1"
+			pixmap="Default-FHD/MediaCockpit/skin/images/progress_lcd.png">
+			<convert type="MDCServicePosition">Position</convert>
+		</widget>
+		<widget font="Display;75" valign="center" position="5,160"
+			render="Label" size="200,80" source="global.CurrentTime"
+			transparent="1">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget font="Display;75" valign="center" halign="right"
+			position="200,160" render="Label" size="195,80" source="Service"
+			transparent="1">
+			<convert type="MDCServicePosition">Remaining</convert>
+		</widget>
+	</screen>
+
+	<screen name="MDCNoSupport" position="center,center" size="1000,500">
+		<widget name="no_support" position="1,1" size="1000,500"
+			font="Regular;32" halign="center" valign="center" transparent="1"/>
+	</screen>
+
+	<screen name="MDCConfigScreen" position="center,110" size="1800,930">
+		<layout name="Color_Buttons"/>
+		<layout name="Color_Buttons_Labels"/>
+		<layout name="Date"/>
+		<layout name="Time"/>
+		<eLabel backgroundColor="grey" position="10,80" size="1780,1"/>
+		<widget enableWrapAround="1" name="config" itemHeight="45"
+			position="10,90" scrollbarMode="showOnDemand" size="1780,630"/>
+		<eLabel backgroundColor="grey" position="10,730"
+			size="1780,1"/>
+		<widget font="Regular;32" halign="center" position="10,740"
+			render="Label" size="1780,180" source="help" valign="center"/>
+	</screen>
+
+	<screen name="MDCPicture" position="0,0" size="1920,1080" flags="wfNoBorder">
+		<widget name="picture_background" position="0,0" zPosition="0" size="1920,1080"/>
+		<widget name="picture" position="0,0" size="1920,1080" zPosition="1"/>
+		<widget name="icon" position="820,360" size="280,360" zPosition="2" transparent="1"/>
+		<widget name="osd_info" position="20,10" size="1885,25" font="Regular;20" halign="left" zPosition="2" noWrap="1" transparent="1"/>
+	</screen>
+
+	<screen name="MDCFileInfo" position="center,110" size="1800,930">
+		<layout name="Color_Buttons"/>
+		<layout name="Color_Buttons_Labels"/>
+		<layout name="Date"/>
+		<layout name="Time"/>
+		<widget name="icon" position="135,225" size="150,150" />
+		<widget name="pic" position="10,100" size="400,400" />
+		<widget enableWrapAround="1" position="460,100" render="Listbox"
+			scrollbarMode="showOnDemand" size="1330,800" source="list">
+			<convert type="TemplatedMultiContent">
+				{
+					"template": [
+						MultiContentEntryText(pos=(5,0), size=(290,40), flags=RT_VALIGN_CENTER, text=0),
+						MultiContentEntryText(pos=(300,0), size=(1030,40), flags=RT_VALIGN_CENTER, text=1),
+						MultiContentEntryPixmapAlphaTest(pos=(0,38), size=(1330,2), png=2)
+					],
+					"fonts": [gFont("Regular",29)],
+					"itemHeight":40
+				}
+			</convert>
+		</widget>
+	</screen>
+
+	<screen name="MDCMoviePlayer" flags="wfNoBorder" position="0,825" size="1920,225">
+		<ePixmap alphatest="off" pixmap="skin_default/infobar.png"
+			position="0,0" size="1920,225" zPosition="-1"/>
+		<widget backgroundColor="background" font="Regular;40" noWrap="1"
+			position="230,13" render="Label" size="1100,45"
+			source="session.CurrentService" transparent="1">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/icons/ico_dolby_off.png"
+			position="1460,40" size="74,35"/>
+		<widget pixmap="skin_default/icons/ico_dolby_on.png"
+			position="1460,40" render="Pixmap" size="74,35"
+			source="session.CurrentService" zPosition="1">
+			<convert type="ServiceInfo">IsMultichannel</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<ePixmap pixmap="skin_default/icons/ico_format_off.png"
+			position="1550,40" size="74,35"/>
+		<widget pixmap="skin_default/icons/ico_format_on.png"
+			position="1550,40" render="Pixmap" size="74,35"
+			source="session.CurrentService" zPosition="1">
+			<convert type="ServiceInfo">IsWidescreen</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget pixmap="skin_default/icons/ico_hd_off.png"
+			position="1640,40" render="Pixmap" size="74,35"
+			source="session.CurrentService">
+			<convert type="ServiceInfo">VideoWidth</convert>
+			<convert type="ValueRange">0,720</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget pixmap="skin_default/icons/ico_hd_on.png"
+			position="1640,40" render="Pixmap" size="74,35"
+			source="session.CurrentService" zPosition="1">
+			<convert type="ServiceInfo">VideoWidth</convert>
+			<convert type="ValueRange">721,1980</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget pixmap="Default-FHD/skin_default/icons/uhd.svg"
+			position="1640,40" render="Pixmap" size="74,35"
+			source="session.CurrentService" zPosition="1">
+			<convert type="ServiceInfo">VideoWidth</convert>
+			<convert type="ValueRange">2160,3840</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget pixmap="Default-FHD/skin_default/icons/hdr.svg"
+			position="1730,40" render="Pixmap" size="74,35"
+			source="session.CurrentService" zPosition="1">
+			<convert type="ServiceInfo">IsHdr</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget pixmap="skin_default/icons/icon_rec.png"
+			position="1820,40" render="Pixmap" size="74,35"
+			source="session.RecordState">
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+		<ePixmap pixmap="Default-FHD/menu/mediacenter.svg" position="50,80" size="132,132"/>
+		<widget backgroundColor="background" font="Regular;34"
+			position="230,88" render="Label" size="140,40"
+			source="Service" transparent="1">
+			<convert type="MDCServicePosition">Position</convert>
+		</widget>
+
+		<eLabel backgroundColor="grey" position="370,110" size="1330,2"/>
+
+		<widget pointer="Default-FHD/MediaCockpit/skin/images/progress.png:1330,0" position="370,105"
+			render="PositionGauge" size="1330,10" source="Service" transparent="1"
+			zPosition="2">
+			<convert type="MDCServicePosition">Gauge</convert>
+		</widget>
+
+		<widget backgroundColor="background" font="Regular;34"
+			halign="right" position="1740,88" render="Label" size="140,40"
+			source="Service" transparent="1">
+			<convert type="MDCServicePosition">Remaining</convert>
+		</widget>
+		<widget backgroundColor="background" font="Regular;34"
+			foregroundColor="yellow" halign="center" position="900,125"
+			render="Label" size="300,40" source="Service" transparent="1">
+			<convert type="MDCServicePosition">Length</convert>
+		</widget>
+
+		<eLabel backgroundColor="foreground" position="230,175"
+			size="1650,2"/>
+
+		<ePixmap pixmap="skin_default/icons/icon_event.png"
+			position="230,186" size="44,30"/>
+		<widget backgroundColor="background" font="Regular;34"
+			position="300,182" render="Label" size="120,40"
+			source="global.CurrentTime" transparent="1">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget name="end" backgroundColor="background" font="Regular;34"
+			halign="right" position="1650,182" size="100,40"
+			transparent="1"/>
+		<widget backgroundColor="background" font="Regular;34"
+			halign="right" position="1740,182" render="Label" size="140,40"
+			source="Service" transparent="1">
+			<convert type="MDCServicePosition">EndTime,ShowNoSeconds</convert>
+		</widget>
+	</screen>
+
+	<screen name="MDCCockpit" size="1920,1080">
+		<widget name="osd_info" position="50,25" size="1650,35"
+			font="Regular;30" noWrap="1" />
+		<widget font="Regular;45" halign="right" position="1730,15"
+			render="Label" size="140,50" source="global.CurrentTime">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget name="Picture0" position="70,120" size="300,170"
+			zPosition="4" />
+		<widget name="Picture1" position="440,120" size="300,170"
+			zPosition="4" />
+		<widget name="Picture2" position="810,120" size="300,170"
+			zPosition="4" />
+		<widget name="Picture3" position="1180,120" size="300,170"
+			zPosition="4" />
+		<widget name="Picture4" position="1550,120" size="300,170"
+			zPosition="4" />
+		<widget name="Picture5" position="70,450" size="300,170"
+			zPosition="4" />
+		<widget name="Picture6" position="440,450" size="300,170"
+			zPosition="4" />
+		<widget name="Picture7" position="810,450" size="300,170"
+			zPosition="4" />
+		<widget name="Picture8" position="1180,450" size="300,170"
+			zPosition="4" />
+		<widget name="Picture9" position="1550,450" size="300,170"
+			zPosition="4" />
+		<widget name="Picture10" position="70,780" size="300,170"
+			zPosition="4" />
+		<widget name="Picture11" position="440,780" size="300,170"
+			zPosition="4" />
+		<widget name="Picture12" position="810,780" size="300,170"
+			zPosition="4" />
+		<widget name="Picture13" position="1180,780" size="300,170"
+			zPosition="4" />
+		<widget name="Picture14" position="1550,780" size="300,170"
+			zPosition="4" />
+
+		<widget font="Regular;24" halign="center" name="TXLabel0"
+			position="75,295" size="290,60" valign="center" zPosition="4" />
+		<widget font="Regular;24" halign="center" name="TXLabel1"
+			position="445,295" size="290,60" valign="center" zPosition="4" />
+		<widget font="Regular;24" halign="center" name="TXLabel2"
+			position="815,295" size="290,60" valign="center" zPosition="4" />
+		<widget font="Regular;24" halign="center" name="TXLabel3"
+			position="1185,295" size="290,60" valign="center" zPosition="4" />
+		<widget font="Regular;24" halign="center" name="TXLabel4"
+			position="1555,295" size="290,60" valign="center" zPosition="4" />
+		<widget font="Regular;24" halign="center" name="TXLabel5"
+			position="75,625" size="290,60" valign="center" zPosition="4" />
+		<widget font="Regular;24" halign="center" name="TXLabel6"
+			position="445,625" size="290,60" valign="center" zPosition="4" />
+		<widget font="Regular;24" halign="center" name="TXLabel7"
+			position="815,625" size="290,60" valign="center" zPosition="4" />
+		<widget font="Regular;24" halign="center" name="TXLabel8"
+			position="1185,625" size="290,60" valign="center" zPosition="4" />
+		<widget font="Regular;24" halign="center" name="TXLabel9"
+			position="1555,625" size="290,60" valign="center" zPosition="4" />
+		<widget font="Regular;24" halign="center" name="TXLabel10"
+			position="75,955" size="290,60" valign="center" zPosition="4" />
+		<widget font="Regular;24" halign="center" name="TXLabel11"
+			position="445,955" size="290,60" valign="center" zPosition="4" />
+		<widget font="Regular;24" halign="center" name="TXLabel12"
+			position="815,955" size="290,60" valign="center" zPosition="4" />
+		<widget font="Regular;24" halign="center" name="TXLabel13"
+			position="1185,955" size="290,60" valign="center" zPosition="4" />
+		<widget font="Regular;24" halign="center" name="TXLabel14"
+			position="1555,955" size="290,60" valign="center" zPosition="4" />
+
+		<widget name="BGLabel0" position="60,90" size="320,280"
+			zPosition="3" />
+		<widget name="BGLabel1" position="430,90" size="320,280"
+			zPosition="3" />
+		<widget name="BGLabel2" position="800,90" size="320,280"
+			zPosition="3" />
+		<widget name="BGLabel3" position="1170,90" size="320,280"
+			zPosition="3" />
+		<widget name="BGLabel4" position="1540,90" size="320,280"
+			zPosition="3" />
+		<widget name="BGLabel5" position="60,420" size="320,280"
+			zPosition="3" />
+		<widget name="BGLabel6" position="430,420" size="320,280"
+			zPosition="3" />
+		<widget name="BGLabel7" position="800,420" size="320,280"
+			zPosition="3" />
+		<widget name="BGLabel8" position="1170,420" size="320,280"
+			zPosition="3" />
+		<widget name="BGLabel9" position="1540,420" size="320,280"
+			zPosition="3" />
+		<widget name="BGLabel10" position="60,750" size="320,280"
+			zPosition="3" />
+		<widget name="BGLabel11" position="430,750" size="320,280"
+			zPosition="3" />
+		<widget name="BGLabel12" position="800,750" size="320,280"
+			zPosition="3" />
+		<widget name="BGLabel13" position="1170,750" size="320,280"
+			zPosition="3" />
+		<widget name="BGLabel14" position="1540,750" size="320,280"
+			zPosition="3" />
+
+		<widget name="BGFrame0" position="55,85" size="330,290"
+			zPosition="2" />
+		<widget name="BGFrame1" position="425,85" size="330,290"
+			zPosition="2" />
+		<widget name="BGFrame2" position="795,85" size="330,290"
+			zPosition="2" />
+		<widget name="BGFrame3" position="1165,85" size="330,290"
+			zPosition="2" />
+		<widget name="BGFrame4" position="1535,85" size="330,290"
+			zPosition="2" />
+		<widget name="BGFrame5" position="55,415" size="330,290"
+			zPosition="2" />
+		<widget name="BGFrame6" position="425,415" size="330,290"
+			zPosition="2" />
+		<widget name="BGFrame7" position="795,415" size="330,290"
+			zPosition="2" />
+		<widget name="BGFrame8" position="1165,415" size="330,290"
+			zPosition="2" />
+		<widget name="BGFrame9" position="1535,415" size="330,290"
+			zPosition="2" />
+		<widget name="BGFrame10" position="55,745" size="330,290"
+			zPosition="2" />
+		<widget name="BGFrame11" position="425,745" size="330,290"
+			zPosition="2" />
+		<widget name="BGFrame12" position="795,745" size="330,290"
+			zPosition="2" />
+		<widget name="BGFrame13" position="1165,745" size="330,290"
+			zPosition="2" />
+		<widget name="BGFrame14" position="1535,745" size="330,290"
+			zPosition="2" />
+	</screen>
+
+	<screen name="MDCSlideshow" flags="wfNoBorder" position="0,0" size="1920,1080">
+		<widget name="image" position="0,0" size="1920,1080" zPosition="-2"/>
+	</screen>
+</skin>

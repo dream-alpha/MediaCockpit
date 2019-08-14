@@ -1,0 +1,8 @@
+#!/bin/sh
+if [ "$1" = "remove" ]; then
+	echo "Removing MediaCockpit plugin from the system ..."
+	rm -rf /usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit > /dev/null 2>&1
+else
+	find /usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit -type f -name "*.pyo" -exec rm -f {} \; > /dev/null 2>&1
+fi
+exit 0

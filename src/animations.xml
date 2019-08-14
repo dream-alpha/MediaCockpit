@@ -1,0 +1,20 @@
+<animations>
+	<animation key="crossfade_fast" title="Crossfade fast"
+		duration="100" interpolate="linear">
+		<alpha val="0.5" />
+	</animation>
+	<animation key="crossfade_slow" title="Crossfade slow"
+		duration="1000" interpolate="linear">
+		<alpha val="0.25" />
+	</animation>
+	<animation key="crossfade_accelerated" title="Crossfade accelerated"
+		duration="1000" interpolate="linear">
+		<alpha val="0.0" interpolate="decelerate" factor="1.75" />
+		<alpha_hide val="0.0" interpolate="accelerate" factor="1.75" />
+	</animation>
+	<animation key="crossfade_regular" title="Crossfade regular"
+		duration="500" interpolate="linear">
+		<alpha val="0.0" />
+		<alpha_hide val="0.0" />
+	</animation>
+</animations>
