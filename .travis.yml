@@ -3,7 +3,7 @@ language: python
 install: true
 script: wget -O- https://raw.githubusercontent.com/dream-alpha/pybake/master/src/pybake.py
   | python - -i . -o $HOME
-before_deploy: git tag 3.6.4
+before_deploy: git tag 4.1.2
 deploy:
   provider: releases
   api_key:

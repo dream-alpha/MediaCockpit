@@ -67,8 +67,8 @@ class MDCPicturePlayer(Screen, HelpableScreen):
 			"MDCActions",
 			{
 				"menu":		(self.showMenu,		_("Settings")),
-				"info":		(self.showInfo,		_("Information")),
-				"showMenu":	(self.pause,		_("Pause/Resume") + " " + _("Slideshow")),
+				"info":		(self.showFileInfo,	_("Information")),
+				"playpause":	(self.pause,		_("Pause/Resume") + " " + _("Slideshow")),
 				"stop":		(self.stop,		_("Stop") + " " + _("Slideshow")),
 				"historyNext":	(self.nextFile,		_("Next picture")),
 				"right":	(self.nextFile,		_("Next picture")),
@@ -261,12 +261,12 @@ class MDCPicturePlayer(Screen, HelpableScreen):
 		else:
 			self.exit()
 
-	def showInfo(self):
+	def showFileInfo(self):
 		if not self.slideshow_active:
 			if self.file_list[self.file_index][FILE_TYPE] == TYPE_FILE:
-				self.session.openWithCallback(self.showInfoCallback, FileInfo, self.file_list, self.file_index)
+				self.session.openWithCallback(self.showFileInfoCallback, FileInfo, self.file_list, self.file_index)
 
-	def showInfoCallback(self, _refresh_tiles, index):
+	def showFileInfoCallback(self, _refresh_tiles, index):
 		self.file_index = index
 		self.LayoutFinish()
 

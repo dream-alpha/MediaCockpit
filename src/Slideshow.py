@@ -177,7 +177,7 @@ class Slideshow(Screen):
 		if direction == 1:
 			self.slide_index += 1
 			if self.slide_index > self.slides - 1:
-				self.slide_index = self.slides - 1
+				self.slide_index = 0
 		else:
 			self.slide_index -= 1
 			if self.slide_index < 0:

@@ -90,6 +90,7 @@ class ConfigInit(object):
 		config.plugins.mediacockpit.start_home_dir             = ConfigYesNo(default=False)
 		config.plugins.mediacockpit.home_dir                   = ConfigText(default="/media", fixed_size=False, visible_width=35)
 		config.plugins.mediacockpit.frame                      = ConfigYesNo(default=True)
+		config.plugins.mediacockpit.show_goup_tile             = ConfigYesNo(default=True)
 		config.plugins.mediacockpit.selection_size_offset      = ConfigInteger(default=10, limits=(0, 50))
 		config.plugins.mediacockpit.selection_font_offset      = ConfigInteger(default=2, limits=(1, 10))
 		config.plugins.mediacockpit.normal_background_color    = ConfigSelection(default="#20294071", choices=choices_color + [("#20294071", _("default"))])

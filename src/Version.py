@@ -19,4 +19,4 @@
 #	<http://www.gnu.org/licenses/>.
 
 
-VERSION = "3.6.4"
+VERSION = "4.1.2"

@@ -29,9 +29,8 @@ from Components.Pixmap import Pixmap
 from Components.Button import Button
 from Components.Sources.List import List
 from Components.ActionMap import HelpableActionMap
-from globals import FILE_DATE, FILE_PATH, FILE_MEDIA
+from globals import FILE_PATH, FILE_MEDIA
 from PictureUtils import getExifData, rotatePictureExif
-from datetime import datetime
 from SkinUtils import getSkinPath
 from Tools.LoadPixmap import LoadPixmap
 
@@ -126,9 +125,10 @@ class FileInfo(Screen, HelpableScreen):
 		self["icon"].instance.setPixmap(ptr)
 		self["icon"].show()
 		alist = []
-		alist.append((_("Filename"), self.file[FILE_PATH], None))
-		date_time = datetime.fromtimestamp(self.file[FILE_DATE]).strftime("%Y:%m:%d %H:%M:%S")
-		alist.append((_("Date"), date_time, None))
+		alist.append((_("Directory"), os.path.dirname(self.file[FILE_PATH]), None))
+		alist.append((_("Filename"), os.path.basename(self.file[FILE_PATH]), None))
+		#date_time = datetime.fromtimestamp(self.file[FILE_DATE]).strftime("%Y:%m:%d %H:%M:%S")
+		#alist.append((_("Date"), date_time, None))
 		if self.file[FILE_MEDIA] == "picture":
 			self["key_blue"].hide()
 			meta_data = getExifData(self.file[FILE_PATH])
@@ -177,7 +177,7 @@ class FileInfo(Screen, HelpableScreen):
 		self["list"].setList(alist)
 		self["list"].master.downstream_elements.setSelectionEnabled(0)
 
-	def decodePicture(self, _picInfo=""):
+	def decodePicture(self, _picInfo):
 		ptr = self.picload.getData()
 		if ptr is not None:
 			self["thumbnail"].instance.setPixmap(ptr)

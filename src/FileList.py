@@ -22,7 +22,7 @@
 import os
 import time
 from globals import FILE_PATH, FILE_DATE, FILE_TYPE
-from globals import TYPE_GOUP, TYPE_DIR, TYPE_FILE, TYPE_PLS
+from globals import TYPE_GOUP, TYPE_DIR, TYPE_FILE, TYPE_M3U
 from FileUtils import readFile
 from PictureUtils import getExifData
 try:
@@ -40,11 +40,12 @@ class FileList(object):
 		pass
 
 	def readFileListCallback(self):
-		# dummy
+		print("MDC-E: FileList: readFileListCallback: overwritten in child class")
 		pass
 
-	def updateInfoBar(self, _adir):
+	def updateInfo(self, _adir):
 		# dummy
+		print("MDC-E: FileList: updateInfo: overwritten in child class")
 		pass
 
 	def listDir(self, path):
@@ -77,11 +78,11 @@ class FileList(object):
 				file_list.sort(key=lambda x: (x[FILE_TYPE], x[FILE_DATE]))
 		return file_list
 
-	def createGoupEntry(self, path, filefilters=None):
+	def createGoupEntry(self, up_path, filefilters=None):
 		#print("MDC: FileList: createGoupEntry: path: %s" % path)
 		x = None
-		if "goup" in filefilters and path != "/":
-			x = [os.path.join(path, ".."), TYPE_GOUP, 0, "goup", {}]
+		if "goup" in filefilters:
+			x = [up_path, TYPE_GOUP, 0, "goup", {}]
 		return x
 
 	### Directory
@@ -105,7 +106,7 @@ class FileList(object):
 			if os.path.isfile(path):
 				if "picture" in self.filefilters and ext in picture_exts:
 					filename = os.path.splitext(path)[0]
-					if not filename.endswith(".rotated") and not filename.endswith(".thumbnail") and not filename.endswith(".scaled"):
+					if not filename.endswith((".rotated", ".thumbnail", ".scaled")):
 						filefilter = TYPE_FILE
 						filetype = "picture"
 						if sort_mode == "date":
@@ -129,7 +130,7 @@ class FileList(object):
 					filefilter = TYPE_FILE
 					filetype = "music"
 				elif "playlist" in self.filefilters and ext in playlist_exts:
-					filefilter = TYPE_PLS
+					filefilter = TYPE_M3U
 					filetype = "playlist"
 			elif os.path.isdir(path):
 				if "folder" in self.filefilters:
@@ -142,7 +143,7 @@ class FileList(object):
 
 	def scanDirectoryFiles(self, adir):
 		#print("MDC: FileList: scanDirectoryFiles: adir: %s" % adir)
-		self.updateInfoBar(adir)
+		self.updateInfo(adir)
 
 		file_list = []
 		dirlist = []
@@ -191,7 +192,7 @@ class FileList(object):
 		self.file_list = []
 		self.dirlist = []
 
-		x = self.createGoupEntry(adir, filefilters)
+		x = self.createGoupEntry(os.path.join(adir, ".."), filefilters)
 		if x is not None:
 			self.file_list.append(x)
 
@@ -202,7 +203,7 @@ class FileList(object):
 
 	def scanPlaylistFiles(self, path):
 		#print("MDC: FileList: scanPlaylistFiles: path: %s" % path)
-		self.updateInfoBar(path)
+		self.updateInfo(path)
 		file_list = []
 
 		playlist_dir = os.path.dirname(path)
@@ -223,7 +224,7 @@ class FileList(object):
 			path = self.playlist.pop(0)
 			if os.path.isdir(path):
 				#print("MDC: FileList: scanNextPlaylistEntry: dir: path: %s" % path)
-				self.updateInfoBar(path)
+				self.updateInfo(path)
 				file_list = []
 				dirlist = []
 				alist = self.listDir(path)
@@ -271,7 +272,7 @@ class FileList(object):
 		self.dirlist = []
 		self.playlist = []
 
-		x = self.createGoupEntry(path, ["goup"])
+		x = self.createGoupEntry(os.path.dirname(path), filefilters)
 		if x is not None:
 			self.file_list.append(x)
 

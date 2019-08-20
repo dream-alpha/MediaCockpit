@@ -38,8 +38,9 @@ class DelayedFunction(object):
 			self.timer.start(delay, True)
 
 	def cancel(self):
-		instanceTab.remove(self)
-		self.timer.stop()
+		if self in instanceTab:
+			instanceTab.remove(self)
+			self.timer.stop()
 
 	def timerLaunch(self):
 		instanceTab.remove(self)

@@ -3,6 +3,9 @@
 Copyright (C) 2018-2019 by dream-alpha
 -->
 <skin>
+	<listboxcontent>
+		<config onPixmap="skin_default/switch_on.svg" offPixmap="skin_default/switch_off.svg" size="60,32"/>
+	</listboxcontent>
 	<layouts>
 		<layout name="Color_Buttons">
 			<ePixmap pixmap="Default-FHD/skin_default/buttons/red.svg"
@@ -111,15 +114,14 @@ Copyright (C) 2018-2019 by dream-alpha
 		<layout name="Date"/>
 		<layout name="Time"/>
 		<widget name="icon" position="135,225" size="150,150" />
-		<widget name="pic" position="10,100" size="400,400" />
+		<widget name="thumbnail" position="10,100" size="400,400" />
 		<widget enableWrapAround="1" position="460,100" render="Listbox"
 			scrollbarMode="showOnDemand" size="1330,800" source="list">
 			<convert type="TemplatedMultiContent">
 				{
 					"template": [
-						MultiContentEntryText(pos=(5,0), size=(290,40), flags=RT_VALIGN_CENTER, text=0),
-						MultiContentEntryText(pos=(300,0), size=(1030,40), flags=RT_VALIGN_CENTER, text=1),
-						MultiContentEntryPixmapAlphaTest(pos=(0,38), size=(1330,2), png=2)
+						MultiContentEntryText(pos=(5,0), size=(340,40), flags=RT_VALIGN_CENTER, text=0),
+						MultiContentEntryText(pos=(350,0), size=(980,40), flags=RT_VALIGN_CENTER, text=1),
 					],
 					"fonts": [gFont("Regular",29)],
 					"itemHeight":40
@@ -237,129 +239,101 @@ Copyright (C) 2018-2019 by dream-alpha
 			render="Label" size="140,50" source="global.CurrentTime">
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<widget name="Picture0" position="70,120" size="300,170"
-			zPosition="4" />
-		<widget name="Picture1" position="440,120" size="300,170"
-			zPosition="4" />
-		<widget name="Picture2" position="810,120" size="300,170"
-			zPosition="4" />
-		<widget name="Picture3" position="1180,120" size="300,170"
-			zPosition="4" />
-		<widget name="Picture4" position="1550,120" size="300,170"
-			zPosition="4" />
-		<widget name="Picture5" position="70,450" size="300,170"
-			zPosition="4" />
-		<widget name="Picture6" position="440,450" size="300,170"
-			zPosition="4" />
-		<widget name="Picture7" position="810,450" size="300,170"
-			zPosition="4" />
-		<widget name="Picture8" position="1180,450" size="300,170"
-			zPosition="4" />
-		<widget name="Picture9" position="1550,450" size="300,170"
-			zPosition="4" />
-		<widget name="Picture10" position="70,780" size="300,170"
-			zPosition="4" />
-		<widget name="Picture11" position="440,780" size="300,170"
-			zPosition="4" />
-		<widget name="Picture12" position="810,780" size="300,170"
-			zPosition="4" />
-		<widget name="Picture13" position="1180,780" size="300,170"
-			zPosition="4" />
-		<widget name="Picture14" position="1550,780" size="300,170"
-			zPosition="4" />
 
-		<widget font="Regular;24" halign="center" name="TXLabel0"
-			position="75,295" size="290,60" valign="center" zPosition="4" />
-		<widget font="Regular;24" halign="center" name="TXLabel1"
-			position="445,295" size="290,60" valign="center" zPosition="4" />
-		<widget font="Regular;24" halign="center" name="TXLabel2"
-			position="815,295" size="290,60" valign="center" zPosition="4" />
-		<widget font="Regular;24" halign="center" name="TXLabel3"
-			position="1185,295" size="290,60" valign="center" zPosition="4" />
-		<widget font="Regular;24" halign="center" name="TXLabel4"
-			position="1555,295" size="290,60" valign="center" zPosition="4" />
-		<widget font="Regular;24" halign="center" name="TXLabel5"
-			position="75,625" size="290,60" valign="center" zPosition="4" />
-		<widget font="Regular;24" halign="center" name="TXLabel6"
-			position="445,625" size="290,60" valign="center" zPosition="4" />
-		<widget font="Regular;24" halign="center" name="TXLabel7"
-			position="815,625" size="290,60" valign="center" zPosition="4" />
-		<widget font="Regular;24" halign="center" name="TXLabel8"
-			position="1185,625" size="290,60" valign="center" zPosition="4" />
-		<widget font="Regular;24" halign="center" name="TXLabel9"
-			position="1555,625" size="290,60" valign="center" zPosition="4" />
-		<widget font="Regular;24" halign="center" name="TXLabel10"
-			position="75,955" size="290,60" valign="center" zPosition="4" />
-		<widget font="Regular;24" halign="center" name="TXLabel11"
-			position="445,955" size="290,60" valign="center" zPosition="4" />
-		<widget font="Regular;24" halign="center" name="TXLabel12"
-			position="815,955" size="290,60" valign="center" zPosition="4" />
-		<widget font="Regular;24" halign="center" name="TXLabel13"
-			position="1185,955" size="290,60" valign="center" zPosition="4" />
-		<widget font="Regular;24" halign="center" name="TXLabel14"
-			position="1555,955" size="290,60" valign="center" zPosition="4" />
+		<widget name="Frame0" position="55,85" size="330,290" zPosition="2"/>
+		<widget name="Frame1" position="425,85" size="330,290" zPosition="2"/>
+		<widget name="Frame2" position="795,85" size="330,290" zPosition="2"/>
+		<widget name="Frame3" position="1165,85" size="330,290" zPosition="2"/>
+		<widget name="Frame4" position="1535,85" size="330,290" zPosition="2"/>
+		<widget name="Frame5" position="55,415" size="330,290" zPosition="2"/>
+		<widget name="Frame6" position="425,415" size="330,290" zPosition="2"/>
+		<widget name="Frame7" position="795,415" size="330,290" zPosition="2"/>
+		<widget name="Frame8" position="1165,415" size="330,290" zPosition="2"/>
+		<widget name="Frame9" position="1535,415" size="330,290" zPosition="2"/>
+		<widget name="Frame10" position="55,745" size="330,290" zPosition="2"/>
+		<widget name="Frame11" position="425,745" size="330,290" zPosition="2"/>
+		<widget name="Frame12" position="795,745" size="330,290" zPosition="2"/>
+		<widget name="Frame13" position="1165,745" size="330,290" zPosition="2"/>
+		<widget name="Frame14" position="1535,745" size="330,290" zPosition="2"/>
 
-		<widget name="BGLabel0" position="60,90" size="320,280"
-			zPosition="3" />
-		<widget name="BGLabel1" position="430,90" size="320,280"
-			zPosition="3" />
-		<widget name="BGLabel2" position="800,90" size="320,280"
-			zPosition="3" />
-		<widget name="BGLabel3" position="1170,90" size="320,280"
-			zPosition="3" />
-		<widget name="BGLabel4" position="1540,90" size="320,280"
-			zPosition="3" />
-		<widget name="BGLabel5" position="60,420" size="320,280"
-			zPosition="3" />
-		<widget name="BGLabel6" position="430,420" size="320,280"
-			zPosition="3" />
-		<widget name="BGLabel7" position="800,420" size="320,280"
-			zPosition="3" />
-		<widget name="BGLabel8" position="1170,420" size="320,280"
-			zPosition="3" />
-		<widget name="BGLabel9" position="1540,420" size="320,280"
-			zPosition="3" />
-		<widget name="BGLabel10" position="60,750" size="320,280"
-			zPosition="3" />
-		<widget name="BGLabel11" position="430,750" size="320,280"
-			zPosition="3" />
-		<widget name="BGLabel12" position="800,750" size="320,280"
-			zPosition="3" />
-		<widget name="BGLabel13" position="1170,750" size="320,280"
-			zPosition="3" />
-		<widget name="BGLabel14" position="1540,750" size="320,280"
-			zPosition="3" />
+		<widget name="Tile0" position="60,90" size="320,280" zPosition="3"/>
+		<widget name="Tile1" position="430,90" size="320,280" zPosition="3"/>
+		<widget name="Tile2" position="800,90" size="320,280" zPosition="3"/>
+		<widget name="Tile3" position="1170,90" size="320,280" zPosition="3"/>
+		<widget name="Tile4" position="1540,90" size="320,280" zPosition="3"/>
+		<widget name="Tile5" position="60,420" size="320,280" zPosition="3"/>
+		<widget name="Tile6" position="430,420" size="320,280" zPosition="3"/>
+		<widget name="Tile7" position="800,420" size="320,280" zPosition="3"/>
+		<widget name="Tile8" position="1170,420" size="320,280" zPosition="3"/>
+		<widget name="Tile9" position="1540,420" size="320,280" zPosition="3"/>
+		<widget name="Tile10" position="60,750" size="320,280" zPosition="3"/>
+		<widget name="Tile11" position="430,750" size="320,280" zPosition="3"/>
+		<widget name="Tile12" position="800,750" size="320,280" zPosition="3"/>
+		<widget name="Tile13" position="1170,750" size="320,280" zPosition="3"/>
+		<widget name="Tile14" position="1540,750" size="320,280" zPosition="3"/>
 
-		<widget name="BGFrame0" position="55,85" size="330,290"
-			zPosition="2" />
-		<widget name="BGFrame1" position="425,85" size="330,290"
-			zPosition="2" />
-		<widget name="BGFrame2" position="795,85" size="330,290"
-			zPosition="2" />
-		<widget name="BGFrame3" position="1165,85" size="330,290"
-			zPosition="2" />
-		<widget name="BGFrame4" position="1535,85" size="330,290"
-			zPosition="2" />
-		<widget name="BGFrame5" position="55,415" size="330,290"
-			zPosition="2" />
-		<widget name="BGFrame6" position="425,415" size="330,290"
-			zPosition="2" />
-		<widget name="BGFrame7" position="795,415" size="330,290"
-			zPosition="2" />
-		<widget name="BGFrame8" position="1165,415" size="330,290"
-			zPosition="2" />
-		<widget name="BGFrame9" position="1535,415" size="330,290"
-			zPosition="2" />
-		<widget name="BGFrame10" position="55,745" size="330,290"
-			zPosition="2" />
-		<widget name="BGFrame11" position="425,745" size="330,290"
-			zPosition="2" />
-		<widget name="BGFrame12" position="795,745" size="330,290"
-			zPosition="2" />
-		<widget name="BGFrame13" position="1165,745" size="330,290"
-			zPosition="2" />
-		<widget name="BGFrame14" position="1535,745" size="330,290"
-			zPosition="2" />
+		<widget name="Icon0" position="145,130" size="150,150" zPosition="4"/>
+		<widget name="Icon1" position="515,130" size="150,150" zPosition="4"/>
+		<widget name="Icon2" position="885,130" size="150,150" zPosition="4"/>
+		<widget name="Icon3" position="1255,130" size="150,150" zPosition="4"/>
+		<widget name="Icon4" position="1625,130" size="150,150" zPosition="4"/>
+		<widget name="Icon5" position="145,460" size="150,150" zPosition="4"/>
+		<widget name="Icon6" position="515,460" size="150,150" zPosition="4"/>
+		<widget name="Icon7" position="885,460" size="150,150" zPosition="4"/>
+		<widget name="Icon8" position="1255,460" size="150,150" zPosition="4"/>
+		<widget name="Icon9" position="1625,460" size="150,150" zPosition="4"/>
+		<widget name="Icon10" position="145,790" size="150,150" zPosition="4"/>
+		<widget name="Icon11" position="515,790" size="150,150" zPosition="4"/>
+		<widget name="Icon12" position="885,790" size="150,150" zPosition="4"/>
+		<widget name="Icon13" position="1255,790" size="150,150" zPosition="4"/>
+		<widget name="Icon14" position="1625,790" size="150,150" zPosition="4"/>
+
+		<widget name="Text0" position="75,295" size="290,60"
+			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+		<widget name="Text1" position="445,295" size="290,60"
+			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+		<widget name="Text2" position="815,295" size="290,60"
+			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+		<widget name="Text3" position="1185,295" size="290,60"
+			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+		<widget name="Text4" position="1555,295" size="290,60"
+			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+		<widget name="Text5" position="75,625" size="290,60"
+			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+		<widget name="Text6" position="445,625" size="290,60"
+			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+		<widget name="Text7" position="815,625" size="290,60"
+			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+		<widget name="Text8" position="1185,625" size="290,60"
+			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+		<widget name="Text9" position="1555,625" size="290,60"
+			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+		<widget name="Text10" position="75,955" size="290,60"
+			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+		<widget name="Text11" position="445,955" size="290,60"
+			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+		<widget name="Text12" position="815,955" size="290,60"
+			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+		<widget name="Text13" position="1185,955" size="290,60"
+			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+		<widget name="Text14" position="1555,955" size="290,60"
+			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+
+		<widget name="Picture0" position="60,90" size="320,280" zPosition="5"/>
+		<widget name="Picture1" position="430,90" size="320,280" zPosition="5"/>
+		<widget name="Picture2" position="800,90" size="320,280" zPosition="5"/>
+		<widget name="Picture3" position="1170,90" size="320,280" zPosition="5"/>
+		<widget name="Picture4" position="1540,90" size="320,280" zPosition="5"/>
+		<widget name="Picture5" position="60,420" size="320,280" zPosition="5"/>
+		<widget name="Picture6" position="430,420" size="320,280" zPosition="5"/>
+		<widget name="Picture7" position="800,420" size="320,280" zPosition="5"/>
+		<widget name="Picture8" position="1170,420" size="320,280" zPosition="5"/>
+		<widget name="Picture9" position="1540,420" size="320,280" zPosition="5"/>
+		<widget name="Picture10" position="60,750" size="320,280" zPosition="5"/>
+		<widget name="Picture11" position="430,750" size="320,280" zPosition="5"/>
+		<widget name="Picture12" position="800,750" size="320,280" zPosition="5"/>
+		<widget name="Picture13" position="1170,750" size="320,280" zPosition="5"/>
+		<widget name="Picture14" position="1540,750" size="320,280" zPosition="5"/>
 	</screen>
 
 	<screen name="MDCSlideshow" flags="wfNoBorder" position="0,0" size="1920,1080">

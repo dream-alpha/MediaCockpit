@@ -40,6 +40,7 @@ class Tiles(Screen, object):
 		self.tile_rows = 3
 		self.tiles = self.tile_columns * self.tile_rows
 		self.picLoads = []
+		self.paint_thumbnails_timer = None
 
 		self.selection_size_offset = config.plugins.mediacockpit.selection_size_offset.value
 		self.selection_font_offset = config.plugins.mediacockpit.selection_font_offset.value
@@ -50,11 +51,12 @@ class Tiles(Screen, object):
 		self.selection_frame_color = parseColor(config.plugins.mediacockpit.selection_frame_color.value)
 
 		for tile_pos in range(self.tiles):
-			self["BGFrame%d" % tile_pos] = Label()
-			self["BGFrame%d" % tile_pos].hide()
-			self["BGLabel%d" % tile_pos] = Label()
+			self["Frame%d" % tile_pos] = Label()
+			self["Frame%d" % tile_pos].hide()
+			self["Tile%d" % tile_pos] = Label()
 			self["Picture%d" % tile_pos] = Pixmap()
-			self["TXLabel%d" % tile_pos] = Label()
+			self["Icon%d" % tile_pos] = Pixmap()
+			self["Text%d" % tile_pos] = Label()
 			self.picLoads.append(ePicLoad())
 
 		self.icons = {}
@@ -76,128 +78,140 @@ class Tiles(Screen, object):
 		self.thumbnail_size = self["Picture0"].instance.size()
 
 		for tile_pos in range(self.tiles):
-			self["BGLabel%d" % tile_pos].instance.setForegroundColor(self.normal_foreground_color)
-			self["BGLabel%d" % tile_pos].instance.setBackgroundColor(self.normal_background_color)
-			self["TXLabel%d" % tile_pos].instance.setForegroundColor(self.normal_foreground_color)
-			self["TXLabel%d" % tile_pos].instance.setBackgroundColor(self.normal_background_color)
-			self["BGFrame%d" % tile_pos].instance.setBackgroundColor(self.selection_frame_color)
+			self["Tile%d" % tile_pos].instance.setForegroundColor(self.normal_foreground_color)
+			self["Tile%d" % tile_pos].instance.setBackgroundColor(self.normal_background_color)
+			self["Text%d" % tile_pos].instance.setForegroundColor(self.normal_foreground_color)
+			self["Text%d" % tile_pos].instance.setBackgroundColor(self.normal_background_color)
+			self["Frame%d" % tile_pos].instance.setBackgroundColor(self.selection_frame_color)
 
 			self.picLoads[tile_pos].setPara((self.thumbnail_size.width(), self.thumbnail_size.height(), self.sc[0], self.sc[1], 0, 1, "background"))
 
-		font = self["TXLabel0"].instance.getFont()
+		font = self["Text0"].instance.getFont()
 		self.font_family = font.family
 		self.font_size = font.pointSize
 
-		self.thumbnail_size = self["Picture0"].instance.size()
-
 	def selectTile(self, tile_pos):
 		print("MDC-I: Tiles: selectTile: tile_pos: %s, last_tile_pos: %s" % (tile_pos, self.last_tile_pos))
-		if self.last_tile_pos < 0 and tile_pos >= 0:
+		if self.last_tile_pos < 0 and tile_pos >= 0 and self.file_list:
 			if config.plugins.mediacockpit.frame.value:
-				self["BGFrame%d" % tile_pos].show()
-			size = self["BGFrame%d" % tile_pos].instance.size()
-			pos = self["BGFrame%d" % tile_pos].instance.position()
-			self["BGFrame%d" % tile_pos].instance.resize(eSize(size.width() + self.selection_size_offset * 2, size.height() + self.selection_size_offset * 2))
-			self["BGFrame%d" % tile_pos].instance.move(ePoint(pos.x() - self.selection_size_offset, pos.y() - self.selection_size_offset))
-			size = self["BGLabel%d" % tile_pos].instance.size()
-			pos = self["BGLabel%d" % tile_pos].instance.position()
-			self["BGLabel%d" % tile_pos].instance.resize(eSize(size.width() + self.selection_size_offset * 2, size.height() + self.selection_size_offset * 2))
-			self["BGLabel%d" % tile_pos].instance.move(ePoint(pos.x() - self.selection_size_offset, pos.y() - self.selection_size_offset))
-			self["BGLabel%d" % tile_pos].instance.setBackgroundColor(self.selection_background_color)
-			self["BGLabel%d" % tile_pos].instance.setForegroundColor(self.selection_foreground_color)
+				self["Frame%d" % tile_pos].show()
+			size = self["Frame%d" % tile_pos].instance.size()
+			pos = self["Frame%d" % tile_pos].instance.position()
+			self["Frame%d" % tile_pos].instance.resize(eSize(size.width() + self.selection_size_offset * 2, size.height() + self.selection_size_offset * 2))
+			self["Frame%d" % tile_pos].instance.move(ePoint(pos.x() - self.selection_size_offset, pos.y() - self.selection_size_offset))
+			size = self["Tile%d" % tile_pos].instance.size()
+			pos = self["Tile%d" % tile_pos].instance.position()
+			self["Tile%d" % tile_pos].instance.resize(eSize(size.width() + self.selection_size_offset * 2, size.height() + self.selection_size_offset * 2))
+			self["Tile%d" % tile_pos].instance.move(ePoint(pos.x() - self.selection_size_offset, pos.y() - self.selection_size_offset))
+			self["Tile%d" % tile_pos].instance.setBackgroundColor(self.selection_background_color)
+			self["Tile%d" % tile_pos].instance.setForegroundColor(self.selection_foreground_color)
 			size = self["Picture%d" % tile_pos].instance.size()
 			pos = self["Picture%d" % tile_pos].instance.position()
 			self["Picture%d" % tile_pos].instance.resize(eSize(size.width() + self.selection_size_offset * 2, size.height() + self.selection_size_offset * 2))
 			self["Picture%d" % tile_pos].instance.move(ePoint(pos.x() - self.selection_size_offset, pos.y() - self.selection_size_offset))
-			size = self["TXLabel%d" % tile_pos].instance.size()
-			pos = self["TXLabel%d" % tile_pos].instance.position()
-			self["TXLabel%d" % tile_pos].instance.resize(eSize(size.width() + self.selection_size_offset * 2, size.height()))
-			self["TXLabel%d" % tile_pos].instance.move(ePoint(pos.x() - self.selection_size_offset, pos.y() + self.selection_size_offset))
-			self["TXLabel%d" % tile_pos].instance.setFont(gFont(self.font_family, self.font_size + self.selection_font_offset))
-			self["TXLabel%d" % tile_pos].instance.setBackgroundColor(self.selection_background_color)
-			self["TXLabel%d" % tile_pos].instance.setForegroundColor(self.selection_foreground_color)
+			size = self["Icon%d" % tile_pos].instance.size()
+			pos = self["Icon%d" % tile_pos].instance.position()
+			self["Icon%d" % tile_pos].instance.resize(eSize(size.width() + self.selection_size_offset * 2, size.height() + self.selection_size_offset * 2))
+			self["Icon%d" % tile_pos].instance.move(ePoint(pos.x() - self.selection_size_offset, pos.y() - self.selection_size_offset))
+			size = self["Text%d" % tile_pos].instance.size()
+			pos = self["Text%d" % tile_pos].instance.position()
+			self["Text%d" % tile_pos].instance.resize(eSize(size.width() + self.selection_size_offset * 2, size.height()))
+			self["Text%d" % tile_pos].instance.move(ePoint(pos.x() - self.selection_size_offset, pos.y() + self.selection_size_offset))
+			self["Text%d" % tile_pos].instance.setFont(gFont(self.font_family, self.font_size + self.selection_font_offset))
+			self["Text%d" % tile_pos].instance.setBackgroundColor(self.selection_background_color)
+			self["Text%d" % tile_pos].instance.setForegroundColor(self.selection_foreground_color)
 			self.last_tile_pos = tile_pos
 
 	def unselectTile(self, tile_pos):
 		print("MDC-I: Tiles: unselectTile: tile_pos: %s, last_tile_pos: %s" % (tile_pos, self.last_tile_pos))
 		if self.last_tile_pos > -1 and tile_pos >= 0:
-			self["BGFrame%d" % tile_pos].hide()
-			size = self["BGFrame%d" % tile_pos].instance.size()
-			pos = self["BGFrame%d" % tile_pos].instance.position()
-			self["BGFrame%d" % tile_pos].instance.resize(eSize(size.width() - self.selection_size_offset * 2, size.height() - self.selection_size_offset * 2))
-			self["BGFrame%d" % tile_pos].instance.move(ePoint(pos.x() + self.selection_size_offset, pos.y() + self.selection_size_offset))
-			size = self["BGLabel%d" % tile_pos].instance.size()
-			pos = self["BGLabel%d" % tile_pos].instance.position()
-			self["BGLabel%d" % tile_pos].instance.resize(eSize(size.width() - self.selection_size_offset * 2, size.height() - self.selection_size_offset * 2))
-			self["BGLabel%d" % tile_pos].instance.move(ePoint(pos.x() + self.selection_size_offset, pos.y() + self.selection_size_offset))
-			self["BGLabel%d" % tile_pos].instance.setBackgroundColor(self.normal_background_color)
-			self["BGLabel%d" % tile_pos].instance.setForegroundColor(self.normal_foreground_color)
+			self["Frame%d" % tile_pos].hide()
+			size = self["Frame%d" % tile_pos].instance.size()
+			pos = self["Frame%d" % tile_pos].instance.position()
+			self["Frame%d" % tile_pos].instance.resize(eSize(size.width() - self.selection_size_offset * 2, size.height() - self.selection_size_offset * 2))
+			self["Frame%d" % tile_pos].instance.move(ePoint(pos.x() + self.selection_size_offset, pos.y() + self.selection_size_offset))
+			size = self["Tile%d" % tile_pos].instance.size()
+			pos = self["Tile%d" % tile_pos].instance.position()
+			self["Tile%d" % tile_pos].instance.resize(eSize(size.width() - self.selection_size_offset * 2, size.height() - self.selection_size_offset * 2))
+			self["Tile%d" % tile_pos].instance.move(ePoint(pos.x() + self.selection_size_offset, pos.y() + self.selection_size_offset))
+			self["Tile%d" % tile_pos].instance.setBackgroundColor(self.normal_background_color)
+			self["Tile%d" % tile_pos].instance.setForegroundColor(self.normal_foreground_color)
 			size = self["Picture%d" % tile_pos].instance.size()
 			pos = self["Picture%d" % tile_pos].instance.position()
 			self["Picture%d" % tile_pos].instance.resize(eSize(size.width() - self.selection_size_offset * 2, size.height() - self.selection_size_offset * 2))
 			self["Picture%d" % tile_pos].instance.move(ePoint(pos.x() + self.selection_size_offset, pos.y() + self.selection_size_offset))
-			size = self["TXLabel%d" % tile_pos].instance.size()
-			pos = self["TXLabel%d" % tile_pos].instance.position()
-			self["TXLabel%d" % tile_pos].instance.resize(eSize(size.width() - self.selection_size_offset * 2, size.height()))
-			self["TXLabel%d" % tile_pos].instance.move(ePoint(pos.x() + self.selection_size_offset, pos.y() - self.selection_size_offset))
-			self["TXLabel%d" % tile_pos].instance.setFont(gFont(self.font_family, self.font_size))
-			self["TXLabel%d" % tile_pos].instance.setBackgroundColor(self.normal_background_color)
-			self["TXLabel%d" % tile_pos].instance.setForegroundColor(self.normal_foreground_color)
+			size = self["Icon%d" % tile_pos].instance.size()
+			pos = self["Icon%d" % tile_pos].instance.position()
+			self["Icon%d" % tile_pos].instance.resize(eSize(size.width() - self.selection_size_offset * 2, size.height() - self.selection_size_offset * 2))
+			self["Icon%d" % tile_pos].instance.move(ePoint(pos.x() + self.selection_size_offset, pos.y() + self.selection_size_offset))
+			size = self["Text%d" % tile_pos].instance.size()
+			pos = self["Text%d" % tile_pos].instance.position()
+			self["Text%d" % tile_pos].instance.resize(eSize(size.width() - self.selection_size_offset * 2, size.height()))
+			self["Text%d" % tile_pos].instance.move(ePoint(pos.x() + self.selection_size_offset, pos.y() - self.selection_size_offset))
+			self["Text%d" % tile_pos].instance.setFont(gFont(self.font_family, self.font_size))
+			self["Text%d" % tile_pos].instance.setBackgroundColor(self.normal_background_color)
+			self["Text%d" % tile_pos].instance.setForegroundColor(self.normal_foreground_color)
 			self.last_tile_pos = -1
+
+	def hideTile(self, tile_pos):
+		self["Picture%d" % tile_pos].hide()
+		self["Icon%d" % tile_pos].hide()
+		self["Text%d" % tile_pos].hide()
+		self["Tile%d" % tile_pos].hide()
+		self["Frame%d" % tile_pos].hide()
 
 	def hideTiles(self):
 		self.unselectTile(self.last_tile_pos)
 		for tile_pos in range(self.tiles):
-			self["Picture%d" % tile_pos].hide()
-			self["TXLabel%d" % tile_pos].hide()
-			self["BGLabel%d" % tile_pos].show()
-			self["BGFrame%d" % tile_pos].hide()
+			self.hideTile(tile_pos)
 
 	def paintTiles(self, refresh_tiles=False):
 		print("MDC-I: Tiles: paintTiles: current_page: %s, file_index: %s" % (self.current_page, self.file_index))
 		page = self.file_index / self.tiles
-		if page != self.current_page or refresh_tiles:
+		file_list_len = len(self.file_list)
+		if page != self.current_page or refresh_tiles or not file_list_len:
 			self.current_page = page
 			first_idx = self.current_page * self.tiles
 			last_idx = (self.current_page + 1) * self.tiles
 			#print("MDC: Tiles: paintTiles: first_idx: %s, last_idx: %s" % (first_idx, last_idx))
 			for idx in range(first_idx, last_idx):
 				tile_pos = idx % self.tiles
-				if idx < len(self.file_list):
+				if file_list_len and idx < file_list_len:
 					path, _type, _date, media, _meta = self.file_list[idx]
-					self["BGLabel%d" % tile_pos].show()
-					self["TXLabel%d" % tile_pos].setText(os.path.basename(path))
-					self["TXLabel%d" % tile_pos].show()
+					self["Tile%d" % tile_pos].show()
+					self["Text%d" % tile_pos].setText(os.path.basename(path))
+					self["Text%d" % tile_pos].show()
 					if not refresh_tiles:
-						self["Picture%d" % tile_pos].instance.setPixmap(self.icons[media])
-						self["Picture%d" % tile_pos].show()
+						self["Picture%d" % tile_pos].hide()
+						self["Icon%d" % tile_pos].instance.setPixmap(self.icons[media])
+						self["Icon%d" % tile_pos].show()
 				else:
-					self["BGLabel%d" % tile_pos].hide()
-					self["Picture%d" % tile_pos].hide()
-					self["TXLabel%d" % tile_pos].hide()
-					self["BGFrame%d" % tile_pos].hide()
-			DelayedFunction(10, self.paintThumbnails, first_idx, last_idx)
+					self.hideTile(tile_pos)
+			if file_list_len:
+				last_idx = last_idx if last_idx < file_list_len else file_list_len
+				self.paint_thumbnails_timer = DelayedFunction(10, self.paintThumbnails, self.current_page, first_idx, last_idx)
 
 		tile_pos = self.file_index % self.tiles
 		#print("MDC: Tiles: paintTiles: tile_pos: %s, last_tile_pos: %s" % (tile_pos, self.last_tile_pos))
 		self.unselectTile(self.last_tile_pos)
 		self.selectTile(tile_pos)
 
-	def paintThumbnails(self, idx, last_idx):
-		tile_pos = idx % self.tiles
-		page = idx / self.tiles
-		path, _type, _date, media, meta = self.file_list[idx]
-		if media == "picture":
-			path = rotatePictureExif(path, meta)
-			self.paintThumbnail(page, tile_pos, path)
-		elif media == "movie":
-			thumbnail = path + ".thumbnail.jpg"
-			if os.path.exists(thumbnail):
-				path = thumbnail
+	def paintThumbnails(self, page, first_idx, last_idx):
+		for idx in range(first_idx, last_idx):
+			tile_pos = idx % self.tiles
+			path, _type, _date, media, meta = self.file_list[idx]
+			if media == "picture":
+				path = rotatePictureExif(path, meta)
 				self.paintThumbnail(page, tile_pos, path)
-		idx += 1
-		if idx < last_idx and idx < len(self.file_list):
-			DelayedFunction(10, self.paintThumbnails, idx, last_idx)
+			elif media == "movie":
+				thumbnail = path + ".thumbnail.jpg"
+				if os.path.exists(thumbnail):
+					path = thumbnail
+					self.paintThumbnail(page, tile_pos, path)
+
+	def cancelPaintThumbnails(self):
+		if self.paint_thumbnails_timer:
+			self.paint_thumbnails_timer.cancel()
 
 	def paintThumbnail(self, page, tile_pos, path):
 		#print("MDC: Tiles: paintThumbnail: page: %s, tile_pos: %s, path: %s" % (page, tile_pos, path))
@@ -209,3 +223,6 @@ class Tiles(Screen, object):
 		if page == self.current_page:
 			ptr = self.picLoads[tile_pos].getData()
 			self["Picture%d" % tile_pos].instance.setPixmap(ptr)
+			self["Icon%d" % tile_pos].hide()
+			self["Text%d" % tile_pos].hide()
+			self["Picture%d" % tile_pos].show()
