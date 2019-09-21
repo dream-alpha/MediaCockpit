@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2019 by dream-alpha
+# Copyright (C) 2018-2019 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -19,20 +19,31 @@
 #	<http://www.gnu.org/licenses/>.
 
 
-from Components.Language import language
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS
-from os import environ
-from Version import PLUGIN
-import gettext
+from operator import isCallable
+from enigma import eTimer
 
+timers = []
 
-def localeInit():
-	lang = language.getLanguage()[:2]
-	environ["LANGUAGE"] = lang
-	gettext.bindtextdomain(PLUGIN, resolveFilename(SCOPE_PLUGINS, "Extensions/" + PLUGIN + "/locale"))
+class DelayTimer(object):
 
-def _(txt):
-	return gettext.dgettext(PLUGIN, txt)
+	def __init__(self, delay, function, *params):
+		#print("MDC: DelayTimer: __init__: delay: %s" % delay)
+		if isCallable(function):
+			timers.append(self)
+			self.delay = delay  # in milliseconds
+			self.function = function
+			self.params = params
+			self.timer = eTimer()
+			self.timer_conn = self.timer.timeout.connect(self.__fire)
+			if self.delay:
+				self.__start()
+			else:
+				self.__fire()
 
-localeInit()
-language.addCallback(localeInit)
+	def __fire(self):
+		#print("MDC: DelayTimer: __fire")
+		timers.remove(self)
+		self.function(*self.params)
+
+	def __start(self):
+		self.timer.start(self.delay, True)

@@ -20,27 +20,24 @@
 
 
 import os
+from __init__ import _
 from Components.Label import Label
 from Components.Pixmap import Pixmap
-from Tools.BoundFunction import boundFunction
 from Components.config import config
-from enigma import eSize, ePoint, gFont, ePicLoad
-from PictureUtils import rotatePictureExif
+from enigma import eSize, ePoint, gFont
 from SkinUtils import getSkinPath
 from Tools.LoadPixmap import LoadPixmap
 from skin import parseColor
-from Screens.Screen import Screen
-from DelayedFunction import DelayedFunction
+from globals import FILE_TYPE, FILE_PATH, TYPE_FILE
 
-
-class Tiles(Screen, object):
+class Tiles(object):
 
 	def __init__(self):
 		self.tile_columns = 5
 		self.tile_rows = 3
+		self.file_list = []
+		self.current_path = None
 		self.tiles = self.tile_columns * self.tile_rows
-		self.picLoads = []
-		self.paint_thumbnails_timer = None
 
 		self.selection_size_offset = config.plugins.mediacockpit.selection_size_offset.value
 		self.selection_font_offset = config.plugins.mediacockpit.selection_font_offset.value
@@ -57,21 +54,17 @@ class Tiles(Screen, object):
 			self["Picture%d" % tile_pos] = Pixmap()
 			self["Icon%d" % tile_pos] = Pixmap()
 			self["Text%d" % tile_pos] = Label()
-			self.picLoads.append(ePicLoad())
 
 		self.icons = {}
-		self.icons["picture"] = LoadPixmap(path=getSkinPath("images/" + "picture.svg"), cached=True)
-		self.icons["movie"] = LoadPixmap(path=getSkinPath("images/" + "movie.svg"), cached=True)
-		self.icons["music"] = LoadPixmap(path=getSkinPath("images/" + "music.svg"), cached=True)
-		self.icons["folder"] = LoadPixmap(path=getSkinPath("images/" + "folder.svg"), cached=True)
-		self.icons["playlist"] = LoadPixmap(path=getSkinPath("images/" + "playlist.svg"), cached=True)
-		self.icons["goup"] = LoadPixmap(path=getSkinPath("images/" + "goup.svg"), cached=True)
+		self.icons["picture"] = LoadPixmap(getSkinPath("images/" + "picture.svg"), cached=True)
+		self.icons["movie"] = LoadPixmap(getSkinPath("images/" + "movie.svg"), cached=True)
+		self.icons["music"] = LoadPixmap(getSkinPath("images/" + "music.svg"), cached=True)
+		self.icons["folder"] = LoadPixmap(getSkinPath("images/" + "folder.svg"), cached=True)
+		self.icons["playlist"] = LoadPixmap(getSkinPath("images/" + "playlist.svg"), cached=True)
+		self.icons["goup"] = LoadPixmap(getSkinPath("images/" + "goup.svg"), cached=True)
 
-		self.current_page = -1
+		self.busy = False
 		self.last_tile_pos = -1
-
-	def getTiles(self):
-		return self.tiles
 
 	def initTileAttribs(self):
 		#print("MDC: Tiles: initTileAttribs")
@@ -84,14 +77,12 @@ class Tiles(Screen, object):
 			self["Text%d" % tile_pos].instance.setBackgroundColor(self.normal_background_color)
 			self["Frame%d" % tile_pos].instance.setBackgroundColor(self.selection_frame_color)
 
-			self.picLoads[tile_pos].setPara((self.thumbnail_size.width(), self.thumbnail_size.height(), self.sc[0], self.sc[1], 0, 1, "background"))
-
 		font = self["Text0"].instance.getFont()
 		self.font_family = font.family
 		self.font_size = font.pointSize
 
 	def selectTile(self, tile_pos):
-		print("MDC-I: Tiles: selectTile: tile_pos: %s, last_tile_pos: %s" % (tile_pos, self.last_tile_pos))
+		#print("MDC: Tiles: selectTile: tile_pos: %s, last_tile_pos: %s" % (tile_pos, self.last_tile_pos))
 		if self.last_tile_pos < 0 and tile_pos >= 0 and self.file_list:
 			if config.plugins.mediacockpit.frame.value:
 				self["Frame%d" % tile_pos].show()
@@ -123,7 +114,7 @@ class Tiles(Screen, object):
 			self.last_tile_pos = tile_pos
 
 	def unselectTile(self, tile_pos):
-		print("MDC-I: Tiles: unselectTile: tile_pos: %s, last_tile_pos: %s" % (tile_pos, self.last_tile_pos))
+		#print("MDC: Tiles: unselectTile: tile_pos: %s, last_tile_pos: %s" % (tile_pos, self.last_tile_pos))
 		if self.last_tile_pos > -1 and tile_pos >= 0:
 			self["Frame%d" % tile_pos].hide()
 			size = self["Frame%d" % tile_pos].instance.size()
@@ -151,7 +142,13 @@ class Tiles(Screen, object):
 			self["Text%d" % tile_pos].instance.setFont(gFont(self.font_family, self.font_size))
 			self["Text%d" % tile_pos].instance.setBackgroundColor(self.normal_background_color)
 			self["Text%d" % tile_pos].instance.setForegroundColor(self.normal_foreground_color)
-			self.last_tile_pos = -1
+		self.last_tile_pos = -1
+
+	def displayLCD(self, _file_of_files, _path):
+		print("MDC-E: Tiles: displayLCD: overwritten in child class")
+
+	def displayOSD(self, _msg):
+		print("MDC-E: Tiles: displayOSD: overwritten in child class")
 
 	def hideTile(self, tile_pos):
 		self["Picture%d" % tile_pos].hide()
@@ -165,64 +162,111 @@ class Tiles(Screen, object):
 		for tile_pos in range(self.tiles):
 			self.hideTile(tile_pos)
 
-	def paintTiles(self, refresh_tiles=False):
-		print("MDC-I: Tiles: paintTiles: current_page: %s, file_index: %s" % (self.current_page, self.file_index))
-		page = self.file_index / self.tiles
+	def paintTile(self, idx, tile_pos):
+		#print("MDC: FileList: paintTile: idx: %s, tile_pos: %s" % (idx, tile_pos))
+		path, _type, _date, media, _meta = self.file_list[idx]
+		self["Tile%d" % tile_pos].show()
+		self["Text%d" % tile_pos].setText(os.path.basename(path))
+		filename, ext = os.path.splitext(path)
+		thumbnail_path = None
+		for thumbnail in [filename + ".thumbnail" + ext, filename + ".thumbnail.jpg"]:
+			if os.path.exists(thumbnail):
+				thumbnail_path = thumbnail
+				break
+		if thumbnail_path:
+			self["Picture%d" % tile_pos].instance.setPixmap(LoadPixmap(thumbnail_path, cached=False))
+			self["Icon%d" % tile_pos].hide()
+			self["Text%d" % tile_pos].hide()
+			self["Picture%d" % tile_pos].show()
+		else:
+			self["Picture%d" % tile_pos].hide()
+			self["Icon%d" % tile_pos].instance.setPixmap(self.icons[media])
+			self["Icon%d" % tile_pos].show()
+			self["Text%d" % tile_pos].show()
+
+	def paintTiles(self):
+		print("MDC-I: Tiles: paintTiles")
 		file_list_len = len(self.file_list)
-		if page != self.current_page or refresh_tiles or not file_list_len:
-			self.current_page = page
-			first_idx = self.current_page * self.tiles
-			last_idx = (self.current_page + 1) * self.tiles
-			#print("MDC: Tiles: paintTiles: first_idx: %s, last_idx: %s" % (first_idx, last_idx))
-			for idx in range(first_idx, last_idx):
-				tile_pos = idx % self.tiles
-				if file_list_len and idx < file_list_len:
-					path, _type, _date, media, _meta = self.file_list[idx]
-					self["Tile%d" % tile_pos].show()
-					self["Text%d" % tile_pos].setText(os.path.basename(path))
-					self["Text%d" % tile_pos].show()
-					if not refresh_tiles:
-						self["Picture%d" % tile_pos].hide()
-						self["Icon%d" % tile_pos].instance.setPixmap(self.icons[media])
-						self["Icon%d" % tile_pos].show()
-				else:
-					self.hideTile(tile_pos)
-			if file_list_len:
-				last_idx = last_idx if last_idx < file_list_len else file_list_len
-				self.paint_thumbnails_timer = DelayedFunction(10, self.paintThumbnails, self.current_page, first_idx, last_idx)
+		first_idx = self.file_index / self.tiles * self.tiles
+		last_idx = first_idx + self.tiles
+
+		#print("MDC: Tiles: paintTiles: first_idx: %s, last_idx: %s" % (first_idx, last_idx))
+		for idx in range(first_idx, last_idx):
+			tile_pos = idx % self.tiles
+			if file_list_len and idx < file_list_len:
+				self.paintTile(idx, tile_pos)
+			else:
+				self.hideTile(tile_pos)
 
 		tile_pos = self.file_index % self.tiles
 		#print("MDC: Tiles: paintTiles: tile_pos: %s, last_tile_pos: %s" % (tile_pos, self.last_tile_pos))
 		self.unselectTile(self.last_tile_pos)
 		self.selectTile(tile_pos)
+		self.showInfo()
 
-	def paintThumbnails(self, page, first_idx, last_idx):
-		for idx in range(first_idx, last_idx):
-			tile_pos = idx % self.tiles
-			path, _type, _date, media, meta = self.file_list[idx]
-			if media == "picture":
-				path = rotatePictureExif(path, meta)
-				self.paintThumbnail(page, tile_pos, path)
-			elif media == "movie":
-				thumbnail = path + ".thumbnail.jpg"
-				if os.path.exists(thumbnail):
-					path = thumbnail
-					self.paintThumbnail(page, tile_pos, path)
+	def showInfo(self):
+		if self.file_list:
+			x = self.file_list[self.file_index]
+			path = x[FILE_PATH]
+			filetype = _("File") if x[FILE_TYPE] == TYPE_FILE else _("Path")
+		else:
+			path = self.current_path
+			filetype = _("Path")
 
-	def cancelPaintThumbnails(self):
-		if self.paint_thumbnails_timer:
-			self.paint_thumbnails_timer.cancel()
+		page = self.file_index / self.tiles + 1
+		pages = len(self.file_list) / self.tiles + 1
+		pages = pages if len(self.file_list) % self.tiles else pages - 1
 
-	def paintThumbnail(self, page, tile_pos, path):
-		#print("MDC: Tiles: paintThumbnail: page: %s, tile_pos: %s, path: %s" % (page, tile_pos, path))
-		self.picLoads[tile_pos].conn = self.picLoads[tile_pos].PictureData.connect(boundFunction(self.paintThumbnailCallback, page, tile_pos))
-		self.picLoads[tile_pos].getThumbnail(path)
+		self.displayLCD("%d/%d" % (self.file_index + 1, len(self.file_list)), os.path.basename(path))
+		self.displayOSD("%s: %d/%d - %s: %s" % (_("Page"), page, pages, filetype, path))
 
-	def paintThumbnailCallback(self, page, tile_pos, _info):
-		#print("MDC: Tiles: paintThumbnailCallback: page: %s, current_page: %s, tile_pos: %s" % (page, self.current_page, tile_pos))
-		if page == self.current_page:
-			ptr = self.picLoads[tile_pos].getData()
-			self["Picture%d" % tile_pos].instance.setPixmap(ptr)
-			self["Icon%d" % tile_pos].hide()
-			self["Text%d" % tile_pos].hide()
-			self["Picture%d" % tile_pos].show()
+### Cursor moves
+
+	def moveHome(self):
+		if not self.busy:
+			self.file_index = 0
+			self.paintTiles()
+
+	def moveLeft(self):
+		if not self.busy:
+			self.file_index -= 1
+			if self.file_index < 0:
+				self.file_index = len(self.file_list) - 1
+			self.paintTiles()
+
+	def moveRight(self):
+		if not self.busy:
+			self.file_index += 1
+			if self.file_index > len(self.file_list) - 1:
+				self.file_index = 0
+			self.paintTiles()
+
+	def moveUp(self):
+		if not self.busy:
+			self.file_index -= self.tile_columns
+			if self.file_index < 0:
+				self.file_index = len(self.file_list) - 1
+			self.paintTiles()
+
+	def moveDown(self):
+		if not self.busy:
+			self.file_index += self.tile_columns
+			if self.file_index > len(self.file_list) - 1:
+				self.file_index = 0
+			self.paintTiles()
+
+	def nextPage(self):
+		if not self.busy:
+			self.file_index += self.tiles
+			self.file_index = self.file_index / self.tiles * self.tiles
+			if self.file_index > len(self.file_list) - 1:
+				self.file_index = 0
+			self.paintTiles()
+
+	def prevPage(self):
+		if not self.busy:
+			self.file_index -= self.tiles
+			if self.file_index < 0:
+				self.file_index = len(self.file_list) - 1
+			self.file_index = self.file_index / self.tiles * self.tiles
+			self.paintTiles()

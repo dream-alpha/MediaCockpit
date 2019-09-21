@@ -20,6 +20,7 @@
 
 
 import os
+from Version import PLUGIN
 from enigma import getDesktop
 from skin import loadSkin, loadSingleSkinData, dom_skins
 from Tools.Directories import fileExists, resolveFilename, SCOPE_SKIN, SCOPE_CURRENT_SKIN, SCOPE_PLUGINS
@@ -27,23 +28,26 @@ from Tools.Directories import fileExists, resolveFilename, SCOPE_SKIN, SCOPE_CUR
 
 def getSkinPath(filename):
 	#print("MDC: SkinUtils: getSkinPath: filename: %s" % filename)
-	skin_path = resolveFilename(SCOPE_CURRENT_SKIN, "MediaCockpit/skin/" + filename)
+	skin_path = resolveFilename(SCOPE_CURRENT_SKIN, PLUGIN + "/skin/" + filename)
 	if not fileExists(skin_path):
-		skin_path = resolveFilename(SCOPE_SKIN, "Default-FHD/MediaCockpit/skin/" + filename)
-	#print("MDC: SkinUtils: getSkinPath: skin_path: " + skin_path)
+		skin_path = resolveFilename(SCOPE_SKIN, "Default-FHD/" + PLUGIN + "/skin/" + filename)
+	#print("MDC: SkinUtils: getSkinPath: skin_path: %s" % skin_path)
 	return skin_path
 
 
-def loadPluginSkin(skin_file, plugin_name):
-	default_skin = resolveFilename(SCOPE_SKIN, "Default-FHD/" + plugin_name)
-	current_skin = resolveFilename(SCOPE_CURRENT_SKIN, plugin_name)
-	plugin_skin = resolveFilename(SCOPE_PLUGINS, "Extensions/" + plugin_name)
+def initSkinPath():
+	default_skin = resolveFilename(SCOPE_SKIN, "Default-FHD/" + PLUGIN)
+	current_skin = resolveFilename(SCOPE_CURRENT_SKIN, PLUGIN)
+	plugin_skin = resolveFilename(SCOPE_PLUGINS, "Extensions/" + PLUGIN)
 	print("MDC-I: SkinUtils: loadPluginSkin: current_skin: %s" % current_skin)
 	print("MDC-I: SkinUtils: loadPluginSkin: default_skin: %s" % default_skin)
 	print("MDC-I: SkinUtils: loadPluginSkin: plugin_skin: %s" % plugin_skin)
 	if not os.path.isdir(default_skin):
 		print("MDC-I: SkinUtils: loadPluginSkin: ln -s " + plugin_skin + " " + resolveFilename(SCOPE_SKIN, "Default-FHD"))
 		os.system("ln -s " + plugin_skin + " " + resolveFilename(SCOPE_SKIN, "Default-FHD"))
+
+
+def loadPluginSkin(skin_file):
 	loadSkin(getSkinPath(skin_file), "")
 	path, dom_skin = dom_skins[-1:][0]
 	loadSingleSkinData(getDesktop(0), dom_skin, path)

@@ -18,5 +18,5 @@
 #	For more information on the GNU General Public License see:
 #	<http://www.gnu.org/licenses/>.
 
-
-VERSION = "4.1.2"
+PLUGIN = "MediaCockpit"
+VERSION = "5.5.0"

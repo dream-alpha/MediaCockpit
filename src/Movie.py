@@ -28,19 +28,13 @@ from Components.Sources.MDCCurrentService import MDCCurrentService
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.config import config
+from Display import Display
 
 
-class MDCMoviePlayerSummary(Screen):
-
-	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent=parent)
-		self.skinName = ["MDCMoviePlayerSummary"]
-		self["Service"] = MDCCurrentService(session.nav, parent)
-
-
-class MDCMoviePlayer(MoviePlayer, Screen):
+class MDCMoviePlayer(Display, MoviePlayer, Screen):
 
 	def __init__(self, session, file_list, file_index, slideshow_active=False):
+		#print("MDC: Movie: __init__: file_index: %s, slideshow_active: %s" % (file_index, slideshow_active))
 		self.file_index = file_index
 		self.file_list = file_list
 		self.slideshow_active = slideshow_active
@@ -53,7 +47,8 @@ class MDCMoviePlayer(MoviePlayer, Screen):
 		MoviePlayer.__init__(self, session, playservice)
 		self.skinName = ""
 		if config.plugins.mediacockpit.show_movie_infobar.value:
-			self.skinName = ["MDCMoviePlayer"]
+			self.skinName = "MDCMoviePlayer"
+		Display.__init__(self, "MDCMoviePlayer")
 		self.ENABLE_RESUME_SUPPORT = False
 		self.ALLOW_SUSPEND = True
 		self.skip = 5
@@ -69,9 +64,6 @@ class MDCMoviePlayer(MoviePlayer, Screen):
 			},
 			-1
 		)
-
-	def createSummary(self):
-		return MDCMoviePlayerSummary
 
 	def NextService(self):
 		MoviePlayer.leavePlayer(self)

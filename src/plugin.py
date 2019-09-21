@@ -23,7 +23,7 @@ from __init__ import _
 from Plugins.Plugin import PluginDescriptor
 from Screens.InfoBar import InfoBar
 from Components.config import config
-from SkinUtils import loadPluginSkin
+from SkinUtils import initSkinPath, loadPluginSkin
 from Tools.BoundFunction import boundFunction
 from Version import VERSION
 from Cockpit import Cockpit
@@ -54,7 +54,8 @@ def autoStart(reason, **kwargs):
 
 
 def startMediaCockpit(session, **__):
-	loadPluginSkin("skin.xml", "MediaCockpit")
+	initSkinPath()
+	loadPluginSkin("skin.xml")
 	session.open(Cockpit)
 
 

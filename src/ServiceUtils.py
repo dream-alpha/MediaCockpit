@@ -35,8 +35,14 @@ extM2ts = frozenset([".m2ts"])
 extIfo = frozenset([".ifo"])
 extIso = frozenset([".iso", ".img"])
 extDvd = extIfo | extIso
-extVideo = frozenset([".ts", ".trp", ".divx", ".f4v", ".img", ".ifo", ".iso", ".m4v", ".mkv", ".mov", ".mp4", ".mpeg", ".mpg", ".mts", ".vob", ".wmv", ".bdmv", ".asf", ".stream", ".webm"])
 extBlu = frozenset([".bdmv"])
+
+# all media ext types
+extVideo = [".avi", ".ts", ".trp", ".divx", ".f4v", ".img", ".ifo", ".iso", ".m4v", ".mkv", ".mov", ".mp4", ".mpeg", ".mpg", ".mts", ".vob", ".wmv", ".bdmv", ".asf", ".stream", ".webm"]
+extPicture = [".jpg", ".jpeg", ".png"]
+extMusic = [".mp3"]
+extPlaylist = [".m3u"]
+extMedia = extVideo + extPicture + extPlaylist
 
 
 def getService(path, name=""):

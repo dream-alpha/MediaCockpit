@@ -17,34 +17,31 @@
 #
 #	For more information on the GNU General Public License see:
 #	<http://www.gnu.org/licenses/>.
+#
 
+import os
+import cPickle
+from FileUtils import readFile, writeFile, deleteFile
 
-from operator import isCallable
-from enigma import eTimer
+class MetaFile(object):
 
+	def saveMeta(self, path, meta):
+		#print("MDC: MetaFile: saveMeta: path: %s, meta: %s" % (path, str(meta)))
+		if meta:
+			filename, _ext = os.path.splitext(path)
+			meta_path = filename + ".meta"
+			if os.path.exists(meta_path):
+				deleteFile(meta_path)
+			if not os.path.exists(meta_path):
+				text = cPickle.dumps(meta)
+				writeFile(meta_path, text)
 
-instanceTab = []
-
-
-class DelayedFunction(object):
-
-	def __init__(self, delay, function, *params):
-		if isCallable(function):
-			instanceTab.append(self)
-			self.function = function
-			self.params = params
-			self.timer = eTimer()
-			self.timer_conn = self.timer.timeout.connect(self.timerLaunch)
-			self.timer.start(delay, True)
-
-	def cancel(self):
-		if self in instanceTab:
-			instanceTab.remove(self)
-			self.timer.stop()
-
-	def timerLaunch(self):
-		instanceTab.remove(self)
-		self.function(*self.params)
-
-	def exists(self):
-		return self in instanceTab
+	def loadMeta(self, path):
+		#print("MDC: MetaFile: loadMeta: path: %s" % path)
+		filename, _ext = os.path.splitext(path)
+		meta_path = filename + ".meta"
+		x = []
+		if os.path.isfile(meta_path):
+			text = readFile(meta_path)
+			x = cPickle.loads(text)
+		return x

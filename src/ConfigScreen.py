@@ -142,6 +142,8 @@ class ConfigScreen(ConfigInit, ConfigListScreen, Screen, object):
 				(_("Tile selection font offset")                    , config.plugins.mediacockpit.selection_font_offset     , None                  , None                  , 0     , []          , _("Help Tile selection font offset")),
 				(_("Tile selection frame")                          , config.plugins.mediacockpit.frame                     , None                  , None                  , 0     , []          , _("Help Tile selection frame")),
 				(_("Tile selection frame color")                    , config.plugins.mediacockpit.selection_frame_color     , None                  , None                  , 0     , [-1]        , _("Help Tile selection frame color")),
+				(_("Create thumbnails")                             , config.plugins.mediacockpit.create_thumbnails         , None                  , None                  , 0     , []          , _("Help Create thumbnails")),
+				(_("Show detailed loading info")                    , config.plugins.mediacockpit.show_loading_details      , None                  , None                  , 0     , []          , _("Help Show detailed loading info")),
 				(self.section                                       , _("VIDEO")                                            , None                  , None                  , 2     , []          , ""),
 				(_("Show info bar")                                  , config.plugins.mediacockpit.show_movie_infobar       , None                  , None                  , 0     , []          , _("Help Show movie info bar")),
 				(self.section                                       , _("PLAYLIST")                                         , None                  , None                  , 2     , []          , ""),
@@ -159,7 +161,7 @@ class ConfigScreen(ConfigInit, ConfigListScreen, Screen, object):
 				(_("Show info bar")                                 , config.plugins.mediacockpit.show_picture_infobar      , None                  , None                  , 0     , []          , _("Help Show picture info bar")),
 				(self.section                                       , _("SLIDESHOW")                                        , None                  , None                  , 0     , []          , ""),
 				(_("Duration")                                      , config.plugins.mediacockpit.slideshow_duration        , None                  , None                  , 0     , []          , _("Help Duration")),
-				(_("Animation")                                     , config.plugins.mediacockpit.animation                 , self.checkInstalled   , None                  , 0     , []          , _("Help Animation")),
+				(_("Animation")                                     , config.plugins.mediacockpit.animation                 , None                  , None                  , 0     , []          , _("Help Animation")),
 				(_("Endless loop")                                  , config.plugins.mediacockpit.slideshow_loop            , None                  , None                  , 0     , []          , _("Help Endless loop")),
 			]
 
@@ -361,16 +363,6 @@ class ConfigScreen(ConfigInit, ConfigListScreen, Screen, object):
 
 	def showInfo(self, _element=None):
 		self.session.open(MessageBox, "MediaCockpit" + ": Version " + VERSION, MessageBox.TYPE_INFO)
-
-	def checkInstalled(self, element):
-		#print("MDC: ConfigScreen: checkInstalled")
-		if element.value in ["kenburns", "crossfade2"]:
-			try:
-				from Components.MerlinMusicPlayerWidget import MerlinImageDisplay  # noqa: F401, pylint: disable=W0612
-			except Exception:
-				self.session.open(MessageBox, _("For the selected slideshow effect package python-merlinmusicplayer needs to be installed"), MessageBox.TYPE_ERROR)
-				return False
-		return True
 
 	def validatePath(self, element):
 		element.value = os.path.normpath(element.value)

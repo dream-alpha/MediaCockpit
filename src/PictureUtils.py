@@ -20,93 +20,99 @@
 
 
 import os
+import pexif
 from PIL import Image
+from PIL import ImageFile
 from PIL.ExifTags import TAGS
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 
 def getExifData(path):
 	#print("MDC: PictureUtils: getExifData: path: %s" % path)
-	exif_data = None
+	exif_data = {}
+	exif = {}
 	width = 0
 	height = 0
 	try:
 		img = Image.open(path)
 		width, height = img.size
-		if img and hasattr(img, "_getexif"):
-			exif_data = img._getexif()
+		exif_data = img._getexif()
 	except Exception as e:
 		print("MDC-E: PictureUtils: getExifData: exception: %s" % e)
-	exif = {}
-	if exif_data is not None:
+	#print("MDC: PictureUtils: getExifData: exif_data: %s" % str(exif_data))
+	if exif_data:
 		for key, value in exif_data.iteritems():
 			if key in TAGS:
 				tag = TAGS[key]
 				if tag != "UserComment" and tag != "MakerNote":
 					exif[tag] = value
-	elif width and height:
+	if "ExifImageWidth" not in exif and width:
 		exif["ExifImageWidth"] = width
+	if "ExifImageHeight" not in exif and height:
 		exif["ExifImageHeight"] = height
+	if "Orientation" not in exif:
+		exif["Orientation"] = 1
 	#print("MDC: PictureUtils: getExifData: exif: %s" % str(exif))
 	return exif
 
 
-def scalePicture(path, new_size):
-	new_width, new_height = new_size
+def setExifOrientation(path, orientation):
+	#print("MDC: PictureUtils: setExifOrientation: path: %s, orientation: %s" % (path, orientation))
+	_filename, ext = os.path.splitext(path)
+	if ext.lower() == ".jpg":
+		try:
+			img = pexif.JpegFile.fromFile(path)
+			img.exif.primary.Orientation = [orientation]
+			img.writeFile(path)
+		except Exception as e:
+			print("MDC-E: PictureUtils: setExifOriention: path: %s, exception: %s" % (path, e))
+
+
+def rotatePicture(in_path, out_path, degrees):
+	try:
+		img = Image.open(in_path)
+		if img:
+			tmpimg = img.rotate(degrees, resample=Image.NEAREST, expand=True)
+			tmpimg.save(out_path)
+	except Exception as e:
+		print("MDC-E: PictureUtils: rotatePicture: in_path: %s, exception: %s" % (in_path, e))
+		return False
+	return True
+
+
+def transformPicture(path, orientation):
+	#print("MDC: PictureUtils: transformPicture: path: %s, orientation: %s" % (path, orientation))
 	filename, ext = os.path.splitext(path)
-	tmpfile = path
+	output_file = filename + ".transformed" + ext
 	try:
 		img = Image.open(path)
-		width, height = img.size
-		if width < new_width and height < new_height:
-			tmpfile = filename + ".scaled" + ext
-			if not os.path.exists(tmpfile):
-				print("MDC: PictureUtils: scalePicture: path: %s" % path)
-				print("MDC: PictureUtils: scalePicture: width: %s, height: %s" % (width, height))
-				scaling_factor = float(new_height) / float(height)
-				new_size = (int(width * scaling_factor), int(height * scaling_factor))
-				print("MDC: PictureUtils: scalePicture: new_size %s" % str(new_size))
-				tmpimg = img.resize(new_size, resample=Image.ANTIALIAS)
-				tmpimg.save(tmpfile)
+		if img:
+			if orientation == 8:
+				rotatePicture(path, output_file, 90)
+			if orientation == 6:
+				rotatePicture(path, output_file, -90)
+			if orientation == 3:
+				rotatePicture(path, output_file, -180)
+			if orientation in [3, 6, 8]:
+				setExifOrientation(output_file, 1)
 	except Exception as e:
-		print("MDC: PictureUtils: scalePicture: exception: %s" % e)
-	return tmpfile
+		print("MDC-E: PictureUtils: transformPicture: path: %s, e: %s" % (path, e))
 
 
-def rotatePicture(path, degrees):
+def createThumbnail(path, size, create=False):
+	#print("MDC: PictureUtils: createThumbnail: path: %s, size: %s" % (path, str(size)))
 	filename, ext = os.path.splitext(path)
-	tmpfile = filename + ".rotated" + ext
-	if os.path.exists(tmpfile):
-		path = tmpfile
-	img = Image.open(path)
-	tmpimg = img.rotate(degrees, resample=Image.NEAREST)
-	tmpimg.save(tmpfile)
-	return tmpfile
-
-
-def rotatePictureExif(path, exif_data):
-	#print("MDC: PictureUtils: rotatePictureExif: path: %s, exif_data: %s" % (path, str(exif_data)))
-	filename, ext = os.path.splitext(path)
-	tmpfile = filename + ".rotated" + ext
-	if not os.path.exists(tmpfile):
-		tmpfile = path
-		if exif_data is None:
-			exif_data = getExifData(path)
-		#print("MDC: PictureUtils: rotatePictureExif: exif_data: %s" % str(exif_data))
-		if "Orientation" in exif_data:
-			orientation = exif_data["Orientation"]
-			if (not (orientation == 1 or orientation == 0)) and ext != ".svg":
-				#print("MDC: PictureUtils: rotatePictureExif: pic needs to be rotated")
-				tmpfile = filename + ".rotated" + ext
-				img = Image.open(path)
-				if img:
-					if orientation == 8:
-						tmpimg = img.rotate(90, resample=Image.NEAREST)
-						tmpimg.save(tmpfile)
-					if orientation == 6:
-						tmpimg = img.rotate(-90, resample=Image.NEAREST)
-						tmpimg.save(tmpfile)
-					if orientation == 3:
-						tmpimg = img.rotate(-180, resample=Image.NEAREST)
-						tmpimg.save(tmpfile)
-	#print("MDC: PictureUtils: rotatePictureExif: tmpfile: %s" % tmpfile)
-	return tmpfile
+	thumbnail_path = filename + ".thumbnail" + ext
+	if not os.path.exists(thumbnail_path) or create:
+		print("MDC-I: PictureUtils: createThumbnail: creating %s" % thumbnail_path)
+		input_path = filename + ".transformed" + ext
+		if not os.path.exists(input_path):
+			input_path = path
+		width, height = size
+		side = max(width, height)
+		try:
+			img = Image.open(input_path)
+			img.thumbnail((side, side))
+			img.save(thumbnail_path)
+		except Exception as e:
+			print("MDC-E: PictureUtils: createThumbnail: path: %s, exception: %s" % (path, e))

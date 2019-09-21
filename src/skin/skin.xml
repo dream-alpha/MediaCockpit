@@ -45,7 +45,7 @@ Copyright (C) 2018-2019 by dream-alpha
 		</layout>
 	</layouts>
 
-	<screen id="3" name="MDCSummary" position="0,0" size="400,240">
+	<screen id="3" name="MDCDisplaySummary" position="0,0" size="400,240">
 		<ePixmap position="0,0" size="400,240"
 			pixmap="skin_default/display_bg.png" zPosition="-1" />
 		<widget source="parent.lcd_title" render="Label" position="0,10"
@@ -108,7 +108,7 @@ Copyright (C) 2018-2019 by dream-alpha
 		<widget name="osd_info" position="20,10" size="1885,25" font="Regular;20" halign="left" zPosition="2" noWrap="1" transparent="1"/>
 	</screen>
 
-	<screen name="MDCFileInfo" position="center,110" size="1800,930">
+	<screen name="MDCMediaInfo" position="center,110" size="1800,930">
 		<layout name="Color_Buttons"/>
 		<layout name="Color_Buttons_Labels"/>
 		<layout name="Date"/>
@@ -233,44 +233,44 @@ Copyright (C) 2018-2019 by dream-alpha
 	</screen>
 
 	<screen name="MDCCockpit" size="1920,1080">
-		<widget name="osd_info" position="50,25" size="1650,35"
+		<widget name="osd_info" position="55,20" size="1650,35"
 			font="Regular;30" noWrap="1" />
-		<widget font="Regular;45" halign="right" position="1730,15"
+		<widget font="Regular;45" halign="right" position="1730,10"
 			render="Label" size="140,50" source="global.CurrentTime">
 			<convert type="ClockToText">Default</convert>
 		</widget>
 
-		<widget name="Frame0" position="55,85" size="330,290" zPosition="2"/>
-		<widget name="Frame1" position="425,85" size="330,290" zPosition="2"/>
-		<widget name="Frame2" position="795,85" size="330,290" zPosition="2"/>
-		<widget name="Frame3" position="1165,85" size="330,290" zPosition="2"/>
-		<widget name="Frame4" position="1535,85" size="330,290" zPosition="2"/>
-		<widget name="Frame5" position="55,415" size="330,290" zPosition="2"/>
-		<widget name="Frame6" position="425,415" size="330,290" zPosition="2"/>
-		<widget name="Frame7" position="795,415" size="330,290" zPosition="2"/>
-		<widget name="Frame8" position="1165,415" size="330,290" zPosition="2"/>
-		<widget name="Frame9" position="1535,415" size="330,290" zPosition="2"/>
-		<widget name="Frame10" position="55,745" size="330,290" zPosition="2"/>
-		<widget name="Frame11" position="425,745" size="330,290" zPosition="2"/>
-		<widget name="Frame12" position="795,745" size="330,290" zPosition="2"/>
-		<widget name="Frame13" position="1165,745" size="330,290" zPosition="2"/>
-		<widget name="Frame14" position="1535,745" size="330,290" zPosition="2"/>
+		<widget name="Frame0" position="55,85" size="330,290" cornerRadius="48" zPosition="2"/>
+		<widget name="Frame1" position="425,85" size="330,290" cornerRadius="48" zPosition="2"/>
+		<widget name="Frame2" position="795,85" size="330,290" cornerRadius="48" zPosition="2"/>
+		<widget name="Frame3" position="1165,85" size="330,290" cornerRadius="48" zPosition="2"/>
+		<widget name="Frame4" position="1535,85" size="330,290" cornerRadius="48" zPosition="2"/>
+		<widget name="Frame5" position="55,415" size="330,290" cornerRadius="48" zPosition="2"/>
+		<widget name="Frame6" position="425,415" size="330,290" cornerRadius="48" zPosition="2"/>
+		<widget name="Frame7" position="795,415" size="330,290" cornerRadius="48" zPosition="2"/>
+		<widget name="Frame8" position="1165,415" size="330,290" cornerRadius="48" zPosition="2"/>
+		<widget name="Frame9" position="1535,415" size="330,290" cornerRadius="48" zPosition="2"/>
+		<widget name="Frame10" position="55,745" size="330,290" cornerRadius="48" zPosition="2"/>
+		<widget name="Frame11" position="425,745" size="330,290" cornerRadius="48" zPosition="2"/>
+		<widget name="Frame12" position="795,745" size="330,290" cornerRadius="48" zPosition="2"/>
+		<widget name="Frame13" position="1165,745" size="330,290" cornerRadius="48" zPosition="2"/>
+		<widget name="Frame14" position="1535,745" size="330,290" cornerRadius="48" zPosition="2"/>
 
-		<widget name="Tile0" position="60,90" size="320,280" zPosition="3"/>
-		<widget name="Tile1" position="430,90" size="320,280" zPosition="3"/>
-		<widget name="Tile2" position="800,90" size="320,280" zPosition="3"/>
-		<widget name="Tile3" position="1170,90" size="320,280" zPosition="3"/>
-		<widget name="Tile4" position="1540,90" size="320,280" zPosition="3"/>
-		<widget name="Tile5" position="60,420" size="320,280" zPosition="3"/>
-		<widget name="Tile6" position="430,420" size="320,280" zPosition="3"/>
-		<widget name="Tile7" position="800,420" size="320,280" zPosition="3"/>
-		<widget name="Tile8" position="1170,420" size="320,280" zPosition="3"/>
-		<widget name="Tile9" position="1540,420" size="320,280" zPosition="3"/>
-		<widget name="Tile10" position="60,750" size="320,280" zPosition="3"/>
-		<widget name="Tile11" position="430,750" size="320,280" zPosition="3"/>
-		<widget name="Tile12" position="800,750" size="320,280" zPosition="3"/>
-		<widget name="Tile13" position="1170,750" size="320,280" zPosition="3"/>
-		<widget name="Tile14" position="1540,750" size="320,280" zPosition="3"/>
+		<widget name="Tile0" position="60,90" size="320,280" cornerRadius="48" zPosition="3"/>
+		<widget name="Tile1" position="430,90" size="320,280" cornerRadius="48" zPosition="3"/>
+		<widget name="Tile2" position="800,90" size="320,280" cornerRadius="48" zPosition="3"/>
+		<widget name="Tile3" position="1170,90" size="320,280" cornerRadius="48" zPosition="3"/>
+		<widget name="Tile4" position="1540,90" size="320,280" cornerRadius="48" zPosition="3"/>
+		<widget name="Tile5" position="60,420" size="320,280" cornerRadius="48" zPosition="3"/>
+		<widget name="Tile6" position="430,420" size="320,280" cornerRadius="48" zPosition="3"/>
+		<widget name="Tile7" position="800,420" size="320,280" cornerRadius="48" zPosition="3"/>
+		<widget name="Tile8" position="1170,420" size="320,280" cornerRadius="48" zPosition="3"/>
+		<widget name="Tile9" position="1540,420" size="320,280" cornerRadius="48" zPosition="3"/>
+		<widget name="Tile10" position="60,750" size="320,280" cornerRadius="48" zPosition="3"/>
+		<widget name="Tile11" position="430,750" size="320,280" cornerRadius="48" zPosition="3"/>
+		<widget name="Tile12" position="800,750" size="320,280" cornerRadius="48" zPosition="3"/>
+		<widget name="Tile13" position="1170,750" size="320,280" cornerRadius="48" zPosition="3"/>
+		<widget name="Tile14" position="1540,750" size="320,280" cornerRadius="48" zPosition="3"/>
 
 		<widget name="Icon0" position="145,130" size="150,150" zPosition="4"/>
 		<widget name="Icon1" position="515,130" size="150,150" zPosition="4"/>
@@ -289,35 +289,35 @@ Copyright (C) 2018-2019 by dream-alpha
 		<widget name="Icon14" position="1625,790" size="150,150" zPosition="4"/>
 
 		<widget name="Text0" position="75,295" size="290,60"
-			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+			font="Regular;24" halign="center" valign="center" transparent="1" zPosition="4"/>
 		<widget name="Text1" position="445,295" size="290,60"
-			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+			font="Regular;24" halign="center" valign="center" transparent="1" zPosition="4"/>
 		<widget name="Text2" position="815,295" size="290,60"
-			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+			font="Regular;24" halign="center" valign="center" transparent="1" zPosition="4"/>
 		<widget name="Text3" position="1185,295" size="290,60"
-			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+			font="Regular;24" halign="center" valign="center" transparent="1" zPosition="4"/>
 		<widget name="Text4" position="1555,295" size="290,60"
-			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+			font="Regular;24" halign="center" valign="center" transparent="1" zPosition="4"/>
 		<widget name="Text5" position="75,625" size="290,60"
-			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+			font="Regular;24" halign="center" valign="center" transparent="1" zPosition="4"/>
 		<widget name="Text6" position="445,625" size="290,60"
-			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+			font="Regular;24" halign="center" valign="center" transparent="1" zPosition="4"/>
 		<widget name="Text7" position="815,625" size="290,60"
-			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+			font="Regular;24" halign="center" valign="center" transparent="1" zPosition="4"/>
 		<widget name="Text8" position="1185,625" size="290,60"
-			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+			font="Regular;24" halign="center" valign="center" transparent="1" zPosition="4"/>
 		<widget name="Text9" position="1555,625" size="290,60"
-			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+			font="Regular;24" halign="center" valign="center" transparent="1" zPosition="4"/>
 		<widget name="Text10" position="75,955" size="290,60"
-			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+			font="Regular;24" halign="center" valign="center" transparent="1" zPosition="4"/>
 		<widget name="Text11" position="445,955" size="290,60"
-			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+			font="Regular;24" halign="center" valign="center" transparent="1" zPosition="4"/>
 		<widget name="Text12" position="815,955" size="290,60"
-			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+			font="Regular;24" halign="center" valign="center" transparent="1" zPosition="4"/>
 		<widget name="Text13" position="1185,955" size="290,60"
-			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+			font="Regular;24" halign="center" valign="center" transparent="1" zPosition="4"/>
 		<widget name="Text14" position="1555,955" size="290,60"
-			font="Regular;24" halign="center" valign="center" zPosition="4"/>
+			font="Regular;24" halign="center" valign="center" transparent="1" zPosition="4"/>
 
 		<widget name="Picture0" position="60,90" size="320,280" zPosition="5"/>
 		<widget name="Picture1" position="430,90" size="320,280" zPosition="5"/>

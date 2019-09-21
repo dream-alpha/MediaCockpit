@@ -29,28 +29,7 @@ choices_launch_key = [
 	("showTv",		_("TV-button")),
 	("showRadio",		_("Radio-button")),
 	("openQuickbutton",	_("Quick-button")),
-	("startTimeshift",	_("Timeshift-button"))
-]
-
-
-choices_date = [
-	("%d.%m.%Y",		_("DD.MM.YYYY")),
-	("%a %d.%m.%Y",		_("WD DD.MM.YYYY")),
-
-	("%d.%m.%Y %H:%M",	_("DD.MM.YYYY HH:MM")),
-	("%a %d.%m.%Y %H:%M",	_("WD DD.MM.YYYY HH:MM")),
-
-	("%d.%m. %H:%M",	_("DD.MM. HH:MM")),
-	("%a %d.%m. %H:%M",	_("WD DD.MM. HH:MM")),
-
-	("%Y/%m/%d",		_("YYYY/MM/DD")),
-	("%a %Y/%m/%d",		_("WD YYYY/MM/DD")),
-
-	("%Y/%m/%d %H:%M",	_("YYYY/MM/DD HH:MM")),
-	("%a %Y/%m/%d %H:%M",	_("WD YYYY/MM/DD HH:MM")),
-
-	("%m/%d %H:%M",		_("MM/DD HH:MM")),
-	("%a %m/%d %H:%M",	_("WD MM/DD HH:MM"))
+	("startTimeshift",	_("Timeshift-button")),
 ]
 
 
@@ -58,7 +37,7 @@ sort_modes = {
 	"0": (("date", False),	_("Date sort down")),
 	"1": (("date", True), 	_("Date sort up")),
 	"2": (("alpha", False),	_("Alpha sort up")),
-	"3": (("alpha", True),	_("Alpha sort down"))
+	"3": (("alpha", True),	_("Alpha sort down")),
 }
 
 
@@ -71,15 +50,25 @@ for key in colorNames.iterkeys():
 
 
 def getAnimations():
-	choices_animation = [
-		("crossfade", _("Crossfade")), ("kenburns", _("Ken Burns")), ("crossfade_fast", _("Crossfade fast")),
-		("crossfade_slow", _("Crossfade slow")), ("crossfade_accelerated", _("Crossfade accelerated")),
-		("crossfade_regular", _("Crossfade regular"))
+	try:
+		from Components.MerlinPictureViewerWidget import MerlinPictureViewer  # noqa: F401, pylint: disable=W0612
+		choices_ext_slideshow_animation = [
+			("-1", _("Ken Burns")), ("0", _("blinds")), ("1", _("rotate")), ("2", _("circular waves")), ("3", _("door")),
+			("4", _("dice")), ("5", _("checkerboard")), ("6", _("shutter")), ("7", _("waves")), ("8", _("windmill")),
+			("9", _("earthquake")), ("10", _("crossfade")), ("11", _("random"))
+		]
+	except Exception:
+		choices_ext_slideshow_animation = []
+	choices_int_slideshow_animation = [
+		("12", _("Crossfade fast")), ("13", _("Crossfade slow")),
+		("14", _("Crossfade accelerated")), ("15", _("Crossfade regular"))
 	]
-	return choices_animation
+	return choices_ext_slideshow_animation + choices_int_slideshow_animation
 
 
 class ConfigInit(object):
+
+	config = None
 
 	def __init__(self):
 		#print("MDC: ConfigInit: __init__")
@@ -90,6 +79,7 @@ class ConfigInit(object):
 		config.plugins.mediacockpit.start_home_dir             = ConfigYesNo(default=False)
 		config.plugins.mediacockpit.home_dir                   = ConfigText(default="/media", fixed_size=False, visible_width=35)
 		config.plugins.mediacockpit.frame                      = ConfigYesNo(default=True)
+		config.plugins.mediacockpit.create_thumbnails          = ConfigYesNo(default=True)
 		config.plugins.mediacockpit.show_goup_tile             = ConfigYesNo(default=True)
 		config.plugins.mediacockpit.selection_size_offset      = ConfigInteger(default=10, limits=(0, 50))
 		config.plugins.mediacockpit.selection_font_offset      = ConfigInteger(default=2, limits=(1, 10))
@@ -100,15 +90,18 @@ class ConfigInit(object):
 		config.plugins.mediacockpit.selection_frame_color      = ConfigSelection(default="#b3b3b9", choices=choices_color + [("#b3b3b9", _("default"))])
 		config.plugins.mediacockpit.slideshow_loop             = ConfigYesNo(default=False)
 		config.plugins.mediacockpit.slideshow_duration         = ConfigInteger(default=5, limits=(3, 30))
-		config.plugins.mediacockpit.animation                  = ConfigSelection(default="crossfade_regular", choices=getAnimations())
+		config.plugins.mediacockpit.animation                  = ConfigSelection(default="10", choices=getAnimations())
 		config.plugins.mediacockpit.recurse_dirs               = ConfigYesNo(default=True)
 		config.plugins.mediacockpit.sort_across_dirs           = ConfigYesNo(default=False)
 		config.plugins.mediacockpit.picture_background         = ConfigSelection(default="background", choices=choices_color)
 		config.plugins.mediacockpit.picture_foreground         = ConfigSelection(default="foreground", choices=choices_color)
 		config.plugins.mediacockpit.show_picture_infobar       = ConfigYesNo(default=False)
+		config.plugins.mediacockpit.show_loading_details       = ConfigYesNo(default=True)
 		config.plugins.mediacockpit.show_movie_infobar         = ConfigYesNo(default=False)
 		config.plugins.mediacockpit.launch_key                 = ConfigSelection(default="None", choices=choices_launch_key)
 		config.plugins.mediacockpit.media_dirs                 = ConfigLocations(default=["/media"])
 		config.plugins.mediacockpit.fake_entry                 = NoSave(ConfigNothing())
 		config.plugins.mediacockpit.debug                      = ConfigYesNo(default=False)
 		config.plugins.mediacockpit.debug_log_path             = ConfigText(default="/media/hdd", fixed_size=False, visible_width=35)
+
+		self.config = config
