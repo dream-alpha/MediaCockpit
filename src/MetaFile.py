@@ -23,7 +23,7 @@ import os
 import cPickle
 from FileUtils import readFile, writeFile, deleteFile
 
-class MetaFile(object):
+class MetaFile():
 
 	def saveMeta(self, path, meta):
 		#print("MDC: MetaFile: saveMeta: path: %s, meta: %s" % (path, str(meta)))

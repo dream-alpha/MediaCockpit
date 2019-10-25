@@ -20,7 +20,7 @@
 
 from __init__ import _
 from skin import colorNames
-from Components.config import config, ConfigInteger, ConfigText, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigNothing, NoSave, ConfigLocations
+from Components.config import config, ConfigDirectory, ConfigInteger, ConfigText, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigNothing, NoSave, ConfigLocations
 
 
 choices_launch_key = [
@@ -51,7 +51,7 @@ for key in colorNames.iterkeys():
 
 def getAnimations():
 	try:
-		from Components.MerlinPictureViewerWidget import MerlinPictureViewer  # noqa: F401, pylint: disable=W0612
+		from Components.MerlinPictureViewerWidget import MerlinPictureViewer  # noqa: F401, pylint: disable=W0611,W0612
 		choices_ext_slideshow_animation = [
 			("-1", _("Ken Burns")), ("0", _("blinds")), ("1", _("rotate")), ("2", _("circular waves")), ("3", _("door")),
 			("4", _("dice")), ("5", _("checkerboard")), ("6", _("shutter")), ("7", _("waves")), ("8", _("windmill")),
@@ -66,14 +66,13 @@ def getAnimations():
 	return choices_ext_slideshow_animation + choices_int_slideshow_animation
 
 
-class ConfigInit(object):
+class ConfigInit():
 
 	config = None
 
 	def __init__(self):
 		#print("MDC: ConfigInit: __init__")
 		config.plugins.mediacockpit                            = ConfigSubsection()
-		config.plugins.mediacockpit.tv_background              = ConfigYesNo(default=True)
 		config.plugins.mediacockpit.sort                       = ConfigSelection(default="2", choices=choices_sort)
 		config.plugins.mediacockpit.last_path                  = ConfigText(default="/media")
 		config.plugins.mediacockpit.start_home_dir             = ConfigYesNo(default=False)
@@ -103,5 +102,11 @@ class ConfigInit(object):
 		config.plugins.mediacockpit.fake_entry                 = NoSave(ConfigNothing())
 		config.plugins.mediacockpit.debug                      = ConfigYesNo(default=False)
 		config.plugins.mediacockpit.debug_log_path             = ConfigText(default="/media/hdd", fixed_size=False, visible_width=35)
+		# MDCMusicPlayer
+		config.plugins.mediacockpit.non_standard_decoder       = ConfigYesNo(default=True)
+		config.plugins.mediacockpit.usegoogleimage             = ConfigYesNo(default=True)
+		config.plugins.mediacockpit.googleimagepath            = ConfigDirectory(default="/data/covers")
+		config.plugins.mediacockpit.gapless                    = ConfigYesNo(default=True)
+		config.plugins.mediacockpit.alsasink                   = ConfigYesNo(default=True)
 
 		self.config = config

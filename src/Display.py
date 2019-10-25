@@ -23,44 +23,22 @@ import os
 from Screens.Screen import Screen
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
-from Components.Sources.MDCCurrentService import MDCCurrentService
 
 
-class MDCMoviePlayerSummary(Screen, object):
+class Display():
 
-	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent=parent)
-		self.skinName = ["MDCMoviePlayerSummary"]
-		self["Service"] = MDCCurrentService(session.nav, parent)
-
-
-class MDCDisplaySummary(Screen, object):
-
-	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent=parent)
-		self.skinName = ["MDCDisplaySummary"]
-
-
-class Display(object):
-
-	def __init__(self, skin_name="MDCDisplay"):
-		self.skin_name = skin_name
+	def __init__(self):
 		self["osd_info"] = Label()
 		self["lcd_info"] = StaticText()
 		self["lcd_title"] = StaticText()
 
-	def createSummary(self):
-		if self.skin_name == "MDCMoviePlayer":
-			return MDCMoviePlayerSummary
-		return MDCDisplaySummary
-
 	def displayLCD(self, title, info):
-		print("MDC-I: Display: displayLCD: title: %s, info: %s" % (title, info))
+		#print("MDC: Display: displayLCD: title: %s, info: %s" % (title, info))
 		self["lcd_title"].setText(title)
 		self["lcd_info"].setText(info)
 
 	def displayOSD(self, info, enable=True):
-		print("MDC-I: Display: displayOSD: info: %s" % info)
+		#print("MDC: Display: displayOSD: info: %s" % info)
 		if enable:
 			self["osd_info"].setText(info)
 			self["osd_info"].show()
@@ -76,3 +54,13 @@ class Display(object):
 			arrow = "< "
 		adir = os.path.basename(os.path.dirname(path))
 		self.displayLCD("%s%d/%d" % (arrow, file_index, file_list_len), adir)
+
+	def createSummary(self):
+		return MDCDisplaySummary
+
+
+class MDCDisplaySummary(Screen):
+
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent=parent)
+		self.skinName = [self.__class__.__name__]

@@ -18,6 +18,7 @@
 #	For more information on the GNU General Public License see:
 #	<http://www.gnu.org/licenses/>.
 
+
 import os
 from __init__ import _
 from Components.config import config, getConfigListEntry, configfile, ConfigText, ConfigPassword
@@ -36,10 +37,9 @@ from Version import VERSION
 from ConfigInit import ConfigInit
 
 
-class ConfigScreen(ConfigInit, ConfigListScreen, Screen, object):
-	def __init__(self, session, sections="cockpit"):
+class ConfigScreen(ConfigInit, ConfigListScreen, Screen):
+	def __init__(self, session):
 		ConfigInit.__init__(self)
-		self.sections = sections
 		Screen.__init__(self, session)
 		self.skinName = ["MDCConfigScreen"]
 
@@ -122,8 +122,7 @@ class ConfigScreen(ConfigInit, ConfigListScreen, Screen, object):
 		#                                                                   ,                                                       ,                       ,                       ,       ,             , context sensitive help text
 		#                                                                   ,                                                       ,                       ,                       ,       ,             ,
 		#        0                                                          , 1                                                     , 2                     , 3                     , 4     , 5           , 6
-		if self.sections == "cockpit":
-			self.MDCConfig1 = [
+		self.MDCConfig = [
 				(self.section                                       , _("PLUGIN")                                           , None                  , None                  , 0     , []          , ""),
 				(_("About")                                         , config.plugins.mediacockpit.fake_entry                , None                  , self.showInfo         , 0     , []          , _("HELP About")),
 				(_("Start plugin with key")                         , config.plugins.mediacockpit.launch_key                , self.needsRestart     , None                  , 0     , []          , _("Help Start plugin with key")),
@@ -132,7 +131,6 @@ class ConfigScreen(ConfigInit, ConfigListScreen, Screen, object):
 				(_("Home directory")                                , config.plugins.mediacockpit.home_dir                  , self.validatePath     , self.openLocationBox  , 0     , [-1]        , _("Help Home directory")),
 				(_("Sort")                                          , config.plugins.mediacockpit.sort                      , None                  , None                  , 0     , []          , _("Help Sort")),
 				(_("Sort across directories")                       , config.plugins.mediacockpit.sort_across_dirs          , None                  , None                  , 0     , []          , _("Help Sort across directories")),
-				(_("TV playback in background")                     , config.plugins.mediacockpit.tv_background             , None                  , None                  , 0     , []          , _("Help TV playback in background")),
 				(_("Show directory up tile")                        , config.plugins.mediacockpit.show_goup_tile            , None                  , None                  , 0     , []          , _("Help Show directory up tile")),
 				(_("Tile foreground color")                         , config.plugins.mediacockpit.normal_foreground_color   , None                  , None                  , 0     , []          , _("Help Tile foreground color")),
 				(_("Tile background color")                         , config.plugins.mediacockpit.normal_background_color   , None                  , None                  , 0     , []          , _("Help Tile background color")),
@@ -144,25 +142,27 @@ class ConfigScreen(ConfigInit, ConfigListScreen, Screen, object):
 				(_("Tile selection frame color")                    , config.plugins.mediacockpit.selection_frame_color     , None                  , None                  , 0     , [-1]        , _("Help Tile selection frame color")),
 				(_("Create thumbnails")                             , config.plugins.mediacockpit.create_thumbnails         , None                  , None                  , 0     , []          , _("Help Create thumbnails")),
 				(_("Show detailed loading info")                    , config.plugins.mediacockpit.show_loading_details      , None                  , None                  , 0     , []          , _("Help Show detailed loading info")),
-				(self.section                                       , _("VIDEO")                                            , None                  , None                  , 2     , []          , ""),
-				(_("Show info bar")                                  , config.plugins.mediacockpit.show_movie_infobar       , None                  , None                  , 0     , []          , _("Help Show movie info bar")),
-				(self.section                                       , _("PLAYLIST")                                         , None                  , None                  , 2     , []          , ""),
-				(_("Recurse directories")                           , config.plugins.mediacockpit.recurse_dirs              , None                  , None                  , 0     , []          , _("Help Recurse directories")),
-				(self.section                                       , _("DEBUG")                                            , None                  , None                  , 2     , []          , ""),
-				(_("Debug log")                                     , config.plugins.mediacockpit.debug                     , None                  , self.setDebugMode     , 2     , []          , _("Help Debug")),
-				(_("Log file path")                                 , config.plugins.mediacockpit.debug_log_path            , self.validatePath     , self.openLocationBox  , 2     , [-1]        , _("Help Log file path")),
-			]
-
-		if self.sections in ["cockpit", "picture"]:
-			self.MDCConfig2 = [
 				(self.section                                       , _("PICTURE")                                          , None                  , None                  , 0     , []          , ""),
 				(_("Foreground color")                              , config.plugins.mediacockpit.picture_foreground        , None                  , None                  , 0     , []          , _("Help Foreground color")),
 				(_("Background color")                              , config.plugins.mediacockpit.picture_background        , None                  , None                  , 0     , []          , _("Help Background color")),
 				(_("Show info bar")                                 , config.plugins.mediacockpit.show_picture_infobar      , None                  , None                  , 0     , []          , _("Help Show picture info bar")),
+				(self.section                                       , _("VIDEO")                                            , None                  , None                  , 2     , []          , ""),
+				(_("Show info bar")                                 , config.plugins.mediacockpit.show_movie_infobar        , None                  , None                  , 0     , []          , _("Help Show movie info bar")),
+				(self.section                                       , _("PLAYLIST")                                         , None                  , None                  , 2     , []          , ""),
+				(_("Recurse directories")                           , config.plugins.mediacockpit.recurse_dirs              , None                  , None                  , 0     , []          , _("Help Recurse directories")),
 				(self.section                                       , _("SLIDESHOW")                                        , None                  , None                  , 0     , []          , ""),
 				(_("Duration")                                      , config.plugins.mediacockpit.slideshow_duration        , None                  , None                  , 0     , []          , _("Help Duration")),
 				(_("Animation")                                     , config.plugins.mediacockpit.animation                 , None                  , None                  , 0     , []          , _("Help Animation")),
 				(_("Endless loop")                                  , config.plugins.mediacockpit.slideshow_loop            , None                  , None                  , 0     , []          , _("Help Endless loop")),
+				(self.section                                       , _("MUSIC")                                            , None                  , None                  , 0     , []          , ""),
+				(_("Non-Standard audio decoder")                    , config.plugins.mediacockpit.non_standard_decoder      , None                  , None                  , 0     , []          , _("Help Non-Standard audio decoder")),
+				(_("Gapless playback")                              , config.plugins.mediacockpit.gapless                   , None                  , None                  , 0     , [-1]        , _("Help Gapless playback")),
+				(_("Alsasink")                                      , config.plugins.mediacockpit.alsasink                  , None                  , None                  , 0     , [-2]        , _("Help Alsasink")),
+				(_("Use Google search for cover")                   , config.plugins.mediacockpit.usegoogleimage            , None                  , None                  , 0     , []          , _("Help Use Google search for cover")),
+				(_("Google cover path")                             , config.plugins.mediacockpit.googleimagepath           , None                  , None                  , 0     , []          , _("Help Google cover path")),
+				(self.section                                       , _("DEBUG")                                            , None                  , None                  , 2     , []          , ""),
+				(_("Debug log")                                     , config.plugins.mediacockpit.debug                     , None                  , self.setDebugMode     , 2     , []          , _("Help Debug")),
+				(_("Log file path")                                 , config.plugins.mediacockpit.debug_log_path            , self.validatePath     , self.openLocationBox  , 2     , [-1]        , _("Help Log file path")),
 			]
 
 	def handleInputHelpers(self):
@@ -210,13 +210,7 @@ class ConfigScreen(ConfigInit, ConfigListScreen, Screen, object):
 
 	def createConfig(self):
 		self.list = []
-		if self.sections == "cockpit":
-			self.config_list = self.MDCConfig1
-		elif self.sections == "picture":
-			self.config_list = self.MDCConfig2
-		else:
-			self.config_list = []
-
+		self.config_list = self.MDCConfig
 		for i, conf in enumerate(self.config_list):
 			# 0 entry text
 			# 1 variable

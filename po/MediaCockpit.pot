@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-09-20 11:15+0200\n"
+"POT-Creation-Date: 2019-10-24 14:21+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,69 +13,68 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/Cockpit.py:78 src/Picture.py:69
+#: src/Cockpit.py:72 src/MediaPlayer.py:68
 msgid "Pause/Resume"
 msgstr ""
 
-#: src/Cockpit.py:78 src/Picture.py:69 src/Picture.py:70
+#: src/Cockpit.py:72 src/MediaPlayer.py:68 src/MediaPlayer.py:69
 msgid "Slideshow"
 msgstr ""
 
-#: src/Cockpit.py:79
+#: src/Cockpit.py:73
 msgid "Previous page"
 msgstr ""
 
-#: src/Cockpit.py:80
+#: src/Cockpit.py:74
 msgid "Next page"
 msgstr ""
 
-#: src/Cockpit.py:81 src/MediaInfo.py:54 src/Picture.py:71 src/Picture.py:72
+#: src/Cockpit.py:75 src/MediaInfo.py:54 src/MediaPlayer.py:70
+#: src/MediaPlayer.py:71
 msgid "Next picture"
 msgstr ""
 
-#: src/Cockpit.py:82 src/MediaInfo.py:55 src/Picture.py:73 src/Picture.py:74
+#: src/Cockpit.py:76 src/MediaInfo.py:55 src/MediaPlayer.py:72
+#: src/MediaPlayer.py:73
 msgid "Previous picture"
 msgstr ""
 
-#: src/Cockpit.py:83
-msgid "Previous line"
+#: src/Cockpit.py:77
+msgid "Previous row"
 msgstr ""
 
-#: src/Cockpit.py:84
-msgid "Next line"
+#: src/Cockpit.py:78
+msgid "Next row"
 msgstr ""
 
-#: src/Cockpit.py:85 src/Cockpit.py:89 src/MediaInfo.py:69
+#: src/Cockpit.py:79 src/Cockpit.py:83 src/MediaInfo.py:69
 msgid "Ok"
 msgstr ""
 
-#: src/Cockpit.py:86 src/Cockpit.py:122 src/Picture.py:68
+#: src/Cockpit.py:80 src/Cockpit.py:109 src/MediaPlayer.py:67
 msgid "Information"
 msgstr ""
 
-#: src/Cockpit.py:87 src/Picture.py:67
+#: src/Cockpit.py:81
 msgid "Settings"
 msgstr ""
 
-#: src/Cockpit.py:88
+#: src/Cockpit.py:82
 msgid "Delete file"
 msgstr ""
 
-#: src/Cockpit.py:90 src/MediaInfo.py:53 src/MediaInfo.py:56
-#: src/MediaInfo.py:57 src/MediaInfo.py:58 src/Picture.py:75 src/Picture.py:76
+#: src/Cockpit.py:84 src/MediaInfo.py:53 src/MediaInfo.py:56
+#: src/MediaInfo.py:57 src/MediaInfo.py:58 src/MediaPlayer.py:74
+#: src/MediaPlayer.py:75 src/Slideshow.py:221 src/Slideshow.py:222
 msgid "Exit"
 msgstr ""
 
-#: src/Cockpit.py:91
+#: src/Cockpit.py:85
 msgid "Home"
 msgstr ""
 
-#: src/Cockpit.py:92
+#: src/Cockpit.py:86
 msgid "Previous directory"
-msgstr ""
-
-#: src/Cockpit.py:97
-msgid "Skin resolution other than Full HD is not supported yet"
 msgstr ""
 
 #: src/ConfigInit.py:27
@@ -186,8 +185,8 @@ msgstr ""
 msgid "Crossfade regular"
 msgstr ""
 
-#: src/ConfigInit.py:86 src/ConfigInit.py:87 src/ConfigInit.py:88
-#: src/ConfigInit.py:89 src/ConfigInit.py:90
+#: src/ConfigInit.py:85 src/ConfigInit.py:86 src/ConfigInit.py:87
+#: src/ConfigInit.py:88 src/ConfigInit.py:89
 msgid "default"
 msgstr ""
 
@@ -203,280 +202,364 @@ msgstr ""
 msgid "Defaults"
 msgstr ""
 
-#: src/ConfigScreen.py:127
+#: src/ConfigScreen.py:126
 msgid "PLUGIN"
 msgstr ""
 
-#: src/ConfigScreen.py:128
+#: src/ConfigScreen.py:127
 msgid "About"
 msgstr ""
 
-#: src/ConfigScreen.py:128
+#: src/ConfigScreen.py:127
 msgid "HELP About"
 msgstr ""
 
-#: src/ConfigScreen.py:129
+#: src/ConfigScreen.py:128
 msgid "Start plugin with key"
 msgstr ""
 
-#: src/ConfigScreen.py:129
+#: src/ConfigScreen.py:128
 msgid "Help Start plugin with key"
 msgstr ""
 
-#: src/ConfigScreen.py:130
+#: src/ConfigScreen.py:129
 msgid "COCKPIT"
 msgstr ""
 
-#: src/ConfigScreen.py:131
+#: src/ConfigScreen.py:130
 msgid "Start with home directory"
 msgstr ""
 
-#: src/ConfigScreen.py:131
+#: src/ConfigScreen.py:130
 msgid "Help Start into home directory"
 msgstr ""
 
-#: src/ConfigScreen.py:132
+#: src/ConfigScreen.py:131
 msgid "Home directory"
 msgstr ""
 
-#: src/ConfigScreen.py:132
+#: src/ConfigScreen.py:131
 msgid "Help Home directory"
 msgstr ""
 
-#: src/ConfigScreen.py:133
+#: src/ConfigScreen.py:132
 msgid "Sort"
 msgstr ""
 
-#: src/ConfigScreen.py:133
+#: src/ConfigScreen.py:132
 msgid "Help Sort"
 msgstr ""
 
-#: src/ConfigScreen.py:134
+#: src/ConfigScreen.py:133
 msgid "Sort across directories"
 msgstr ""
 
-#: src/ConfigScreen.py:134
+#: src/ConfigScreen.py:133
 msgid "Help Sort across directories"
 msgstr ""
 
-#: src/ConfigScreen.py:135
-msgid "TV playback in background"
-msgstr ""
-
-#: src/ConfigScreen.py:135
-msgid "Help TV playback in background"
-msgstr ""
-
-#: src/ConfigScreen.py:136
+#: src/ConfigScreen.py:134
 msgid "Show directory up tile"
 msgstr ""
 
-#: src/ConfigScreen.py:136
+#: src/ConfigScreen.py:134
 msgid "Help Show directory up tile"
 msgstr ""
 
-#: src/ConfigScreen.py:137
+#: src/ConfigScreen.py:135
 msgid "Tile foreground color"
 msgstr ""
 
-#: src/ConfigScreen.py:137
+#: src/ConfigScreen.py:135
 msgid "Help Tile foreground color"
 msgstr ""
 
-#: src/ConfigScreen.py:138
+#: src/ConfigScreen.py:136
 msgid "Tile background color"
 msgstr ""
 
-#: src/ConfigScreen.py:138
+#: src/ConfigScreen.py:136
 msgid "Help Tile background color"
 msgstr ""
 
-#: src/ConfigScreen.py:139
+#: src/ConfigScreen.py:137
 msgid "Tile selection foreground color"
 msgstr ""
 
-#: src/ConfigScreen.py:139
+#: src/ConfigScreen.py:137
 msgid "Help Tile selection foreground color"
 msgstr ""
 
-#: src/ConfigScreen.py:140
+#: src/ConfigScreen.py:138
 msgid "Tile selection background color"
 msgstr ""
 
-#: src/ConfigScreen.py:140
+#: src/ConfigScreen.py:138
 msgid "Help Tile selection background color"
 msgstr ""
 
-#: src/ConfigScreen.py:141
+#: src/ConfigScreen.py:139
 msgid "Tile selection size offset"
 msgstr ""
 
-#: src/ConfigScreen.py:141
+#: src/ConfigScreen.py:139
 msgid "Help Tile selection size offset"
 msgstr ""
 
-#: src/ConfigScreen.py:142
+#: src/ConfigScreen.py:140
 msgid "Tile selection font offset"
 msgstr ""
 
-#: src/ConfigScreen.py:142
+#: src/ConfigScreen.py:140
 msgid "Help Tile selection font offset"
 msgstr ""
 
-#: src/ConfigScreen.py:143
+#: src/ConfigScreen.py:141
 msgid "Tile selection frame"
 msgstr ""
 
-#: src/ConfigScreen.py:143
+#: src/ConfigScreen.py:141
 msgid "Help Tile selection frame"
 msgstr ""
 
-#: src/ConfigScreen.py:144
+#: src/ConfigScreen.py:142
 msgid "Tile selection frame color"
 msgstr ""
 
-#: src/ConfigScreen.py:144
+#: src/ConfigScreen.py:142
 msgid "Help Tile selection frame color"
 msgstr ""
 
-#: src/ConfigScreen.py:145
+#: src/ConfigScreen.py:143
 msgid "Create thumbnails"
 msgstr ""
 
-#: src/ConfigScreen.py:145
+#: src/ConfigScreen.py:143
 msgid "Help Create thumbnails"
 msgstr ""
 
-#: src/ConfigScreen.py:146
-msgid "VIDEO"
+#: src/ConfigScreen.py:144
+msgid "Show detailed loading info"
 msgstr ""
 
-#: src/ConfigScreen.py:147 src/ConfigScreen.py:160
-msgid "Show info bar"
+#: src/ConfigScreen.py:144
+msgid "Help Show detailed loading info"
 msgstr ""
 
-#: src/ConfigScreen.py:147
-msgid "Help Show movie info bar"
-msgstr ""
-
-#: src/ConfigScreen.py:148
-msgid "PLAYLIST"
-msgstr ""
-
-#: src/ConfigScreen.py:149
-msgid "Recurse directories"
-msgstr ""
-
-#: src/ConfigScreen.py:149
-msgid "Help Recurse directories"
-msgstr ""
-
-#: src/ConfigScreen.py:150
-msgid "DEBUG"
-msgstr ""
-
-#: src/ConfigScreen.py:151
-msgid "Debug log"
-msgstr ""
-
-#: src/ConfigScreen.py:151
-msgid "Help Debug"
-msgstr ""
-
-#: src/ConfigScreen.py:152
-msgid "Log file path"
-msgstr ""
-
-#: src/ConfigScreen.py:152
-msgid "Help Log file path"
-msgstr ""
-
-#: src/ConfigScreen.py:157
+#: src/ConfigScreen.py:145
 msgid "PICTURE"
 msgstr ""
 
-#: src/ConfigScreen.py:158
+#: src/ConfigScreen.py:146
 msgid "Foreground color"
 msgstr ""
 
-#: src/ConfigScreen.py:158
+#: src/ConfigScreen.py:146
 msgid "Help Foreground color"
 msgstr ""
 
-#: src/ConfigScreen.py:159
+#: src/ConfigScreen.py:147
 msgid "Background color"
 msgstr ""
 
-#: src/ConfigScreen.py:159
+#: src/ConfigScreen.py:147
 msgid "Help Background color"
 msgstr ""
 
-#: src/ConfigScreen.py:160
+#: src/ConfigScreen.py:148 src/ConfigScreen.py:150
+msgid "Show info bar"
+msgstr ""
+
+#: src/ConfigScreen.py:148
 msgid "Help Show picture info bar"
 msgstr ""
 
-#: src/ConfigScreen.py:161
+#: src/ConfigScreen.py:149
+msgid "VIDEO"
+msgstr ""
+
+#: src/ConfigScreen.py:150
+msgid "Help Show movie info bar"
+msgstr ""
+
+#: src/ConfigScreen.py:151
+msgid "PLAYLIST"
+msgstr ""
+
+#: src/ConfigScreen.py:152
+msgid "Recurse directories"
+msgstr ""
+
+#: src/ConfigScreen.py:152
+msgid "Help Recurse directories"
+msgstr ""
+
+#: src/ConfigScreen.py:153
 msgid "SLIDESHOW"
 msgstr ""
 
-#: src/ConfigScreen.py:162
+#: src/ConfigScreen.py:154
 msgid "Duration"
 msgstr ""
 
-#: src/ConfigScreen.py:162
+#: src/ConfigScreen.py:154
 msgid "Help Duration"
 msgstr ""
 
-#: src/ConfigScreen.py:163
+#: src/ConfigScreen.py:155
 msgid "Animation"
 msgstr ""
 
-#: src/ConfigScreen.py:163
+#: src/ConfigScreen.py:155
 msgid "Help Animation"
 msgstr ""
 
-#: src/ConfigScreen.py:164
+#: src/ConfigScreen.py:156
 msgid "Endless loop"
 msgstr ""
 
-#: src/ConfigScreen.py:164
+#: src/ConfigScreen.py:156
 msgid "Help Endless loop"
 msgstr ""
 
-#: src/ConfigScreen.py:200
+#: src/ConfigScreen.py:157
+msgid "MUSIC"
+msgstr ""
+
+#: src/ConfigScreen.py:158
+msgid "Non-Standard audio decoder"
+msgstr ""
+
+#: src/ConfigScreen.py:158
+msgid "Help Non-Standard audio decoder"
+msgstr ""
+
+#: src/ConfigScreen.py:159
+msgid "Gapless playback"
+msgstr ""
+
+#: src/ConfigScreen.py:159
+msgid "Help Gapless playback"
+msgstr ""
+
+#: src/ConfigScreen.py:160
+msgid "Alsasink"
+msgstr ""
+
+#: src/ConfigScreen.py:160
+msgid "Help Alsasink"
+msgstr ""
+
+#: src/ConfigScreen.py:161
+msgid "Use Google search for cover"
+msgstr ""
+
+#: src/ConfigScreen.py:161
+msgid "Help Use Google search for cover"
+msgstr ""
+
+#: src/ConfigScreen.py:162
+msgid "Google cover path"
+msgstr ""
+
+#: src/ConfigScreen.py:162
+msgid "Help Google cover path"
+msgstr ""
+
+#: src/ConfigScreen.py:163
+msgid "DEBUG"
+msgstr ""
+
+#: src/ConfigScreen.py:164
+msgid "Debug log"
+msgstr ""
+
+#: src/ConfigScreen.py:164
+msgid "Help Debug"
+msgstr ""
+
+#: src/ConfigScreen.py:165
+msgid "Log file path"
+msgstr ""
+
+#: src/ConfigScreen.py:165
+msgid "Help Log file path"
+msgstr ""
+
+#: src/ConfigScreen.py:201
 msgid "Really close without saving settings?"
 msgstr ""
 
-#: src/ConfigScreen.py:249
+#: src/ConfigScreen.py:244
 msgid "Setup"
 msgstr ""
 
-#: src/ConfigScreen.py:255
+#: src/ConfigScreen.py:250
 msgid "Loading default settings will overwrite all settings, really load them?"
 msgstr ""
 
-#: src/ConfigScreen.py:319
+#: src/ConfigScreen.py:314
 msgid "Some changes require a GUI restart"
 msgstr ""
 
-#: src/ConfigScreen.py:319
+#: src/ConfigScreen.py:314
 msgid "Restart GUI now?"
 msgstr ""
 
-#: src/ConfigScreen.py:353 src/ConfigScreen.py:354 src/FileOps.py:65
+#: src/ConfigScreen.py:348 src/ConfigScreen.py:349 src/FileOps.py:65
 msgid "Select directory"
 msgstr ""
 
-#: src/ConfigScreen.py:369
+#: src/ConfigScreen.py:364
 msgid "Path does not exist"
 msgstr ""
 
-#: src/FileList.py:67 src/FileList.py:68
+#: src/FileList.py:70 src/FileList.py:71 src/FileList.py:73 src/FileList.py:74
 msgid "Loading"
+msgstr ""
+
+#: src/FileList.py:73 src/FileList.py:74
+msgid "files"
 msgstr ""
 
 #: src/FileOps.py:43
 msgid "Do you really want to delete the file?"
+msgstr ""
+
+#: src/InfoBarSupport.py:57
+msgid "Jump to previous marked position"
+msgstr ""
+
+#: src/InfoBarSupport.py:58
+msgid "Jump to next marked position"
+msgstr ""
+
+#: src/InfoBarSupport.py:59
+msgid "Toggle cut mark at current position"
+msgstr ""
+
+#: src/InfoBarSupport.py:118
+msgid "Do you want to resume this playback?"
+msgstr ""
+
+#: src/InfoBarSupport.py:120
+msgid "Resume position at"
+msgstr ""
+
+#: src/InfoBarSupport.py:128
+msgid "Resuming playback"
+msgstr ""
+
+#: src/Lyrics.py:56
+msgid "Lyrics"
+msgstr ""
+
+#: src/Lyrics.py:75
+msgid "No lyrics found in id3-tag, trying api.chartlyrics.com..."
+msgstr ""
+
+#: src/Lyrics.py:94
+msgid "No lyrics found"
 msgstr ""
 
 #: src/MediaInfo.py:59 src/MediaInfo.py:72
@@ -571,46 +654,99 @@ msgstr ""
 msgid "Exif Version"
 msgstr ""
 
-#: src/Movie.py:56
-msgid "End"
-msgstr ""
-
-#: src/Picture.py:70
+#: src/MediaPlayer.py:69
 msgid "Stop"
 msgstr ""
 
-#: src/Picture.py:77
+#: src/MediaPlayer.py:76
 msgid "Rotate picture"
 msgstr ""
 
-#: src/Picture.py:78
+#: src/MediaPlayer.py:77
 msgid "Toggle info"
 msgstr ""
 
-#: src/Slideshow.py:82
+#: src/MovieInfoEPG.py:47
+msgid "min"
+msgstr ""
+
+#: src/MusicPlayer.py:279
+msgid "Buffering"
+msgstr ""
+
+#: src/MusicPlayer.py:448
+#, python-format
+msgid "This Dreambox can't decode %s streams!"
+msgstr ""
+
+#: src/Slideshow.py:83
 msgid "Package"
 msgstr ""
 
-#: src/Slideshow.py:82
+#: src/Slideshow.py:83
 msgid "is not installed"
 msgstr ""
 
-#: src/Tiles.py:214
+#: src/Slideshow.py:114
+msgid "No pictures to display"
+msgstr ""
+
+#: src/Slideshow.py:204
+msgid "Help"
+msgstr ""
+
+#: src/Slideshow.py:224
+msgid "Toggle transition"
+msgstr ""
+
+#: src/Slideshow.py:225
+msgid "Play/Pause"
+msgstr ""
+
+#: src/Slideshow.py:226
+msgid "Stop video"
+msgstr ""
+
+#: src/Slideshow.py:227
+msgid "Next slide"
+msgstr ""
+
+#: src/Slideshow.py:228
+msgid "Previous slide"
+msgstr ""
+
+#: src/Tiles.py:211
 msgid "File"
 msgstr ""
 
-#: src/Tiles.py:214 src/Tiles.py:217
+#: src/Tiles.py:211 src/Tiles.py:214
 msgid "Path"
 msgstr ""
 
-#: src/Tiles.py:224
+#: src/Tiles.py:221
 msgid "Page"
 msgstr ""
 
-#: src/plugin.py:65
-msgid "MediaCockpit"
+#: src/VideoPlayer.py:84
+msgid "Stop playback"
+msgstr ""
+
+#: src/VideoPlayer.py:92
+msgid "End"
+msgstr ""
+
+#: src/VideoPlayer.py:132
+msgid "Movie file does not exist"
+msgstr ""
+
+#: src/VideoPlayer.py:344
+msgid "Zap to live TV of recording"
 msgstr ""
 
 #: src/plugin.py:66
+msgid "MediaCockpit"
+msgstr ""
+
+#: src/plugin.py:67
 msgid "Pictures, Movies, and Slideshows"
 msgstr ""

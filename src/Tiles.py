@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2019 by dream-alpha
+# Copyright (C) 2018-2019 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -30,7 +30,7 @@ from Tools.LoadPixmap import LoadPixmap
 from skin import parseColor
 from globals import FILE_TYPE, FILE_PATH, TYPE_FILE
 
-class Tiles(object):
+class Tiles():
 
 	def __init__(self):
 		self.tile_columns = 5

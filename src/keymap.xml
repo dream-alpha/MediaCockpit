@@ -39,6 +39,7 @@
 		<key id="KEY_PAGEDOWN" mapto="prevBouquet" flags="mr"/>
 		<key id="KEY_PREVIOUS" mapto="keyPrev" flags="mr"/>
 		<key id="KEY_NEXT" mapto="keyNext" flags="mr"/>
+		<key id="KEY_TEXT" mapto="keyText" flags="m" />
 		<key id="KEY_STOP" mapto="stop" flags="m"/>
 		<key id="KEY_PLAY" mapto="playpause" flags="m"/>
 		<key id="KEY_PLAYPAUSE" mapto="playpause" flags="m"/>
@@ -46,5 +47,14 @@
 		<key id="KEY_REWIND" mapto="seekBack" flags="m"/>
 		<key id="KEY_FASTFORWARD" mapto="seekFwd" flags="m"/>
 		<key id="KEY_POWER" mapto="exit" flags="m"/>
+		<key id="KEY_HELP" mapto="help" flags="m"/>
+	</map>
+	<map context="MDCPlayerActions">
+		<key id="KEY_POWER" mapto="MDCEXIT" flags="m" />
+		<key id="KEY_TV" mapto="MDCEXIT" flags="m" />
+		<key id="KEY_STOP" mapto="MDCEXIT" flags="m" />
+		<key id="KEY_EXIT" mapto="MDCEXIT" flags="m" />
+		<key id="KEY_HOME" mapto="MDCEXIT" flags="m" />
+		<key id="KEY_ESC" mapto="MDCEXIT" flags="m" />
 	</map>
 </keymap>

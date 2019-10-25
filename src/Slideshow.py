@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2019 by dream-alpha
+# Copyright (C) 2018-2019 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -23,16 +23,20 @@ from __init__ import _
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.config import config
+from Components.Sources.List import List
 from Components.ActionMap import ActionMap
+from Tools.BoundFunction import boundFunction
+from Tools.LoadPixmap import LoadPixmap
 from globals import FILE_PATH, FILE_MEDIA
 from enigma import eTimer
 from Display import Display
+from SkinUtils import getSkinPath
 
 
 MAX_SLIDES = 100
 
 
-class Slideshow(Display, Screen, object):
+class MDCSlideshow(Display, Screen):
 
 	def __init__(self, session, file_list, file_index, animation):
 		print("MDC-I: Slideshow: __init__: file_index: %s" % file_index)
@@ -42,7 +46,7 @@ class Slideshow(Display, Screen, object):
 		self.animation = int(animation)
 		self.direction = 0
 		Screen.__init__(self, session)
-		self.skinName = "MDCSlideshow"
+		self.skinName = [self.__class__.__name__]
 		Display.__init__(self)
 
 		self["actions"] = ActionMap(
@@ -50,10 +54,10 @@ class Slideshow(Display, Screen, object):
 			{
 				"exit": self.exit,
 				"playpause": self.playpause,
-				"stop":	self.stop,
 				"left": self.left,
 				"right": self.right,
 				"blue": self.blue,
+				"help": self.help,
 			},
 			prio=-1
 		)
@@ -76,10 +80,10 @@ class Slideshow(Display, Screen, object):
 			print("MDC-I: Slideshow: __init__: python-merlinpictureviewer package not installed")
 			from Components.Pixmap import Pixmap
 			self["image"] = Pixmap()
-			self.onFirstExecBegin.append(self.showMessageBox)
+			self.onFirstExecBegin.append(boundFunction(self.showMessageBox, _("Package") + " python-merlinpictureviewer " + _("is not installed")))
 
-	def showMessageBox(self):
-		self.session.open(MessageBox, _("Package") + " python-merlinpictureviewer " + _("is not installed"), MessageBox.TYPE_ERROR)
+	def showMessageBox(self, msg):
+		self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
 
 	def startRun(self):
 		self.slideshow_duration = config.plugins.mediacockpit.slideshow_duration.value * 1000
@@ -94,22 +98,28 @@ class Slideshow(Display, Screen, object):
 				if j >= MAX_SLIDES:
 					self.slideshow_continue = True
 					break
-			else:
+			elif x[FILE_MEDIA] != "music":
 				self.slideshow_continue = True
 				break
 
 		self.slides = len(self.alist)
-		self.slide_index = 0
-		self.slide_path = self.alist[start_index]
-
-		self["image"].setTransitionMode(self.animation)
-		self["image"].scaleToScreen(True)
-		self["image"].startSlideShow(self.alist, start_index, self.slideshow_duration, self.animation == "-1")
-		self.play()
+		if self.slides:
+			self.slide_index = 0
+			self.slide_path = self.alist[start_index]
+			self["image"].setTransitionMode(self.animation)
+			self["image"].scaleToScreen(True)
+			self["image"].startSlideShow(self.alist, start_index, self.slideshow_duration, self.animation == "-1")
+			self.play()
+		else:
+			self.showMessageBox(_("No pictures to display"))
 
 	def showDisplayInfo(self):
 		direction = 1 if self.slideshow_active else 0
 		self.showMediaLCD(self.file_index + self.slide_index + 1, len(self.file_list), self.slide_path, direction)
+
+	def help(self):
+		print("MDC: Slideshow: help")
+		self.session.open(SlideshowHelp)
 
 	def exit(self):
 		self.slideshow_active = False
@@ -185,3 +195,37 @@ class Slideshow(Display, Screen, object):
 				if self.slide_index < 0:
 					self.slide_index = 0
 		self.showDisplayInfo()
+
+
+class SlideshowHelp(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.skinName = "SlideshowHelp"
+		self.setTitle(_("Help"))
+
+		self["actions"] = ActionMap(
+			["MDCActions"],
+			{
+				"exit": self.close,
+				"ok": self.close,
+				"red": self.close,
+				"green": self.close,
+			},
+			prio=-1
+		)
+		self["helplist"] = List()
+		self.onLayoutFinish.append(self.firstStart)
+
+	def firstStart(self):
+		alist = []
+		alist.append((_("Exit"), LoadPixmap(getSkinPath("images/" + "key_red.png"), cached=False)))
+		alist.append((_("Exit"), LoadPixmap(getSkinPath("images/" + "key_green.png"), cached=False)))
+		alist.append(("", LoadPixmap(getSkinPath("images/" + "key_yellow.png"), cached=False)))
+		alist.append((_("Toggle transition"), LoadPixmap(getSkinPath("images/" + "key_blue.png"), cached=False)))
+		alist.append((_("Play/Pause"), LoadPixmap(getSkinPath("images/" + "key_playpause.png"), cached=False)))
+		alist.append((_("Stop video"), LoadPixmap(getSkinPath("images/" + "key_stop.png"), cached=False)))
+		alist.append((_("Next slide"), LoadPixmap(getSkinPath("images/" + "key_next.png"), cached=False)))
+		alist.append((_("Previous slide"), LoadPixmap(getSkinPath("images/" + "key_previous.png"), cached=False)))
+
+		self["helplist"].setList(alist)
+		self["helplist"].master.downstream_elements.setSelectionEnabled(0)

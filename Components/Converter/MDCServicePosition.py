@@ -31,25 +31,34 @@ class MDCServicePosition(ServicePosition, object):
 
 	@cached
 	def getCutlist(self):
-		service = self.source.service
-		if service is not None:
-			cut = service and service.cutList()
-			return cut and cut.getCutList()
-		return []
+		try:
+			service = self.source.service
+			if service is not None:
+				cut = service and service.cutList()
+				return cut and cut.getCutList()
+			return []
+		except Exception:
+			return ServicePosition.getCutlist(self)
 
 	cutlist = property(getCutlist)
 
 	@cached
 	def getLength(self):
-		player = self.source.player
-		return player.getLength()
+		try:
+			player = self.source.player
+			return player.getLength()
+		except Exception:
+			return ServicePosition.getLength(self)
 
 	length = property(getLength)
 
 	@cached
 	def getPosition(self):
-		player = self.source.player
-		return player.getPosition()
+		try:
+			player = self.source.player
+			return player.getPosition()
+		except Exception:
+			return ServicePosition.getPosition(self)
 
 	position = property(getPosition)
 

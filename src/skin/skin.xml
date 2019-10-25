@@ -3,9 +3,15 @@
 Copyright (C) 2018-2019 by dream-alpha
 -->
 <skin>
+	<colors>
+		<color name="darkblue" value="#000d1940"/>
+		<color name="darkgrey" value="#141414"/>
+	</colors>
+
 	<listboxcontent>
 		<config onPixmap="skin_default/switch_on.svg" offPixmap="skin_default/switch_off.svg" size="60,32"/>
 	</listboxcontent>
+
 	<layouts>
 		<layout name="Color_Buttons">
 			<ePixmap pixmap="Default-FHD/skin_default/buttons/red.svg"
@@ -56,8 +62,7 @@ Copyright (C) 2018-2019 by dream-alpha
 			transparent="1" />
 	</screen>
 
-	<screen id="3" name="MDCMoviePlayerSummary" position="0,0"
-		size="400,240">
+	<screen id="3" name="MDCVideoPlayerSummary" position="0,0" size="400,240">
 		<ePixmap position="0,0" size="400,240"
 			pixmap="skin_default/display_bg.png" zPosition="-1"/>
 		<widget font="Display;60" halign="center" position="5,5"
@@ -78,13 +83,13 @@ Copyright (C) 2018-2019 by dream-alpha
 		<widget font="Display;75" valign="center" halign="right"
 			position="200,160" render="Label" size="195,80" source="Service"
 			transparent="1">
-			<convert type="MDCServicePosition">Remaining</convert>
+			<convert type="MDCServicePosition">Remaining,ShowNoSeconds</convert>
 		</widget>
 	</screen>
 
 	<screen name="MDCNoSupport" position="center,center" size="1000,500">
-		<widget name="no_support" position="1,1" size="1000,500"
-			font="Regular;32" halign="center" valign="center" transparent="1"/>
+		<eLabel text="Skin resolution other than Full HD is not supported yet"
+			position="0,0" size="1000,500" font="Regular;32" halign="center" valign="center" transparent="1"/>
 	</screen>
 
 	<screen name="MDCConfigScreen" position="center,110" size="1800,930">
@@ -101,7 +106,7 @@ Copyright (C) 2018-2019 by dream-alpha
 			render="Label" size="1780,180" source="help" valign="center"/>
 	</screen>
 
-	<screen name="MDCPicture" position="0,0" size="1920,1080" flags="wfNoBorder">
+	<screen name="MDCMediaPlayer" position="0,0" size="1920,1080" flags="wfNoBorder">
 		<widget name="picture_background" position="0,0" zPosition="0" size="1920,1080"/>
 		<widget name="picture" position="0,0" size="1920,1080" zPosition="1"/>
 		<widget name="icon" position="820,360" size="280,360" zPosition="2" transparent="1"/>
@@ -130,7 +135,7 @@ Copyright (C) 2018-2019 by dream-alpha
 		</widget>
 	</screen>
 
-	<screen name="MDCMoviePlayer" flags="wfNoBorder" position="0,825" size="1920,225">
+	<screen name="MDCVideoPlayer" flags="wfNoBorder" position="0,825" size="1920,225">
 		<ePixmap alphatest="off" pixmap="skin_default/infobar.png"
 			position="0,0" size="1920,225" zPosition="-1"/>
 		<widget backgroundColor="background" font="Regular;40" noWrap="1"
@@ -233,8 +238,7 @@ Copyright (C) 2018-2019 by dream-alpha
 	</screen>
 
 	<screen name="MDCCockpit" size="1920,1080">
-		<widget name="osd_info" position="55,20" size="1650,35"
-			font="Regular;30" noWrap="1" />
+		<widget name="osd_info" position="55,20" size="1650,35" font="Regular;30" noWrap="1" />
 		<widget font="Regular;45" halign="right" position="1730,10"
 			render="Label" size="140,50" source="global.CurrentTime">
 			<convert type="ClockToText">Default</convert>
@@ -338,5 +342,118 @@ Copyright (C) 2018-2019 by dream-alpha
 
 	<screen name="MDCSlideshow" flags="wfNoBorder" position="0,0" size="1920,1080">
 		<widget name="image" position="0,0" size="1920,1080" zPosition="-2"/>
+	</screen>
+
+	<screen id="3" name="MDCMusicPlayerSummary" position="0,0" size="400,240">
+		<ePixmap position="0,0" size="400,240"
+			pixmap="skin_default/display_bg.png" zPosition="-1"/>
+		<widget name="title" font="Display;60" halign="center" position="5,5"
+			size="390,120" valign="center" transparent="1"/>
+		<widget position="center,140" render="Progress" size="380,15"
+			borderWidth="1" source="Service" zPosition="2" transparent="1"
+			pixmap="Default-FHD/MediaCockpit/skin/images/progress_lcd.png">
+			<convert type="MDCServicePosition">Position</convert>
+		</widget>
+		<widget font="Display;75" valign="center" position="5,160"
+			render="Label" size="200,80" source="global.CurrentTime"
+			transparent="1">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget font="Display;75" valign="center" halign="right"
+			position="200,160" render="Label" size="195,80" source="Service"
+			transparent="1">
+			<convert type="MDCServicePosition">Remaining</convert>
+		</widget>
+	</screen>
+
+	<screen name="MDCMusicPlayer" position="0,0" size="1920,1080" flags="wfNoBorder" backgroundColor="darkblue">
+		<eLabel position="100,100" size="1720,160" backgroundColor="#20294071" alphatest="on"/>
+		<widget name="play" position="120,120" size="60,60" alphatest="on" zPosition="3"
+			pixmap="Default-FHD/MediaCockpit/skin/images/dvr_play.svg"/>
+		<widget name="pause" position="120,120" size="60,60" alphatest="on" zPosition="3"
+			pixmap="Default-FHD/MediaCockpit/skin/images/dvr_pause.svg"/>
+		<eLabel position="199,139" size="1332,12" backgroundColor="darkblue" zPosition="2" alphatest="on"/>
+		<widget pointer="Default-FHD/MediaCockpit/skin/images/progress.png:1330,0" position="200,140"
+			render="PositionGauge" size="1330,10" source="Service" transparent="1"
+			zPosition="3">
+			<convert type="MDCServicePosition">Gauge</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" foregroundColor="grey"
+			position="1510,120" size="200,60" valign="center" zPosition="1" font="Regular;40"
+			halign="right" transparent="1">
+			<convert type="MDCServicePosition">Remaining</convert>
+		</widget>
+		<widget name="shuffle" pixmap="Default-FHD/MediaCockpit/skin/images/dvr_shuffle.svg"
+			position="200,195" size="40,40" transparent="1" alphatest="on" zPosition="3"/>
+		<widget name="repeat" pixmap="Default-FHD/MediaCockpit/skin/images/dvr_repeat.svg"
+			position="270,195" size="40,40" transparent="1" alphatest="on" zPosition="3"/>
+		<widget name="buffering" position="340,195" size="650,40" foregroundColor="grey"
+			transparent="1" font="Regular;27" zPosition="3"/>
+		<widget name="cover" position="1350,350" size="450,450"
+			transparent="1" mode="cover"
+			noCoverAvailablePic="Default-FHD/MediaCockpit/skin/images/no-cover.png"
+			zPosition="13" />
+		<widget name="play" position="115,395" size="60,60" alphatest="on" zPosition="3"
+			pixmap="Default-FHD/MediaCockpit/skin/images/dvr_play.svg"/>
+		<widget name="pause" position="115,395" size="60,60" alphatest="on" zPosition="3"
+			pixmap="Default-FHD/MediaCockpit/skin/images/dvr_pause.svg"/>
+		<widget name="title" position="200,400" size="900,50" foregroundColor="grey"
+			zPosition="1" transparent="1" font="Regular;36" valign="center" />
+		<ePixmap alphatest="on"
+			pixmap="Default-FHD/MediaCockpit/skin/images/album.svg"
+			position="120,475" size="50,50" />
+		<widget name="album" position="200,475" size="900,50" foregroundColor="grey"
+			zPosition="1" transparent="1" font="Regular;30" valign="center" />
+		<ePixmap alphatest="on"
+			pixmap="Default-FHD/MediaCockpit/skin/images/artist.svg"
+			position="120,550" size="50,50" />
+		<widget name="artist" position="200,550" size="900,50" foregroundColor="grey"
+			zPosition="1" transparent="1" font="Regular;30" valign="center" />
+		<ePixmap alphatest="on"
+			pixmap="Default-FHD/MediaCockpit/skin/images/genre.svg"
+			position="120,625" size="51,51" />
+		<widget name="genre" position="200,625" size="900,50" foregroundColor="grey"
+			zPosition="1" transparent="1" font="Regular;30" valign="center" />
+		<ePixmap alphatest="on"
+			pixmap="Default-FHD/MediaCockpit/skin/images/next.svg"
+			position="120,700" size="50,50" />
+		<widget name="nextTitle" position="200,700" size="900,50" foregroundColor="grey"
+			zPosition="1" transparent="1" font="Regular;30" valign="center" />
+		<widget name="visual" position="0,740" size="1920,340"
+			transparent="1" zPosition="11"
+			pixmap1="Default-FHD/MediaCockpit/skin/images/bar_88_226.png"
+			distance1="12" threshold1="24" mode="visUpDown" internalSize="0"
+			blendColor="#fcc000" smoothing="0.4" />
+	</screen>
+
+	<screen name="Lyrics" position="center,110" size="1800,930" backgroundColor="background">
+		<layout name="Date"/>
+		<layout name="Time"/>
+		<widget font="Regular;36" name="resulttext" position="20,0" size="1780,70"
+			foregroundColor="yellow" transparent="1" valign="center" zPosition="1"/>
+		<eLabel backgroundColor="grey" position="20,80" size="1780,1"/>
+		<widget name="lyric_text" position="20,90" size="1780,720" font="Regular;32" zPosition="1"/>
+		<eLabel backgroundColor="grey" position="20,820" size="1780,1"/>
+	</screen>
+
+	<screen name="SlideshowHelp" position="center,250" size="820,520">
+		<widget source="helplist" render="Listbox" position="20,10" size="800,480" scrollbarMode="showOnDemand">
+			<convert type="TemplatedMultiContent">
+				{"templates":
+					{"default":
+						(
+							60,
+							[
+								MultiContentEntryText(pos=(100, 5), size=(690, 50), font=0, text=0),
+								MultiContentEntryPixmapAlphaTest(pos=(0, 10), size=(80, 40), png=1),
+							]
+						),
+					},
+					"fonts":
+						[gFont("Regular", 40)],
+					"itemHeight": 60
+				}
+			</convert>
+		</widget>
 	</screen>
 </skin>

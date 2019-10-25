@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2019 by dream-alpha
+# Copyright (C) 2018-2019 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -21,15 +21,12 @@
 
 import os
 from __init__ import _
-from Movie import MDCMoviePlayer
 from ConfigScreen import ConfigScreen
 from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Components.ActionMap import HelpableActionMap
-from Components.Label import Label
 from Components.config import config
 from enigma import getDesktop
-from Picture import MDCPicturePlayer
 from globals import FILE_TYPE, FILE_PATH, FILE_MEDIA, TYPE_DIR, TYPE_FILE, TYPE_M3U, TYPE_GOUP
 from FileList import FileList
 from MediaInfo import MediaInfo
@@ -38,18 +35,10 @@ from Tiles import Tiles
 from FileOps import FileOps
 from ConfigInit import sort_modes
 from Display import Display
-
-
-def stopService(session, lastservice):
-	#print("MDC: Cockpit: stopService: clear video buffer")
-	session.nav.stopService()
-	session.nav.playService(lastservice)
-	session.nav.stopService()
-
-
-def startService(session, lastservice):
-	#print("MDC: Cockpit: startService: start")
-	session.nav.playService(lastservice)
+from MediaPlayer import MDCMediaPlayer
+from MusicPlayer import MDCMusicPlayer
+from VideoPlayer import VideoPlayer
+from ServiceUtils import getService, startService, stopService
 
 
 class Cockpit(Display, Tiles, FileOps, FileList, HelpableScreen, Screen):
@@ -70,6 +59,11 @@ class Cockpit(Display, Tiles, FileOps, FileList, HelpableScreen, Screen):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		Display.__init__(self)
+		Tiles.__init__(self)
+		FileOps.__init__(self, session)
+
+		self.desktop_size = getDesktop(0).size()
+		self.skinName = self.getSkinName()
 
 		self["actions"] = HelpableActionMap(
 			self,
@@ -80,8 +74,8 @@ class Cockpit(Display, Tiles, FileOps, FileList, HelpableScreen, Screen):
 				"prevBouquet":	(self.nextPage,		_("Next page")),
 				"right":	(self.moveRight,	_("Next picture")),
 				"left":		(self.moveLeft,		_("Previous picture")),
-				"up":		(self.moveUp,		_("Previous line")),
-				"down":		(self.moveDown,		_("Next line")),
+				"up":		(self.moveUp,		_("Previous row")),
+				"down":		(self.moveDown,		_("Next row")),
 				"ok":		(self.processOk,	_("Ok")),
 				"info":		(self.openInfo,		_("Information")),
 				"menu":		(self.openMenu, 	_("Settings")),
@@ -93,13 +87,6 @@ class Cockpit(Display, Tiles, FileOps, FileList, HelpableScreen, Screen):
 			},
 			prio=-1
 		)
-
-		self["no_support"] = Label(_("Skin resolution other than Full HD is not supported yet"))
-
-		Tiles.__init__(self)
-		FileOps.__init__(self, session)
-		self.desktop_size = getDesktop(0).size()
-		self.skinName = self.getSkinName()
 
 		if config.plugins.mediacockpit.start_home_dir.value:
 			self.last_path = config.plugins.mediacockpit.home_dir.value
@@ -145,10 +132,7 @@ class Cockpit(Display, Tiles, FileOps, FileList, HelpableScreen, Screen):
 
 		if first_start:
 			self.lastservice = self.session.nav.getCurrentlyPlayingServiceReference()
-		if not config.plugins.mediacockpit.tv_background.value:
 			stopService(self.session, self.lastservice)
-		else:
-			startService(self.session, self.lastservice)
 
 		last_path = self.last_path
 		if not os.path.isdir(self.last_path):
@@ -168,10 +152,21 @@ class Cockpit(Display, Tiles, FileOps, FileList, HelpableScreen, Screen):
 		self.last_path = self.current_path
 		#print("MDC: Cockpit: readFileListCallback: file_index: %s, path: %s, len(file_list): %s" % (self.file_index, self.file_list[self.file_index][FILE_PATH], len(self.file_list)))
 		if self.file_index > -1 and self.slideshow_file_index > -1:
-			self.session.openWithCallback(self.setTilesCursor, MDCPicturePlayer, self.file_list, self.slideshow_file_index, True, self.thumbnail_size)
+			self.hide()
+			self.session.openWithCallback(self.MDCMediaPlayerCallback, MDCMediaPlayer, self.file_list, self.file_index, True, self.thumbnail_size, self.lastservice)
 		else:
 			self.slideshow_file_index = -1
 			self.paintTiles()
+
+	def MDCMusicPlayerCallback(self, file_index):
+		self.setTilesCursor(file_index)
+
+	def MDCMediaPlayerCallback(self, file_index):
+		self.show()
+		# clear video buffer
+		startService(self.session, self.lastservice)
+		stopService(self.session, self.lastservice)
+		self.setTilesCursor(file_index)
 
 	def setTilesCursor(self, file_index):
 		self.file_index = file_index
@@ -188,8 +183,7 @@ class Cockpit(Display, Tiles, FileOps, FileList, HelpableScreen, Screen):
 				path = self.file_list[self.file_index][FILE_PATH]
 				config.plugins.mediacockpit.last_path.value = path
 			config.plugins.mediacockpit.save()
-			if not config.plugins.mediacockpit.tv_background.value:
-				startService(self.session, self.lastservice)
+			startService(self.session, self.lastservice)
 			self.close()
 
 	def red(self):
@@ -211,8 +205,11 @@ class Cockpit(Display, Tiles, FileOps, FileList, HelpableScreen, Screen):
 			print("MDC-I: Cockpit: playpause")
 			x = self.file_list[self.file_index]
 			if x[FILE_TYPE] == TYPE_FILE:
-				self.slideshow_file_index = self.file_index
-				self.session.openWithCallback(self.setTilesCursor, MDCPicturePlayer, self.file_list, self.slideshow_file_index, len(self.file_list) > 1, self.thumbnail_size)
+				if x[FILE_MEDIA] in ["picture", "movie"]:
+					self.slideshow_file_index = self.file_index
+					self.readFileListCallback()
+				elif x[FILE_MEDIA] == "music":
+					self.session.openWithCallback(self.MDCMusicPlayerCallback, MDCMusicPlayer, self.file_list, self.file_index)
 			elif x[FILE_TYPE] in [TYPE_DIR, TYPE_M3U]:
 				self.slideshow_file_index = 0
 				self.readFileList(x[FILE_PATH])
@@ -233,15 +230,19 @@ class Cockpit(Display, Tiles, FileOps, FileList, HelpableScreen, Screen):
 				self.readFileList(path)
 			elif x[FILE_TYPE] == TYPE_FILE:
 				if x[FILE_MEDIA] == "picture":
-					self.session.openWithCallback(self.setTilesCursor, MDCPicturePlayer, self.file_list, self.file_index, False, self.thumbnail_size)
+					self.hide()
+					self.session.openWithCallback(self.MDCMediaPlayerCallback, MDCMediaPlayer, self.file_list, self.file_index, False, self.thumbnail_size)
 				elif x[FILE_MEDIA] == "movie":
-					if config.plugins.mediacockpit.tv_background.value:
-						stopService(self.session, self.lastservice)
-					self.session.openWithCallback(self.MDCMoviePlayerCallback, MDCMoviePlayer, self.file_list, self.file_index)
+					self.hide()
+					self.session.openWithCallback(self.VideoPlayerCallback, VideoPlayer, getService(self.file_list[self.file_index][FILE_PATH]), False)
+				elif x[FILE_MEDIA] == "music":
+					self.session.openWithCallback(self.MDCMusicPlayerCallback, MDCMusicPlayer, self.file_list, self.file_index)
 
-	def MDCMoviePlayerCallback(self, _slideshow_active=False):
-		if config.plugins.mediacockpit.tv_background.value:
-			startService(self.session, self.lastservice)
+	def VideoPlayerCallback(self, _dummy=False):
+		self.show()
+		# clear video buffer
+		startService(self.session, self.lastservice)
+		stopService(self.session, self.lastservice)
 
 	def prevDirectory(self):
 		if not self.busy:
@@ -259,14 +260,10 @@ class Cockpit(Display, Tiles, FileOps, FileList, HelpableScreen, Screen):
 			self.readFileList(os.path.dirname(self.last_path))
 
 	def openInfo(self):
-		if not self.busy:
-			if self.file_list:
-				x = self.file_list[self.file_index]
-				if x[FILE_TYPE] == TYPE_FILE:
-					self.session.openWithCallback(self.openInfoCallback, MediaInfo, self.file_list, self.file_index)
-
-	def openInfoCallback(self, file_index):
-		self.setTilesCursor(file_index)
+		if not self.busy and self.file_list:
+			x = self.file_list[self.file_index]
+			if x[FILE_TYPE] == TYPE_FILE:
+				self.session.openWithCallback(self.setTilesCursor, MediaInfo, self.file_list, self.file_index)
 
 	def openMenu(self):
 		if not self.busy:

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# coding=utf-8
+# encoding: utf-8
 #
 # Copyright (C) 2018-2019 by dream-alpha
 #
@@ -19,15 +19,21 @@
 #	<http://www.gnu.org/licenses/>.
 
 
-# file indexes
-FILE_PATH = 0
-FILE_TYPE = 1
-FILE_DATE = 2
-FILE_MEDIA = 3
-FILE_META = 4
+from enigma import eConsoleAppContainer
 
-# FILE_TYPE values
-TYPE_GOUP = 1
-TYPE_M3U = 2
-TYPE_DIR = 3
-TYPE_FILE = 4
+
+class ConsoleAppContainer():
+
+	def __init__(self, callback):
+		self.callback = callback
+		self.container = None
+
+	def execute(self, cmd):
+		self.container = eConsoleAppContainer()
+		self.container_appClosed_conn = self.container.appClosed.connect(self.callback)
+		self.container.execute(cmd)
+
+	def kill(self):
+		if self.container is not None:
+			self.container.kill()
+			self.container = None

@@ -1,6 +1,6 @@
 Description: MediaCockpit
 Maintainer: dream-alpha
 Package: enigma2-plugin-extensions-mediacockpit
-Version: 5.5.0
+Version: 6.2.2
 Architecture: all
 Depends: python-imaging, ffmpeg

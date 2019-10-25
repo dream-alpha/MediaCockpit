@@ -15,6 +15,8 @@
 - Slideshows based on playlists (.m3u)
 - Animation in slideshows
 - Mixed media content (pictures and videos) in directories or playlists
+- Background music
+- Music player
 ## Installation
 To install MediaCockpit execute the following command in a telnet console on your dreambox:
 - wget https://dream-alpha.github.io/MediaCockpit/mediacockpit.sh -O - | /bin/sh

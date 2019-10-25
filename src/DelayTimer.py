@@ -24,7 +24,7 @@ from enigma import eTimer
 
 timers = []
 
-class DelayTimer(object):
+class DelayTimer():
 
 	def __init__(self, delay, function, *params):
 		#print("MDC: DelayTimer: __init__: delay: %s" % delay)

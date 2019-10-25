@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2019 by dream-alpha
+# Copyright (C) 2018-2019 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -41,10 +41,10 @@ def getExifData(path):
 		print("MDC-E: PictureUtils: getExifData: exception: %s" % e)
 	#print("MDC: PictureUtils: getExifData: exif_data: %s" % str(exif_data))
 	if exif_data:
-		for key, value in exif_data.iteritems():
+		for key, value in exif_data.items():
 			if key in TAGS:
 				tag = TAGS[key]
-				if tag != "UserComment" and tag != "MakerNote":
+				if tag not in ["UserComment", "MakerNote"]:
 					exif[tag] = value
 	if "ExifImageWidth" not in exif and width:
 		exif["ExifImageWidth"] = width

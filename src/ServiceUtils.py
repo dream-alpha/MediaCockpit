@@ -42,7 +42,7 @@ extVideo = [".avi", ".ts", ".trp", ".divx", ".f4v", ".img", ".ifo", ".iso", ".m4
 extPicture = [".jpg", ".jpeg", ".png"]
 extMusic = [".mp3"]
 extPlaylist = [".m3u"]
-extMedia = extVideo + extPicture + extPlaylist
+extMedia = extVideo + extPicture + extMusic + extPlaylist
 
 
 def getService(path, name=""):
@@ -65,3 +65,15 @@ def getService(path, name=""):
 		if name:
 			service.setName(name)
 	return service
+
+
+def stopService(session, lastservice):
+	#print("MDC: ServiceUtils: stopService: clear video buffer")
+	session.nav.stopService()
+	session.nav.playService(lastservice)
+	session.nav.stopService()
+
+
+def startService(session, lastservice):
+	#print("MDC: ServiceUtils: startService: start")
+	session.nav.playService(lastservice)

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2019 by dream-alpha
+# Copyright (C) 2018-2019 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -31,7 +31,7 @@ from MetaFile import MetaFile
 from ServiceUtils import extMedia, extPicture, extVideo, extMusic, extPlaylist
 
 
-class FileList(MetaFile, object):
+class FileList(MetaFile):
 
 	def __init__(self):
 		self.thumbnail_size = None
@@ -67,11 +67,11 @@ class FileList(MetaFile, object):
 		if path is not None and percent is not None:
 			if self.show_loading_details:
 				adir = os.path.basename(self.path) if self.path != "/" else "/"
-				self.displayOSD("%s %s (%s%%) ..." % (_("Loading"), adir, self.percent))
-				self.displayLCD("%s: %s%%" % (_("Loading"), self.percent), adir)
+				self.displayOSD("%s %2d%% - %s ..." % (_("Loading"), self.percent, adir))
+				self.displayLCD("%s %2d%%" % (_("Loading"), self.percent), adir)
 			else:
-				self.displayOSD("%s %s ..." % (_("Loading"), _("pictures")))
-				self.displayLCD(_("Loading"), _("pictures"))
+				self.displayOSD("%s %s ..." % (_("Loading"), _("files")))
+				self.displayLCD(_("Loading"), _("files"))
 
 	def loading(self, dir_list):
 		#print("MDC: FileList: loading: dir_list: %s" % str(dir_list))
@@ -355,12 +355,12 @@ class FileList(MetaFile, object):
 		self.filefilters = ["goup"] if self.show_goup_tile else []
 		if os.path.splitext(self.current_path)[1] == ".m3u":
 			self.playlist_active = True
-			self.filefilters += ["picture", "movie"]
+			self.filefilters += ["picture", "movie", "music"]
 		else:
 			if self.slideshow_file_index > -1:
-				self.filefilters += ["picture", "movie"]
+				self.filefilters += ["picture", "movie", "music"]
 			else:
-				self.filefilters += ["folder", "playlist", "picture", "movie"]
+				self.filefilters += ["folder", "playlist", "picture", "movie", "music"]
 		self.loading([self.current_path])
 		self.progress()
 		DelayTimer(10, self.scanDirectory, self.current_path)

@@ -124,7 +124,7 @@ def debug(*debug_string):
     DEBUG to 1."""
     if DEBUG:
         for each in debug_string:
-            print each,
+            print(each)
         print
 
 
@@ -269,7 +269,7 @@ class Rational:
         return (self.num, self.den)
 
 
-class IfdData(object):
+class IfdData():
     """Base class for IFD"""
 
     name = "Generic Ifd"
@@ -523,7 +523,7 @@ class IfdData(object):
                 for i in range(components):
                     actual_data += pack(e + t, *the_data[i].as_tuple())
             else:
-                raise "Can't handle this", exif_type
+                raise Exception("Can't handle this", exif_type)
             if (byte_size) > 4:
                 output_data += actual_data
                 actual_data = pack(e + "I", data_offset)
@@ -1177,8 +1177,7 @@ class JpegFile:
                 (1/60.0 * float(min.num) / min.den) + \
                 (1/3600.0 * float(sec.num) / sec.den)
         if not hasattr(self.exif.primary, 'GPSIFD'):
-            raise self.NoSection, "File %s doesn't have a GPS section." % \
-                self.filename
+            raise Exception(self.NoSection, "File %s doesn't have a GPS section." % self.filename)
 
         gps = self.exif.primary.GPS
         lat = convert(gps.GPSLatitude)

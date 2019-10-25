@@ -19,15 +19,16 @@
 #	<http://www.gnu.org/licenses/>.
 
 
-# file indexes
-FILE_PATH = 0
-FILE_TYPE = 1
-FILE_DATE = 2
-FILE_MEDIA = 3
-FILE_META = 4
-
-# FILE_TYPE values
-TYPE_GOUP = 1
-TYPE_M3U = 2
-TYPE_DIR = 3
-TYPE_FILE = 4
+def getEncodedString(value):
+	return_value = ""
+	try:
+		return_value = value.encode("utf-8", 'ignore')
+	except UnicodeDecodeError:
+		try:
+			return_value = value.encode("iso8859-1", 'ignore')
+		except UnicodeDecodeError:
+			try:
+				return_value = value.decode("cp1252").encode("utf-8")
+			except UnicodeDecodeError:
+				return_value = "n/a"
+	return return_value
