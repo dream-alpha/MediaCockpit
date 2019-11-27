@@ -23,25 +23,40 @@ import os
 import cPickle
 from FileUtils import readFile, writeFile, deleteFile
 
-class MetaFile():
 
-	def saveMeta(self, path, meta):
-		#print("MDC: MetaFile: saveMeta: path: %s, meta: %s" % (path, str(meta)))
-		if meta:
-			filename, _ext = os.path.splitext(path)
-			meta_path = filename + ".meta"
-			if os.path.exists(meta_path):
-				deleteFile(meta_path)
-			if not os.path.exists(meta_path):
-				text = cPickle.dumps(meta)
-				writeFile(meta_path, text)
+# file indexes
+FILE_PATH = 0
+FILE_TYPE = 1
+FILE_DATE = 2
+FILE_MEDIA = 3
+FILE_META = 4
 
-	def loadMeta(self, path):
-		#print("MDC: MetaFile: loadMeta: path: %s" % path)
+
+# FILE_TYPE values
+TYPE_GOUP = 1
+TYPE_M3U = 2
+TYPE_DIR = 3
+TYPE_FILE = 4
+
+
+def saveMeta(path, meta):
+	#print("MDC: MetaFile: saveMeta: path: %s, meta: %s" % (path, str(meta)))
+	if meta:
 		filename, _ext = os.path.splitext(path)
-		meta_path = filename + ".meta"
-		x = []
-		if os.path.isfile(meta_path):
-			text = readFile(meta_path)
-			x = cPickle.loads(text)
-		return x
+		meta_path = filename + ".media"
+		if os.path.exists(meta_path):
+			deleteFile(meta_path)
+		if not os.path.exists(meta_path):
+			text = cPickle.dumps(meta)
+			writeFile(meta_path, text)
+
+
+def loadMeta(path):
+	#print("MDC: MetaFile: loadMeta: path: %s" % path)
+	filename, _ext = os.path.splitext(path)
+	meta_path = filename + ".media"
+	x = []
+	if os.path.isfile(meta_path):
+		text = readFile(meta_path)
+		x = cPickle.loads(text)
+	return x

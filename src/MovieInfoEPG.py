@@ -32,7 +32,6 @@ class MovieInfoEPG(EventViewSimple):
 		self.skinName = ["EventViewSimple", "EventView"]
 		text_blue = ""
 		self["key_blue"] = Button(text_blue)
-#		self["epgactions"] = ActionMap(["EventViewEPGActions"], {"openMultiServiceEPG": self.InfoDetail}, 2)
 
 	def setService(self, service):
 		EventViewSimple.setService(self, service)

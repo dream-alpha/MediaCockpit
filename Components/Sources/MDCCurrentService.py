@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # encoding: utf-8
 #
-# Copyright (C) 2011 betonme
 # Copyright (C) 2018-2019 dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
@@ -24,7 +23,7 @@ from Components.Element import cached
 from Components.Sources.CurrentService import CurrentService
 
 
-class MDCCurrentService(CurrentService, object):
+class MDCCurrentService(CurrentService):
 	def __init__(self, navcore, player):
 		CurrentService.__init__(self, navcore)
 		self.__player = player

@@ -31,8 +31,10 @@ def localeInit():
 	environ["LANGUAGE"] = lang
 	gettext.bindtextdomain(PLUGIN, resolveFilename(SCOPE_PLUGINS, "Extensions/" + PLUGIN + "/locale"))
 
+
 def _(txt):
 	return gettext.dgettext(PLUGIN, txt)
+
 
 localeInit()
 language.addCallback(localeInit)

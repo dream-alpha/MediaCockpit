@@ -24,7 +24,7 @@ from __init__ import _
 from Components.config import config
 from Screens.MessageBox import MessageBox
 from Screens.LocationBox import LocationBox
-from globals import TYPE_FILE, FILE_PATH, FILE_TYPE
+from MetaFile import TYPE_FILE, FILE_PATH, FILE_TYPE
 
 
 class FileOps():

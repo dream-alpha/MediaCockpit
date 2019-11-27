@@ -109,7 +109,6 @@ Copyright (C) 2018-2019 by dream-alpha
 	<screen name="MDCMediaPlayer" position="0,0" size="1920,1080" flags="wfNoBorder">
 		<widget name="picture_background" position="0,0" zPosition="0" size="1920,1080"/>
 		<widget name="picture" position="0,0" size="1920,1080" zPosition="1"/>
-		<widget name="icon" position="820,360" size="280,360" zPosition="2" transparent="1"/>
 		<widget name="osd_info" position="20,10" size="1885,25" font="Regular;20" halign="left" zPosition="2" noWrap="1" transparent="1"/>
 	</screen>
 
@@ -387,8 +386,8 @@ Copyright (C) 2018-2019 by dream-alpha
 			position="200,195" size="40,40" transparent="1" alphatest="on" zPosition="3"/>
 		<widget name="repeat" pixmap="Default-FHD/MediaCockpit/skin/images/dvr_repeat.svg"
 			position="270,195" size="40,40" transparent="1" alphatest="on" zPosition="3"/>
-		<widget name="buffering" position="340,195" size="650,40" foregroundColor="grey"
-			transparent="1" font="Regular;27" zPosition="3"/>
+		<widget name="gapless" pixmap="Default-FHD/MediaCockpit/skin/images/gapless.svg"
+			position="340,195" size="40,40" transparent="1" alphatest="on" zPosition="3"/>
 		<widget name="cover" position="1350,350" size="450,450"
 			transparent="1" mode="cover"
 			noCoverAvailablePic="Default-FHD/MediaCockpit/skin/images/no-cover.png"
@@ -417,7 +416,7 @@ Copyright (C) 2018-2019 by dream-alpha
 		<ePixmap alphatest="on"
 			pixmap="Default-FHD/MediaCockpit/skin/images/next.svg"
 			position="120,700" size="50,50" />
-		<widget name="nextTitle" position="200,700" size="900,50" foregroundColor="grey"
+		<widget name="next_title" position="200,700" size="900,50" foregroundColor="grey"
 			zPosition="1" transparent="1" font="Regular;30" valign="center" />
 		<widget name="visual" position="0,740" size="1920,340"
 			transparent="1" zPosition="11"
@@ -426,17 +425,7 @@ Copyright (C) 2018-2019 by dream-alpha
 			blendColor="#fcc000" smoothing="0.4" />
 	</screen>
 
-	<screen name="Lyrics" position="center,110" size="1800,930" backgroundColor="background">
-		<layout name="Date"/>
-		<layout name="Time"/>
-		<widget font="Regular;36" name="resulttext" position="20,0" size="1780,70"
-			foregroundColor="yellow" transparent="1" valign="center" zPosition="1"/>
-		<eLabel backgroundColor="grey" position="20,80" size="1780,1"/>
-		<widget name="lyric_text" position="20,90" size="1780,720" font="Regular;32" zPosition="1"/>
-		<eLabel backgroundColor="grey" position="20,820" size="1780,1"/>
-	</screen>
-
-	<screen name="SlideshowHelp" position="center,250" size="820,520">
+	<screen name="Help" position="center,250" size="820,520" backgroundColor="background">
 		<widget source="helplist" render="Listbox" position="20,10" size="800,480" scrollbarMode="showOnDemand">
 			<convert type="TemplatedMultiContent">
 				{"templates":

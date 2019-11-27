@@ -31,12 +31,12 @@ from Screens.InfoBarGenerics import InfoBarExtensions, InfoBarSeek, InfoBarMenu,
 from Screens.MessageBox import MessageBox
 from DelayTimer import DelayTimer
 from CutListUtils import secondsToPts, ptsToSeconds, removeFirstMarks, getCutListLast
-from CutList import CutList
+from CutList import fetchCutList, writeCutList
 
 
 class InfoBarSupport(InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarShowHide, InfoBarMenu, InfoBarShowMovies, InfoBarAudioSelection,
 	InfoBarSimpleEventView, InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSubtitleSupport, InfoBarTeletextPlugin,
-	InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarNumberZap, InfoBarPiP, InfoBarEPG, CutList):
+	InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarNumberZap, InfoBarPiP, InfoBarEPG):
 
 	ENABLE_RESUME_SUPPORT = True
 
@@ -88,13 +88,13 @@ class InfoBarSupport(InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarShow
 
 	def downloadCuesheet(self):
 		#print("MVC: InfoBarSupport: downloadCueSheet: self.service: %s" % (self.service.getPath() if self.service else None))
-		self.cut_list = self.fetchCutList(self.service.getPath())
+		self.cut_list = fetchCutList(self.service.getPath())
 		#print("MVC: InfoBarSupport: downloadCuesheet: cut_list: %s" % self.cut_list)
 
 	def uploadCuesheet(self):
 		#print("MVC: InfoBarSupport: uploadCuesheet: self.service: %s" % (self.service.getPath() if self.service else None))
 		#print("MVC: InfoBarSupport: uploadCuesheet: cut_list: %s" % self.cut_list)
-		self.writeCutList(self.service.getPath(), self.cut_list)
+		writeCutList(self.service.getPath(), self.cut_list)
 
 	def __serviceStarted(self):
 		print("MVC-I: InfoBarSupport: __serviceStarted: self.is_closing: %s" % self.is_closing)
@@ -144,19 +144,17 @@ class InfoBarSupport(InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarShow
 		current_pos = self.cueGetCurrentPosition() or 0
 		# Increase current_pos by 2 seconds to make sure we get the correct mark
 		current_pos = current_pos + secondsToPts(2)
-		# MVC enhancement: increase recording margin to make sure we get the correct mark
+		# increase recording margin to make sure we get the correct mark
 		margin = secondsToPts(config.recording.margin_before.value * 60) * 2 or secondsToPts(20 * 60)
 		middle = (self.getSeekLength() or secondsToPts(90 * 60)) / 2
 
 		for (pts, what) in self.cut_list:
-			if what == self.CUT_TYPE_MARK:
-				if pts and (current_pos < pts and pts < margin and pts < middle):
-					if first_mark is None or pts < first_mark:
-						first_mark = pts
+			if pts and what == self.CUT_TYPE_MARK:
+				if current_pos < pts and pts < margin and pts < middle and not pts > first_mark:
+					first_mark = pts
 		if first_mark:
-			self.start_point = first_mark
-			#== wait to seek - in OE2.5 not seek without wait
-			DelayTimer(500, self.doSeek, self.start_point)
+			# wait to seek - in OE2.5 no seek without wait
+			DelayTimer(500, self.doSeek, first_mark)
 
 	def jumpNextMark(self):
 		if not self.jumpPreviousNextMark(lambda x: x - secondsToPts(1)):

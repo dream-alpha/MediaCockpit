@@ -29,7 +29,7 @@ from Components.Pixmap import Pixmap
 from Components.Button import Button
 from Components.Sources.List import List
 from Components.ActionMap import HelpableActionMap
-from globals import FILE_PATH, FILE_MEDIA, FILE_DATE
+from MetaFile import FILE_PATH, FILE_MEDIA, FILE_DATE
 from PictureUtils import getExifData
 from SkinUtils import getSkinPath
 from Tools.LoadPixmap import LoadPixmap

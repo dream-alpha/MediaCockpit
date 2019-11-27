@@ -38,6 +38,7 @@ from Components.Language import language
 from Tools.Notifications import AddPopup
 from ServiceReference import ServiceReference
 from DelayTimer import DelayTimer
+from CutList import reloadCutListFromFile, updateCutList
 from CutListUtils import secondsToPts, backupCutsFile
 from InfoBarSupport import InfoBarSupport
 from Components.Sources.MDCCurrentService import MDCCurrentService
@@ -55,7 +56,7 @@ class MDCVideoPlayerSummary(Screen):
 		self["Service"] = MDCCurrentService(session.nav, parent)
 
 
-class VideoPlayer(Screen, HelpableScreen, InfoBarSupport):
+class MDCVideoPlayer(Screen, HelpableScreen, InfoBarSupport):
 
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
@@ -112,8 +113,9 @@ class VideoPlayer(Screen, HelpableScreen, InfoBarSupport):
 		self.evEOF()  # begin playback
 
 	def __onClose(self):
-		if self.zap_to_lastservice and self.lastservice:
-			self.zapToService(self.lastservice)
+#		if self.zap_to_lastservice and self.lastservice:
+#			self.zapToService(self.lastservice)
+		pass
 
 	def evEOF(self):
 		print("MDC-I: VideoPlayer: evEOF")
@@ -358,7 +360,7 @@ class VideoPlayer(Screen, HelpableScreen, InfoBarSupport):
 
 			#print("MDC: VideoPlayer: leavePlayer: update cuts: " + self.service.getPath())
 			#print("MDC: VideoPlayer: leavePlayer: cut_list before update: " + str(self.cut_list))
-			cut_list = self.reloadCutListFromFile(self.service.getPath())
+			cut_list = reloadCutListFromFile(self.service.getPath())
 			print("MDC-I: VideoPlayer: leavePlayer: cut_list after  reload: " + str(cut_list))
 
 		self.close(reopen)
@@ -366,8 +368,7 @@ class VideoPlayer(Screen, HelpableScreen, InfoBarSupport):
 	### functions for InfoBarGenerics.py
 	# InfoBarShowMovies
 	def showMovies(self):
-		#print("MDC: VideoPlayer: showMovies")
-		return
+		print("MDC-I: VideoPlayer: showMovies")
 
 	def doEofInternal(self, playing):
 		print("MDC-I: VideoPlayer: doEofInternal: playing: %s, self.execing: %s" % (playing, self.execing))
@@ -391,11 +392,11 @@ class VideoPlayer(Screen, HelpableScreen, InfoBarSupport):
 		print("MDC-I: VideoPlayer: updateCutList")
 		if self.getSeekPlayPosition() == 0:
 			if self.realSeekLength:
-				self.updateCutList(service.getPath(), self.realSeekLength, self.realSeekLength)
+				updateCutList(service.getPath(), self.realSeekLength, self.realSeekLength)
 			else:
-				self.updateCutList(service.getPath(), self.getSeekLength(), self.getSeekLength())
+				updateCutList(service.getPath(), self.getSeekLength(), self.getSeekLength())
 		else:
-			self.updateCutList(service.getPath(), self.getSeekPlayPosition(), self.getSeekLength())
+			updateCutList(service.getPath(), self.getSeekPlayPosition(), self.getSeekLength())
 		#print("MDC: VideoPlayer: updateCutList: pos: " + str(self.getSeekPlayPosition()) + ", length: " + str(self.getSeekLength()))
 
 

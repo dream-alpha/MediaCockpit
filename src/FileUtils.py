@@ -22,6 +22,7 @@
 import os
 import shutil
 
+
 def readFile(path):
 	try:
 		f = open(path, "r")
@@ -32,6 +33,7 @@ def readFile(path):
 		print("MDC-E: FileUtils: readFile: path: %s, exception: %s" % (path, e))
 		return ""
 
+
 def writeFile(path, data):
 	try:
 		f = open(path, "w")
@@ -40,17 +42,20 @@ def writeFile(path, data):
 	except Exception as e:
 		print("MDC-E: FileUtils: writeFile: path: %s, exception: %s" % (path, e))
 
+
 def deleteFile(path):
 	try:
 		os.remove(path)
 	except Exception as e:
 		print("MDC-E: FileUtils: deleteFile: exception: path: %s, exception: %s" % (path, e))
 
+
 def copyFile(src_path, dest_path):
 	try:
 		shutil.copyfile(src_path, dest_path)
 	except Exception as e:
 		print("MDC-E: FileUtils: copyFile: exception: src_path: %s, dest_path: %s, exception: %s" % (src_path, dest_path, e))
+
 
 def createDirectory(path):
 	rc = None
@@ -59,6 +64,7 @@ def createDirectory(path):
 	except OSError as e:
 		print("MDC-E: FileUtils: createDirectory: exception: path: %s, exception: %s" % (path, e))
 	return rc
+
 
 def deleteDirectory(path):
 	try:

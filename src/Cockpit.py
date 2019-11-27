@@ -27,8 +27,9 @@ from Screens.HelpMenu import HelpableScreen
 from Components.ActionMap import HelpableActionMap
 from Components.config import config
 from enigma import getDesktop
-from globals import FILE_TYPE, FILE_PATH, FILE_MEDIA, TYPE_DIR, TYPE_FILE, TYPE_M3U, TYPE_GOUP
+from MetaFile import FILE_TYPE, FILE_PATH, FILE_MEDIA, TYPE_DIR, TYPE_FILE, TYPE_M3U, TYPE_GOUP
 from FileList import FileList
+from FileListUtils import getIndex
 from MediaInfo import MediaInfo
 from DelayTimer import DelayTimer
 from Tiles import Tiles
@@ -37,7 +38,7 @@ from ConfigInit import sort_modes
 from Display import Display
 from MediaPlayer import MDCMediaPlayer
 from MusicPlayer import MDCMusicPlayer
-from VideoPlayer import VideoPlayer
+from VideoPlayer import MDCVideoPlayer
 from ServiceUtils import getService, startService, stopService
 
 
@@ -49,8 +50,12 @@ class Cockpit(Display, Tiles, FileOps, FileList, HelpableScreen, Screen):
 
 		self.file_list = []
 		self.file_index = -1
+		self.media_list = []
+		self.media_index = -1
+		self.song_list = []
+		self.song_index = -1
 		self.lastservice = None
-		self.slideshow_file_index = -1
+		self.slideshow = False
 		self.thumbnail_size = None
 		self.sort_modes = sort_modes
 		self.load_path = None
@@ -151,26 +156,42 @@ class Cockpit(Display, Tiles, FileOps, FileList, HelpableScreen, Screen):
 		self.busy = False
 		self.last_path = self.current_path
 		#print("MDC: Cockpit: readFileListCallback: file_index: %s, path: %s, len(file_list): %s" % (self.file_index, self.file_list[self.file_index][FILE_PATH], len(self.file_list)))
-		if self.file_index > -1 and self.slideshow_file_index > -1:
-			self.hide()
-			self.session.openWithCallback(self.MDCMediaPlayerCallback, MDCMediaPlayer, self.file_list, self.file_index, True, self.thumbnail_size, self.lastservice)
+		#print("MDC: Cockpit: readFileListCallback: media_index: %s, song_index: %s" % (self.media_index, self.song_index))
+
+		if self.slideshow:
+			self.startSlideshow()
 		else:
-			self.slideshow_file_index = -1
 			self.paintTiles()
 
-	def MDCMusicPlayerCallback(self, file_index):
-		self.setTilesCursor(file_index)
+	def startSlideshow(self):
+		self.hide()
+		start_path = self.file_list[self.file_index][FILE_PATH] if self.file_list else ""
+		if self.media_list:
+			self.media_index = getIndex(self.media_list, start_path)
+			self.session.openWithCallback(self.MDCMediaPlayerCallback, MDCMediaPlayer, self.media_list, self.media_index, self.slideshow, self.thumbnail_size, self.lastservice, self.song_list)
+		elif self.song_list:
+			self.song_index = getIndex(self.song_list, start_path)
+			self.session.openWithCallback(self.MDCMusicPlayerCallback, MDCMusicPlayer, self.song_list, self.song_index)
 
-	def MDCMediaPlayerCallback(self, file_index):
-		self.show()
+	def MDCMediaPlayerCallback(self, path):
 		# clear video buffer
 		startService(self.session, self.lastservice)
 		stopService(self.session, self.lastservice)
-		self.setTilesCursor(file_index)
+		self.setTilesCursor(getIndex(self.file_list, path))
+
+	def MDCVideoPlayerCallback(self, _reopen=False):
+		# clear video buffer
+		startService(self.session, self.lastservice)
+		stopService(self.session, self.lastservice)
+		self.setTilesCursor(self.file_index)
+
+	def MDCMusicPlayerCallback(self, path):
+		self.setTilesCursor(getIndex(self.file_list, path))
 
 	def setTilesCursor(self, file_index):
+		self.show()
 		self.file_index = file_index
-		self.slideshow_file_index = -1
+		self.slideshow = False
 		self.paintTiles()
 
 ### key functions
@@ -194,34 +215,24 @@ class Cockpit(Display, Tiles, FileOps, FileList, HelpableScreen, Screen):
 		if not self.busy:
 			self.processOk()
 
-	def yellow(self):
-		pass
-
-	def blue(self):
-		pass
-
 	def playpause(self):
-		if not self.busy:
-			print("MDC-I: Cockpit: playpause")
+		if not self.busy and self.file_list:
+			self.slideshow = True
 			x = self.file_list[self.file_index]
+			print("MDC-I: Cockpit: playpause: x: %s" % str(x))
 			if x[FILE_TYPE] == TYPE_FILE:
-				if x[FILE_MEDIA] in ["picture", "movie"]:
-					self.slideshow_file_index = self.file_index
-					self.readFileListCallback()
-				elif x[FILE_MEDIA] == "music":
-					self.session.openWithCallback(self.MDCMusicPlayerCallback, MDCMusicPlayer, self.file_list, self.file_index)
+				self.startSlideshow()
 			elif x[FILE_TYPE] in [TYPE_DIR, TYPE_M3U]:
-				self.slideshow_file_index = 0
 				self.readFileList(x[FILE_PATH])
 			elif x[FILE_TYPE] == TYPE_GOUP:
 				self.prevDirectory()
 
 	def processOk(self):
-		if not self.busy:
-			print("MDC-I: Cockpit: processOk")
+		if not self.busy and self.file_list:
+			self.slideshow = False
 			x = self.file_list[self.file_index]
 			path = x[FILE_PATH]
-			#print("MDC: Cockpit: processOk: path: %s" % path)
+			print("MDC-I: Cockpit: processOk: path: %s" % path)
 			if x[FILE_TYPE] == TYPE_DIR:
 				self.readFileList(path)
 			if x[FILE_TYPE] == TYPE_GOUP:
@@ -229,20 +240,15 @@ class Cockpit(Display, Tiles, FileOps, FileList, HelpableScreen, Screen):
 			elif x[FILE_TYPE] == TYPE_M3U:
 				self.readFileList(path)
 			elif x[FILE_TYPE] == TYPE_FILE:
+				self.hide()
 				if x[FILE_MEDIA] == "picture":
-					self.hide()
-					self.session.openWithCallback(self.MDCMediaPlayerCallback, MDCMediaPlayer, self.file_list, self.file_index, False, self.thumbnail_size)
+					media_index = getIndex(self.media_list, path)
+					self.session.openWithCallback(self.MDCMediaPlayerCallback, MDCMediaPlayer, self.media_list, media_index, False, self.thumbnail_size)
 				elif x[FILE_MEDIA] == "movie":
-					self.hide()
-					self.session.openWithCallback(self.VideoPlayerCallback, VideoPlayer, getService(self.file_list[self.file_index][FILE_PATH]), False)
+					self.session.openWithCallback(self.MDCVideoPlayerCallback, MDCVideoPlayer, getService(self.file_list[self.file_index][FILE_PATH]), False)
 				elif x[FILE_MEDIA] == "music":
-					self.session.openWithCallback(self.MDCMusicPlayerCallback, MDCMusicPlayer, self.file_list, self.file_index)
-
-	def VideoPlayerCallback(self, _dummy=False):
-		self.show()
-		# clear video buffer
-		startService(self.session, self.lastservice)
-		stopService(self.session, self.lastservice)
+					song_index = getIndex(self.song_list, path)
+					self.session.openWithCallback(self.MDCMusicPlayerCallback, MDCMusicPlayer, self.song_list, song_index)
 
 	def prevDirectory(self):
 		if not self.busy:

@@ -19,15 +19,21 @@
 #	<http://www.gnu.org/licenses/>.
 
 
-# file indexes
-FILE_PATH = 0
-FILE_TYPE = 1
-FILE_DATE = 2
-FILE_MEDIA = 3
-FILE_META = 4
+from MetaFile import FILE_PATH
 
-# FILE_TYPE values
-TYPE_GOUP = 1
-TYPE_M3U = 2
-TYPE_DIR = 3
-TYPE_FILE = 4
+
+def nextIndex(file_index, file_list_length):
+	return (file_index + 1) % file_list_length
+
+
+def previousIndex(file_index, file_list_length):
+	return file_index - 1 if file_index else file_list_length - 1
+
+
+def getIndex(file_list, path):
+	file_index = 0 if file_list else -1
+	for i, x in enumerate(file_list):
+		if x[FILE_PATH] == path:
+			file_index = i
+			break
+	return file_index

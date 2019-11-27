@@ -128,9 +128,9 @@ disable=print-statement,
         dict-keys-not-iterating,
         dict-values-not-iterating,
 
-	R0201, R0204, R0801, R0903, R1702, R1716,
+	R0201, R0204, R0903, R1702,
 	C0103, C0111, C0301, C0302, C0325, C0326, C0330, C0411, C0412, C1001,
-	W0107, W0123, W0201, W0212, W0232, W0311, W0312, W0403, W0603, W0703, W1401,
+	W0107, W0123, W0201, W0212, W0311, W0312, W0403, W0603, W0703, W1001, W1401,
 	E0401, E0611, E1136, E1137
 
 # Enable the message, report, category or checker with the given id(s). You can
@@ -322,6 +322,7 @@ ignore-on-opaque-inference=yes
 # List of class names for which member attributes should not be checked (useful
 # for classes with dynamically set attributes). This supports the use of
 # qualified names.
+#ignored-classes=optparse.Values,thread._local,_thread._local
 ignored-classes=optparse.Values,thread._local,_thread._local, SQLObject,twisted.internet.reactor,ephem
 
 # List of module names for which member attributes should not be checked

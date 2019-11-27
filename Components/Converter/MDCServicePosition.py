@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # encoding: utf-8
 #
-# Copyright (C) 2011 betonme
 # Copyright (C) 2018-2019 dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
@@ -18,86 +17,88 @@
 #
 #	For more information on the GNU General Public License see:
 #	<http://www.gnu.org/licenses/>.
-#
+
 
 from Components.Converter.ServicePosition import ServicePosition
 from Components.Element import cached
 import time
 
 
-class MDCServicePosition(ServicePosition, object):
+class MDCServicePosition(ServicePosition):
 	def __init__(self, ptype):
 		ServicePosition.__init__(self, ptype)
 
 	@cached
 	def getCutlist(self):
+		cutlist = []
 		try:
 			service = self.source.service
 			if service is not None:
 				cut = service and service.cutList()
-				return cut and cut.getCutList()
-			return []
+				if cut:
+					cutlist = cut.getCutList()
 		except Exception:
-			return ServicePosition.getCutlist(self)
+			cutlist = ServicePosition.getCutlist(self)
+		return cutlist
 
 	cutlist = property(getCutlist)
 
 	@cached
 	def getLength(self):
+		length = 0
 		try:
 			player = self.source.player
-			return player.getLength()
+			length = player.getLength()
 		except Exception:
-			return ServicePosition.getLength(self)
+			length = ServicePosition.getLength(self)
+		return length
 
 	length = property(getLength)
 
 	@cached
 	def getPosition(self):
+		position = 0
 		try:
 			player = self.source.player
-			return player.getPosition()
+			position = player.getPosition()
 		except Exception:
-			return ServicePosition.getPosition(self)
+			position = ServicePosition.getPosition(self)
+		return position
 
 	position = property(getPosition)
 
 	@cached
 	def getText(self):
+		text = ""
+		l = 0
 		seek = self.getSeek()
-		if seek is None:
-			return ""
-		else:
-			if self.type == self.TYPE_LENGTH:
-				l = self.length
-			elif self.type == self.TYPE_POSITION:
-				l = self.position
-			elif self.type == self.TYPE_REMAINING:
-				l = self.length - self.position
-			elif self.type == self.TYPE_ENDTIME:
+		if seek is not None:
+			if self.type == self.TYPE_ENDTIME:
 				l = (self.length - self.position) / 90000
-				t = time.time()
-				t = time.localtime(t + l)
-				if self.showNoSeconds:
-					return "%02d:%02d" % (t.tm_hour, t.tm_min)
-				return "%02d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)
-
-			if self.negate:
-				l = -l
-
-			if not self.detailed:
-				l /= 90000
-				if self.showHours:
-					if self.showNoSeconds:
-						return "%+d:%02d" % (l / 3600, l % 3600 / 60)
-					return "%+d:%02d:%02d" % (l / 3600, l % 3600 / 60, l % 60)
-				else:
-					if self.showNoSeconds:
-						return "%+d" % (l / 60)
-					return "%+d:%02d" % (l / 60, l % 60)
+				t = time.localtime(time.time() + l)
+				text = "%02d:%02d" % (t.tm_hour, t.tm_min)
+				if not self.showNoSeconds:
+					text += ":%02d" % t.tm_sec
 			else:
+				if self.type == self.TYPE_LENGTH:
+					l = self.length
+				elif self.type == self.TYPE_POSITION:
+					l = self.position
+				elif self.type == self.TYPE_REMAINING:
+					l = self.length - self.position
+
+				l = -l if self.negate else l
+				milliseconds = (abs(l) % 90000) / 90
+				l = l / 90000
 				if self.showHours:
-					return "%+d:%02d:%02d:%03d" % ((l / 3600 / 90000), (l / 90000) % 3600 / 60, (l / 90000) % 60, (l % 90000) / 90)
-				return "%+d:%02d:%03d" % ((l / 60 / 90000), (l / 90000) % 60, (l % 90000) / 90)
+					text += "%+d:" % (l / 3600)  # hours
+					text += "%02d" % (abs(l) % 3600 / 60)  # minutes
+				else:
+					text += "%+d" % (l / 60)  # minutes
+				if not self.showNoSeconds:
+					text += ":%02d" % (abs(l) % 60)  # seconds
+					if self.detailed:
+						text += ":%03d" % milliseconds  # milliseconds
+		return text
 
 	text = property(getText)

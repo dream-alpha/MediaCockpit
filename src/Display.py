@@ -19,7 +19,6 @@
 #	<http://www.gnu.org/licenses/>.
 
 
-import os
 from Screens.Screen import Screen
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
@@ -37,23 +36,9 @@ class Display():
 		self["lcd_title"].setText(title)
 		self["lcd_info"].setText(info)
 
-	def displayOSD(self, info, enable=True):
+	def displayOSD(self, info):
 		#print("MDC: Display: displayOSD: info: %s" % info)
-		if enable:
-			self["osd_info"].setText(info)
-			self["osd_info"].show()
-		else:
-			self["osd_info"].hide()
-
-	def showMediaLCD(self, file_index, file_list_len, path, direction=0):
-		print("MDC-I: Display: showMediaLCD: file_index: %s, file_list_len: %s, path: %s, direction: %s" % (file_index, file_list_len, path, direction))
-		arrow = ""
-		if direction > 0:
-			arrow = "> "
-		elif direction < 0:
-			arrow = "< "
-		adir = os.path.basename(os.path.dirname(path))
-		self.displayLCD("%s%d/%d" % (arrow, file_index, file_list_len), adir)
+		self["osd_info"].setText(info)
 
 	def createSummary(self):
 		return MDCDisplaySummary

@@ -130,6 +130,7 @@ def replaceLength(cut_list, pts):
 		cut_list = insortCutList(cut_list, pts, CUT_TYPE_LENGTH)
 	return cut_list
 
+
 def removeMarks(cut_list):
 	for cp in cut_list:
 		_pts, what = cp

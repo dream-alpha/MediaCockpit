@@ -22,16 +22,16 @@
 import os
 import time
 from __init__ import _
-from globals import FILE_PATH, FILE_DATE, FILE_TYPE, FILE_META
-from globals import TYPE_GOUP, TYPE_DIR, TYPE_FILE, TYPE_M3U
+from MetaFile import loadMeta, saveMeta
+from MetaFile import FILE_PATH, FILE_DATE, FILE_TYPE, FILE_MEDIA, FILE_META, TYPE_GOUP, TYPE_DIR, TYPE_FILE, TYPE_M3U
 from FileUtils import readFile
 from PictureUtils import getExifData, transformPicture, createThumbnail
 from DelayTimer import DelayTimer
-from MetaFile import MetaFile
 from ServiceUtils import extMedia, extPicture, extVideo, extMusic, extPlaylist
+from FileListUtils import getIndex
 
 
-class FileList(MetaFile):
+class FileList():
 
 	def __init__(self):
 		self.thumbnail_size = None
@@ -60,7 +60,7 @@ class FileList(MetaFile):
 	def displayLCD(self, _title, _info):
 		print("MDC-E: FileList: displayLCD: overwritten in child class")
 
-	def displayOSD(self, _info, _enable=True):
+	def displayOSD(self, _info):
 		print("MDC-E: FileList: displayOSD: overwritten in child class")
 
 	def showLoading(self, path, percent):
@@ -157,17 +157,15 @@ class FileList(MetaFile):
 				file_list.sort(key=lambda x: (x[FILE_TYPE], x[FILE_DATE]))
 		return file_list
 
-	def restoreLastFileEntry(self):
-		#print("MDC: FileList: restoreLastFileEntry: len(self.file_list): %s, last_path: %s" % (len(self.file_list), self.last_path))
-		self.file_index = -1
-		if self.file_list and self.last_path:
-			#print("MDC: FileList: restoreLastFileEntry: self.file_list: %s" % str(self.file_list))
-			self.file_index = 0
-			for index, x in enumerate(self.file_list):
-				#print("MDC: FileList: restoreLastFileEntry index: %s, x: %s, last_path: %s" % (index, str(x), self.last_path))
-				if x[FILE_PATH] == self.last_path:
-					self.file_index = index
-					break
+	def splitList(self):
+		self.song_list = []
+		self.media_list = []
+		for x in self.file_list:
+			if x[FILE_TYPE] == TYPE_FILE:
+				if x[FILE_MEDIA] == "music":
+					self.song_list.append(x)
+				else:
+					self.media_list.append(x)
 
 	def getEpochTimestamp(self, path, exif_data):
 		date_time = None
@@ -197,7 +195,6 @@ class FileList(MetaFile):
 	def createFileEntry(self, path):
 		#print("MDC: FileList: createFileEntry: path: %s" % path)
 		path = os.path.realpath(path)
-
 		x = []
 		filetype = None
 		exif_data = {}
@@ -208,7 +205,7 @@ class FileList(MetaFile):
 		_filename, ext = os.path.splitext(path)
 		if os.path.isfile(path):
 			if "picture" in self.filefilters and ext.lower() in extPicture:
-				x = self.loadMeta(path)
+				x = loadMeta(path)
 				if x:
 					exif_data = x[FILE_META]
 				else:
@@ -240,7 +237,7 @@ class FileList(MetaFile):
 			x = [path, filefilter, time_epoch, filetype, exif_data]
 			#print("MDC: FileList: createDirectoryxEntry: x: %s" % str(x))
 			if filetype in ["picture"] and not self.cancelling:
-				self.saveMeta(path, x)
+				saveMeta(path, x)
 		return x
 
 	### Directory
@@ -299,7 +296,8 @@ class FileList(MetaFile):
 			if self.file_list and self.sort_across_dirs:
 				self.file_list = self.sortList(self.file_list)
 			self.cancelling = False
-			self.restoreLastFileEntry()
+			self.file_index = getIndex(self.file_list, self.last_path)
+			self.splitList()
 			self.readFileListCallback()
 
 	def scanDirectory(self, adir):
@@ -331,12 +329,11 @@ class FileList(MetaFile):
 	def scanPlaylistFiles(self, path):
 		#print("MDC: FileList: scanPlaylistFiles: path: %s" % path)
 		file_list = []
-
 		playlist_dir = os.path.dirname(path)
 		afile = readFile(path).splitlines()
 		for entry in afile:
 			if entry and not entry.startswith("#"):
-				#print("MDC: FileList: scanPlaylistFiles: apath: %s" % apath)
+				#print("MDC: FileList: scanPlaylistFiles: entry: %s" % entry)
 				path = entry
 				if not path.startswith("/"):
 					path = os.path.join(playlist_dir, path)
@@ -347,7 +344,6 @@ class FileList(MetaFile):
 
 	def getFileList(self):
 		print("MDC-I: FileList: getFileList: current_path: %s" % self.current_path)
-		#print("MDC: FileList: getFileList: dir_stack: %s" % str(self.dir_stack))
 		self.current_page = -1
 		self.file_index = -1
 		self.count = -1

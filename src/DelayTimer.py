@@ -22,7 +22,9 @@
 from operator import isCallable
 from enigma import eTimer
 
+
 timers = []
+
 
 class DelayTimer():
 

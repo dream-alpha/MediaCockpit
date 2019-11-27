@@ -92,9 +92,8 @@ class ConfigInit():
 		config.plugins.mediacockpit.animation                  = ConfigSelection(default="10", choices=getAnimations())
 		config.plugins.mediacockpit.recurse_dirs               = ConfigYesNo(default=True)
 		config.plugins.mediacockpit.sort_across_dirs           = ConfigYesNo(default=False)
-		config.plugins.mediacockpit.picture_background         = ConfigSelection(default="background", choices=choices_color)
+		config.plugins.mediacockpit.picture_background         = ConfigSelection(default="black", choices=choices_color)
 		config.plugins.mediacockpit.picture_foreground         = ConfigSelection(default="foreground", choices=choices_color)
-		config.plugins.mediacockpit.show_picture_infobar       = ConfigYesNo(default=False)
 		config.plugins.mediacockpit.show_loading_details       = ConfigYesNo(default=True)
 		config.plugins.mediacockpit.show_movie_infobar         = ConfigYesNo(default=False)
 		config.plugins.mediacockpit.launch_key                 = ConfigSelection(default="None", choices=choices_launch_key)
@@ -105,7 +104,7 @@ class ConfigInit():
 		# MDCMusicPlayer
 		config.plugins.mediacockpit.non_standard_decoder       = ConfigYesNo(default=True)
 		config.plugins.mediacockpit.usegoogleimage             = ConfigYesNo(default=True)
-		config.plugins.mediacockpit.googleimagepath            = ConfigDirectory(default="/data/covers")
+		config.plugins.mediacockpit.googleimagepath            = ConfigDirectory(default="/data")
 		config.plugins.mediacockpit.gapless                    = ConfigYesNo(default=True)
 		config.plugins.mediacockpit.alsasink                   = ConfigYesNo(default=True)
 

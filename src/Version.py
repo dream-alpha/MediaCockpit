@@ -19,4 +19,4 @@
 #	<http://www.gnu.org/licenses/>.
 
 PLUGIN = "MediaCockpit"
-VERSION = "6.2.2"
+VERSION = "7.4.5"

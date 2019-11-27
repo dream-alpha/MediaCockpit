@@ -28,7 +28,7 @@ from enigma import eSize, ePoint, gFont
 from SkinUtils import getSkinPath
 from Tools.LoadPixmap import LoadPixmap
 from skin import parseColor
-from globals import FILE_TYPE, FILE_PATH, TYPE_FILE
+from MetaFile import FILE_TYPE, FILE_PATH, TYPE_FILE
 
 class Tiles():
 

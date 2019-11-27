@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-10-24 14:21+0200\n"
+"POT-Creation-Date: 2019-11-26 16:51+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -9,71 +9,72 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/Cockpit.py:72 src/MediaPlayer.py:68
+#: src/Cockpit.py:77 src/MediaPlayer.py:69
 msgid "Pause/Resume"
 msgstr "Pause/Fortsetzen"
 
-#: src/Cockpit.py:72 src/MediaPlayer.py:68 src/MediaPlayer.py:69
+#: src/Cockpit.py:77 src/MediaPlayer.py:69
 msgid "Slideshow"
 msgstr "Diashow"
 
-#: src/Cockpit.py:73
+#: src/Cockpit.py:78
 msgid "Previous page"
 msgstr "Vorherige Seite"
 
-#: src/Cockpit.py:74
+#: src/Cockpit.py:79
 msgid "Next page"
 msgstr "Nächste Seite"
 
-#: src/Cockpit.py:75 src/MediaInfo.py:54 src/MediaPlayer.py:70
-#: src/MediaPlayer.py:71
+#: src/Cockpit.py:80 src/MediaInfo.py:54 src/MediaPlayer.py:71
+#: src/MediaPlayer.py:72
 msgid "Next picture"
 msgstr "Nächstes Bild"
 
-#: src/Cockpit.py:76 src/MediaInfo.py:55 src/MediaPlayer.py:72
-#: src/MediaPlayer.py:73
+#: src/Cockpit.py:81 src/MediaInfo.py:55 src/MediaPlayer.py:73
+#: src/MediaPlayer.py:74
 msgid "Previous picture"
 msgstr "Vorheriges Bild"
 
-#: src/Cockpit.py:77
+#: src/Cockpit.py:82
 msgid "Previous row"
 msgstr "Vorherige Zeile"
 
-#: src/Cockpit.py:78
+#: src/Cockpit.py:83
 msgid "Next row"
 msgstr "Nächste Zeile"
 
-#: src/Cockpit.py:79 src/Cockpit.py:83 src/MediaInfo.py:69
+#: src/Cockpit.py:84 src/Cockpit.py:88 src/MediaInfo.py:69
 msgid "Ok"
 msgstr "Ok"
 
-#: src/Cockpit.py:80 src/Cockpit.py:109 src/MediaPlayer.py:67
+#: src/Cockpit.py:85 src/Cockpit.py:114 src/MediaPlayer.py:68
 msgid "Information"
 msgstr "Information"
 
-#: src/Cockpit.py:81
+#: src/Cockpit.py:86
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: src/Cockpit.py:82
+#: src/Cockpit.py:87
 msgid "Delete file"
 msgstr "Löschen"
 
-#: src/Cockpit.py:84 src/MediaInfo.py:53 src/MediaInfo.py:56
-#: src/MediaInfo.py:57 src/MediaInfo.py:58 src/MediaPlayer.py:74
-#: src/MediaPlayer.py:75 src/Slideshow.py:221 src/Slideshow.py:222
+#: src/Cockpit.py:89 src/MediaInfo.py:53 src/MediaInfo.py:56
+#: src/MediaInfo.py:57 src/MediaInfo.py:58 src/MediaPlayer.py:75
+#: src/MediaPlayer.py:76 src/MusicPlayer.py:76 src/Slideshow.py:47
+#: src/Slideshow.py:48
 msgid "Exit"
 msgstr "Beenden"
 
-#: src/Cockpit.py:85
+#: src/Cockpit.py:90
 msgid "Home"
 msgstr "Anfang"
 
-#: src/Cockpit.py:86
+#: src/Cockpit.py:91
 msgid "Previous directory"
 msgstr "Vorheriges Verzeichnis"
 
@@ -381,158 +382,152 @@ msgstr "Hintergrundfarbe"
 msgid "Help Background color"
 msgstr "Welche Hintergrundfarbe soll für die Bildanzeige verwendet werden?"
 
-#: src/ConfigScreen.py:148 src/ConfigScreen.py:150
-msgid "Show info bar"
-msgstr "Informationen anzeigen"
-
 #: src/ConfigScreen.py:148
-msgid "Help Show picture info bar"
-msgstr ""
-"Soll eine Info-Leiste im Bild angezeigt werden? (Kann mit Farbtaste blau zu "
-"jeder Zeit aus-/ein-geschaltet werden.)"
-
-#: src/ConfigScreen.py:149
 msgid "VIDEO"
 msgstr "VIDEO"
 
-#: src/ConfigScreen.py:150
+#: src/ConfigScreen.py:149
+msgid "Show info bar"
+msgstr "Informationen anzeigen"
+
+#: src/ConfigScreen.py:149
 msgid "Help Show movie info bar"
 msgstr ""
 "Soll beim Start eines Videos eine Info-Leiste im Bild angezeigt werden? "
 "(Kann mit Farbtaste blau zu jeder Zeit aus-/ein-geschaltet werden.)"
 
-#: src/ConfigScreen.py:151
+#: src/ConfigScreen.py:150
 msgid "PLAYLIST"
 msgstr "PLAYLISTE"
 
-#: src/ConfigScreen.py:152
+#: src/ConfigScreen.py:151
 msgid "Recurse directories"
 msgstr "Lade Verzeichnisse rekursiv"
 
-#: src/ConfigScreen.py:152
+#: src/ConfigScreen.py:151
 msgid "Help Recurse directories"
 msgstr "Sollen Verzeichnisse rekursiv geladen werden?"
 
-#: src/ConfigScreen.py:153
+#: src/ConfigScreen.py:152
 msgid "SLIDESHOW"
 msgstr "DIASHOW"
 
-#: src/ConfigScreen.py:154
+#: src/ConfigScreen.py:153
 msgid "Duration"
 msgstr "Anzeigedauer"
 
-#: src/ConfigScreen.py:154
+#: src/ConfigScreen.py:153
 msgid "Help Duration"
 msgstr "Wieviele Sekunden soll ein Bild in der Diashow angezeigt werden?"
 
-#: src/ConfigScreen.py:155
+#: src/ConfigScreen.py:154 src/Slideshow.py:203
 msgid "Animation"
 msgstr "Bildübergang"
 
-#: src/ConfigScreen.py:155
+#: src/ConfigScreen.py:154
 msgid "Help Animation"
 msgstr "Welcher Bildübergang soll in der Diashow verwendet werden?"
 
-#: src/ConfigScreen.py:156
+#: src/ConfigScreen.py:155
 msgid "Endless loop"
 msgstr "Endlosschleife"
 
-#: src/ConfigScreen.py:156
+#: src/ConfigScreen.py:155
 msgid "Help Endless loop"
 msgstr "Soll die Diashow in einer Endlosschleife gezeigt werden?"
 
-#: src/ConfigScreen.py:157
+#: src/ConfigScreen.py:156
 msgid "MUSIC"
 msgstr "MUSIK"
 
-#: src/ConfigScreen.py:158
+#: src/ConfigScreen.py:157
 msgid "Non-Standard audio decoder"
 msgstr "Alternativer Audio Dekoder"
 
-#: src/ConfigScreen.py:158
+#: src/ConfigScreen.py:157
 msgid "Help Non-Standard audio decoder"
 msgstr ""
 "Soll der alternative Audio Dekoder mit Visualisierungen verwendet werden?"
 
-#: src/ConfigScreen.py:159
+#: src/ConfigScreen.py:158
 msgid "Gapless playback"
 msgstr "Wiedergabe ohne Unterbrechungen"
 
-#: src/ConfigScreen.py:159
+#: src/ConfigScreen.py:158
 msgid "Help Gapless playback"
 msgstr "Soll die Wiedergabe ohne Unterbrechungen erfolgen?"
 
-#: src/ConfigScreen.py:160
+#: src/ConfigScreen.py:159
 msgid "Alsasink"
 msgstr "Gstreamer Alsasink"
 
-#: src/ConfigScreen.py:160
+#: src/ConfigScreen.py:159
 msgid "Help Alsasink"
 msgstr "Soll das Gstreamer Alsasink Modul  verwendet werden?"
 
-#: src/ConfigScreen.py:161
+#: src/ConfigScreen.py:160
 msgid "Use Google search for cover"
 msgstr "Google Cover Suche"
 
-#: src/ConfigScreen.py:161
+#: src/ConfigScreen.py:160
 msgid "Help Use Google search for cover"
 msgstr "Soll Google für die Coversuche verwendet werden?"
 
-#: src/ConfigScreen.py:162
+#: src/ConfigScreen.py:161
 msgid "Google cover path"
 msgstr "Google Cover Verzeichnis"
 
-#: src/ConfigScreen.py:162
+#: src/ConfigScreen.py:161
 msgid "Help Google cover path"
 msgstr "Welches Verzeichnis soll für die Google Cover verwendet werden?"
 
-#: src/ConfigScreen.py:163
+#: src/ConfigScreen.py:162
 msgid "DEBUG"
 msgstr "DEBUG"
 
-#: src/ConfigScreen.py:164
+#: src/ConfigScreen.py:163
 msgid "Debug log"
 msgstr "Debug Log"
 
-#: src/ConfigScreen.py:164
+#: src/ConfigScreen.py:163
 msgid "Help Debug"
 msgstr "Soll der Debug-Modus aktiviert werden?"
 
-#: src/ConfigScreen.py:165
+#: src/ConfigScreen.py:164
 msgid "Log file path"
 msgstr "Logdaten Verzeichnis"
 
-#: src/ConfigScreen.py:165
+#: src/ConfigScreen.py:164
 msgid "Help Log file path"
 msgstr "Welches Verzeichnis soll für die Debug Daten verwendet werden?"
 
-#: src/ConfigScreen.py:201
+#: src/ConfigScreen.py:200
 msgid "Really close without saving settings?"
 msgstr "Schliessen ohne Speichern der Einstellungen?"
 
-#: src/ConfigScreen.py:244
+#: src/ConfigScreen.py:243
 msgid "Setup"
 msgstr "Einstellungen"
 
-#: src/ConfigScreen.py:250
+#: src/ConfigScreen.py:249
 msgid "Loading default settings will overwrite all settings, really load them?"
 msgstr ""
 "Sollen alle Einstellungen durch die Standardeinstellungen überschrieben "
 "werden?"
 
-#: src/ConfigScreen.py:314
+#: src/ConfigScreen.py:313
 msgid "Some changes require a GUI restart"
 msgstr "Einige Änderungen erfordern einen Neustart der GUI"
 
-#: src/ConfigScreen.py:314
+#: src/ConfigScreen.py:313
 msgid "Restart GUI now?"
 msgstr "Neustart der GUI?"
 
-#: src/ConfigScreen.py:348 src/ConfigScreen.py:349 src/FileOps.py:65
+#: src/ConfigScreen.py:347 src/ConfigScreen.py:348 src/FileOps.py:65
 msgid "Select directory"
 msgstr "Verzeichnis wählen"
 
-#: src/ConfigScreen.py:364
+#: src/ConfigScreen.py:363
 msgid "Path does not exist"
 msgstr "Verzeichnis existiert nicht"
 
@@ -572,17 +567,9 @@ msgstr "Setze Wiedergabe fort an Position"
 msgid "Resuming playback"
 msgstr "Setze Wiedergabe fort"
 
-#: src/Lyrics.py:56
-msgid "Lyrics"
-msgstr "Liedtext"
-
-#: src/Lyrics.py:75
-msgid "No lyrics found in id3-tag, trying api.chartlyrics.com..."
-msgstr "Kein Liedtext gefunden, suche auf chartlyrics.com..."
-
-#: src/Lyrics.py:94
-msgid "No lyrics found"
-msgstr "Es wurde kein Liedtext gefunden"
+#: src/KeyHelp.py:32
+msgid "Help"
+msgstr "Hilfe"
 
 #: src/MediaInfo.py:59 src/MediaInfo.py:72
 msgid "Thumbnail"
@@ -676,66 +663,74 @@ msgstr "GPS Längengrad"
 msgid "Exif Version"
 msgstr "Exif Version"
 
-#: src/MediaPlayer.py:69
-msgid "Stop"
-msgstr "Stopp"
+#: src/MediaPlayer.py:70 src/Slideshow.py:52
+msgid "Stop video/slideshow"
+msgstr "Stoppe Video/Diaschau"
 
-#: src/MediaPlayer.py:76
+#: src/MediaPlayer.py:77
 msgid "Rotate picture"
 msgstr "Bild drehen"
 
-#: src/MediaPlayer.py:77
-msgid "Toggle info"
-msgstr "Info an/aus"
+#: src/MediaPlayer.py:297
+msgid "Rotating picture..."
+msgstr "Bild wird gedreht..."
 
-#: src/MovieInfoEPG.py:47
+#: src/MovieInfoEPG.py:46
 msgid "min"
 msgstr "Min"
 
-#: src/MusicPlayer.py:279
-msgid "Buffering"
-msgstr "Puffern"
+#: src/MusicPlayer.py:77
+msgid "Toggle shuffle"
+msgstr "Mischen an/aus"
 
-#: src/MusicPlayer.py:448
+#: src/MusicPlayer.py:78
+msgid "Toggle repeat"
+msgstr "Wiederholen an/aus"
+
+#: src/MusicPlayer.py:80 src/Slideshow.py:51
+msgid "Play/Pause"
+msgstr "Play/Pause"
+
+#: src/MusicPlayer.py:81 src/VideoPlayer.py:85
+msgid "Stop playback"
+msgstr "Wiedergabe stoppen"
+
+#: src/MusicPlayer.py:82
+msgid "Next song"
+msgstr "Nächstes Lied"
+
+#: src/MusicPlayer.py:83
+msgid "Previous song"
+msgstr "Vorheriges Lied"
+
+#: src/MusicPlayer.py:400
 #, python-format
 msgid "This Dreambox can't decode %s streams!"
 msgstr "Diese Dreambox kann keine %s Streams decodieren!"
 
-#: src/Slideshow.py:83
-msgid "Package"
-msgstr "Paket"
-
-#: src/Slideshow.py:83
-msgid "is not installed"
-msgstr "ist nicht installiert"
-
-#: src/Slideshow.py:114
-msgid "No pictures to display"
-msgstr "Es sind keine Bilder vorhanden"
-
-#: src/Slideshow.py:204
-msgid "Help"
-msgstr "Hilfe"
-
-#: src/Slideshow.py:224
+#: src/Slideshow.py:50
 msgid "Toggle transition"
 msgstr "Wechsle Diaübergang"
 
-#: src/Slideshow.py:225
-msgid "Play/Pause"
-msgstr "Play/Pause"
-
-#: src/Slideshow.py:226
-msgid "Stop video"
-msgstr "Stoppe Video"
-
-#: src/Slideshow.py:227
+#: src/Slideshow.py:53
 msgid "Next slide"
 msgstr "Nächstes Dia"
 
-#: src/Slideshow.py:228
+#: src/Slideshow.py:54
 msgid "Previous slide"
 msgstr "Vorheriges Dia"
+
+#: src/Slideshow.py:105
+msgid "Package"
+msgstr "Paket"
+
+#: src/Slideshow.py:105
+msgid "is not installed"
+msgstr "ist nicht installiert"
+
+#: src/Slideshow.py:135
+msgid "No pictures to display"
+msgstr "Es sind keine Bilder vorhanden"
 
 #: src/Tiles.py:211
 msgid "File"
@@ -749,19 +744,15 @@ msgstr "Verzeichnis"
 msgid "Page"
 msgstr "Seite"
 
-#: src/VideoPlayer.py:84
-msgid "Stop playback"
-msgstr "Wiedergabe stoppen"
-
-#: src/VideoPlayer.py:92
+#: src/VideoPlayer.py:93
 msgid "End"
 msgstr "Ende"
 
-#: src/VideoPlayer.py:132
+#: src/VideoPlayer.py:134
 msgid "Movie file does not exist"
 msgstr "Film Datei existiert nicht"
 
-#: src/VideoPlayer.py:344
+#: src/VideoPlayer.py:345
 msgid "Zap to live TV of recording"
 msgstr "Schalte auf Live-TV dieser Aufnahme"
 
