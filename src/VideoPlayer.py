@@ -2,7 +2,7 @@
 # coding=utf-8
 #
 # Copyright (C) 2011 by Coolman & Swiss-MAD
-# Copyright (C) 2018-2019 by dream-alpha
+# Copyright (C) 2018-2020 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -187,7 +187,7 @@ class MDCVideoPlayer(Screen, HelpableScreen, InfoBarSupport):
 		self.skip = 10
 		try:
 			#print("MDC: VideoPlayer: setAudioTrack: audio")
-			if not config.plugins.moviecockpit.autoaudio.value:
+			if not config.plugins.mediacockpit.autoaudio.value:
 				return
 			service = self.session.nav.getCurrentService()
 			tracks = service and self.getServiceInterface("audioTracks")
@@ -208,13 +208,13 @@ class MDCVideoPlayer(Screen, HelpableScreen, InfoBarSupport):
 				trackList += [track]
 			seltrack = tracks.getCurrentTrack()
 			# we need default selected language from image
-			# to set the audio track if "config.plugins.moviecockpit.autoaudio.value" are not set
+			# to set the audio track if "config.plugins.mediacockpit.autoaudio.value" are not set
 			syslang = language.getLanguage()[:2]
-			if config.plugins.moviecockpit.autoaudio.value:
-				audiolang = [config.plugins.moviecockpit.audlang1.value, config.plugins.moviecockpit.audlang2.value, config.plugins.moviecockpit.audlang3.value]
+			if config.plugins.mediacockpit.autoaudio.value:
+				audiolang = [config.plugins.mediacockpit.audlang1.value, config.plugins.mediacockpit.audlang2.value, config.plugins.mediacockpit.audlang3.value]
 			else:
 				audiolang = syslang
-			useAc3 = config.plugins.moviecockpit.autoaudio_ac3.value	  # mvc has new value, in some images it gives different values for that
+			useAc3 = config.plugins.mediacockpit.autoaudio_ac3.value
 			if useAc3:
 				matchedAc3 = self.tryAudioTrack(tracks, audiolang, trackList, seltrack, useAc3)
 				if matchedAc3:
@@ -287,7 +287,7 @@ class MDCVideoPlayer(Screen, HelpableScreen, InfoBarSupport):
 
 	def setSubtitleState(self, enabled):
 		try:
-			if not config.plugins.moviecockpit.autosubs.value or not enabled:
+			if not config.plugins.mediacockpit.autosubs.value or not enabled:
 				return
 
 			subs = self.getCurrentServiceSubtitle() if isinstance(self, InfoBarSubtitleSupport) else None
@@ -304,7 +304,7 @@ class MDCVideoPlayer(Screen, HelpableScreen, InfoBarSupport):
 				if rank > 0:
 					self.gstsub_format_dict[index] = short
 			lt = []
-			l = []
+			alist = []
 			for index in range(n):
 				info = subs.getSubtitleTrackInfo(index)
 				languages = info.getLanguage().split('/')
@@ -321,11 +321,11 @@ class MDCVideoPlayer(Screen, HelpableScreen, InfoBarSupport):
 			if lt:
 				#print("MDC: VideoPlayer: setSubtitleState: " + str(lt))
 				for e in lt:
-					l.append((e[0], e[1], e[2][0] in langC and langC[e[2][0]][0] or e[2][0]))
-					if l:
-						#print("MDC: VideoPlayer: setSubtitleState: " + str(l))
-						for sublang in [config.plugins.moviecockpit.sublang1.value, config.plugins.moviecockpit.sublang2.value, config.plugins.moviecockpit.sublang3.value]:
-							if self.trySubEnable(l, sublang):
+					alist.append((e[0], e[1], e[2][0] in langC and langC[e[2][0]][0] or e[2][0]))
+					if alist:
+						#print("MDC: VideoPlayer: setSubtitleState: " + str(alist))
+						for sublang in [config.plugins.mediacockpit.sublang1.value, config.plugins.mediacockpit.sublang2.value, config.plugins.mediacockpit.sublang3.value]:
+							if self.trySubEnable(alist, sublang):
 								break
 		except Exception as e:
 			print("MDC-E: VideoPlayer: setSubtitleState: exception: %s" % e)
@@ -340,7 +340,7 @@ class MDCVideoPlayer(Screen, HelpableScreen, InfoBarSupport):
 
 		if not reopen:
 			#print("MDC: VideoPlayer: leavePlayer: closed due to EOF")
-			if config.plugins.moviecockpit.record_eof_zap.value == "1":
+			if config.plugins.mediacockpit.record_eof_zap.value == "1":
 				AddPopup(
 					_("Zap to live TV of recording"),
 					MessageBox.TYPE_INFO,
@@ -379,7 +379,7 @@ class MDCVideoPlayer(Screen, HelpableScreen, InfoBarSupport):
 
 		timer = self.service and isRecording(self.service.getPath())
 		if timer:
-			if int(config.plugins.moviecockpit.record_eof_zap.value) < 2:
+			if int(config.plugins.mediacockpit.record_eof_zap.value) < 2:
 				self.lastservice = timer.service_ref.ref
 				print("MDC-I: VideoPlayer: doEofInternal: self.lastservice: %s" % (self.lastservice.toString() if self.lastservice else None))
 				self.leavePlayer(reopen=False)
@@ -398,7 +398,6 @@ class MDCVideoPlayer(Screen, HelpableScreen, InfoBarSupport):
 		else:
 			updateCutList(service.getPath(), self.getSeekPlayPosition(), self.getSeekLength())
 		#print("MDC: VideoPlayer: updateCutList: pos: " + str(self.getSeekPlayPosition()) + ", length: " + str(self.getSeekLength()))
-
 
 	def createSummary(self):
 		return MDCVideoPlayerSummary

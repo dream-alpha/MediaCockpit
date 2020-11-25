@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"POT-Creation-Date: 2019-11-26 16:51+0100\n"
+"Project-Id-Version: MediaCockpit\n"
+"POT-Creation-Date: 2020-11-21 12:09+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -9,13 +9,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/Cockpit.py:77 src/MediaPlayer.py:69
-msgid "Pause/Resume"
-msgstr "Pause/Fortsetzen"
+#: src/Cockpit.py:77 src/MediaPlayer.py:69 src/MusicPlayer.py:95
+msgid "Play/Pause"
+msgstr "Abspielen/Pausieren"
 
 #: src/Cockpit.py:77 src/MediaPlayer.py:69
 msgid "Slideshow"
@@ -65,8 +65,8 @@ msgstr "Löschen"
 
 #: src/Cockpit.py:89 src/MediaInfo.py:53 src/MediaInfo.py:56
 #: src/MediaInfo.py:57 src/MediaInfo.py:58 src/MediaPlayer.py:75
-#: src/MediaPlayer.py:76 src/MusicPlayer.py:76 src/Slideshow.py:47
-#: src/Slideshow.py:48
+#: src/MediaPlayer.py:76 src/MusicPlayer.py:93 src/MusicPlayer.py:94
+#: src/MusicPlayer.py:98
 msgid "Exit"
 msgstr "Beenden"
 
@@ -78,118 +78,178 @@ msgstr "Anfang"
 msgid "Previous directory"
 msgstr "Vorheriges Verzeichnis"
 
-#: src/ConfigInit.py:27
+#: src/ConfigInit.py:71
 msgid "No override"
 msgstr "Keine Auswahl"
 
-#: src/ConfigInit.py:28
+#: src/ConfigInit.py:72
 msgid "Video-button"
 msgstr "Video Taste"
 
-#: src/ConfigInit.py:29
+#: src/ConfigInit.py:73
 msgid "TV-button"
 msgstr "TV Taste"
 
-#: src/ConfigInit.py:30
+#: src/ConfigInit.py:74
 msgid "Radio-button"
 msgstr "Radio Taste"
 
-#: src/ConfigInit.py:31
+#: src/ConfigInit.py:75
 msgid "Quick-button"
 msgstr "Quick Taste"
 
-#: src/ConfigInit.py:32
+#: src/ConfigInit.py:76
 msgid "Timeshift-button"
 msgstr "Timeshift Taste"
 
-#: src/ConfigInit.py:37
+#: src/ConfigInit.py:81
+msgid "DD.MM.YYYY"
+msgstr "TT.MM.JJJJ"
+
+#: src/ConfigInit.py:82
+msgid "WD DD.MM.YYYY"
+msgstr "WT TT.MM.JJJJ"
+
+#: src/ConfigInit.py:84
+msgid "DD.MM.YYYY HH:MM"
+msgstr "TT.MM.JJJJ HH:MM"
+
+#: src/ConfigInit.py:85
+msgid "WD DD.MM.YYYY HH:MM"
+msgstr "WT TT.MM.JJJJ HH:MM"
+
+#: src/ConfigInit.py:87
+msgid "DD.MM. HH:MM"
+msgstr "TT.MM. HH:MM"
+
+#: src/ConfigInit.py:88
+msgid "WD DD.MM. HH:MM"
+msgstr "WT TT.MM. HH:MM"
+
+#: src/ConfigInit.py:90
+msgid "YYYY/MM/DD"
+msgstr "JJJJ/MM/TT"
+
+#: src/ConfigInit.py:91
+msgid "WD YYYY/MM/DD"
+msgstr "WT JJJJ/MM/TT"
+
+#: src/ConfigInit.py:93
+msgid "YYYY/MM/DD HH:MM"
+msgstr "JJJJ/MM/TT HH:MM"
+
+#: src/ConfigInit.py:94
+msgid "WD YYYY/MM/DD HH:MM"
+msgstr "WT JJJJ/MM/TT HH:MM"
+
+#: src/ConfigInit.py:96
+msgid "MM/DD HH:MM"
+msgstr "MM/TT HH:MM"
+
+#: src/ConfigInit.py:97
+msgid "WD MM/DD HH:MM"
+msgstr "WT MM/TT HH:MM"
+
+#: src/ConfigInit.py:104
+msgid "None"
+msgstr "Nichts"
+
+#: src/ConfigInit.py:108
 msgid "Date sort down"
 msgstr "Datum abwärts"
 
-#: src/ConfigInit.py:38
+#: src/ConfigInit.py:109
 msgid "Date sort up"
 msgstr "Datum aufwärts"
 
-#: src/ConfigInit.py:39
+#: src/ConfigInit.py:110
 msgid "Alpha sort up"
 msgstr "Alphabetisch aufwärts"
 
-#: src/ConfigInit.py:40
+#: src/ConfigInit.py:111
 msgid "Alpha sort down"
 msgstr "Alphabetisch abwärts"
 
-#: src/ConfigInit.py:56
-msgid "Ken Burns"
-msgstr "Ken Burns Effekt"
-
-#: src/ConfigInit.py:56
+#: src/ConfigInit.py:124
 msgid "blinds"
 msgstr "Jalousie"
 
-#: src/ConfigInit.py:56
+#: src/ConfigInit.py:124
 msgid "rotate"
 msgstr "Rotation"
 
-#: src/ConfigInit.py:56
+#: src/ConfigInit.py:124
 msgid "circular waves"
 msgstr "Kreiswellen"
 
-#: src/ConfigInit.py:56
+#: src/ConfigInit.py:124
 msgid "door"
 msgstr "Tor"
 
-#: src/ConfigInit.py:57
+#: src/ConfigInit.py:125
 msgid "dice"
 msgstr "Würfel"
 
-#: src/ConfigInit.py:57
+#: src/ConfigInit.py:125
 msgid "checkerboard"
 msgstr "Schachbrett"
 
-#: src/ConfigInit.py:57
+#: src/ConfigInit.py:125
 msgid "shutter"
 msgstr "Blende"
 
-#: src/ConfigInit.py:57
+#: src/ConfigInit.py:125
 msgid "waves"
 msgstr "Wellen"
 
-#: src/ConfigInit.py:57
+#: src/ConfigInit.py:125
 msgid "windmill"
 msgstr "Windmühle"
 
-#: src/ConfigInit.py:58
+#: src/ConfigInit.py:126
 msgid "earthquake"
 msgstr "Erdbeben"
 
-#: src/ConfigInit.py:58
+#: src/ConfigInit.py:126
 msgid "crossfade"
 msgstr "Überblenden"
 
-#: src/ConfigInit.py:58
+#: src/ConfigInit.py:126
 msgid "random"
 msgstr "Zufall"
 
-#: src/ConfigInit.py:63
+#: src/ConfigInit.py:131
 msgid "Crossfade fast"
-msgstr "Überblenden (schnell)"
+msgstr "Überblenden schnell"
 
-#: src/ConfigInit.py:63
+#: src/ConfigInit.py:131
 msgid "Crossfade slow"
-msgstr "Überblenden (langsam)"
+msgstr "Überblenden langsam"
 
-#: src/ConfigInit.py:64
+#: src/ConfigInit.py:132
 msgid "Crossfade accelerated"
-msgstr "Überblenden (beschleunigt)"
+msgstr "Überblenden beschleunigt"
 
-#: src/ConfigInit.py:64
+#: src/ConfigInit.py:132
 msgid "Crossfade regular"
-msgstr "Überblenden (normal)"
+msgstr "Überblenden normal"
 
-#: src/ConfigInit.py:85 src/ConfigInit.py:86 src/ConfigInit.py:87
-#: src/ConfigInit.py:88 src/ConfigInit.py:89
+#: src/ConfigInit.py:159 src/ConfigInit.py:160 src/ConfigInit.py:161
+#: src/ConfigInit.py:162 src/ConfigInit.py:163
 msgid "default"
 msgstr "Standard"
+
+#: src/ConfigInit.py:194
+msgid "yes, without Message"
+msgstr "ja, ohne Benachrichtigung"
+
+#: src/ConfigInit.py:194
+msgid "yes, with Message"
+msgstr "ja, mit Benachrichtigung"
+
+#: src/ConfigInit.py:194
+msgid "no"
+msgstr "nein"
 
 #: src/ConfigScreen.py:69 src/MediaInfo.py:70
 msgid "Cancel"
@@ -212,15 +272,15 @@ msgid "About"
 msgstr "Über"
 
 #: src/ConfigScreen.py:127
-msgid "HELP About"
-msgstr "Zeigt Plugin Infos an"
+msgid "Show plugin info"
+msgstr "Zeige Plugin Infos an."
 
 #: src/ConfigScreen.py:128
 msgid "Start plugin with key"
 msgstr "Taste zum Starten des Plugins"
 
 #: src/ConfigScreen.py:128
-msgid "Help Start plugin with key"
+msgid "Select a key to start the plugin with."
 msgstr "Mit welcher Taste soll das Plugin gestartet werden?"
 
 #: src/ConfigScreen.py:129
@@ -232,49 +292,52 @@ msgid "Start with home directory"
 msgstr "Start mit Startverzeichnis"
 
 #: src/ConfigScreen.py:130
-msgid "Help Start into home directory"
-msgstr "Soll ein Startverzeichnis nach dem Start angezeigt werden?"
+msgid ""
+"Should the plugin load the home directory or the one that was used last?"
+msgstr ""
+"Soll das Home Verzeichnis oder das zuletzt benutze geladen werden, wenn das "
+"Plugin startet?"
 
 #: src/ConfigScreen.py:131
 msgid "Home directory"
 msgstr "Startverzeichnis"
 
 #: src/ConfigScreen.py:131
-msgid "Help Home directory"
-msgstr "Welches Verzeichnis soll als Startverzeichnis verwendet werden?"
+msgid "Select the directory to be considered the home directory"
+msgstr "Welches Verzeichnis soll als Home-Verzeichnis verwendet werden?"
 
 #: src/ConfigScreen.py:132
 msgid "Sort"
-msgstr "Sortiermodus"
+msgstr "Sortierung"
 
 #: src/ConfigScreen.py:132
-msgid "Help Sort"
-msgstr "Welche Sortierung soll für die Medialiste verwendet werden?"
+msgid "Select the list sort mode."
+msgstr "Wie soll die Medienliste sortiert werden?"
 
 #: src/ConfigScreen.py:133
 msgid "Sort across directories"
 msgstr "Über Verzeichnisse hinweg sortieren"
 
 #: src/ConfigScreen.py:133
-msgid "Help Sort across directories"
-msgstr "Sollen die Dateien über alle Verzeichnisse hinweg sortiert werden?"
+msgid "Should directories be sorted recursively?"
+msgstr "Sollen Verzeichnisse rekursiv sortiert werden?"
 
 #: src/ConfigScreen.py:134
-msgid "Show directory up tile"
-msgstr "Kachel übergeordnetes Verzeichnis"
+msgid "Show parent directory tile"
+msgstr "Kachel für übergeordnetes Verzeichnis"
 
 #: src/ConfigScreen.py:134
-msgid "Help Show directory up tile"
+msgid "Should a tile be displayed for navigation to the parent directory?"
 msgstr ""
-"Soll eine Kachel für Wechsel in das übergeordnete Verzeichnis angezeigt "
-"werden?"
+"Soll für die Navigation zum übergeordneten Verzeichnis eine Kachel angezeigt "
+"werden. Fall nicht, kann man dazu die Tab links Taste verwenden."
 
 #: src/ConfigScreen.py:135
 msgid "Tile foreground color"
 msgstr "Kachel Vordergrundfarbe"
 
 #: src/ConfigScreen.py:135
-msgid "Help Tile foreground color"
+msgid "Select the tile foreground color."
 msgstr ""
 "In welcher Farbe soll der Vordergrund für die Kacheln angezeigt werden?"
 
@@ -283,7 +346,7 @@ msgid "Tile background color"
 msgstr "Kachel Hintergrundfarbe"
 
 #: src/ConfigScreen.py:136
-msgid "Help Tile background color"
+msgid "Select the tile background color."
 msgstr ""
 "In welcher Farbe soll der Hintergrund für die Kacheln angezeigt werden?"
 
@@ -292,7 +355,7 @@ msgid "Tile selection foreground color"
 msgstr "Vordergrundfarbe für ausgewählte Kachel"
 
 #: src/ConfigScreen.py:137
-msgid "Help Tile selection foreground color"
+msgid "Select the tile selection foreground color."
 msgstr ""
 "In welcher Farbe soll der Vordergrund für die ausgewählte Kachel angezeigt "
 "werden?"
@@ -302,7 +365,7 @@ msgid "Tile selection background color"
 msgstr "Hintergrundfarbe für auswählte Kachel"
 
 #: src/ConfigScreen.py:138
-msgid "Help Tile selection background color"
+msgid "Select the tile selection background color."
 msgstr ""
 "In welcher Farbe soll der Hintergrund für die ausgewählte Kachel angezeigt "
 "werden?"
@@ -312,7 +375,7 @@ msgid "Tile selection size offset"
 msgstr "Größe Offset für ausgewählte Kachel"
 
 #: src/ConfigScreen.py:139
-msgid "Help Tile selection size offset"
+msgid "Select the tile selection size offset."
 msgstr ""
 "Um wieviele Pixel soll die ausgewählten Kachel größer angezeigt werden?"
 
@@ -321,9 +384,9 @@ msgid "Tile selection font offset"
 msgstr "Font Offset für ausgewählte Kachel"
 
 #: src/ConfigScreen.py:140
-msgid "Help Tile selection font offset"
+msgid "Select the tile selection font offset."
 msgstr ""
-"Um wieviele Pixel soll der Font der ausgewählten Kachel größer angezeigt "
+"Um wie viele Pixel soll der Font der ausgewählten Kachel größer angezeigt "
 "werden?"
 
 #: src/ConfigScreen.py:141
@@ -331,203 +394,306 @@ msgid "Tile selection frame"
 msgstr "Rahmen für ausgewählte Kachel"
 
 #: src/ConfigScreen.py:141
-msgid "Help Tile selection frame"
-msgstr "Soll ein Rahmen für die ausgewählte Kachel angezeigt werden?"
+msgid "Should a tile selection frame be displayed?"
+msgstr ""
+"In welcher Farbe soll der Rahmen für die ausgewählte Kachel angezeigt werden?"
 
 #: src/ConfigScreen.py:142
 msgid "Tile selection frame color"
 msgstr "Rahmenfarbe ausgewählte Kachel"
 
 #: src/ConfigScreen.py:142
-msgid "Help Tile selection frame color"
+msgid "Select the tile selection frame color."
 msgstr ""
 "In welcher Farbe soll der Rahmen für die ausgewählte Kachel angezeigt werden?"
 
 #: src/ConfigScreen.py:143
 msgid "Create thumbnails"
-msgstr "Generiere Vorschaubilder"
+msgstr "Erstelle Vorschaubilder"
 
 #: src/ConfigScreen.py:143
-msgid "Help Create thumbnails"
-msgstr ""
-"Sollen Vorschaubilder beim ersten Lade eines Verzeichnisses generiert werden?"
+msgid "Should thumbnails be created automatically?"
+msgstr "Sollen Vorschaubilder automatisch generiert werden?"
 
 #: src/ConfigScreen.py:144
 msgid "Show detailed loading info"
 msgstr "Detaillierte Anzeige des Ladefortschritts"
 
 #: src/ConfigScreen.py:144
-msgid "Help Show detailed loading info"
-msgstr ""
-"Soll beim Laden der Bilderliste ein detaillierter Ladefortschritt angezeigt "
-"werden?"
+msgid "Should detailed loading info be shown?"
+msgstr "Soll ein detaillierter Ladefortschritt angezeigt werden?"
 
 #: src/ConfigScreen.py:145
-msgid "PICTURE"
-msgstr "BILD"
-
-#: src/ConfigScreen.py:146
-msgid "Foreground color"
-msgstr "Vordergrundfarbe"
-
-#: src/ConfigScreen.py:146
-msgid "Help Foreground color"
-msgstr "Welche Hintergrundfarbe soll für die Bildanzeige verwendet werden?"
-
-#: src/ConfigScreen.py:147
-msgid "Background color"
-msgstr "Hintergrundfarbe"
-
-#: src/ConfigScreen.py:147
-msgid "Help Background color"
-msgstr "Welche Hintergrundfarbe soll für die Bildanzeige verwendet werden?"
-
-#: src/ConfigScreen.py:148
-msgid "VIDEO"
-msgstr "VIDEO"
-
-#: src/ConfigScreen.py:149
-msgid "Show info bar"
-msgstr "Informationen anzeigen"
-
-#: src/ConfigScreen.py:149
-msgid "Help Show movie info bar"
-msgstr ""
-"Soll beim Start eines Videos eine Info-Leiste im Bild angezeigt werden? "
-"(Kann mit Farbtaste blau zu jeder Zeit aus-/ein-geschaltet werden.)"
-
-#: src/ConfigScreen.py:150
-msgid "PLAYLIST"
-msgstr "PLAYLISTE"
-
-#: src/ConfigScreen.py:151
-msgid "Recurse directories"
-msgstr "Lade Verzeichnisse rekursiv"
-
-#: src/ConfigScreen.py:151
-msgid "Help Recurse directories"
-msgstr "Sollen Verzeichnisse rekursiv geladen werden?"
-
-#: src/ConfigScreen.py:152
 msgid "SLIDESHOW"
 msgstr "DIASHOW"
 
-#: src/ConfigScreen.py:153
+#: src/ConfigScreen.py:146
 msgid "Duration"
 msgstr "Anzeigedauer"
 
-#: src/ConfigScreen.py:153
-msgid "Help Duration"
-msgstr "Wieviele Sekunden soll ein Bild in der Diashow angezeigt werden?"
+#: src/ConfigScreen.py:146
+msgid "Select the duration for the display of a slide."
+msgstr "Wie lange soll ein Dia in einer Diashow angezeigt werden?"
 
-#: src/ConfigScreen.py:154 src/Slideshow.py:203
+#: src/ConfigScreen.py:147 src/MediaPlayer.py:265
 msgid "Animation"
 msgstr "Bildübergang"
 
-#: src/ConfigScreen.py:154
-msgid "Help Animation"
-msgstr "Welcher Bildübergang soll in der Diashow verwendet werden?"
+#: src/ConfigScreen.py:147
+msgid "Which animation should be used for slide transistions?"
+msgstr "Welche Animation soll für den Übergang von Dias verwendet werden?"
 
-#: src/ConfigScreen.py:155
+#: src/ConfigScreen.py:148
 msgid "Endless loop"
 msgstr "Endlosschleife"
 
+#: src/ConfigScreen.py:148
+msgid "Should slideshows be run in an endless loop?"
+msgstr "Sollen Diashows in einer Endlosschleife laufen?"
+
+#: src/ConfigScreen.py:149
+msgid "PLAYLIST"
+msgstr "PLAYLISTE"
+
+#: src/ConfigScreen.py:150
+msgid "Recurse directories"
+msgstr "Lade Verzeichnisse rekursiv"
+
+#: src/ConfigScreen.py:150
+msgid "Should directories be loaded recursively?"
+msgstr "Sollen Verzeichnisse rekursiv geladen werden?"
+
+#: src/ConfigScreen.py:151
+msgid "PICTURE"
+msgstr "BILD"
+
+#: src/ConfigScreen.py:152
+msgid "Foreground color"
+msgstr "Vordergrundfarbe"
+
+#: src/ConfigScreen.py:152
+msgid "Select the forground color of icons."
+msgstr ""
+"In welcher Farbe soll der Vordergrund für Media Icons angezeigt werden?"
+
+#: src/ConfigScreen.py:153
+msgid "Background color"
+msgstr "Hintergrundfarbe"
+
+#: src/ConfigScreen.py:153
+msgid "Select the background color for icons."
+msgstr ""
+"In welcher Farbe soll der Hintergrund für Media Icons angezeigt werden?"
+
+#: src/ConfigScreen.py:154
+msgid "VIDEO"
+msgstr "VIDEO"
+
 #: src/ConfigScreen.py:155
-msgid "Help Endless loop"
-msgstr "Soll die Diashow in einer Endlosschleife gezeigt werden?"
+msgid "No resume below 10 seconds"
+msgstr "Ignoriere Start Marke unter 10 Sekunden"
+
+#: src/ConfigScreen.py:155
+msgid "Should marks below 10s be ignored when resuming video playback?"
+msgstr "Sollen Sprungmarken unter 10s beim Filmstart ignoriert werden?"
 
 #: src/ConfigScreen.py:156
+msgid "Jump to first mark when playing movie"
+msgstr "Springe automatisch zur ersten Marke"
+
+#: src/ConfigScreen.py:156
+msgid "Should videos automatically be started at the first mark?"
+msgstr "Soll das Video automatisch an der ersten Sprungmarke gestartet werden?"
+
+#: src/ConfigScreen.py:157 src/VideoPlayer.py:345
+msgid "Zap to live TV of recording"
+msgstr "Schalte auf Live-TV dieser Aufnahme"
+
+#: src/ConfigScreen.py:157
+msgid ""
+"Automatically zap to the live-service at the end of time-shifted video "
+"playback?"
+msgstr ""
+"Soll automatisch zum Live-TV Sender am Wiedergabeende einer zeitversetzten "
+"Aufnahme geschaltet werden?"
+
+#: src/ConfigScreen.py:158
+msgid "Date format"
+msgstr "Datumsformat"
+
+#: src/ConfigScreen.py:158
+msgid "Select the date format."
+msgstr ""
+"Welches Format für die Anzeige des Aufnahmedatums soll in der  Filmliste "
+"verwendet werden?"
+
+#: src/ConfigScreen.py:159
+msgid "Enable playback auto-audio track selection"
+msgstr "Wähle Tonspur automatisch aus"
+
+#: src/ConfigScreen.py:159
+msgid "Enable playback of auto-audio track selection?"
+msgstr "Wähle Tonspur automatisch aus."
+
+#: src/ConfigScreen.py:160
+msgid "Enable playback AC3-track first"
+msgstr "Bevorzuge AC3-Track"
+
+#: src/ConfigScreen.py:160
+msgid "Enable playback of AC3-track first?"
+msgstr "Bevorzuge AC3-Track."
+
+#: src/ConfigScreen.py:161
+msgid "Enable playback auto-subtitling"
+msgstr "Zeige Untertitel automatisch an"
+
+#: src/ConfigScreen.py:161
+msgid "Enable playback of auto-subtitling?"
+msgstr "Zeige Untertitel automatisch an."
+
+#: src/ConfigScreen.py:162
+msgid "Primary playback subtitle language"
+msgstr "Erste Untertitel-Sprache"
+
+#: src/ConfigScreen.py:162
+msgid "Select the primary playback subtitle language."
+msgstr "Welche erste Untertitel-Sprache, falls vorhanden, soll gewählt werden?"
+
+#: src/ConfigScreen.py:163
+msgid "Secondary playback subtitle language"
+msgstr "Zweite Untertitel-Sprache"
+
+#: src/ConfigScreen.py:163
+msgid "Select the secondary playback subtitle language."
+msgstr ""
+"Welche dritte Untertitel-Sprache, falls vorhanden, soll gewählt werden?"
+
+#: src/ConfigScreen.py:164
+msgid "Tertiary playback subtitle language"
+msgstr "Dritte Untertitel-Sprache"
+
+#: src/ConfigScreen.py:164
+msgid "Select the tertiary playback subtitle language."
+msgstr ""
+"Welche dritte Untertitel-Sprache, falls vorhanden, soll gewählt werden?"
+
+#: src/ConfigScreen.py:165
+msgid "Primary playback audio language"
+msgstr "Erste Tonspur"
+
+#: src/ConfigScreen.py:165
+msgid "Select the primary playback audio language."
+msgstr "Welche erste Tonspur, falls vorhanden, soll gewählt werden?"
+
+#: src/ConfigScreen.py:166
+msgid "Secondary playback audio language"
+msgstr "Zweite Tonspur"
+
+#: src/ConfigScreen.py:166
+msgid "Select the secondary playback audio language."
+msgstr "Welche zweite Tonspur, falls vorhanden, soll gewählt werden?"
+
+#: src/ConfigScreen.py:167
+msgid "Tertiary playback audio language"
+msgstr "Dritte Tonspur"
+
+#: src/ConfigScreen.py:167
+msgid "Select the tertiary playback audio language."
+msgstr "Welche dritte Tonspur, falls vorhanden, soll gewählt werden?"
+
+#: src/ConfigScreen.py:168
 msgid "MUSIC"
 msgstr "MUSIK"
 
-#: src/ConfigScreen.py:157
+#: src/ConfigScreen.py:169
 msgid "Non-Standard audio decoder"
 msgstr "Alternativer Audio Dekoder"
 
-#: src/ConfigScreen.py:157
-msgid "Help Non-Standard audio decoder"
+#: src/ConfigScreen.py:169
+msgid "Should the non-standard audio decoder be used for visualisations?"
 msgstr ""
-"Soll der alternative Audio Dekoder mit Visualisierungen verwendet werden?"
+"Soll der nicht standardmäßige Decoder mit Visualisierungen benutzt werden?"
 
-#: src/ConfigScreen.py:158
+#: src/ConfigScreen.py:170
 msgid "Gapless playback"
 msgstr "Wiedergabe ohne Unterbrechungen"
 
-#: src/ConfigScreen.py:158
-msgid "Help Gapless playback"
+#: src/ConfigScreen.py:170
+msgid "Should gapless playback be used?"
 msgstr "Soll die Wiedergabe ohne Unterbrechungen erfolgen?"
 
-#: src/ConfigScreen.py:159
+#: src/ConfigScreen.py:171
 msgid "Alsasink"
 msgstr "Gstreamer Alsasink"
 
-#: src/ConfigScreen.py:159
-msgid "Help Alsasink"
-msgstr "Soll das Gstreamer Alsasink Modul  verwendet werden?"
+#: src/ConfigScreen.py:171
+msgid "Should the gStreamer Alsasink decoder be used?"
+msgstr "Soll der gStreamer Alsasink Decoder verwendet werden?"
 
-#: src/ConfigScreen.py:160
-msgid "Use Google search for cover"
-msgstr "Google Cover Suche"
+#: src/ConfigScreen.py:172
+msgid "Cover downloader"
+msgstr "Musik Cover Provider"
 
-#: src/ConfigScreen.py:160
-msgid "Help Use Google search for cover"
-msgstr "Soll Google für die Coversuche verwendet werden?"
+#: src/ConfigScreen.py:172
+msgid "Which service should be used for the download of song covers?"
+msgstr ""
+"Welcher Service soll für das Herunterladen von Song Covern verwendet werden?"
 
-#: src/ConfigScreen.py:161
-msgid "Google cover path"
-msgstr "Google Cover Verzeichnis"
+#: src/ConfigScreen.py:173
+msgid "Cover download path"
+msgstr "Musik Cover Verzeichnis"
 
-#: src/ConfigScreen.py:161
-msgid "Help Google cover path"
-msgstr "Welches Verzeichnis soll für die Google Cover verwendet werden?"
+#: src/ConfigScreen.py:173
+msgid "Select the path for cover downloads."
+msgstr "In welchem Verzeichnis sollen Musik Cover gespeichert werden?"
 
-#: src/ConfigScreen.py:162
+#: src/ConfigScreen.py:174
 msgid "DEBUG"
 msgstr "DEBUG"
 
-#: src/ConfigScreen.py:163
+#: src/ConfigScreen.py:175
 msgid "Debug log"
 msgstr "Debug Log"
 
-#: src/ConfigScreen.py:163
-msgid "Help Debug"
-msgstr "Soll der Debug-Modus aktiviert werden?"
+#: src/ConfigScreen.py:175
+msgid "Should a debug log be activated?"
+msgstr "Soll ein Debug Log aktiviert werden?"
 
-#: src/ConfigScreen.py:164
+#: src/ConfigScreen.py:176
 msgid "Log file path"
 msgstr "Logdaten Verzeichnis"
 
-#: src/ConfigScreen.py:164
-msgid "Help Log file path"
-msgstr "Welches Verzeichnis soll für die Debug Daten verwendet werden?"
+#: src/ConfigScreen.py:176
+msgid "Select the path for a log file."
+msgstr "Welches Verzeichnis soll für die Logdatei verwendet werden?"
 
-#: src/ConfigScreen.py:200
+#: src/ConfigScreen.py:212
 msgid "Really close without saving settings?"
 msgstr "Schliessen ohne Speichern der Einstellungen?"
 
-#: src/ConfigScreen.py:243
+#: src/ConfigScreen.py:255
 msgid "Setup"
 msgstr "Einstellungen"
 
-#: src/ConfigScreen.py:249
+#: src/ConfigScreen.py:261
 msgid "Loading default settings will overwrite all settings, really load them?"
 msgstr ""
 "Sollen alle Einstellungen durch die Standardeinstellungen überschrieben "
 "werden?"
 
-#: src/ConfigScreen.py:313
+#: src/ConfigScreen.py:325
 msgid "Some changes require a GUI restart"
 msgstr "Einige Änderungen erfordern einen Neustart der GUI"
 
-#: src/ConfigScreen.py:313
+#: src/ConfigScreen.py:325
 msgid "Restart GUI now?"
 msgstr "Neustart der GUI?"
 
-#: src/ConfigScreen.py:347 src/ConfigScreen.py:348 src/FileOps.py:65
+#: src/ConfigScreen.py:359 src/ConfigScreen.py:360 src/FileOps.py:65
 msgid "Select directory"
 msgstr "Verzeichnis wählen"
 
-#: src/ConfigScreen.py:363
+#: src/ConfigScreen.py:375
 msgid "Path does not exist"
 msgstr "Verzeichnis existiert nicht"
 
@@ -563,13 +729,9 @@ msgstr "Soll die Wiedergabe fortgesetzt werden?"
 msgid "Resume position at"
 msgstr "Setze Wiedergabe fort an Position"
 
-#: src/InfoBarSupport.py:128
+#: src/InfoBarSupport.py:129
 msgid "Resuming playback"
 msgstr "Setze Wiedergabe fort"
-
-#: src/KeyHelp.py:32
-msgid "Help"
-msgstr "Hilfe"
 
 #: src/MediaInfo.py:59 src/MediaInfo.py:72
 msgid "Thumbnail"
@@ -597,7 +759,7 @@ msgstr "unbekannt"
 
 #: src/MediaInfo.py:142
 msgid "not defined"
-msgstr "nicht vorhanden"
+msgstr "nicht festgelegt"
 
 #: src/MediaInfo.py:145
 msgid "Model"
@@ -663,7 +825,7 @@ msgstr "GPS Längengrad"
 msgid "Exif Version"
 msgstr "Exif Version"
 
-#: src/MediaPlayer.py:70 src/Slideshow.py:52
+#: src/MediaPlayer.py:70
 msgid "Stop video/slideshow"
 msgstr "Stoppe Video/Diaschau"
 
@@ -671,76 +833,60 @@ msgstr "Stoppe Video/Diaschau"
 msgid "Rotate picture"
 msgstr "Bild drehen"
 
-#: src/MediaPlayer.py:297
+#: src/MediaPlayer.py:78
+msgid "Toggle transition"
+msgstr "Wechsle Diaübergang"
+
+#: src/MediaPlayer.py:334
 msgid "Rotating picture..."
 msgstr "Bild wird gedreht..."
 
-#: src/MovieInfoEPG.py:46
+#: src/MovieInfoEPG.py:45
 msgid "min"
 msgstr "Min"
 
-#: src/MusicPlayer.py:77
-msgid "Toggle shuffle"
-msgstr "Mischen an/aus"
+#: src/MusicPlayer.py:95
+msgid "Song"
+msgstr "Lied"
 
-#: src/MusicPlayer.py:78
-msgid "Toggle repeat"
-msgstr "Wiederholen an/aus"
-
-#: src/MusicPlayer.py:80 src/Slideshow.py:51
-msgid "Play/Pause"
-msgstr "Play/Pause"
-
-#: src/MusicPlayer.py:81 src/VideoPlayer.py:85
+#: src/MusicPlayer.py:96 src/VideoPlayer.py:85
 msgid "Stop playback"
-msgstr "Wiedergabe stoppen"
+msgstr "Stoppe Wiedergabe"
 
-#: src/MusicPlayer.py:82
+#: src/MusicPlayer.py:97
 msgid "Next song"
 msgstr "Nächstes Lied"
 
-#: src/MusicPlayer.py:83
+#: src/MusicPlayer.py:99
 msgid "Previous song"
 msgstr "Vorheriges Lied"
 
-#: src/MusicPlayer.py:400
+#: src/MusicPlayer.py:100
+msgid "Toggle shuffle"
+msgstr "Mischen an/aus"
+
+#: src/MusicPlayer.py:101
+msgid "Toggle repeat"
+msgstr "Wiederholen an/aus"
+
+#: src/MusicPlayer.py:326
 #, python-format
 msgid "This Dreambox can't decode %s streams!"
 msgstr "Diese Dreambox kann keine %s Streams decodieren!"
 
-#: src/Slideshow.py:50
-msgid "Toggle transition"
-msgstr "Wechsle Diaübergang"
-
-#: src/Slideshow.py:53
-msgid "Next slide"
-msgstr "Nächstes Dia"
-
-#: src/Slideshow.py:54
-msgid "Previous slide"
-msgstr "Vorheriges Dia"
-
-#: src/Slideshow.py:105
-msgid "Package"
-msgstr "Paket"
-
-#: src/Slideshow.py:105
-msgid "is not installed"
-msgstr "ist nicht installiert"
-
-#: src/Slideshow.py:135
-msgid "No pictures to display"
-msgstr "Es sind keine Bilder vorhanden"
-
-#: src/Tiles.py:211
+#: src/Tiles.py:212
 msgid "File"
 msgstr "Datei"
 
-#: src/Tiles.py:211 src/Tiles.py:214
+#: src/Tiles.py:212 src/Tiles.py:215
 msgid "Path"
 msgstr "Verzeichnis"
 
-#: src/Tiles.py:221
+#: src/Tiles.py:220
+msgid "not mounted"
+msgstr "nicht eingehängt"
+
+#: src/Tiles.py:222
 msgid "Page"
 msgstr "Seite"
 
@@ -751,10 +897,6 @@ msgstr "Ende"
 #: src/VideoPlayer.py:134
 msgid "Movie file does not exist"
 msgstr "Film Datei existiert nicht"
-
-#: src/VideoPlayer.py:345
-msgid "Zap to live TV of recording"
-msgstr "Schalte auf Live-TV dieser Aufnahme"
 
 #: src/plugin.py:66
 msgid "MediaCockpit"

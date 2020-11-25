@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2019 by dream-alpha
+# Copyright (C) 2018-2020 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -74,7 +74,7 @@ class Cockpit(Display, Tiles, FileOps, FileList, HelpableScreen, Screen):
 			self,
 			"MDCActions",
 			{
-				"playpause":	(self.playpause,	_("Pause/Resume") + " " + _("Slideshow")),
+				"playpause":	(self.playpause,	_("Play/Pause") + " " + _("Slideshow")),
 				"nextBouquet":	(self.prevPage,		_("Previous page")),
 				"prevBouquet":	(self.nextPage,		_("Next page")),
 				"right":	(self.moveRight,	_("Next picture")),
@@ -150,9 +150,9 @@ class Cockpit(Display, Tiles, FileOps, FileList, HelpableScreen, Screen):
 		self.current_path = path
 		self.dir_stack.append(self.current_path)
 		self.hideTiles()
-		self.getFileList()
+		self.getFileList(self.current_path)
 
-	def readFileListCallback(self):
+	def readFileListCallback(self, is_mounted):
 		self.busy = False
 		self.last_path = self.current_path
 		#print("MDC: Cockpit: readFileListCallback: file_index: %s, path: %s, len(file_list): %s" % (self.file_index, self.file_list[self.file_index][FILE_PATH], len(self.file_list)))
@@ -161,12 +161,12 @@ class Cockpit(Display, Tiles, FileOps, FileList, HelpableScreen, Screen):
 		if self.slideshow:
 			self.startSlideshow()
 		else:
-			self.paintTiles()
+			self.paintTiles(is_mounted)
 
 	def startSlideshow(self):
 		self.hide()
 		start_path = self.file_list[self.file_index][FILE_PATH] if self.file_list else ""
-		if self.media_list:
+		if self.media_list and self.file_list[self.file_index][FILE_MEDIA] in ["picture", "movie"]:
 			self.media_index = getIndex(self.media_list, start_path)
 			self.session.openWithCallback(self.MDCMediaPlayerCallback, MDCMediaPlayer, self.media_list, self.media_index, self.slideshow, self.thumbnail_size, self.lastservice, self.song_list)
 		elif self.song_list:
@@ -192,7 +192,7 @@ class Cockpit(Display, Tiles, FileOps, FileList, HelpableScreen, Screen):
 		self.show()
 		self.file_index = file_index
 		self.slideshow = False
-		self.paintTiles()
+		self.paintTiles(True)
 
 ### key functions
 

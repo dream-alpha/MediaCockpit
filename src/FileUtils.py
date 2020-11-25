@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2019 by dream-alpha
+# Copyright (C) 2018-2020 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -58,12 +58,7 @@ def copyFile(src_path, dest_path):
 
 
 def createDirectory(path):
-	rc = None
-	try:
-		rc = os.mkdir(path)
-	except OSError as e:
-		print("MDC-E: FileUtils: createDirectory: exception: path: %s, exception: %s" % (path, e))
-	return rc
+	return os.popen("mkdir -p %s" % path).read()
 
 
 def deleteDirectory(path):

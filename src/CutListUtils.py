@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2019 by dream-alpha
+# Copyright (C) 2018-2020 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -31,7 +31,7 @@ CUT_TYPE_IN = 0
 CUT_TYPE_OUT = 1
 CUT_TYPE_MARK = 2
 CUT_TYPE_LAST = 3
-# Additional custom MVC specific types
+# Additional custom MDC specific types
 # Have to be removed before starting a player
 CUT_TYPE_LENGTH = 5
 

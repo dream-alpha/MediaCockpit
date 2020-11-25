@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2019 by dream-alpha
+# Copyright (C) 2018-2020 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -25,6 +25,12 @@ from PIL import Image
 from PIL import ImageFile
 from PIL.ExifTags import TAGS
 ImageFile.LOAD_TRUNCATED_IMAGES = True
+
+
+def getPicturePath(path):
+	filename, ext = os.path.splitext(path)
+	path_transformed = filename + ".transformed" + ext
+	return path_transformed if os.path.exists(path_transformed) else path
 
 
 def getExifData(path):

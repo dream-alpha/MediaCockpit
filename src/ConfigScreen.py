@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2019 by dream-alpha
+# Copyright (C) 2018-2020 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -109,60 +109,72 @@ class ConfigScreen(ConfigInit, ConfigListScreen, Screen):
 	def defineConfig(self):
 		self.section = 400 * "¯"
 		#        config list entry
-		#                                                                   , config element
-		#                                                                   ,                                                       , function called on save
-		#                                                                   ,                                                       ,                       , function called if user has pressed OK
-		#                                                                   ,                                                       ,                       ,                       , usage setup level from E2
-		#                                                                   ,                                                       ,                       ,                       ,   0: simple+
-		#                                                                   ,                                                       ,                       ,                       ,   1: intermediate+
-		#                                                                   ,                                                       ,                       ,                       ,   2: expert+
-		#                                                                   ,                                                       ,                       ,                       ,       , depends on relative parent entries
-		#                                                                   ,                                                       ,                       ,                       ,       ,   parent config value < 0 = true
-		#                                                                   ,                                                       ,                       ,                       ,       ,   parent config value > 0 = false
-		#                                                                   ,                                                       ,                       ,                       ,       ,             , context sensitive help text
-		#                                                                   ,                                                       ,                       ,                       ,       ,             ,
-		#        0                                                          , 1                                                     , 2                     , 3                     , 4     , 5           , 6
+		#                                                           , config element
+		#                                                           ,                                                       , function called on save
+		#                                                           ,                                                       ,                       , function called if user has pressed OK
+		#                                                           ,                                                       ,                       ,                       , usage setup level from E2
+		#                                                           ,                                                       ,                       ,                       ,   0: simple+
+		#                                                           ,                                                       ,                       ,                       ,   1: intermediate+
+		#                                                           ,                                                       ,                       ,                       ,   2: expert+
+		#                                                           ,                                                       ,                       ,                       ,       , depends on relative parent entries
+		#                                                           ,                                                       ,                       ,                       ,       ,   parent config value < 0 = true
+		#                                                           ,                                                       ,                       ,                       ,       ,   parent config value > 0 = false
+		#                                                           ,                                                       ,                       ,                       ,       ,             , context sensitive help text
+		#                                                           ,                                                       ,                       ,                       ,       ,             ,
+		#        0                                                  , 1                                                     , 2                     , 3                     , 4     , 5           , 6
 		self.MDCConfig = [
-				(self.section                                       , _("PLUGIN")                                           , None                  , None                  , 0     , []          , ""),
-				(_("About")                                         , config.plugins.mediacockpit.fake_entry                , None                  , self.showInfo         , 0     , []          , _("HELP About")),
-				(_("Start plugin with key")                         , config.plugins.mediacockpit.launch_key                , self.needsRestart     , None                  , 0     , []          , _("Help Start plugin with key")),
-				(self.section                                       , _("COCKPIT")                                          , None                  , None                  , 0     , []          , ""),
-				(_("Start with home directory")                     , config.plugins.mediacockpit.start_home_dir            , None                  , None                  , 0     , []          , _("Help Start into home directory")),
-				(_("Home directory")                                , config.plugins.mediacockpit.home_dir                  , self.validatePath     , self.openLocationBox  , 0     , [-1]        , _("Help Home directory")),
-				(_("Sort")                                          , config.plugins.mediacockpit.sort                      , None                  , None                  , 0     , []          , _("Help Sort")),
-				(_("Sort across directories")                       , config.plugins.mediacockpit.sort_across_dirs          , None                  , None                  , 0     , []          , _("Help Sort across directories")),
-				(_("Show directory up tile")                        , config.plugins.mediacockpit.show_goup_tile            , None                  , None                  , 0     , []          , _("Help Show directory up tile")),
-				(_("Tile foreground color")                         , config.plugins.mediacockpit.normal_foreground_color   , None                  , None                  , 0     , []          , _("Help Tile foreground color")),
-				(_("Tile background color")                         , config.plugins.mediacockpit.normal_background_color   , None                  , None                  , 0     , []          , _("Help Tile background color")),
-				(_("Tile selection foreground color")               , config.plugins.mediacockpit.selection_foreground_color, None                  , None                  , 0     , []          , _("Help Tile selection foreground color")),
-				(_("Tile selection background color")               , config.plugins.mediacockpit.selection_background_color, None                  , None                  , 0     , []          , _("Help Tile selection background color")),
-				(_("Tile selection size offset")                    , config.plugins.mediacockpit.selection_size_offset     , None                  , None                  , 0     , []          , _("Help Tile selection size offset")),
-				(_("Tile selection font offset")                    , config.plugins.mediacockpit.selection_font_offset     , None                  , None                  , 0     , []          , _("Help Tile selection font offset")),
-				(_("Tile selection frame")                          , config.plugins.mediacockpit.frame                     , None                  , None                  , 0     , []          , _("Help Tile selection frame")),
-				(_("Tile selection frame color")                    , config.plugins.mediacockpit.selection_frame_color     , None                  , None                  , 0     , [-1]        , _("Help Tile selection frame color")),
-				(_("Create thumbnails")                             , config.plugins.mediacockpit.create_thumbnails         , None                  , None                  , 0     , []          , _("Help Create thumbnails")),
-				(_("Show detailed loading info")                    , config.plugins.mediacockpit.show_loading_details      , None                  , None                  , 0     , []          , _("Help Show detailed loading info")),
-				(self.section                                       , _("PICTURE")                                          , None                  , None                  , 0     , []          , ""),
-				(_("Foreground color")                              , config.plugins.mediacockpit.picture_foreground        , None                  , None                  , 0     , []          , _("Help Foreground color")),
-				(_("Background color")                              , config.plugins.mediacockpit.picture_background        , None                  , None                  , 0     , []          , _("Help Background color")),
-				(self.section                                       , _("VIDEO")                                            , None                  , None                  , 2     , []          , ""),
-				(_("Show info bar")                                 , config.plugins.mediacockpit.show_movie_infobar        , None                  , None                  , 0     , []          , _("Help Show movie info bar")),
-				(self.section                                       , _("PLAYLIST")                                         , None                  , None                  , 2     , []          , ""),
-				(_("Recurse directories")                           , config.plugins.mediacockpit.recurse_dirs              , None                  , None                  , 0     , []          , _("Help Recurse directories")),
-				(self.section                                       , _("SLIDESHOW")                                        , None                  , None                  , 0     , []          , ""),
-				(_("Duration")                                      , config.plugins.mediacockpit.slideshow_duration        , None                  , None                  , 0     , []          , _("Help Duration")),
-				(_("Animation")                                     , config.plugins.mediacockpit.animation                 , None                  , None                  , 0     , []          , _("Help Animation")),
-				(_("Endless loop")                                  , config.plugins.mediacockpit.slideshow_loop            , None                  , None                  , 0     , []          , _("Help Endless loop")),
-				(self.section                                       , _("MUSIC")                                            , None                  , None                  , 0     , []          , ""),
-				(_("Non-Standard audio decoder")                    , config.plugins.mediacockpit.non_standard_decoder      , None                  , None                  , 0     , []          , _("Help Non-Standard audio decoder")),
-				(_("Gapless playback")                              , config.plugins.mediacockpit.gapless                   , None                  , None                  , 0     , [-1]        , _("Help Gapless playback")),
-				(_("Alsasink")                                      , config.plugins.mediacockpit.alsasink                  , None                  , None                  , 0     , [-2]        , _("Help Alsasink")),
-				(_("Use Google search for cover")                   , config.plugins.mediacockpit.usegoogleimage            , None                  , None                  , 0     , []          , _("Help Use Google search for cover")),
-				(_("Google cover path")                             , config.plugins.mediacockpit.googleimagepath           , self.validatePath     , self.openLocationBox  , 0     , []          , _("Help Google cover path")),
-				(self.section                                       , _("DEBUG")                                            , None                  , None                  , 2     , []          , ""),
-				(_("Debug log")                                     , config.plugins.mediacockpit.debug                     , None                  , self.setDebugMode     , 2     , []          , _("Help Debug")),
-				(_("Log file path")                                 , config.plugins.mediacockpit.debug_log_path            , self.validatePath     , self.openLocationBox  , 2     , [-1]        , _("Help Log file path")),
-			]
+			(self.section                                       , _("PLUGIN")                                           , None                  , None                  , 0     , []          , ""),
+			(_("About")                                         , config.plugins.mediacockpit.fake_entry                , None                  , self.showInfo         , 0     , []          , _("Show plugin info")),
+			(_("Start plugin with key")                         , config.plugins.mediacockpit.launch_key                , self.needsRestart     , None                  , 0     , []          , _("Select a key to start the plugin with.")),
+			(self.section                                       , _("COCKPIT")                                          , None                  , None                  , 0     , []          , ""),
+			(_("Start with home directory")                     , config.plugins.mediacockpit.start_home_dir            , None                  , None                  , 0     , []          , _("Should the plugin load the home directory or the one that was used last?")),
+			(_("Home directory")                                , config.plugins.mediacockpit.home_dir                  , self.validatePath     , self.openLocationBox  , 0     , [-1]        , _("Select the directory to be considered the home directory")),
+			(_("Sort")                                          , config.plugins.mediacockpit.sort                      , None                  , None                  , 0     , []          , _("Select the list sort mode.")),
+			(_("Sort across directories")                       , config.plugins.mediacockpit.sort_across_dirs          , None                  , None                  , 0     , []          , _("Should directories be sorted recursively?")),
+			(_("Show parent directory tile")                    , config.plugins.mediacockpit.show_goup_tile            , None                  , None                  , 0     , []          , _("Should a tile be displayed for navigation to the parent directory?")),
+			(_("Tile foreground color")                         , config.plugins.mediacockpit.normal_foreground_color   , None                  , None                  , 0     , []          , _("Select the tile foreground color.")),
+			(_("Tile background color")                         , config.plugins.mediacockpit.normal_background_color   , None                  , None                  , 0     , []          , _("Select the tile background color.")),
+			(_("Tile selection foreground color")               , config.plugins.mediacockpit.selection_foreground_color, None                  , None                  , 0     , []          , _("Select the tile selection foreground color.")),
+			(_("Tile selection background color")               , config.plugins.mediacockpit.selection_background_color, None                  , None                  , 0     , []          , _("Select the tile selection background color.")),
+			(_("Tile selection size offset")                    , config.plugins.mediacockpit.selection_size_offset     , None                  , None                  , 0     , []          , _("Select the tile selection size offset.")),
+			(_("Tile selection font offset")                    , config.plugins.mediacockpit.selection_font_offset     , None                  , None                  , 0     , []          , _("Select the tile selection font offset.")),
+			(_("Tile selection frame")                          , config.plugins.mediacockpit.frame                     , None                  , None                  , 0     , []          , _("Should a tile selection frame be displayed?")),
+			(_("Tile selection frame color")                    , config.plugins.mediacockpit.selection_frame_color     , None                  , None                  , 0     , [-1]        , _("Select the tile selection frame color.")),
+			(_("Create thumbnails")                             , config.plugins.mediacockpit.create_thumbnails         , None                  , None                  , 0     , []          , _("Should thumbnails be created automatically?")),
+			(_("Show detailed loading info")                    , config.plugins.mediacockpit.show_loading_details      , None                  , None                  , 0     , []          , _("Should detailed loading info be shown?")),
+			(self.section                                       , _("SLIDESHOW")                                        , None                  , None                  , 0     , []          , ""),
+			(_("Duration")                                      , config.plugins.mediacockpit.slideshow_duration        , None                  , None                  , 0     , []          , _("Select the duration for the display of a slide.")),
+			(_("Animation")                                     , config.plugins.mediacockpit.animation                 , None                  , None                  , 0     , []          , _("Which animation should be used for slide transistions?")),
+			(_("Endless loop")                                  , config.plugins.mediacockpit.slideshow_loop            , None                  , None                  , 0     , []          , _("Should slideshows be run in an endless loop?")),
+			(self.section                                       , _("PLAYLIST")                                         , None                  , None                  , 0     , []          , ""),
+			(_("Recurse directories")                           , config.plugins.mediacockpit.recurse_dirs              , None                  , None                  , 0     , []          , _("Should directories be loaded recursively?")),
+			(self.section                                       , _("PICTURE")                                          , None                  , None                  , 0     , []          , ""),
+			(_("Foreground color")                              , config.plugins.mediacockpit.picture_foreground        , None                  , None                  , 0     , []          , _("Select the forground color of icons.")),
+			(_("Background color")                              , config.plugins.mediacockpit.picture_background        , None                  , None                  , 0     , []          , _("Select the background color for icons.")),
+			(self.section                                       , _("VIDEO")                                            , None                  , None                  , 2     , []          , ""),
+			(_("No resume below 10 seconds")                    , config.plugins.mediacockpit.movie_ignore_firstcuts    , None                  , None                  , 1     , []          , _("Should marks below 10s be ignored when resuming video playback?")),
+			(_("Jump to first mark when playing movie")         , config.plugins.mediacockpit.movie_jump_first_mark     , None                  , None                  , 1     , []          , _("Should videos automatically be started at the first mark?")),
+			(_("Zap to live TV of recording")                   , config.plugins.mediacockpit.record_eof_zap            , None                  , None                  , 1     , []          , _("Automatically zap to the live-service at the end of time-shifted video playback?")),
+			(_("Date format")                                   , config.plugins.mediacockpit.movie_date_format         , None                  , None                  , 0     , []          , _("Select the date format.")),
+			(_("Enable playback auto-audio track selection")    , config.plugins.mediacockpit.autoaudio                 , None                  , None                  , 1     , []          , _("Enable playback of auto-audio track selection?")),
+			(_("Enable playback AC3-track first")               , config.plugins.mediacockpit.autoaudio_ac3             , None                  , None                  , 1     , [-1]        , _("Enable playback of AC3-track first?")),
+			(_("Primary playback audio language")               , config.plugins.mediacockpit.audlang1                  , None                  , None                  , 1     , [-2]        , _("Select the primary playback audio language.")),
+			(_("Secondary playback audio language")             , config.plugins.mediacockpit.audlang2                  , None                  , None                  , 1     , [-3]        , _("Select the secondary playback audio language.")),
+			(_("Tertiary playback audio language")              , config.plugins.mediacockpit.audlang3                  , None                  , None                  , 1     , [-4]        , _("Select the tertiary playback audio language.")),
+			(_("Enable playback auto-subtitling")               , config.plugins.mediacockpit.autosubs                  , None                  , None                  , 1     , []          , _("Enable playback of auto-subtitling?")),
+			(_("Primary playback subtitle language")            , config.plugins.mediacockpit.sublang1                  , None                  , None                  , 1     , [-1]        , _("Select the primary playback subtitle language.")),
+			(_("Secondary playback subtitle language")          , config.plugins.mediacockpit.sublang2                  , None                  , None                  , 1     , [-2]        , _("Select the secondary playback subtitle language.")),
+			(_("Tertiary playback subtitle language")           , config.plugins.mediacockpit.sublang3                  , None                  , None                  , 1     , [-3]        , _("Select the tertiary playback subtitle language.")),
+			(self.section                                       , _("MUSIC")                                            , None                  , None                  , 0     , []          , ""),
+			(_("Non-Standard audio decoder")                    , config.plugins.mediacockpit.non_standard_decoder      , None                  , None                  , 0     , []          , _("Should the non-standard audio decoder be used for visualisations?")),
+			(_("Gapless playback")                              , config.plugins.mediacockpit.gapless                   , None                  , None                  , 0     , [-1]        , _("Should gapless playback be used?")),
+			(_("Alsasink")                                      , config.plugins.mediacockpit.alsasink                  , None                  , None                  , 0     , [-2]        , _("Should the gStreamer Alsasink decoder be used?")),
+			(_("Cover downloader")                              , config.plugins.mediacockpit.cover_downloader          , None                  , None                  , 0     , []          , _("Which service should be used for the download of song covers?")),
+			(_("Cover download path")                           , config.plugins.mediacockpit.cover_download_path       , self.validatePath     , self.openLocationBox  , 0     , []          , _("Select the path for cover downloads.")),
+			(self.section                                       , _("DEBUG")                                            , None                  , None                  , 2     , []          , ""),
+			(_("Debug log")                                     , config.plugins.mediacockpit.debug                     , None                  , self.setDebugMode     , 2     , []          , _("Should a debug log be activated?")),
+			(_("Log file path")                                 , config.plugins.mediacockpit.debug_log_path            , self.validatePath     , self.openLocationBox  , 2     , [-1]        , _("Select the path for a log file.")),
+		]
 
 	def handleInputHelpers(self):
 		self["VirtualKB"].setEnabled(False)

@@ -2,7 +2,7 @@
 # coding=utf-8
 #
 # Copyright (C) 2011 by betonme
-# Copyright (C) 2018-2019 by dream-alpha
+# Copyright (C) 2018-2020 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -34,7 +34,8 @@ from CutListUtils import secondsToPts, ptsToSeconds, removeFirstMarks, getCutLis
 from CutList import fetchCutList, writeCutList
 
 
-class InfoBarSupport(InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarShowHide, InfoBarMenu, InfoBarShowMovies, InfoBarAudioSelection,
+class InfoBarSupport(
+	InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarShowHide, InfoBarMenu, InfoBarShowMovies, InfoBarAudioSelection,
 	InfoBarSimpleEventView, InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSubtitleSupport, InfoBarTeletextPlugin,
 	InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarNumberZap, InfoBarPiP, InfoBarEPG):
 
@@ -49,10 +50,9 @@ class InfoBarSupport(InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarShow
 			InfoBarPiP, InfoBarEPG:
 			x.__init__(self)
 
-		actionmap = "InfobarCueSheetActions"
 		self["CueSheetActions"] = HelpableActionMap(
 			self,
-			actionmap,
+			"InfobarCueSheetActions",
 			{
 				"jumpPreviousMark": (self.jumpPreviousMark, _("Jump to previous marked position")),
 				"jumpNextMark": (self.jumpNextMark, _("Jump to next marked position")),
@@ -75,7 +75,7 @@ class InfoBarSupport(InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarShow
 	### Override from InfoBarGenerics.py
 
 	def zapToService(self, service):
-		print("MVC-I: InfoBarSupport: zapToService: service: %s" % (service.toString() if service else None))
+		print("MDC-I: InfoBarSupport: zapToService: service: %s" % (service.toString() if service else None))
 		if service is not None:
 			self.servicelist.setCurrentSelection(service) #select the service in servicelist
 			self.servicelist.zap()
@@ -87,29 +87,29 @@ class InfoBarSupport(InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarShow
 		return self.cut_list
 
 	def downloadCuesheet(self):
-		#print("MVC: InfoBarSupport: downloadCueSheet: self.service: %s" % (self.service.getPath() if self.service else None))
+		#print("MDC: InfoBarSupport: downloadCueSheet: self.service: %s" % (self.service.getPath() if self.service else None))
 		self.cut_list = fetchCutList(self.service.getPath())
-		#print("MVC: InfoBarSupport: downloadCuesheet: cut_list: %s" % self.cut_list)
+		#print("MDC: InfoBarSupport: downloadCuesheet: cut_list: %s" % self.cut_list)
 
 	def uploadCuesheet(self):
-		#print("MVC: InfoBarSupport: uploadCuesheet: self.service: %s" % (self.service.getPath() if self.service else None))
-		#print("MVC: InfoBarSupport: uploadCuesheet: cut_list: %s" % self.cut_list)
+		#print("MDC: InfoBarSupport: uploadCuesheet: self.service: %s" % (self.service.getPath() if self.service else None))
+		#print("MDC: InfoBarSupport: uploadCuesheet: cut_list: %s" % self.cut_list)
 		writeCutList(self.service.getPath(), self.cut_list)
 
 	def __serviceStarted(self):
-		print("MVC-I: InfoBarSupport: __serviceStarted: self.is_closing: %s" % self.is_closing)
+		print("MDC-I: InfoBarSupport: __serviceStarted: self.is_closing: %s" % self.is_closing)
 		if not self.is_closing:
 			self.downloadCuesheet()
 
-			if config.usage.on_movie_start.value == "beginning" and config.plugins.moviecockpit.movie_jump_first_mark.value:
+			if config.usage.on_movie_start.value == "beginning" and config.plugins.mediacockpit.movie_jump_first_mark.value:
 				self.jumpToFirstMark()
 			else:
 				last = 0
-				if config.plugins.moviecockpit.movie_ignore_firstcuts.value:
+				if config.plugins.mediacockpit.movie_ignore_firstcuts.value:
 					last = getCutListLast(removeFirstMarks(self.cut_list))
 				if last > 0:
 					self.resume_point = last
-					l = ptsToSeconds(last)
+					seconds = ptsToSeconds(last)
 					val = config.usage.on_movie_start.value
 					if val in ["ask", "ask yes", "ask no"]:
 						Notifications.AddNotificationWithCallback(
@@ -117,7 +117,8 @@ class InfoBarSupport(InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarShow
 							MessageBox,
 							_("Do you want to resume this playback?")
 							+ "\n"
-							+ _("Resume position at") + " " + "%d:%02d:%02d" % (l / 3600, l % 3600 / 60, l % 60),
+							+ _("Resume position at") + " "
+							+ "%d:%02d:%02d" % (seconds / 3600, seconds % 3600 / 60, seconds % 60),
 							timeout=10,
 							default=not (val == "ask no")
 						)
@@ -129,13 +130,13 @@ class InfoBarSupport(InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarShow
 							timeout=2,
 							type=MessageBox.TYPE_INFO
 						)
-				elif config.plugins.moviecockpit.movie_jump_first_mark.value:
+				elif config.plugins.mediacockpit.movie_jump_first_mark.value:
 					self.jumpToFirstMark()
 
 	def playLastCallback(self, answer):
 		if answer:
 			self.doSeek(self.resume_point)
-		elif config.plugins.moviecockpit.movie_jump_first_mark.value:
+		elif config.plugins.mediacockpit.movie_jump_first_mark.value:
 			self.jumpToFirstMark()
 		self.showAfterSeek()
 
@@ -193,22 +194,22 @@ class InfoBarSupport(InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarShow
 				self.showAfterSeek()
 
 	def getSeekPlayPosition(self):
-		#print("MVC: InfoBarSupport: getSeekPlayPosition")
+		#print("MDC: InfoBarSupport: getSeekPlayPosition")
 		try:
 			# InfoBarCueSheetSupport
 			return self.cueGetCurrentPosition() or 0
 		except Exception as e:
-			print("MVC-E: InfoBarSupport: getSeekPlayPosition: exception: %s" % e)
+			print("MDC-E: InfoBarSupport: getSeekPlayPosition: exception: %s" % e)
 		return 0
 
 	def getSeekLength(self):
-		#print("MVC: InfoBarSupport: getSeekLength")
+		#print("MDC: InfoBarSupport: getSeekLength")
 		length = 0
 		try:
 			# Call private InfoBarCueSheetSupport function
 			seek = InfoBarCueSheetSupport._InfoBarCueSheetSupport__getSeekable(self)
 		except Exception as e:
-			print("MVC-E: InfoBarSupport: getSeekLength: exception: %s" % e)
+			print("MDC-E: InfoBarSupport: getSeekLength: exception: %s" % e)
 		if seek is not None:
 			__len = seek.getLength()
 			if not __len[0]:

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2019 by dream-alpha
+# Copyright (C) 2018-2020 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -29,6 +29,7 @@ from SkinUtils import getSkinPath
 from Tools.LoadPixmap import LoadPixmap
 from skin import parseColor
 from MetaFile import FILE_TYPE, FILE_PATH, TYPE_FILE
+
 
 class Tiles():
 
@@ -145,10 +146,10 @@ class Tiles():
 		self.last_tile_pos = -1
 
 	def displayLCD(self, _file_of_files, _path):
-		print("MDC-E: Tiles: displayLCD: overwritten in child class")
+		print("MDC-E: Tiles: displayLCD: overridden in child class")
 
 	def displayOSD(self, _msg):
-		print("MDC-E: Tiles: displayOSD: overwritten in child class")
+		print("MDC-E: Tiles: displayOSD: overridden in child class")
 
 	def hideTile(self, tile_pos):
 		self["Picture%d" % tile_pos].hide()
@@ -184,7 +185,7 @@ class Tiles():
 			self["Icon%d" % tile_pos].show()
 			self["Text%d" % tile_pos].show()
 
-	def paintTiles(self):
+	def paintTiles(self, is_mounted=True):
 		print("MDC-I: Tiles: paintTiles")
 		file_list_len = len(self.file_list)
 		first_idx = self.file_index / self.tiles * self.tiles
@@ -202,9 +203,9 @@ class Tiles():
 		#print("MDC: Tiles: paintTiles: tile_pos: %s, last_tile_pos: %s" % (tile_pos, self.last_tile_pos))
 		self.unselectTile(self.last_tile_pos)
 		self.selectTile(tile_pos)
-		self.showInfo()
+		self.showInfo(is_mounted)
 
-	def showInfo(self):
+	def showInfo(self, is_mounted=True):
 		if self.file_list:
 			x = self.file_list[self.file_index]
 			path = x[FILE_PATH]
@@ -216,9 +217,9 @@ class Tiles():
 		page = self.file_index / self.tiles + 1
 		pages = len(self.file_list) / self.tiles + 1
 		pages = pages if len(self.file_list) % self.tiles else pages - 1
-
+		mounted = "" if is_mounted else "(" + _("not mounted") + ")"
 		self.displayLCD("%d/%d" % (self.file_index + 1, len(self.file_list)), os.path.basename(path))
-		self.displayOSD("%s: %d/%d - %s: %s" % (_("Page"), page, pages, filetype, path))
+		self.displayOSD("%s: %d/%d - %s: %s %s" % (_("Page"), page, pages, filetype, path, mounted))
 
 ### Cursor moves
 

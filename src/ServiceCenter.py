@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2019 by dream-alpha
+# Copyright (C) 2018-2020 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -32,11 +32,11 @@ instance = None
 
 def str2date(date_string, path=""):
 	date = None
-	#print("MVC: ServiceCenter: str2date: %s" % date_string)
+	#print("MDC: ServiceCenter: str2date: %s" % date_string)
 	try:
 		date = datetime.datetime.strptime(date_string, '%Y-%m-%d %H:%M:%S')
 	except ValueError:
-		print("MVC-E: ServiceCenter: str2date: exception: date_string: %s, path: %s" % (date_string, path))
+		print("MDC-E: ServiceCenter: str2date: exception: date_string: %s, path: %s" % (date_string, path))
 		date = datetime.datetime.fromtimestamp(0)
 	return date
 
@@ -109,7 +109,7 @@ class Info():
 				filedata = FileCache.getInstance().getFile(self.path)
 				if filedata is not None:
 					_dirname, filetype, _path, _filename, _ext, name, date, length, description,\
-					extended_description, service_reference, size, cuts, tags = filedata
+						extended_description, service_reference, size, cuts, tags = filedata
 			except Exception:
 				if os.path.isfile(self.path):
 					info = eServiceCenter.getInstance().info(service)
@@ -153,7 +153,7 @@ class Info():
 		return self.__extendeddescription
 
 	def getBeginTimeString(self):
-		return self.__date.strftime(config.plugins.moviecockpit.movie_date_format.value)
+		return self.__date.strftime(config.plugins.mediacockpit.movie_date_format.value)
 
 	def getMTime(self):
 		return self.__mtime

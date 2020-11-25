@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2019 by dream-alpha
+# Copyright (C) 2018-2020 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -31,11 +31,13 @@ def getSkinPath(filename):
 	skin_path = resolveFilename(SCOPE_CURRENT_SKIN, PLUGIN + "/skin/" + filename)
 	if not fileExists(skin_path):
 		skin_path = resolveFilename(SCOPE_SKIN, "Default-FHD/" + PLUGIN + "/skin/" + filename)
+		if not fileExists(skin_path):
+			skin_path = resolveFilename(SCOPE_PLUGINS, "Extensions/" + PLUGIN + "/skin/" + filename)
 	#print("MDC: SkinUtils: getSkinPath: skin_path: %s" % skin_path)
 	return skin_path
 
 
-def initSkinPath():
+def initPluginSkinPath():
 	default_skin = resolveFilename(SCOPE_SKIN, "Default-FHD/" + PLUGIN)
 	current_skin = resolveFilename(SCOPE_CURRENT_SKIN, PLUGIN)
 	plugin_skin = resolveFilename(SCOPE_PLUGINS, "Extensions/" + PLUGIN)
@@ -43,8 +45,8 @@ def initSkinPath():
 	print("MDC-I: SkinUtils: loadPluginSkin: default_skin: %s" % default_skin)
 	print("MDC-I: SkinUtils: loadPluginSkin: plugin_skin: %s" % plugin_skin)
 	if not os.path.isdir(default_skin):
-		print("MDC-I: SkinUtils: loadPluginSkin: ln -s " + plugin_skin + " " + resolveFilename(SCOPE_SKIN, "Default-FHD"))
-		os.system("ln -s " + plugin_skin + " " + resolveFilename(SCOPE_SKIN, "Default-FHD"))
+		print("MDC-I: SkinUtils: initPluginSkinPath: %s > %s" % (default_skin, plugin_skin))
+		os.symlink(plugin_skin, default_skin)
 
 
 def loadPluginSkin(skin_file):

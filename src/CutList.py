@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2019 by dream-alpha
+# Copyright (C) 2018-2020 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -32,25 +32,25 @@ from FileUtils import readFile, writeFile, deleteFile
 
 
 def updateFromCuesheet(path):
-	#print("MVC: CutList: updateFromCuesheet")
+	#print("MDC: CutList: updateFromCuesheet")
 	backup_cut_file = path + ".cuts.save"
 	if os.path.exists(backup_cut_file):
-		#print("MVC: CutListUtils: mergeBackupCutsFile: reading from Backup-File")
+		#print("MDC: CutListUtils: mergeBackupCutsFile: reading from Backup-File")
 		cut_list = __getCutFile(path)
 		data = readFile(backup_cut_file)
 		backup_cut_list = unpackCutList(data)
-		#print("MVC: CutList: updateFromCuesheet: backup_cut_list: %s" % backup_cut_list)
+		#print("MDC: CutList: updateFromCuesheet: backup_cut_list: %s" % backup_cut_list)
 		cut_list = mergeCutList(cut_list, backup_cut_list)
 		writeFile(path + ".cuts", packCutList(cut_list))
 		deleteFile(backup_cut_file)
 		__putCutFile(path, cut_list)
 	else:
-		#print("MVC: CutList: updateFromCuesheet: no Backup-File found: %s" % backup_cut_file)
+		#print("MDC: CutList: updateFromCuesheet: no Backup-File found: %s" % backup_cut_file)
 		pass
 
 
 def writeCutList(path, cut_list):
-	#print("MVC: CutList: setCutList: " + str(cut_list))
+	#print("MDC: CutList: setCutList: " + str(cut_list))
 	__putCutFile(path, cut_list)
 
 
@@ -59,14 +59,14 @@ def fetchCutList(path):
 
 
 def resetLastCutList(path):
-	#print("MVC: resetLastCutList: path: %s" % path)
+	#print("MDC: resetLastCutList: path: %s" % path)
 	cut_list = replaceLast(__getCutFile(path), 0)
-	#print("MVC: resetLastCutList: cut_list: %s" % cut_list)
+	#print("MDC: resetLastCutList: cut_list: %s" % cut_list)
 	__putCutFile(path, cut_list)
 
 
 def updateCutList(path, play, length):
-	#print("MVC: CutList: updateCutList: play: " + str(play) + ", length: " + str(length))
+	#print("MDC: CutList: updateCutList: play: " + str(play) + ", length: " + str(length))
 	cut_list = replaceLast(__getCutFile(path), play)
 	cut_list = replaceLength(cut_list, length)
 	__putCutFile(path, cut_list)
@@ -104,26 +104,26 @@ def __getCutFile(path):
 	if path:
 		try:
 			from FileCache import FileCache, FILE_IDX_CUTS
-			#print("MVC: CutList: __getCutFile: reading cut_list from cache: %s" % path)
+			#print("MDC: CutList: __getCutFile: reading cut_list from cache: %s" % path)
 			filedata = FileCache.getInstance().getFile(path)
 			data = filedata[FILE_IDX_CUTS]
 		except Exception:
 			data = readFile(path + ".cuts")
 		cut_list = unpackCutList(data)
-	#print("MVC: CutList: __getCutFile: cut_list: " + str(cut_list))
+	#print("MDC: CutList: __getCutFile: cut_list: " + str(cut_list))
 	return cut_list
 
 
 def __putCutFile(path, cut_list):
 	if path:
-		#print("MVC: CutList: __putCutFile: %s, cut_list: %s" % (path, cut_list))
+		#print("MDC: CutList: __putCutFile: %s, cut_list: %s" % (path, cut_list))
 		data = packCutList(cut_list)
 		writeFile(path + ".cuts", data)
 
 		# update file in cache
 		try:
 			from FileCache import FileCache
-			#print("MVC: CutList: __putCutFile: updating cut_list in cache: %s" % path)
+			#print("MDC: CutList: __putCutFile: updating cut_list in cache: %s" % path)
 			FileCache.getInstance().update(path, pcuts=data)
 		except Exception:
 			pass
@@ -131,5 +131,5 @@ def __putCutFile(path, cut_list):
 		# always backup cutlist when recording, it will be merged with enigma-cutfile after recording
 		ts_path, __ = os.path.splitext(path)
 		if isRecording(ts_path):
-			#print("MVC: CutList: __putCutFile: creating backup file: " + path)
+			#print("MDC: CutList: __putCutFile: creating backup file: " + path)
 			backupCutsFile(ts_path)

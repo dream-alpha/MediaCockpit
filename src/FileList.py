@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2019 by dream-alpha
+# Copyright (C) 2018-2020 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -29,6 +29,7 @@ from PictureUtils import getExifData, transformPicture, createThumbnail
 from DelayTimer import DelayTimer
 from ServiceUtils import extMedia, extPicture, extVideo, extMusic, extPlaylist
 from FileListUtils import getIndex
+from MountPointUtils import isMounted
 
 
 class FileList():
@@ -37,7 +38,6 @@ class FileList():
 		self.thumbnail_size = None
 		self.desktop_size = None
 		self.last_path = None
-		self.current_path = None
 		self.show_goup_tile = None
 		self.file_list_sort = None
 		self.slideshow_file_index = None
@@ -54,21 +54,21 @@ class FileList():
 		self.percent = None
 		self.path = None
 
-	def readFileListCallback(self):
-		print("MDC-E: FileList: readFileListCallback: overwritten in child class")
+	def readFileListCallback(self, _is_mounted):
+		print("MDC-E: FileList: readFileListCallback: overridden in child class")
 
 	def displayLCD(self, _title, _info):
-		print("MDC-E: FileList: displayLCD: overwritten in child class")
+		print("MDC-E: FileList: displayLCD: overridden in child class")
 
 	def displayOSD(self, _info):
-		print("MDC-E: FileList: displayOSD: overwritten in child class")
+		print("MDC-E: FileList: displayOSD: overridden in child class")
 
 	def showLoading(self, path, percent):
 		if path is not None and percent is not None:
 			if self.show_loading_details:
-				adir = os.path.basename(self.path) if self.path != "/" else "/"
-				self.displayOSD("%s %2d%% - %s ..." % (_("Loading"), self.percent, adir))
-				self.displayLCD("%s %2d%%" % (_("Loading"), self.percent), adir)
+				adir = os.path.basename(path) if path != "/" else "/"
+				self.displayOSD("%s %2d%% - %s ..." % (_("Loading"), percent, adir))
+				self.displayLCD("%s %2d%%" % (_("Loading"), percent), adir)
 			else:
 				self.displayOSD("%s %s ..." % (_("Loading"), _("files")))
 				self.displayLCD(_("Loading"), _("files"))
@@ -91,10 +91,8 @@ class FileList():
 
 	def checkFile(self, afile):
 		filename, ext = os.path.splitext(os.path.basename(afile))
-		return not filename.startswith(".") and (os.path.isdir(afile)
-			or not filename.endswith((".transformed", ".thumbnail")) and ext.lower() in extMedia)
-#		return not filename.startswith(".") and (ext == ""
-#			or not filename.endswith((".transformed", ".thumbnail")) and ext.lower() in extMedia)
+		return not filename.startswith(".") and (os.path.isdir(afile) or not filename.endswith((".transformed", ".thumbnail")) and ext.lower() in extMedia)
+#		return not filename.startswith(".") and (ext == "" or not filename.endswith((".transformed", ".thumbnail")) and ext.lower() in extMedia)
 
 	def listDir(self, adir):
 		alist = []
@@ -298,7 +296,7 @@ class FileList():
 			self.cancelling = False
 			self.file_index = getIndex(self.file_list, self.last_path)
 			self.splitList()
-			self.readFileListCallback()
+			self.readFileListCallback(True)
 
 	def scanDirectory(self, adir):
 		#print("MDC: FileList: scanDirectory")
@@ -342,24 +340,28 @@ class FileList():
 
 	### FileList
 
-	def getFileList(self):
-		print("MDC-I: FileList: getFileList: current_path: %s" % self.current_path)
+	def getFileList(self, path):
+		print("MDC-I: FileList: getFileList: path: %s" % path)
 		self.current_page = -1
 		self.file_index = -1
 		self.count = -1
-		self.playlist_active = False
-		self.filefilters = ["goup"] if self.show_goup_tile else []
-		if os.path.splitext(self.current_path)[1] == ".m3u":
-			self.playlist_active = True
-			self.filefilters += ["picture", "movie", "music"]
-		else:
-			if self.slideshow_file_index > -1:
+		self.file_list = []
+		if isMounted(path):
+			self.playlist_active = False
+			self.filefilters = ["goup"] if self.show_goup_tile else []
+			if os.path.splitext(path)[1] == ".m3u":
+				self.playlist_active = True
 				self.filefilters += ["picture", "movie", "music"]
 			else:
-				self.filefilters += ["folder", "playlist", "picture", "movie", "music"]
-		self.loading([self.current_path])
-		self.progress()
-		DelayTimer(10, self.scanDirectory, self.current_path)
+				if self.slideshow_file_index > -1:
+					self.filefilters += ["picture", "movie", "music"]
+				else:
+					self.filefilters += ["folder", "playlist", "picture", "movie", "music"]
+			self.loading([path])
+			self.progress()
+			DelayTimer(10, self.scanDirectory, path)
+		else:
+			self.readFileListCallback(False)
 
 	def cancelFileList(self):
 		self.cancelling = True

@@ -5,6 +5,7 @@
 *.png binary
 *.so binary
 *.deb binary
+*.mo binary
 
 # Set encoding
 *.py encoding=UTF-8

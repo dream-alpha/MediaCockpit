@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2019 by dream-alpha
+# Copyright (C) 2018-2020 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -19,4 +19,4 @@
 #	<http://www.gnu.org/licenses/>.
 
 PLUGIN = "MediaCockpit"
-VERSION = "7.4.5"
+VERSION = "8.2.9"

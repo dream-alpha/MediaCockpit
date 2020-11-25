@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2019 by dream-alpha
+# Copyright (C) 2018-2020 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -48,8 +48,7 @@ def sendUrlCommand(url, _contextFactory, timeout, *args, **kwargs):
 
 
 class MyHTTPClientFactory(HTTPClientFactory):
-	def __init__(self, url, method='GET', postdata=None, headers=None, agent="SHOUTcast", timeout=0, cookies=None,
-		followRedirect=1, _lastModified=None, _etag=None):
+	def __init__(self, url, method='GET', postdata=None, headers=None, agent="SHOUTcast", timeout=0, cookies=None, followRedirect=1, _lastModified=None, _etag=None):
 		HTTPClientFactory.__init__(
 			self, url, method=method, postdata=postdata, headers=headers, agent=agent, timeout=timeout, cookies=cookies,
 			followRedirect=followRedirect

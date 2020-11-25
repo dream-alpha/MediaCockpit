@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2019 by dream-alpha
+# Copyright (C) 2018-2020 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -37,7 +37,7 @@ class FileOps():
 
 	def readFileList(self, _path):
 		# dummy
-		print("MDC-E: FileOps: readFileList: overwritten in child class")
+		print("MDC-E: FileOps: readFileList: overridden in child class")
 
 	def queryDeleteFile(self):
 		self.session.openWithCallback(self.queryDeleteFileCallback, MessageBox, _("Do you really want to delete the file?"))
