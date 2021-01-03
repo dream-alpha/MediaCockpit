@@ -17,7 +17,7 @@
 - Music player
 ## Limitations
 - MDC supports DreamOS only
-- MDC is being tested on DM920 only
+- MDC is being tested on DM920 and DMOne only
 - MDC supports FHD (Full HD) skins only
 ## Installation
 To install MediaCockpit execute the following command in a telnet console on your dreambox:

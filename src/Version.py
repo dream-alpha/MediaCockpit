@@ -19,4 +19,4 @@
 #	<http://www.gnu.org/licenses/>.
 
 PLUGIN = "MediaCockpit"
-VERSION = "8.2.9"
+VERSION = "9.0.1"

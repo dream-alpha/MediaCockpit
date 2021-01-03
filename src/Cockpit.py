@@ -37,7 +37,12 @@ from FileOps import FileOps
 from ConfigInit import sort_modes
 from Display import Display
 from MediaPlayer import MDCMediaPlayer
-from MusicPlayer import MDCMusicPlayer
+try:
+	music_player = True
+	from MusicPlayer import MDCMusicPlayer
+except Exception:
+	print("MDC-E: Cockpit: couln't import MDCMusicPlayer")
+	music_player = False
 from VideoPlayer import MDCVideoPlayer
 from ServiceUtils import getService, startService, stopService
 
@@ -171,7 +176,8 @@ class Cockpit(Display, Tiles, FileOps, FileList, HelpableScreen, Screen):
 			self.session.openWithCallback(self.MDCMediaPlayerCallback, MDCMediaPlayer, self.media_list, self.media_index, self.slideshow, self.thumbnail_size, self.lastservice, self.song_list)
 		elif self.song_list:
 			self.song_index = getIndex(self.song_list, start_path)
-			self.session.openWithCallback(self.MDCMusicPlayerCallback, MDCMusicPlayer, self.song_list, self.song_index)
+			if music_player:
+				self.session.openWithCallback(self.MDCMusicPlayerCallback, MDCMusicPlayer, self.song_list, self.song_index)
 
 	def MDCMediaPlayerCallback(self, path):
 		# clear video buffer
