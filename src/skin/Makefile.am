@@ -1,0 +1,1 @@
+SUBDIRS = images HD FHD WQHD
