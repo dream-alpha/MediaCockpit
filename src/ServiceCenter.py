@@ -111,6 +111,7 @@ class Info():
 				self.event_start_time = self.recording_start_time = int(os.stat(self.path).st_ctime)
 			else:
 				self.event_start_time = self.recording_start_time = 0
+			self.name = os.path.basename(self.path)
 
 	def getName(self):
 		# EventName NAME

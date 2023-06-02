@@ -1,0 +1,11 @@
+	<screen id="3" name="%ID%CockpitDisplaySummary" position="0,0"
+		size="400,240">
+		<ePixmap position="0,0" size="400,240"
+			pixmap="skin_default/display_bg.png" zPosition="-1" />
+		<widget source="parent.lcd_title" render="Label"
+			position="0,10" size="400,75" font="Display;75" halign="center"
+			valign="top" transparent="1" />
+		<widget source="parent.lcd_info" render="Label"
+			position="0,100" size="400,125" font="Display;60" halign="center"
+			valign="center" transparent="1" />
+	</screen>

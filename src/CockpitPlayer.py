@@ -27,7 +27,7 @@ from Components.Sources.COCCurrentService import COCCurrentService
 from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
-from Screens.InfoBarGenerics import InfoBarAudioSelection, InfoBarShowHide, InfoBarNotifications, Notifications
+from Screens.InfoBarGenerics import InfoBarAudioSelection, InfoBarShowHide, InfoBarNotifications, Notifications, InfoBarSubtitleSupport
 from ServiceReference import ServiceReference
 from .Debug import logger
 from .__init__ import _
@@ -50,7 +50,7 @@ class CockpitPlayerSummary(Screen):
 
 
 class CockpitPlayer(
-	Screen, HelpableScreen, InfoBarBase, InfoBarNotifications, InfoBarShowHide, InfoBarAudioSelection,
+	Screen, HelpableScreen, InfoBarBase, InfoBarNotifications, InfoBarShowHide, InfoBarAudioSelection, InfoBarSubtitleSupport,
 	CockpitCueSheet, CockpitSeek, CockpitPVRState, CutList):
 
 	ENABLE_RESUME_SUPPORT = False
@@ -73,6 +73,7 @@ class CockpitPlayer(
 		InfoBarBase.__init__(self)
 		InfoBarAudioSelection.__init__(self)
 		InfoBarNotifications.__init__(self)
+		InfoBarSubtitleSupport.__init__(self)
 		CockpitCueSheet.__init__(self, service)
 		CutList.__init__(self)
 

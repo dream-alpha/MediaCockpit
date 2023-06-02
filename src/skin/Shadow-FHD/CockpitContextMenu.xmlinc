@@ -1,0 +1,5 @@
+	<screen name="MDCCockpitContextMenu" position="center,center" size="840,730" title="">
+		<widget enableWrapAround="1" itemHeight="45" position="10,10" render="Listbox" scrollbarMode="showOnDemand" size="820,680" source="menu">
+			<convert type="StringList"/>
+		</widget>
+	</screen>

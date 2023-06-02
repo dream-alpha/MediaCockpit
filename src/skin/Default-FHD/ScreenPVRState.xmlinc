@@ -1,0 +1,4 @@
+	<screen backgroundColor="transparent" flags="wfNoBorder" name="ScreenPVRState" position="910,490" size="100,160" zPosition="1000">
+		<widget name="state_pic" position="0,0" size="100,100" transparent="1"/>
+		<widget backgroundColor="background" font="Regular;40" halign="center" name="state" position="0,110" size="100,50" transparent="1" valign="center"/>
+	</screen>

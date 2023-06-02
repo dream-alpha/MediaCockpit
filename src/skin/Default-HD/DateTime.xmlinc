@@ -1,0 +1,10 @@
+	<layout name="MDCDate">
+		<widget font="Regular;22" halign="right" position="826,0" render="Label" size="266,46" source="global.CurrentTime" valign="center">
+			<convert type="ClockToText">Date</convert>
+		</widget>
+	</layout>
+	<layout name="MDCTime">
+		<widget font="Regular;22" halign="right" position="1100,0" render="Label" size="80,46" source="global.CurrentTime" valign="center">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+	</layout>

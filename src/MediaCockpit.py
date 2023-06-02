@@ -244,7 +244,10 @@ class MediaCockpit(Tiles, FileListCache, HelpableScreen, Screen):
 				deleteFiles(filename + ".*")
 				del self.file_list[self.file_index]
 				self.saveMetaList(os.path.dirname(path), self.file_list)
-				self.last_path = self.file_list[self.file_index][FILE_IDX_PATH]
+				if self.file_index < len(self.file_list):
+					self.last_path = self.file_list[self.file_index][FILE_IDX_PATH]
+				else:
+					self.last_path = self.current_dir
 				self.paintTiles()
 			else:
 				logger.info("%s not a file", afile[FILE_IDX_PATH])

@@ -19,9 +19,7 @@
 # <http://www.gnu.org/licenses/>.
 
 
-import os
 import sys
-import time
 import logging
 from Components.config import config, ConfigSubsection, ConfigDirectory, ConfigSelection  # noqa: F401, pylint: disable=W0611
 from .Version import ID, PLUGIN
@@ -54,13 +52,3 @@ def setLogLevel(level):
 	logger.setLevel(level)
 	streamer.setLevel(level)
 	logger.info("level: %s", level)
-
-
-def createLogFile():
-	log_dir = eval("config.plugins." + plugin + ".debug_log_path").value
-	log_file = os.path.join(log_dir, ID + "_" + time.strftime("%Y%m%d_%H%M%S" + ".log"))
-	logger.info("log_file: %s", log_file)
-	if os.path.exists(log_dir):
-		os.popen("journalctl | grep " + ID + " > " + log_file)
-	else:
-		logger.error("log dir does not exist: %s", log_dir)

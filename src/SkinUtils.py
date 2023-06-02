@@ -21,7 +21,8 @@
 
 import os
 from enigma import getDesktop
-from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_CURRENT_SKIN, SCOPE_PLUGINS
+from Components.config import config
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from skin import loadSkin, loadSingleSkinData, dom_skins
 from .Debug import logger
 from .Version import ID, PLUGIN
@@ -48,44 +49,48 @@ def getResolution():
 
 
 def getSkinPath(file_name):
-	logger.debug("file_name: %s", file_name)
+	logger.debug(">>> file_name: %s", file_name)
+	base_skin_dir = "/usr/share/enigma2"
+	sub_skin_dir = os.path.dirname(config.skin.primary_skin.value)
 	resolution = getResolution()
+	logger.debug("resolution: %s, sub_skin_dir: %s", resolution, sub_skin_dir)
+	if not sub_skin_dir:
+		sub_skin_dir = "Default-HD"
+	elif resolution == "FHD":
+		if sub_skin_dir in ["Shadow-FHD", "Zombi-Shadow-FHD"]:
+			sub_skin_dir = "Shadow-FHD"
+		else:
+			sub_skin_dir = "Default-FHD"
+	elif resolution == "WQHD":
+		if sub_skin_dir in ["Shadow-WQHD", "Default-WQHD"]:
+			sub_skin_dir = "Default-WQHD"
+		else:
+			sub_skin_dir = "Other-WQHD"
+	else:
+		sub_skin_dir = "Default-HD"
+
 	dirs = [
-		(SCOPE_CURRENT_SKIN, os.path.join(PLUGIN, "skin")),
-		(SCOPE_PLUGINS, os.path.join("Extensions", PLUGIN, "skin")),
-		(SCOPE_SKIN, "")
+		os.path.join(resolveFilename(SCOPE_PLUGINS), "Extensions", PLUGIN, "skin", sub_skin_dir),
+		os.path.join(resolveFilename(SCOPE_PLUGINS), "SystemPlugins", PLUGIN, "skin", sub_skin_dir),
+		os.path.join(resolveFilename(SCOPE_PLUGINS), "Extensions", PLUGIN, "skin"),
+		os.path.join(resolveFilename(SCOPE_PLUGINS), "SystemPlugins", PLUGIN, "skin"),
+		os.path.join(base_skin_dir, sub_skin_dir),
+		base_skin_dir
 	]
 	logger.debug("dirs: %s", dirs)
 
-	found = False
 	for adir in dirs:
-		for _resolution in [resolution, ""]:
-			skin_path = os.path.join(resolveFilename(adir[0]), adir[1], _resolution, file_name)
-			# logger.debug("checking: skin_path: %s", skin_path)
-			if os.path.exists(skin_path):
-				found = True
-				break
-		if found:
+		skin_path = os.path.join(adir, file_name)
+		logger.debug("checking: skin_path: %s", skin_path)
+		if os.path.exists(skin_path):
 			break
-	else:
-		skin_path = None
+		skin_path = ""
 	logger.debug("skin_path: %s", skin_path)
 	return skin_path
 
 
-def initPluginSkinPath():
-	current_skin = os.path.join(resolveFilename(SCOPE_CURRENT_SKIN), PLUGIN)
-	plugin_skin = os.path.join(resolveFilename(SCOPE_PLUGINS), "Extensions", PLUGIN)
-	if not os.path.exists(plugin_skin):
-		plugin_skin = os.path.join(resolveFilename(SCOPE_PLUGINS), "SystemPlugins", PLUGIN)
-	logger.info("current_skin: %s", current_skin)
-	logger.info("plugin_skin: %s", plugin_skin)
-	if not os.path.isdir(current_skin):
-		logger.info("%s > %s", current_skin, plugin_skin)
-		os.symlink(plugin_skin, current_skin)
-
-
 def loadPluginSkin(skin_file):
+	logger.info("skin_path: %s", getSkinPath(skin_file))
 	loadSkin(getSkinPath(skin_file), "")
 	path, dom_skin = dom_skins[-1:][0]
 	loadSingleSkinData(getDesktop(0), dom_skin, path)

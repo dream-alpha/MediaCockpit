@@ -1,0 +1,6 @@
+	<layout name="MDCColor_Buttons_Labels">
+		<widget backgroundColor="#9f1313" font="Regular;20" foregroundColor="white" halign="center" name="key_red" position="6,0" shadowColor="black" shadowOffset="-2,-2" size="200,46" transparent="1" valign="center" zPosition="1"/>
+		<widget backgroundColor="#1f771f" font="Regular;20" foregroundColor="white" halign="center" name="key_green" position="206,0" shadowColor="black" shadowOffset="-2,-2" size="200,46" transparent="1" valign="center" zPosition="1"/>
+		<widget backgroundColor="#a08500" font="Regular;20" foregroundColor="white" halign="center" name="key_yellow" position="406,0" shadowColor="black" shadowOffset="-2,-2" size="200,46" transparent="1" valign="center" zPosition="1"/>
+		<widget backgroundColor="#18188b" font="Regular;20" foregroundColor="white" halign="center" name="key_blue" position="606,0" shadowColor="black" shadowOffset="-2,-2" size="200,46" transparent="1" valign="center" zPosition="1"/>
+	</layout>

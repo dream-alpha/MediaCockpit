@@ -1,0 +1,22 @@
+	<screen id="3" name="%ID%CockpitMusicPlayerSummary"
+		position="0,0" size="400,240">
+		<ePixmap position="0,0" size="400,240"
+			pixmap="skin_default/display_bg.png" zPosition="-1" />
+		<widget name="title" font="Display;60" halign="center"
+			position="5,5" size="390,120" valign="center" transparent="1" />
+		<widget position="center,140" render="Progress" size="380,15"
+			borderWidth="1" source="Service" zPosition="2" transparent="1"
+			pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/progress_lcd.png">
+			<convert type="COCServicePosition">Position</convert>
+		</widget>
+		<widget font="Display;75" valign="center" position="5,160"
+			render="Label" size="200,80" source="global.CurrentTime"
+			transparent="1">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget font="Display;75" valign="center" halign="right"
+			position="200,160" render="Label" size="195,80" source="Service"
+			transparent="1">
+			<convert type="COCServicePosition">Remaining</convert>
+		</widget>
+	</screen>

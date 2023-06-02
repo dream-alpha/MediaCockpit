@@ -1,0 +1,6 @@
+	<layout name="MDCColor_Buttons_Labels">
+		<widget backgroundColor="$red" font="Regular;30" foregroundColor="white" halign="center" name="key_red" position="10,5" shadowColor="$black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1"/>
+		<widget backgroundColor="$green" font="Regular;30" foregroundColor="white" halign="center" name="key_green" position="310,5" shadowColor="$black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1"/>
+		<widget backgroundColor="$yellow" font="Regular;30" foregroundColor="white" halign="center" name="key_yellow" position="610,5" shadowColor="$black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1"/>
+		<widget backgroundColor="$blue" font="Regular;30" foregroundColor="white" halign="center" name="key_blue" position="910,5" shadowColor="$black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1"/>
+	</layout>

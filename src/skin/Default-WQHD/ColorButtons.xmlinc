@@ -1,0 +1,6 @@
+	<layout name="MDCColor_Buttons">
+		<ePixmap pixmap="Default-FHD/skin_default/buttons/red.svg" position="13,7" size="400,93"/>
+		<ePixmap pixmap="Default-FHD/skin_default/buttons/green.svg" position="413,7" size="400,93"/>
+		<ePixmap pixmap="Default-FHD/skin_default/buttons/yellow.svg" position="813,7" size="400,93"/>
+		<ePixmap pixmap="Default-FHD/skin_default/buttons/blue.svg" position="1213,7" size="400,93"/>
+	</layout>

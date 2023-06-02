@@ -9,22 +9,24 @@
 	</listboxcontent>
 	<layouts>
 		<layout name="MDCColor_Buttons">
-			<ePixmap pixmap="Default-FHD/skin_default/buttons/red.svg" position="13,0" size="400,93"/>
-			<ePixmap pixmap="Default-FHD/skin_default/buttons/green.svg" position="413,0" size="400,93"/>
-			<ePixmap pixmap="Default-FHD/skin_default/buttons/yellow.svg" position="813,0" size="400,93"/>
-			<ePixmap pixmap="Default-FHD/skin_default/buttons/blue.svg" position="1213,0" size="400,93"/>
+			<ePixmap pixmap="Default-FHD/skin_default/buttons/red.svg" position="13,7" size="400,93"/>
+			<ePixmap pixmap="Default-FHD/skin_default/buttons/green.svg" position="413,7" size="400,93"/>
+			<ePixmap pixmap="Default-FHD/skin_default/buttons/yellow.svg" position="813,7" size="400,93"/>
+			<ePixmap pixmap="Default-FHD/skin_default/buttons/blue.svg" position="1213,7" size="400,93"/>
 		</layout>
 		<layout name="MDCColor_Buttons_Labels">
-			<widget backgroundColor="#9f1313" font="Regular;40" foregroundColor="white" halign="center" name="key_red" position="13,0" shadowColor="black" shadowOffset="-2,-2" size="400,93" transparent="1" valign="center" zPosition="1"/>
-			<widget backgroundColor="#1f771f" font="Regular;40" foregroundColor="white" halign="center" name="key_green" position="413,0" shadowColor="black" shadowOffset="-2,-2" size="400,93" transparent="1" valign="center" zPosition="1"/>
-			<widget backgroundColor="#a08500" font="Regular;40" foregroundColor="white" halign="center" name="key_yellow" position="813,0" shadowColor="black" shadowOffset="-2,-2" size="400,93" transparent="1" valign="center" zPosition="1"/>
-			<widget backgroundColor="#18188b" font="Regular;40" foregroundColor="white" halign="center" name="key_blue" position="1213,0" shadowColor="black" shadowOffset="-2,-2" size="400,93" transparent="1" valign="center" zPosition="1"/>
+			<widget backgroundColor="#9f1313" font="Regular;40" foregroundColor="white" halign="center" name="key_red" position="13,7" shadowColor="black" shadowOffset="-2,-2" size="400,93" transparent="1" valign="center" zPosition="1"/>
+			<widget backgroundColor="#1f771f" font="Regular;40" foregroundColor="white" halign="center" name="key_green" position="413,7" shadowColor="black" shadowOffset="-2,-2" size="400,93" transparent="1" valign="center" zPosition="1"/>
+			<widget backgroundColor="#a08500" font="Regular;40" foregroundColor="white" halign="center" name="key_yellow" position="813,7" shadowColor="black" shadowOffset="-2,-2" size="400,93" transparent="1" valign="center" zPosition="1"/>
+			<widget backgroundColor="#18188b" font="Regular;40" foregroundColor="white" halign="center" name="key_blue" position="1213,7" shadowColor="black" shadowOffset="-2,-2" size="400,93" transparent="1" valign="center" zPosition="1"/>
 		</layout>
-		<layout name="MDCTime">
-			<widget font="Regular;45" halign="right" position="1653,0" render="Label" size="533,93" source="global.CurrentTime" valign="center">
+		<layout name="MDCDate">
+			<widget font="Regular;45" halign="right" position="1653,7" render="Label" size="533,93" source="global.CurrentTime" valign="center">
 				<convert type="ClockToText">Date</convert>
 			</widget>
-			<widget font="Regular;45" halign="right" position="2200,0" render="Label" size="160,93" source="global.CurrentTime" valign="center">
+		</layout>
+		<layout name="MDCTime">
+			<widget font="Regular;45" halign="right" position="2200,7" render="Label" size="160,93" source="global.CurrentTime" valign="center">
 				<convert type="ClockToText">Default</convert>
 			</widget>
 		</layout>
@@ -37,6 +39,7 @@
 	<screen name="MDCConfigScreen" position="center,146" size="2400,1240" title="">
 		<layout name="MDCColor_Buttons"/>
 		<layout name="MDCColor_Buttons_Labels"/>
+		<layout name="MDCDate"/>
 		<layout name="MDCTime"/>
 		<eLabel backgroundColor="grey" position="13,106" size="2373,1"/>
 		<widget enableWrapAround="1" itemHeight="60" name="config" position="13,120" scrollbarMode="showOnDemand" size="2373,840"/>
@@ -57,95 +60,88 @@
 		<widget name="icon" position="180,300" size="200,200"/>
 		<widget name="thumbnail" position="13,133" size="533,533"/>
 		<widget enableWrapAround="1" position="613,133" render="Listbox" scrollbarMode="showOnDemand" size="1773,1066" source="list">
-			<convert type="TemplatedMultiContent">
-				{
-				"template": [
-				MultiContentEntryText(pos=(7,0), size=(452,53), flags=RT_VALIGN_CENTER, text=0),
-				MultiContentEntryText(pos=(466,0), size=(1303,53), flags=RT_VALIGN_CENTER, text=1),
-				],
-				"fonts": [gFont("Regular",40)],
-				"itemHeight":53
-				}
-			</convert>
+			<convert type="TemplatedMultiContent"> { "template": [ MultiContentEntryText(pos=(7,0), size=(452,53), flags=RT_VALIGN_CENTER, text=0), MultiContentEntryText(pos=(466,0), size=(1303,53), flags=RT_VALIGN_CENTER, text=1), ], "fonts": [gFont("Regular",40)], "itemHeight":53 } </convert>
 		</widget>
 	</screen>
-	<screen flags="wfNoBorder" name="MDCCockpitPlayer" position="0,1100" size="2560,300">
-		<ePixmap alphatest="off" pixmap="skin_default/infobar.png" position="0,0" size="2560,300" zPosition="-1"/>
-		<widget font="Regular;53" noWrap="1" position="306,17" render="Label" size="1466,60" source="Service" transparent="1">
-			<convert type="COCEventName">Name</convert>
-		</widget>
-		<ePixmap pixmap="skin_default/icons/ico_dolby_off.png" position="1946,53" size="98,46"/>
-		<widget pixmap="skin_default/icons/ico_dolby_on.png" position="1946,53" render="Pixmap" size="98,46" source="Service" zPosition="1">
-			<convert type="ServiceInfo">IsMultichannel</convert>
+	<screen backgroundColor="transparent" flags="wfNoBorder" name="MDCCockpitPlayer" position="center,center" size="2560,1440">
+		<widget backgroundColor="CursorBackground" cornerDia="80" font="Regular;34" foregroundColor="white" halign="center" position="2440,1340" render="FixedLabel" size="80,80" source="session.CurrentService" text="UHD" valign="center">
+			<convert type="ServiceInfo">VideoWidth</convert>
+			<convert type="ValueRange">2160,4320</convert>
 			<convert type="ConditionalShowHide"/>
 		</widget>
-		<ePixmap pixmap="skin_default/icons/ico_format_off.png" position="2066,53" size="98,46"/>
-		<widget pixmap="skin_default/icons/ico_format_on.png" position="2066,53" render="Pixmap" size="98,46" source="Service" zPosition="1">
+		<widget backgroundColor="CursorBackground" cornerDia="80" font="Regular;34" foregroundColor="white" halign="center" position="2440,1340" render="FixedLabel" size="80,80" source="session.CurrentService" text="FHD" valign="center">
+			<convert type="ServiceInfo">VideoWidth</convert>
+			<convert type="ValueRange">1920,2159</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget backgroundColor="CursorBackground" cornerDia="80" font="Regular;34" foregroundColor="white" halign="center" position="2440,1340" render="FixedLabel" size="80,80" source="session.CurrentService" text="HD" valign="center">
+			<convert type="ServiceInfo">VideoWidth</convert>
+			<convert type="ValueRange">1280,1919</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget backgroundColor="CursorBackground" cornerDia="80" font="Regular;34" foregroundColor="white" halign="center" position="2440,1340" render="FixedLabel" size="80,80" source="session.CurrentService" text="qHD" valign="center">
+			<convert type="ServiceInfo">VideoWidth</convert>
+			<convert type="ValueRange">960,1279</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<eLabel backgroundColor="CursorBackground" cornerDia="80" font="Regular;34" foregroundColor="white" halign="center" position="2440,1340" size="80,80" text="SD" valign="center" zPosition="-1"/>
+		<eLabel backgroundColor="CursorBackground" cornerDia="80" font="Regular;34" foregroundColor="white" halign="center" position="2330,1340" size="80,80" text="4:3" valign="center"/>
+		<widget backgroundColor="CursorBackground" cornerDia="80" font="Regular;34" foregroundColor="white" halign="center" position="2330,1340" render="FixedLabel" size="80,80" source="session.CurrentService" text="16:9" valign="center" zPosition="1">
 			<convert type="ServiceInfo">IsWidescreen</convert>
 			<convert type="ConditionalShowHide"/>
 		</widget>
-		<widget pixmap="skin_default/icons/ico_hd_off.png" position="2186,53" render="Pixmap" size="98,46" source="Service">
-			<convert type="ServiceInfo">VideoWidth</convert>
-			<convert type="ValueRange">0,720</convert>
+		<eLabel backgroundColor="background" cornerDia="80" position="40,1340" size="155,80" zPosition="-1"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/dolbydigital_off.svg" position="65,1358" size="105,46"/>
+		<widget pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/dolbydigital.svg" position="65,1358" render="Pixmap" size="105,46" source="session.CurrentService" zPosition="1">
+			<convert type="ServiceInfo">IsMultichannel</convert>
 			<convert type="ConditionalShowHide"/>
 		</widget>
-		<widget pixmap="skin_default/icons/ico_hd_on.png" position="2186,53" render="Pixmap" size="98,46" source="Service" zPosition="1">
-			<convert type="ServiceInfo">VideoWidth</convert>
-			<convert type="ValueRange">721,1980</convert>
-			<convert type="ConditionalShowHide"/>
+		<widget font="Regular;45" halign="right" position="800,1360" render="Label" size="300,55" source="Service" transparent="1">
+			<convert type="COCServicePosition">Position,Negate</convert>
 		</widget>
-		<widget pixmap="Default-FHD/skin_default/icons/uhd.svg" position="2186,53" render="Pixmap" size="98,46" source="Service" zPosition="1">
-			<convert type="ServiceInfo">VideoWidth</convert>
-			<convert type="ValueRange">2160,3840</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget pixmap="Default-FHD/skin_default/icons/hdr.svg" position="2306,53" render="Pixmap" size="98,46" source="Service" zPosition="1">
-			<convert type="ServiceInfo">IsHdr</convert>
-			<convert type="ConditionalShowHide"/>
-		</widget>
-		<widget pixmap="skin_default/icons/icon_rec.png" position="2426,53" render="Pixmap" size="98,46" source="session.RecordState">
-			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
-		<ePixmap pixmap="Default-FHD/menu/mediacenter.svg" position="66,106" size="176,176" zPosition="2"/>
-		<widget backgroundColor="background" font="Regular;45" position="306,117" render="Label" size="186,53" source="Service" transparent="1">
-			<convert type="COCServicePosition">Position</convert>
-		</widget>
-		<eLabel backgroundColor="grey" position="493,190" size="1773,5"/>
-		<widget pointer="Default-FHD/MediaCockpit/skin/images/progress.png:1330,0" position="493,186" render="PositionGauge" size="1773,13" source="Service" transparent="1" zPosition="2">
-			<convert type="COCServicePosition">Gauge</convert>
-		</widget>
-		<widget pointer="Default-FHD/MediaCockpit/skin/images/progress_before.png:1330,0" position="493,186" render="PositionGauge" size="1773,13" source="Service" transparent="1" zPosition="3">
-			<convert type="COCBeforeTSPosition">Gauge</convert>
-		</widget>
-		<widget pointer="Default-FHD/MediaCockpit/skin/images/progress_rec.png:1330,0" position="493,186" render="PositionGauge" size="1773,13" source="Service" transparent="1" zPosition="1">
-			<convert type="COCRecordPosition">Gauge</convert>
-		</widget>
-		<widget backgroundColor="background" font="Regular;45" halign="right" position="2320,117" render="Label" size="186,53" source="Service" transparent="1">
-			<convert type="COCServicePosition">Remaining</convert>
-		</widget>
-		<widget font="Regular;48" foregroundColor="yellow" position="1300,221" render="Label" size="400,53" source="Service" transparent="1">
+		<widget font="Regular;55" halign="center" position="1150,1355" render="Label" size="260,55" source="Service" transparent="1">
 			<convert type="COCMovieInfo">MovieDuration</convert>
 			<convert type="COCClockToText">InMinutes</convert>
 		</widget>
-		<widget backgroundColor="background" font="Regular;45" position="306,221" render="Label" size="160,53" source="global.CurrentTime" transparent="1">
+		<widget font="Regular;45" halign="left" position="1465,1360" render="Label" size="300,55" source="Service" transparent="1">
+			<convert type="COCServicePosition">Remaining</convert>
+		</widget>
+		<ePixmap gradient="transparent,gradient,vertical" position="0,680" size="2560,700" zPosition="-3"/>
+		<eLabel backgroundColor="gradient" position="0,1340" size="2560,100" zPosition="-3"/>
+		<ePixmap pixmap="Default-FHD/menu/mediacenter.svg" position="40,1190" size="80,80" zPosition="2"/>
+		<widget font="Regular;56" noWrap="1" position="140,1200" render="Label" size="2360,65" source="Service" transparent="1">
+			<convert type="COCEventName">Name</convert>
+		</widget>
+		<eLabel backgroundColor="background" cornerDia="70" halign="center" position="2360,30" size="160,80" zPosition="-1"/>
+		<widget backgroundColor="listbg" font="Bold;40" halign="center" position="2360,50" render="Label" size="160,40" source="global.CurrentTime" transparent="1">
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<widget backgroundColor="background" font="Regular;45" halign="right" position="2320,221" render="Label" size="186,53" source="Service" transparent="1">
+		<eLabel backgroundColor="background" cornerDia="70" halign="center" position="2360,1190" size="160,80" zPosition="-1"/>
+		<widget backgroundColor="listbg" font="Bold;40" halign="center" position="2360,1210" render="Label" size="160,40" source="Service" transparent="1">
 			<convert type="COCServicePosition">EndTime,ShowNoSeconds</convert>
+		</widget>
+		<widget backgroundColor="grey" pointer="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/Default-WQHD/images/progress.png:2480,0" position="40,1295" render="PositionGauge" size="2480,12" source="Service" transparent="1" zPosition="2">
+			<convert type="COCServicePosition">Gauge</convert>
+		</widget>
+		<widget backgroundColor="grey" pointer="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/Default-WQHD/images/progress_before.png:2480,0" position="40,1295" render="PositionGauge" size="2480,12" source="Service" transparent="1" zPosition="3">
+			<convert type="COCBeforeTSPosition">Gauge</convert>
+		</widget>
+		<widget backgroundColor="dark" pointer="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/Default-WQHD/images/progress_rec.png:2480,0" position="40,1295" render="PositionGauge" size="2480,12" source="Service" zPosition="1">
+			<convert type="COCRecordPosition">Gauge</convert>
 		</widget>
 	</screen>
 	<screen id="3" name="MDCCockpitPlayerSummary" position="0,0" size="400,240">
-		<ePixmap pixmap="skin_default/display_bg.png" position="0,0" size="400,240" zPosition="-1"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/backdrop.png" position="0,0" size="400,240" zPosition="-1"/>
 		<widget font="Display;60" halign="center" position="5,5" render="Label" size="390,125" source="parent.Service" transparent="1" valign="center">
 			<convert type="COCEventName">Name</convert>
 		</widget>
-		<widget borderWidth="1" pixmap="Default-FHD/MediaCockpit/skin/images/progress_rec_lcd.png" position="center,140" render="Progress" size="380,15" source="parent.Service" transparent="1" zPosition="2">
+		<widget borderWidth="1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/progress_rec_lcd.png" position="center,140" render="Progress" size="380,15" source="parent.Service" transparent="1" zPosition="2">
 			<convert type="COCRecordPosition">Position</convert>
 		</widget>
-		<widget borderWidth="1" pixmap="Default-FHD/MediaCockpit/skin/images/progress_before_lcd.png" position="center,140" render="Progress" size="380,15" source="parent.Service" transparent="1" zPosition="3">
+		<widget borderWidth="1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/progress_before_lcd.png" position="center,140" render="Progress" size="380,15" source="parent.Service" transparent="1" zPosition="3">
 			<convert type="COCBeforeTSPosition">Position</convert>
 		</widget>
-		<widget borderWidth="1" pixmap="Default-FHD/MediaCockpit/skin/images/progress_lcd.png" position="center,140" render="Progress" size="380,15" source="parent.Service" transparent="1" zPosition="2">
+		<widget borderWidth="1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/progress_lcd.png" position="center,140" render="Progress" size="380,15" source="parent.Service" transparent="1" zPosition="2">
 			<convert type="COCServicePosition">Position</convert>
 		</widget>
 		<widget font="Display;75" halign="left" position="5,160" render="Label" size="235,80" source="parent.Service" transparent="1" valign="center">
@@ -236,7 +232,7 @@
 	<screen id="3" name="MDCCockpitMusicPlayerSummary" position="0,0" size="400,240">
 		<ePixmap pixmap="skin_default/display_bg.png" position="0,0" size="400,240" zPosition="-1"/>
 		<widget font="Display;60" halign="center" name="title" position="5,5" size="390,120" transparent="1" valign="center"/>
-		<widget borderWidth="1" pixmap="Default-FHD/MediaCockpit/skin/images/progress_lcd.png" position="center,140" render="Progress" size="380,15" source="Service" transparent="1" zPosition="2">
+		<widget borderWidth="1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/progress_lcd.png" position="center,140" render="Progress" size="380,15" source="Service" transparent="1" zPosition="2">
 			<convert type="COCServicePosition">Position</convert>
 		</widget>
 		<widget font="Display;75" position="5,160" render="Label" size="200,80" source="global.CurrentTime" transparent="1" valign="center">
@@ -248,34 +244,34 @@
 	</screen>
 	<screen backgroundColor="darkblue" flags="wfNoBorder" name="MDCCockpitMusicPlayer" position="0,0" size="2560,1440">
 		<eLabel backgroundColor="#20294071" position="66,133" size="2426,213"/>
-		<widget alphatest="on" name="play" pixmap="Default-FHD/MediaCockpit/skin/images/dvr_play.svg" position="160,160" size="80,80" zPosition="3"/>
-		<widget alphatest="on" name="pause" pixmap="Default-FHD/MediaCockpit/skin/images/dvr_pause.svg" position="160,160" size="80,80" zPosition="3"/>
+		<widget alphatest="on" name="play" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/dvr_play.svg" position="160,160" size="80,80" zPosition="3"/>
+		<widget alphatest="on" name="pause" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/dvr_pause.svg" position="160,160" size="80,80" zPosition="3"/>
 		<eLabel alphatest="on" backgroundColor="darkblue" position="265,185" size="1776,16" zPosition="2"/>
-		<widget pointer="Default-FHD/MediaCockpit/skin/images/progress.png:1330,0" position="266,186" render="PositionGauge" size="1773,13" source="Service" transparent="1" zPosition="3">
+		<widget pointer="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/Default-WQHD/images/progress.png:1773,0" position="266,186" render="PositionGauge" size="1773,13" source="Service" transparent="1" zPosition="3">
 			<convert type="COCServicePosition">Gauge</convert>
 		</widget>
 		<widget aplphatest="on" font="Regular;53" foregroundColor="grey" halign="left" position="2093,160" render="Label" size="266,80" source="Service" transparent="1" valign="center" zPosition="3">
 			<convert type="COCServicePosition">Remaining</convert>
 		</widget>
-		<widget alphatest="on" name="shuffle" pixmap="Default-FHD/MediaCockpit/skin/images/dvr_shuffle.svg" position="266,260" size="53,53" zPosition="3"/>
-		<widget alphatest="on" name="shuffle_off" pixmap="Default-FHD/MediaCockpit/skin/images/dvr_shuffle_off.svg" position="266,260" size="53,53" zPosition="3"/>
-		<widget alphatest="on" name="repeat" pixmap="Default-FHD/MediaCockpit/skin/images/dvr_repeat.svg" position="360,260" size="53,53" zPosition="3"/>
-		<widget alphatest="on" name="repeat_off" pixmap="Default-FHD/MediaCockpit/skin/images/dvr_repeat_off.svg" position="360,260" size="53,53" zPosition="3"/>
-		<widget alphatest="on" name="gapless" pixmap="Default-FHD/MediaCockpit/skin/images/gapless.svg" position="453,260" size="53,53" zPosition="3"/>
-		<widget alphatest="on" name="gapless_off" pixmap="Default-FHD/MediaCockpit/skin/images/gapless_off.svg" position="453,260" size="53,53" zPosition="3"/>
-		<widget mode="cover" name="cover" noCoverAvailablePic="Default-FHD/MediaCockpit/skin/images/no-cover.png" position="1800,466" size="600,600" transparent="1" zPosition="13"/>
-		<widget alphatest="on" name="play" pixmap="Default-FHD/MediaCockpit/skin/images/dvr_play.svg" position="153,526" size="80,80" zPosition="3"/>
-		<widget alphatest="on" name="pause" pixmap="Default-FHD/MediaCockpit/skin/images/dvr_pause.svg" position="153,526" size="80,80" zPosition="3"/>
+		<widget alphatest="on" name="shuffle" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/dvr_shuffle.svg" position="266,260" size="53,53" zPosition="3"/>
+		<widget alphatest="on" name="shuffle_off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/dvr_shuffle_off.svg" position="266,260" size="53,53" zPosition="3"/>
+		<widget alphatest="on" name="repeat" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/dvr_repeat.svg" position="360,260" size="53,53" zPosition="3"/>
+		<widget alphatest="on" name="repeat_off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/dvr_repeat_off.svg" position="360,260" size="53,53" zPosition="3"/>
+		<widget alphatest="on" name="gapless" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/gapless.svg" position="453,260" size="53,53" zPosition="3"/>
+		<widget alphatest="on" name="gapless_off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/gapless_off.svg" position="453,260" size="53,53" zPosition="3"/>
+		<widget mode="cover" name="cover" noCoverAvailablePic="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/no-cover.png" position="1800,466" size="600,600" transparent="1" zPosition="13"/>
+		<widget alphatest="on" name="play" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/dvr_play.svg" position="153,526" size="80,80" zPosition="3"/>
+		<widget alphatest="on" name="pause" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/dvr_pause.svg" position="153,526" size="80,80" zPosition="3"/>
 		<widget font="Regular;48" foregroundColor="grey" name="title" position="266,533" size="1466,66" transparent="1" valign="center" zPosition="1"/>
-		<ePixmap alphatest="on" pixmap="Default-FHD/MediaCockpit/skin/images/album.svg" position="160,633" size="66,66"/>
+		<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/album.svg" position="160,633" size="66,66"/>
 		<widget font="Regular;40" foregroundColor="grey" name="album" position="266,633" size="1466,66" transparent="1" valign="center" zPosition="1"/>
-		<ePixmap alphatest="on" pixmap="Default-FHD/MediaCockpit/skin/images/artist.svg" position="160,733" size="66,66"/>
+		<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/artist.svg" position="160,733" size="66,66"/>
 		<widget font="Regular;40" foregroundColor="grey" name="artist" position="266,733" size="1466,66" transparent="1" valign="center" zPosition="1"/>
-		<ePixmap alphatest="on" pixmap="Default-FHD/MediaCockpit/skin/images/genre.svg" position="160,833" size="68,68"/>
+		<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/genre.svg" position="160,833" size="68,68"/>
 		<widget font="Regular;40" foregroundColor="grey" name="genre" position="266,833" size="1466,66" transparent="1" valign="center" zPosition="1"/>
-		<ePixmap alphatest="on" pixmap="Default-FHD/MediaCockpit/skin/images/next.svg" position="160,933" size="66,66"/>
+		<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/next.svg" position="160,933" size="66,66"/>
 		<widget font="Regular;40" foregroundColor="grey" name="next_title" position="266,933" size="1466,66" transparent="1" valign="center" zPosition="1"/>
-		<widget blendColor="#fcc000" distance1="12" internalSize="0" mode="visUp" name="visual" pixmap1="Default-FHD/MediaCockpit/skin/images/bar_88_226.png" position="0,853" size="2560,453" smoothing="0.4" threshold1="24" transparent="1" zPosition="11"/>
+		<widget blendColor="#fcc000" distance1="12" internalSize="0" mode="visUp" name="visual" pixmap1="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/bar_88_226.png" position="0,853" size="2560,453" smoothing="0.4" threshold1="24" transparent="1" zPosition="11"/>
 	</screen>
 	<screen name="MDCCockpitContextMenu" position="center,center" size="1120,973" title="">
 		<widget enableWrapAround="1" itemHeight="60" position="13,13" render="Listbox" scrollbarMode="showOnDemand" size="1093,906" source="menu">

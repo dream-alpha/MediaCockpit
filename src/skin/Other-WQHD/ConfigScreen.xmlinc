@@ -1,0 +1,10 @@
+	<screen name="MDCConfigScreen" position="center,147" size="2400,1240" title="">
+		<layout name="MDCColor_Buttons"/>
+		<layout name="MDCColor_Buttons_Labels"/>
+		<layout name="MDCDate"/>
+		<layout name="MDCTime"/>
+		<eLabel backgroundColor="grey" position="13,107" size="2373,1"/>
+		<widget enableWrapAround="1" itemHeight="60" name="config" position="13,120" scrollbarMode="showOnDemand" size="2373,840"/>
+		<eLabel backgroundColor="grey" position="13,973" size="2373,1"/>
+		<widget font="Regular;43" halign="center" position="13,987" render="Label" size="2373,240" source="help" valign="center"/>
+	</screen>

@@ -1,0 +1,3 @@
+	<listboxcontent>
+		<config offPixmap="skin_default/switch_off.svg" onPixmap="skin_default/switch_on.svg" size="80,43"/>
+	</listboxcontent>

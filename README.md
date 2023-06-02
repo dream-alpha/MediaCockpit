@@ -36,4 +36,4 @@ The installation script will also install a feed source that enables a convenien
 ## Links
 - Package feed: https://gemfury.com/dream-alpha
 - Wiki: https://github.com/dream-alpha/MediaCockpit/wiki
-- Support thread: https://dreambox.de/board/index.php?thread/24581-mediacockpit/&postID=211507&highlight=MediaCockpit#post211507
+- Support thread: https://github.com/dream-alpha/MediaCockpit/discussions

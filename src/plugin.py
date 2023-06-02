@@ -19,17 +19,15 @@
 # <http://www.gnu.org/licenses/>.
 
 
-import os
 from Plugins.Plugin import PluginDescriptor
 from Plugins.SystemPlugins.MountCockpit.MountCockpit import MountCockpit
 from Components.config import config
 from .__init__ import _
-from .Debug import logger, createLogFile
-from .SkinUtils import initPluginSkinPath, loadPluginSkin
+from .Debug import logger
+from .SkinUtils import loadPluginSkin
 from .Version import ID, VERSION
 from .MediaCockpit import MediaCockpit
 from .ConfigInit import ConfigInit
-from .FileUtils import deleteFile, touchFile
 
 
 def openMediaCockpit(session, **__):
@@ -42,13 +40,10 @@ def autoStart(reason, **kwargs):
 		if "session" in kwargs:
 			logger.info("+++ Version: %s starts...", VERSION)
 			# session = kwargs["session"]
-			touchFile("/etc/enigma2/.mdc")
 			MountCockpit.getInstance().registerBookmarks(ID, config.plugins.mediacockpit.bookmarks.value)
-			initPluginSkinPath()
 			loadPluginSkin("skin.xml")
 	elif reason == 1:  # shutdown
 		logger.info("--- shutdown")
-		deleteFile("/etc/enigma2/.mdc")
 	else:
 		logger.info("reason not handled: %s", reason)
 
@@ -56,8 +51,6 @@ def autoStart(reason, **kwargs):
 def Plugins(**__):
 	logger.info("+++ Plugins")
 	ConfigInit()
-	if os.path.exists("/etc/enigma2/.mdc"):
-		createLogFile()
 	descriptors = [
 		PluginDescriptor(
 			name="MediaCockpit",

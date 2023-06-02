@@ -1,0 +1,26 @@
+	<colors>
+		<color name="white" value="#ffffff"/>
+		<color name="grey" value="#bababa"/>
+		<color name="black" value="#000000"/>
+		<color name="dark" value="#212121"/>
+		<color name="red" value="#ff0000"/>
+		<color name="green" value="#669900"/>
+		<color name="yellow" value="#e5b243"/>
+		<color name="blue" value="#3366cc"/>
+		<color name="transparent" value="#ff000000"/>
+		<color name="transpWhite" value="#80ffffff"/>
+		<color name="transpBlack" value="#30000000"/>
+		<color name="background" value="#000000"/>
+		<color name="foreground" value="#ffffff"/>
+		<color name="CursorBackground" value="#41535c"/>
+		<color name="CursorForeground" value="#ffffff"/>
+		<color name="HeaderForeground" value="#ffffff"/>
+		<color name="Heading" value="#768b94"/>
+		<color name="Progress" value="#607d8a"/>
+		<color name="gradient" value="#131a1d"/>
+		<color name="Tile" value="#131a1d"/>
+		<color name="TileBackground" value="#131a1d"/>
+		<color name="ScreenBackground" value="#263237"/>
+		<color name="InfoBackground" value="#10131a1d"/>
+		<color name="Entryselect" value="#556973"/>
+	</colors>
