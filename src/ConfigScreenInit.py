@@ -81,7 +81,6 @@ class ConfigScreenInit():
 			(_("Cover download path")                           , config.plugins.mediacockpit.cover_download_path               , self.validatePath     , self.openLocationBox  , 0     , []          , _("Select the path for cover downloads.")),
 			(self.section                                       , _("DEBUG")                                                    , None                  , None                  , 2     , []          , ""),
 			(_("Debug log")                                     , config.plugins.mediacockpit.debug_log_level                   , self.setLogLevel      , None                  , 2     , []          , _("Should a debug log be activated?")),
-			(_("Log file path")                                 , config.plugins.mediacockpit.debug_log_path                    , self.validatePath     , self.openLocationBox  , 2     , [-1]        , _("Select the path for a log file.")),
 		]
 
 	@staticmethod

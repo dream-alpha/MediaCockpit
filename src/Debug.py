@@ -31,7 +31,6 @@ format_string = (ID + ": " + "%(levelname)s: %(filename)s: %(funcName)s: %(messa
 log_levels = {"ERROR": logging.ERROR, "INFO": logging.INFO, "DEBUG": logging.DEBUG}
 plugin = PLUGIN.lower()
 exec("config.plugins." + plugin + " = ConfigSubsection()")  # noqa: F401, pylint: disable=W0122
-exec("config.plugins." + plugin + ".debug_log_path = ConfigDirectory(default='/media/hdd')")  # noqa: F401, pylint: disable=W0122
 exec("config.plugins." + plugin + ".debug_log_level = ConfigSelection(default='INFO', choices=log_levels.keys())")  # noqa: F401, pylint: disable=W0122
 
 

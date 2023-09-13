@@ -1,0 +1,6 @@
+	<widget font="Regular;34" halign="right" position="1240,0" render="Label" size="400,70" source="global.CurrentTime" valign="center">
+		<convert type="ClockToText">Date</convert>
+	</widget>
+	<widget font="Regular;34" halign="right" position="1650,0" render="Label" size="120,70" source="global.CurrentTime" valign="center">
+		<convert type="ClockToText">Default</convert>
+	</widget>

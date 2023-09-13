@@ -1,6 +1,0 @@
-	<layout name="MDCColor_Buttons">
-		<ePixmap pixmap="Default-HD/buttons/red.png" position="6,0" size="200,46"/>
-		<ePixmap pixmap="Default-HD/buttons/green.png" position="206,0" size="200,46"/>
-		<ePixmap pixmap="Default-HD/buttons/yellow.png" position="406,0" size="200,46"/>
-		<ePixmap pixmap="Default-HD/buttons/blue.png" position="606,0" size="200,46"/>
-	</layout>

@@ -57,7 +57,6 @@ def Plugins(**__):
 			description=_("Pictures, Movies, and Slideshows"),
 			where=[
 				PluginDescriptor.WHERE_PLUGINMENU,
-				PluginDescriptor.WHERE_EXTENSIONSMENU,
 			],
 			fnc=openMediaCockpit,
 			icon="MediaCockpit.svg"

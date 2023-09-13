@@ -86,7 +86,7 @@ class ConfigScreen(ConfigScreenInit, ConfigListScreen, Screen):
 		self["config"].onSelectionChanged.append(self.updateHelp)
 		# self["config"].onSelectionChanged.append(self.handleInputHelpers)
 
-		self.setTitle(PLUGIN)
+		self.setTitle(PLUGIN + " " + _("Setup"))
 		self.createConfig()
 
 	def selectionChanged(self):
@@ -172,7 +172,6 @@ class ConfigScreen(ConfigScreenInit, ConfigListScreen, Screen):
 					else:
 						self.list.append(getConfigListEntry(conf[0], conf[1], conf[2], conf[3], conf[4], conf[5], conf[6]))
 		self["config"].setList(self.list)
-		self.setTitle(_("Setup"))
 
 	def loadDefaultSettings(self):
 		self.session.openWithCallback(

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "#-#-#-#-#  de.po  #-#-#-#-#\n"
 "Project-Id-Version: \n"
-"POT-Creation-Date: \n"
+"POT-Creation-Date: 2023-10-16 15:21+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: dream-alpha\n"
 "Language-Team: \n"
@@ -10,10 +10,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.3.2\n"
+"X-Poedit-Basepath: ../src\n"
+"X-Poedit-SearchPath-0: .\n"
 "#-#-#-#-#  de.po (MediaCockpit)  #-#-#-#-#\n"
 "Project-Id-Version: MediaCockpit\n"
-"POT-Creation-Date: 2023-01-24 14:59+0100\n"
+"POT-Creation-Date: 2023-10-18 17:50+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: dream-alpha\n"
 "Language-Team: \n"
@@ -21,7 +23,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -40,19 +42,10 @@ msgstr ""
 msgid "End"
 msgstr ""
 
-msgid "Stop playback"
-msgstr ""
-
 msgid "Skip forward"
 msgstr ""
 
 msgid "Skip backward"
-msgstr ""
-
-msgid "EPG Info"
-msgstr ""
-
-msgid "Do you want to resume playback at position: %d:%02d:%02d?"
 msgstr ""
 
 msgid "Cancel"
@@ -64,10 +57,10 @@ msgstr ""
 msgid "Defaults"
 msgstr ""
 
-msgid "Really close without saving settings?"
+msgid "Setup"
 msgstr ""
 
-msgid "Setup"
+msgid "Really close without saving settings?"
 msgstr ""
 
 msgid "Loading default settings will overwrite all settings, really load them?"
@@ -112,13 +105,19 @@ msgstr ""
 msgid "Please wait"
 msgstr ""
 
-msgid "min"
-msgstr ""
-
 msgid "Select function"
 msgstr ""
 
 msgid "About"
+msgstr ""
+
+msgid "Stop playback"
+msgstr ""
+
+msgid "EPG Info"
+msgstr ""
+
+msgid "Do you want to resume playback at position: %d:%02d:%02d?"
 msgstr ""
 
 msgid "DD.MM.YYYY"
@@ -423,12 +422,6 @@ msgstr ""
 msgid "Should a debug log be activated?"
 msgstr ""
 
-msgid "Log file path"
-msgstr ""
-
-msgid "Select the path for a log file."
-msgstr ""
-
 msgid "Loading"
 msgstr ""
 
@@ -565,6 +558,9 @@ msgid "GPS Longitude"
 msgstr ""
 
 msgid "Exif Version"
+msgstr ""
+
+msgid "min"
 msgstr ""
 
 msgid "Song"

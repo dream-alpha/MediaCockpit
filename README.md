@@ -1,8 +1,5 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/50919871fe7145e0907dcaf3109fee77)](https://www.codacy.com/gh/dream-alpha/MediaCockpit/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dream-alpha/MediaCockpit&amp;utm_campaign=Badge_Grade)
-
-<a href="https://gemfury.com/f/partner">
-  <img src="https://badge.fury.io/fp/gemfury.svg" alt="Public Repository">
-</a>
+[![Gemfury](https://badge.fury.io/fp/gemfury.svg)](https://gemfury.com/f/partner)
 
 # MediaCockpit (MDC)
 ## Functions

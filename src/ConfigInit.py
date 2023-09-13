@@ -129,7 +129,6 @@ class ConfigInit():
 		config.plugins.mediacockpit.show_loading_details = ConfigYesNo(default=True)
 		config.plugins.mediacockpit.fake_entry = NoSave(ConfigNothing())
 		config.plugins.mediacockpit.debug_log_level = ConfigSelection(default="INFO", choices=list(log_levels.keys()))
-		config.plugins.mediacockpit.debug_log_path = ConfigDirectory(default="/media/hdd")
 		config.plugins.mediacockpit.non_standard_decoder = ConfigYesNo(default=True)
 		config.plugins.mediacockpit.cover_downloader = ConfigSelection(default="lastfm", choices=choices_cover_downloader)
 		config.plugins.mediacockpit.cover_download_path = ConfigDirectory(default="/data/music/covers")

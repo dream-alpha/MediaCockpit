@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "#-#-#-#-#  de.po  #-#-#-#-#\n"
 "Project-Id-Version: \n"
-"POT-Creation-Date: \n"
+"POT-Creation-Date: 2023-10-16 15:21+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: dream-alpha\n"
 "Language-Team: \n"
@@ -10,10 +10,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.3.2\n"
+"X-Poedit-Basepath: ../src\n"
+"X-Poedit-SearchPath-0: .\n"
 "#-#-#-#-#  de.po (MediaCockpit)  #-#-#-#-#\n"
 "Project-Id-Version: MediaCockpit\n"
-"POT-Creation-Date: 2023-01-24 14:59+0100\n"
+"POT-Creation-Date: 2023-10-18 17:50+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: dream-alpha\n"
 "Language-Team: \n"
@@ -21,7 +23,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -40,20 +42,11 @@ msgstr "Lizenz"
 msgid "End"
 msgstr "Ende"
 
-msgid "Stop playback"
-msgstr "Stoppe Wiedergabe"
-
 msgid "Skip forward"
 msgstr "Springe vorwärts"
 
 msgid "Skip backward"
 msgstr "Springe zurück"
-
-msgid "EPG Info"
-msgstr "EPG Info"
-
-msgid "Do you want to resume playback at position: %d:%02d:%02d?"
-msgstr "Soll die Wiedergabe an Position: %d:%02d:%02d fortgesetzt werden?"
 
 msgid "Cancel"
 msgstr "Abbruch"
@@ -64,11 +57,11 @@ msgstr "Speichern"
 msgid "Defaults"
 msgstr "Standard"
 
-msgid "Really close without saving settings?"
-msgstr "Fortfahren ohne Speichern der Einstellungen?"
-
 msgid "Setup"
 msgstr "Einstellungen"
+
+msgid "Really close without saving settings?"
+msgstr "Fortfahren ohne Speichern der Einstellungen?"
 
 msgid "Loading default settings will overwrite all settings, really load them?"
 msgstr ""
@@ -115,14 +108,20 @@ msgstr "Abgebrochen"
 msgid "Please wait"
 msgstr "Bitte warten"
 
-msgid "min"
-msgstr "Min"
-
 msgid "Select function"
 msgstr "Funktionen"
 
 msgid "About"
 msgstr "Über"
+
+msgid "Stop playback"
+msgstr "Stoppe Wiedergabe"
+
+msgid "EPG Info"
+msgstr "EPG Info"
+
+msgid "Do you want to resume playback at position: %d:%02d:%02d?"
+msgstr "Soll die Wiedergabe an Position: %d:%02d:%02d fortgesetzt werden?"
 
 msgid "DD.MM.YYYY"
 msgstr "TT.MM.JJJJ"
@@ -447,12 +446,6 @@ msgstr "Debug Log"
 msgid "Should a debug log be activated?"
 msgstr "Soll ein Debug Log aktiviert werden?"
 
-msgid "Log file path"
-msgstr "Logdaten Verzeichnis"
-
-msgid "Select the path for a log file."
-msgstr "Welches Verzeichnis soll für die Logdatei verwendet werden?"
-
 msgid "Loading"
 msgstr "Lade"
 
@@ -590,6 +583,9 @@ msgstr "GPS Längengrad"
 
 msgid "Exif Version"
 msgstr "Exif Version"
+
+msgid "min"
+msgstr "Min"
 
 msgid "Song"
 msgstr "Lied"
