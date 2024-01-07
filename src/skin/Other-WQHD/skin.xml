@@ -3,12 +3,13 @@
 	<colors>
 		<color name="darkblue" value="#000d1940"/>
 		<color name="darkgrey" value="#141414"/>
+		<color name="mediumgrey" value="#808080"/>
 	</colors>
 	<listboxcontent>
 		<config offPixmap="skin_default/switch_off.svg" onPixmap="skin_default/switch_on.svg" size="80,43"/>
 	</listboxcontent>
-	<screen id="3" name="MDCCockpitDisplaySummary" position="0,0" size="400,240">
-		<ePixmap pixmap="skin_default/display_bg.png" position="0,0" size="400,240" zPosition="-1"/>
+	<screen id="3" name="MDCMediaCockpitSummary" position="0,0" size="400,240">
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/Other-WQHD/images/display_bg.png" position="0,0" size="400,240" zPosition="-1"/>
 		<widget font="Display;75" halign="center" position="0,10" render="Label" size="400,75" source="parent.lcd_title" transparent="1" valign="top"/>
 		<widget font="Display;60" halign="center" position="0,100" render="Label" size="400,125" source="parent.lcd_info" transparent="1" valign="center"/>
 	</screen>
@@ -33,10 +34,18 @@
 		<widget font="Regular;43" halign="center" position="13,987" render="Label" size="2373,240" source="help" valign="center"/>
 	</screen>
 	<screen flags="wfNoBorder" name="MDCSlideshow" position="0,0" size="2560,1440">
-		<widget name="image" position="0,0" size="2560,1440" zPosition="-2"/>
-		<widget name="picture_background" position="0,0" size="2560,1440" zPosition="0"/>
-		<widget name="picture" position="0,0" size="2560,1440" zPosition="1"/>
+		<widget name="image" position="0,0" size="2560,1440" zPosition="3"/>
+		<widget name="picture_background" position="0,0" size="2560,1440" zPosition="1"/>
+		<widget name="picture" position="0,0" size="2560,1440" zPosition="2"/>
 		<widget font="Regular;27" halign="left" name="osd_info" noWrap="1" position="27,13" size="2513,33" transparent="1" zPosition="2"/>
+		<ePixmap pixmap="Default-FHD/skin_default/buttons/red.svg" position="67,1340" size="606,93"/>
+		<ePixmap pixmap="Default-FHD/skin_default/buttons/green.svg" position="673,1340" size="606,93"/>
+		<ePixmap pixmap="Default-FHD/skin_default/buttons/yellow.svg" position="1279,1340" size="606,93"/>
+		<ePixmap pixmap="Default-FHD/skin_default/buttons/blue.svg" position="1885,1340" size="606,93"/>
+		<widget backgroundColor="#ff0000" font="Regular;40" foregroundColor="#ffffff" halign="center" name="key_red" position="67,1340" shadowColor="#000000" shadowOffset="-2,-2" size="606,93" transparent="1" valign="center" zPosition="1"/>
+		<widget backgroundColor="#669900" font="Regular;40" foregroundColor="#ffffff" halign="center" name="key_green" position="673,1340" shadowColor="#000000" shadowOffset="-2,-2" size="606,93" transparent="1" valign="center" zPosition="1"/>
+		<widget backgroundColor="#e5b243" font="Regular;40" foregroundColor="#ffffff" halign="center" name="key_yellow" position="1279,1340" shadowColor="#000000" shadowOffset="-2,-2" size="606,93" transparent="1" valign="center" zPosition="1"/>
+		<widget backgroundColor="#3366cc" font="Regular;40" foregroundColor="#ffffff" halign="center" name="key_blue" position="1885,1340" shadowColor="#000000" shadowOffset="-2,-2" size="606,93" transparent="1" valign="center" zPosition="1"/>
 	</screen>
 	<screen name="MDCMediaInfo" position="center,147" size="2400,1240">
 		<ePixmap pixmap="Default-FHD/skin_default/buttons/red.svg" position="13,7" size="400,93"/>
@@ -56,7 +65,7 @@
 		<widget name="icon" position="180,300" size="200,200"/>
 		<widget name="thumbnail" position="13,133" size="533,533"/>
 		<widget enableWrapAround="1" position="613,133" render="Listbox" scrollbarMode="showOnDemand" size="1773,1067" source="list">
-			<convert type="TemplatedMultiContent">{ "template": [ MultiContentEntryText(pos=(5,0), size=(340,40), flags=RT_VALIGN_CENTER, text=0), MultiContentEntryText(pos=(350,0), size=(980,40), flags=RT_VALIGN_CENTER, text=1), ], "fonts": [gFont("Regular",29)], "itemHeight":40 }</convert>
+			<convert type="TemplatedMultiContent">{"template":[MultiContentEntryText(pos=(7,0),size=(453,53),flags=RT_VALIGN_CENTER,text=0),MultiContentEntryText(pos=(467,0),size=(1307,53),flags=RT_VALIGN_CENTER,text=1),],"fonts":[gFont("Regular",39)],"itemHeight":53}</convert>
 		</widget>
 	</screen>
 	<screen flags="wfNoBorder" name="MDCCockpitPlayer" position="0,1100" size="2560,300">
@@ -145,83 +154,91 @@
 			<convert type="COCServicePosition">Remaining,ShowNoSeconds</convert>
 		</widget>
 	</screen>
-	<screen name="MDCMediaCockpit" size="2560,1440">
+	<screen backgroundColor="background" flags="wfNoBorder" name="MDCMediaCockpit" position="center,center" size="2560,1440">
 		<widget font="Regular;40" name="osd_info" noWrap="1" position="73,27" size="2200,47"/>
-		<widget cornerRadius="64" name="Frame0" position="73,113" size="440,387" zPosition="2"/>
-		<widget cornerRadius="64" name="Frame1" position="567,113" size="440,387" zPosition="2"/>
-		<widget cornerRadius="64" name="Frame2" position="1060,113" size="440,387" zPosition="2"/>
-		<widget cornerRadius="64" name="Frame3" position="1553,113" size="440,387" zPosition="2"/>
-		<widget cornerRadius="64" name="Frame4" position="2047,113" size="440,387" zPosition="2"/>
-		<widget cornerRadius="64" name="Frame5" position="73,553" size="440,387" zPosition="2"/>
-		<widget cornerRadius="64" name="Frame6" position="567,553" size="440,387" zPosition="2"/>
-		<widget cornerRadius="64" name="Frame7" position="1060,553" size="440,387" zPosition="2"/>
-		<widget cornerRadius="64" name="Frame8" position="1553,553" size="440,387" zPosition="2"/>
-		<widget cornerRadius="64" name="Frame9" position="2047,553" size="440,387" zPosition="2"/>
-		<widget cornerRadius="64" name="Frame10" position="73,993" size="440,387" zPosition="2"/>
-		<widget cornerRadius="64" name="Frame11" position="567,993" size="440,387" zPosition="2"/>
-		<widget cornerRadius="64" name="Frame12" position="1060,993" size="440,387" zPosition="2"/>
-		<widget cornerRadius="64" name="Frame13" position="1553,993" size="440,387" zPosition="2"/>
-		<widget cornerRadius="64" name="Frame14" position="2047,993" size="440,387" zPosition="2"/>
-		<widget cornerRadius="64" name="Tile0" position="80,120" size="427,373" zPosition="3"/>
-		<widget cornerRadius="64" name="Tile1" position="573,120" size="427,373" zPosition="3"/>
-		<widget cornerRadius="64" name="Tile2" position="1067,120" size="427,373" zPosition="3"/>
-		<widget cornerRadius="64" name="Tile3" position="1560,120" size="427,373" zPosition="3"/>
-		<widget cornerRadius="64" name="Tile4" position="2053,120" size="427,373" zPosition="3"/>
-		<widget cornerRadius="64" name="Tile5" position="80,560" size="427,373" zPosition="3"/>
-		<widget cornerRadius="64" name="Tile6" position="573,560" size="427,373" zPosition="3"/>
-		<widget cornerRadius="64" name="Tile7" position="1067,560" size="427,373" zPosition="3"/>
-		<widget cornerRadius="64" name="Tile8" position="1560,560" size="427,373" zPosition="3"/>
-		<widget cornerRadius="64" name="Tile9" position="2053,560" size="427,373" zPosition="3"/>
-		<widget cornerRadius="64" name="Tile10" position="80,1000" size="427,373" zPosition="3"/>
-		<widget cornerRadius="64" name="Tile11" position="573,1000" size="427,373" zPosition="3"/>
-		<widget cornerRadius="64" name="Tile12" position="1067,1000" size="427,373" zPosition="3"/>
-		<widget cornerRadius="64" name="Tile13" position="1560,1000" size="427,373" zPosition="3"/>
-		<widget cornerRadius="64" name="Tile14" position="2053,1000" size="427,373" zPosition="3"/>
-		<widget name="Icon0" position="193,173" size="200,200" zPosition="4"/>
-		<widget name="Icon1" position="687,173" size="200,200" zPosition="4"/>
-		<widget name="Icon2" position="1180,173" size="200,200" zPosition="4"/>
-		<widget name="Icon3" position="1673,173" size="200,200" zPosition="4"/>
-		<widget name="Icon4" position="2167,173" size="200,200" zPosition="4"/>
-		<widget name="Icon5" position="193,613" size="200,200" zPosition="4"/>
-		<widget name="Icon6" position="687,613" size="200,200" zPosition="4"/>
-		<widget name="Icon7" position="1180,613" size="200,200" zPosition="4"/>
-		<widget name="Icon8" position="1673,613" size="200,200" zPosition="4"/>
-		<widget name="Icon9" position="2167,613" size="200,200" zPosition="4"/>
-		<widget name="Icon10" position="193,1053" size="200,200" zPosition="4"/>
-		<widget name="Icon11" position="687,1053" size="200,200" zPosition="4"/>
-		<widget name="Icon12" position="1180,1053" size="200,200" zPosition="4"/>
-		<widget name="Icon13" position="1673,1053" size="200,200" zPosition="4"/>
-		<widget name="Icon14" position="2167,1053" size="200,200" zPosition="4"/>
-		<widget font="Regular;32" halign="center" name="Text0" position="100,393" size="387,80" transparent="1" valign="center" zPosition="4"/>
-		<widget font="Regular;32" halign="center" name="Text1" position="593,393" size="387,80" transparent="1" valign="center" zPosition="4"/>
-		<widget font="Regular;32" halign="center" name="Text2" position="1087,393" size="387,80" transparent="1" valign="center" zPosition="4"/>
-		<widget font="Regular;32" halign="center" name="Text3" position="1580,393" size="387,80" transparent="1" valign="center" zPosition="4"/>
-		<widget font="Regular;32" halign="center" name="Text4" position="2073,393" size="387,80" transparent="1" valign="center" zPosition="4"/>
-		<widget font="Regular;32" halign="center" name="Text5" position="100,833" size="387,80" transparent="1" valign="center" zPosition="4"/>
-		<widget font="Regular;32" halign="center" name="Text6" position="593,833" size="387,80" transparent="1" valign="center" zPosition="4"/>
-		<widget font="Regular;32" halign="center" name="Text7" position="1087,833" size="387,80" transparent="1" valign="center" zPosition="4"/>
-		<widget font="Regular;32" halign="center" name="Text8" position="1580,833" size="387,80" transparent="1" valign="center" zPosition="4"/>
-		<widget font="Regular;32" halign="center" name="Text9" position="2073,833" size="387,80" transparent="1" valign="center" zPosition="4"/>
-		<widget font="Regular;32" halign="center" name="Text10" position="100,1273" size="387,80" transparent="1" valign="center" zPosition="4"/>
-		<widget font="Regular;32" halign="center" name="Text11" position="593,1273" size="387,80" transparent="1" valign="center" zPosition="4"/>
-		<widget font="Regular;32" halign="center" name="Text12" position="1087,1273" size="387,80" transparent="1" valign="center" zPosition="4"/>
-		<widget font="Regular;32" halign="center" name="Text13" position="1580,1273" size="387,80" transparent="1" valign="center" zPosition="4"/>
-		<widget font="Regular;32" halign="center" name="Text14" position="2073,1273" size="387,80" transparent="1" valign="center" zPosition="4"/>
-		<widget name="Picture0" position="80,120" size="427,373" zPosition="5"/>
-		<widget name="Picture1" position="573,120" size="427,373" zPosition="5"/>
-		<widget name="Picture2" position="1067,120" size="427,373" zPosition="5"/>
-		<widget name="Picture3" position="1560,120" size="427,373" zPosition="5"/>
-		<widget name="Picture4" position="2053,120" size="427,373" zPosition="5"/>
-		<widget name="Picture5" position="80,560" size="427,373" zPosition="5"/>
-		<widget name="Picture6" position="573,560" size="427,373" zPosition="5"/>
-		<widget name="Picture7" position="1067,560" size="427,373" zPosition="5"/>
-		<widget name="Picture8" position="1560,560" size="427,373" zPosition="5"/>
-		<widget name="Picture9" position="2053,560" size="427,373" zPosition="5"/>
-		<widget name="Picture10" position="80,1000" size="427,373" zPosition="5"/>
-		<widget name="Picture11" position="573,1000" size="427,373" zPosition="5"/>
-		<widget name="Picture12" position="1067,1000" size="427,373" zPosition="5"/>
-		<widget name="Picture13" position="1560,1000" size="427,373" zPosition="5"/>
-		<widget name="Picture14" position="2053,1000" size="427,373" zPosition="5"/>
+		<widget cornerRadius="64" name="Frame0" position="75,108" size="440,387" zPosition="2"/>
+		<widget cornerRadius="64" name="Frame1" position="567,108" size="440,387" zPosition="2"/>
+		<widget cornerRadius="64" name="Frame2" position="1060,108" size="440,387" zPosition="2"/>
+		<widget cornerRadius="64" name="Frame3" position="1553,108" size="440,387" zPosition="2"/>
+		<widget cornerRadius="64" name="Frame4" position="2047,108" size="440,387" zPosition="2"/>
+		<widget cornerRadius="64" name="Frame5" position="75,520" size="440,387" zPosition="2"/>
+		<widget cornerRadius="64" name="Frame6" position="567,520" size="440,387" zPosition="2"/>
+		<widget cornerRadius="64" name="Frame7" position="1060,520" size="440,387" zPosition="2"/>
+		<widget cornerRadius="64" name="Frame8" position="1553,520" size="440,387" zPosition="2"/>
+		<widget cornerRadius="64" name="Frame9" position="2047,520" size="440,387" zPosition="2"/>
+		<widget cornerRadius="64" name="Frame10" position="75,933" size="440,387" zPosition="2"/>
+		<widget cornerRadius="64" name="Frame11" position="567,933" size="440,387" zPosition="2"/>
+		<widget cornerRadius="64" name="Frame12" position="1060,933" size="440,387" zPosition="2"/>
+		<widget cornerRadius="64" name="Frame13" position="1553,933" size="440,387" zPosition="2"/>
+		<widget cornerRadius="64" name="Frame14" position="2047,933" size="440,387" zPosition="2"/>
+		<widget cornerRadius="64" name="Tile0" position="80,113" size="427,373" zPosition="3"/>
+		<widget cornerRadius="64" name="Tile1" position="573,113" size="427,373" zPosition="3"/>
+		<widget cornerRadius="64" name="Tile2" position="1067,113" size="427,373" zPosition="3"/>
+		<widget cornerRadius="64" name="Tile3" position="1560,113" size="427,373" zPosition="3"/>
+		<widget cornerRadius="64" name="Tile4" position="2053,113" size="427,373" zPosition="3"/>
+		<widget cornerRadius="64" name="Tile5" position="80,526" size="427,373" zPosition="3"/>
+		<widget cornerRadius="64" name="Tile6" position="573,526" size="427,373" zPosition="3"/>
+		<widget cornerRadius="64" name="Tile7" position="1067,526" size="427,373" zPosition="3"/>
+		<widget cornerRadius="64" name="Tile8" position="1560,526" size="427,373" zPosition="3"/>
+		<widget cornerRadius="64" name="Tile9" position="2053,526" size="427,373" zPosition="3"/>
+		<widget cornerRadius="64" name="Tile10" position="80,940" size="427,373" zPosition="3"/>
+		<widget cornerRadius="64" name="Tile11" position="573,940" size="427,373" zPosition="3"/>
+		<widget cornerRadius="64" name="Tile12" position="1067,940" size="427,373" zPosition="3"/>
+		<widget cornerRadius="64" name="Tile13" position="1560,940" size="427,373" zPosition="3"/>
+		<widget cornerRadius="64" name="Tile14" position="2053,940" size="427,373" zPosition="3"/>
+		<widget name="Icon0" position="193,166" size="200,200" zPosition="4"/>
+		<widget name="Icon1" position="687,166" size="200,200" zPosition="4"/>
+		<widget name="Icon2" position="1180,166" size="200,200" zPosition="4"/>
+		<widget name="Icon3" position="1673,166" size="200,200" zPosition="4"/>
+		<widget name="Icon4" position="2167,166" size="200,200" zPosition="4"/>
+		<widget name="Icon5" position="193,580" size="200,200" zPosition="4"/>
+		<widget name="Icon6" position="687,580" size="200,200" zPosition="4"/>
+		<widget name="Icon7" position="1180,580" size="200,200" zPosition="4"/>
+		<widget name="Icon8" position="1673,580" size="200,200" zPosition="4"/>
+		<widget name="Icon9" position="2167,580" size="200,200" zPosition="4"/>
+		<widget name="Icon10" position="193,993" size="200,200" zPosition="4"/>
+		<widget name="Icon11" position="687,993" size="200,200" zPosition="4"/>
+		<widget name="Icon12" position="1180,993" size="200,200" zPosition="4"/>
+		<widget name="Icon13" position="1673,993" size="200,200" zPosition="4"/>
+		<widget name="Icon14" position="2167,993" size="200,200" zPosition="4"/>
+		<widget font="Regular;32" halign="center" name="Text0" position="100,386" size="387,80" transparent="1" valign="center" zPosition="4"/>
+		<widget font="Regular;32" halign="center" name="Text1" position="593,386" size="387,80" transparent="1" valign="center" zPosition="4"/>
+		<widget font="Regular;32" halign="center" name="Text2" position="1087,386" size="387,80" transparent="1" valign="center" zPosition="4"/>
+		<widget font="Regular;32" halign="center" name="Text3" position="1580,386" size="387,80" transparent="1" valign="center" zPosition="4"/>
+		<widget font="Regular;32" halign="center" name="Text4" position="2073,386" size="387,80" transparent="1" valign="center" zPosition="4"/>
+		<widget font="Regular;32" halign="center" name="Text5" position="100,800" size="387,80" transparent="1" valign="center" zPosition="4"/>
+		<widget font="Regular;32" halign="center" name="Text6" position="593,800" size="387,80" transparent="1" valign="center" zPosition="4"/>
+		<widget font="Regular;32" halign="center" name="Text7" position="1087,800" size="387,80" transparent="1" valign="center" zPosition="4"/>
+		<widget font="Regular;32" halign="center" name="Text8" position="1580,800" size="387,80" transparent="1" valign="center" zPosition="4"/>
+		<widget font="Regular;32" halign="center" name="Text9" position="2073,800" size="387,80" transparent="1" valign="center" zPosition="4"/>
+		<widget font="Regular;32" halign="center" name="Text10" position="100,1213" size="387,80" transparent="1" valign="center" zPosition="4"/>
+		<widget font="Regular;32" halign="center" name="Text11" position="593,1213" size="387,80" transparent="1" valign="center" zPosition="4"/>
+		<widget font="Regular;32" halign="center" name="Text12" position="1087,1213" size="387,80" transparent="1" valign="center" zPosition="4"/>
+		<widget font="Regular;32" halign="center" name="Text13" position="1580,1213" size="387,80" transparent="1" valign="center" zPosition="4"/>
+		<widget font="Regular;32" halign="center" name="Text14" position="2073,1213" size="387,80" transparent="1" valign="center" zPosition="4"/>
+		<widget name="Picture0" position="80,113" size="427,373" zPosition="5"/>
+		<widget name="Picture1" position="573,113" size="427,373" zPosition="5"/>
+		<widget name="Picture2" position="1067,113" size="427,373" zPosition="5"/>
+		<widget name="Picture3" position="1560,113" size="427,373" zPosition="5"/>
+		<widget name="Picture4" position="2053,113" size="427,373" zPosition="5"/>
+		<widget name="Picture5" position="80,526" size="427,373" zPosition="5"/>
+		<widget name="Picture6" position="573,526" size="427,373" zPosition="5"/>
+		<widget name="Picture7" position="1067,526" size="427,373" zPosition="5"/>
+		<widget name="Picture8" position="1560,526" size="427,373" zPosition="5"/>
+		<widget name="Picture9" position="2053,526" size="427,373" zPosition="5"/>
+		<widget name="Picture10" position="80,940" size="427,373" zPosition="5"/>
+		<widget name="Picture11" position="573,940" size="427,373" zPosition="5"/>
+		<widget name="Picture12" position="1067,940" size="427,373" zPosition="5"/>
+		<widget name="Picture13" position="1560,940" size="427,373" zPosition="5"/>
+		<widget name="Picture14" position="2053,940" size="427,373" zPosition="5"/>
+		<ePixmap pixmap="Default-FHD/skin_default/buttons/red.svg" position="67,1340" size="606,93"/>
+		<ePixmap pixmap="Default-FHD/skin_default/buttons/green.svg" position="673,1340" size="606,93"/>
+		<ePixmap pixmap="Default-FHD/skin_default/buttons/yellow.svg" position="1279,1340" size="606,93"/>
+		<ePixmap pixmap="Default-FHD/skin_default/buttons/blue.svg" position="1885,1340" size="606,93"/>
+		<widget backgroundColor="#ff0000" font="Regular;40" foregroundColor="#ffffff" halign="center" name="key_red" position="67,1340" shadowColor="#000000" shadowOffset="-2,-2" size="606,93" transparent="1" valign="center" zPosition="1"/>
+		<widget backgroundColor="#669900" font="Regular;40" foregroundColor="#ffffff" halign="center" name="key_green" position="673,1340" shadowColor="#000000" shadowOffset="-2,-2" size="606,93" transparent="1" valign="center" zPosition="1"/>
+		<widget backgroundColor="#e5b243" font="Regular;40" foregroundColor="#ffffff" halign="center" name="key_yellow" position="1279,1340" shadowColor="#000000" shadowOffset="-2,-2" size="606,93" transparent="1" valign="center" zPosition="1"/>
+		<widget backgroundColor="#3366cc" font="Regular;40" foregroundColor="#ffffff" halign="center" name="key_blue" position="1885,1340" shadowColor="#000000" shadowOffset="-2,-2" size="606,93" transparent="1" valign="center" zPosition="1"/>
 	</screen>
 	<screen backgroundColor="darkblue" flags="wfNoBorder" name="MDCCockpitMusicPlayer" position="0,0" size="2560,1440">
 		<eLabel backgroundColor="#20294071" position="67,133" size="2427,213"/>
@@ -255,7 +272,7 @@
 		<widget blendColor="#fcc000" distance1="12" internalSize="0" mode="visUp" name="visual" pixmap1="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/bar_88_226.png" position="0,853" size="2560,453" smoothing="0.4" threshold1="24" transparent="1" zPosition="11"/>
 	</screen>
 	<screen id="3" name="MDCCockpitMusicPlayerSummary" position="0,0" size="400,240">
-		<ePixmap pixmap="skin_default/display_bg.png" position="0,0" size="400,240" zPosition="-1"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/Other-WQHD/images/display_bg.png" position="0,0" size="400,240" zPosition="-1"/>
 		<widget font="Display;60" halign="center" name="title" position="5,5" size="390,120" transparent="1" valign="center"/>
 		<widget borderWidth="1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/progress_lcd.png" position="center,140" render="Progress" size="380,15" source="Service" transparent="1" zPosition="2">
 			<convert type="COCServicePosition">Position</convert>
@@ -274,6 +291,6 @@
 	</screen>
 	<screen backgroundColor="#ff000000" flags="wfNoBorder" name="ScreenPVRState" position="center,center" size="133,213" zPosition="1000">
 		<widget name="state_pic" position="0,0" size="133,133" transparent="1"/>
-		<widget backgroundColor="#0528343b" font="Regular;53" halign="center" name="state" position="0,147" size="133,67" transparent="1" valign="center"/>
+		<widget backgroundColor="#0528343b" font="Regular;53" halign="center" name="state" position="0,147" size="133,72" transparent="1" valign="center"/>
 	</screen>
 </skin>

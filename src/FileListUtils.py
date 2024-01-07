@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2023 by dream-alpha
+# Copyright (C) 2018-2024 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -17,6 +17,10 @@
 #
 # For more information on the GNU General Public License see:
 # <http://www.gnu.org/licenses/>.
+
+
+import os
+from Components.config import config
 
 
 # file indexes
@@ -60,8 +64,23 @@ def getIndex(file_list, path):
 	return file_index
 
 
+def getPath(file_list, index):
+	path = ""
+	if file_list:
+		path = file_list[index][FILE_IDX_PATH]
+	return path
+
+
 def getFile(file_list, path):
 	return file_list[getIndex(file_list, path)]
+
+
+def os_path_dirname(path, bookmarks):
+	home_dir = config.plugins.mediacockpit.home_dir.value
+	adir = home_dir
+	if path and path != home_dir and path not in bookmarks:
+		adir = os.path.dirname(path)
+	return adir
 
 
 def splitMediaSongList(file_list):

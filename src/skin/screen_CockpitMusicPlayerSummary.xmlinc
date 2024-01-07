@@ -1,5 +1,5 @@
 	<screen id="3" name="MDCCockpitMusicPlayerSummary" position="0,0" size="400,240">
-		<ePixmap pixmap="skin_default/display_bg.png" position="0,0" size="400,240" zPosition="-1"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/%RESOLUTION%/images/display_bg.png" position="0,0" size="400,240" zPosition="-1"/>
 		<widget font="Display;60" halign="center" name="title" position="5,5" size="390,120" transparent="1" valign="center"/>
 		<widget borderWidth="1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/progress_lcd.png" position="center,140" render="Progress" size="380,15" source="Service" transparent="1" zPosition="2">
 			<convert type="COCServicePosition">Position</convert>

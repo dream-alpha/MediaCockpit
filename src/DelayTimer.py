@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2023 by dream-alpha
+# Copyright (C) 2018-2024 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -30,9 +30,9 @@ class DelayTimer():
 	def __init__(self, delay, function, *args):
 		if delay:
 			timer_instances.append(self)
+			self.timer = eTimer()
 			self.function = function
 			self.args = args
-			self.timer = eTimer()
 			self.timer_conn = self.timer.timeout.connect(self.fire)
 			self.timer.start(delay, True)
 		else:
@@ -40,8 +40,12 @@ class DelayTimer():
 
 	def fire(self):
 		timer_instances.remove(self)
-		self.timer.stop()
 		self.function(*self.args)
+
+	def stop(self):
+		if self in timer_instances:
+			timer_instances.remove(self)
+			self.timer.stop()
 
 	@staticmethod
 	def stopAll():

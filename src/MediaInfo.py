@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2023 by dream-alpha
+# Copyright (C) 2018-2024 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -38,13 +38,7 @@ from .FileListUtils import FILE_TYPE_UP, FILE_TYPE_DIR, FILE_TYPE_PLAYLIST, FILE
 from .PictureUtils import getExifData
 from .SkinUtils import getSkinName, getSkinPath
 from .FileListUtils import nextIndex, previousIndex
-
-
-class CockpitDisplaySummary(Screen):
-
-	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent=parent)
-		self.skinName = getSkinName(self.__class__.__name__)
+from .MediaCockpitSummary import MediaCockpitSummary
 
 
 class MediaInfo(Screen, HelpableScreen):
@@ -64,9 +58,9 @@ class MediaInfo(Screen, HelpableScreen):
 				"RIGHTR":	(self.moveRight,	_("Next picture")),
 				"LEFTR":	(self.moveLeft,		_("Previous picture")),
 				"EXIT":		(self.exit,		_("Exit")),
-				"RED":		(self.red,		_("Exit")),
-				"GREEN":	(self.green,		_("Exit")),
-				"BLUE":		(self.blue,		_("Thumbnail"))
+				"RED":		(self.exit,		_("Exit")),
+				"GREEN":	(self.exit,		_("Exit")),
+				"BLUE":		(self.grabThumbnail,	_("Thumbnail"))
 			},
 			prio=-1
 		)
@@ -80,8 +74,8 @@ class MediaInfo(Screen, HelpableScreen):
 		self["list"] = List()
 		self["icon"] = Pixmap()
 		self["thumbnail"] = Pixmap()
-		self["key_green"] = Button(_("Ok"))
 		self["key_red"] = Button(_("Cancel"))
+		self["key_green"] = Button(_("Ok"))
 		self["key_yellow"] = Button()
 		self["key_blue"] = Button(_("Thumbnail"))
 
@@ -107,7 +101,7 @@ class MediaInfo(Screen, HelpableScreen):
 		self["osd_info"].setText(_("MediaCockpit") + " - " + info)
 
 	def createSummary(self):
-		return CockpitDisplaySummary
+		return MediaCockpitSummary
 
 	def firstStart(self):
 		self.fillList()
@@ -122,18 +116,6 @@ class MediaInfo(Screen, HelpableScreen):
 
 	def exit(self):
 		self.close(self.file_index)
-
-	def red(self):
-		self.exit()
-
-	def green(self):
-		self.exit()
-
-	def yellow(self):
-		return
-
-	def blue(self):
-		self.grabThumbnail()
 
 	def grabThumbnail(self):
 		if self.file[FILE_IDX_TYPE] == FILE_TYPE_MOVIE and not self.container.running():

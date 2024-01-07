@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2023 by dream-alpha
+# Copyright (C) 2018-2024 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -200,7 +200,6 @@ class CockpitMusicPlayer(Screen, HelpableScreen, CockpitSeek, CockpitCueSheet):
 		self.service_started = False
 		self.session.nav.stopService()
 		self.sTitle = self.sAlbum = self.sArtist = self.sGenre = self.sYear = self.sTrackNumber = self.sTrackCount = ""
-		self.seek = None
 		self.current_filename = afile[FILE_IDX_PATH]
 		self.got_embedded_cover_art = False
 
@@ -353,7 +352,6 @@ class CockpitMusicPlayer(Screen, HelpableScreen, CockpitSeek, CockpitCueSheet):
 		self.playpauseService()
 
 	def stop(self):
-		self.seek = None
 		self.session.nav.stopService()
 		self.exit()
 
@@ -371,7 +369,7 @@ class CockpitMusicPlayer(Screen, HelpableScreen, CockpitSeek, CockpitCueSheet):
 		next_index = self.song_index
 		if not self.repeat:
 			next_index = nextIndex(self.song_index, len(self.song_list))
-		audio, _is_audio, title, _genre, artist, _album, _tracknr, _track, _date, _length, _bitrate = getID3Tags(self.song_list[self.song_index_list[next_index]][FILE_IDX_PATH])
+		audio, title, _genre, artist, _album, _tracknr, _track, _date, _length, _bitrate = getID3Tags(self.song_list[self.song_index_list[next_index]][FILE_IDX_PATH])
 		if title is None:
 			title = ""
 		if audio and artist:

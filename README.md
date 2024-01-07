@@ -2,7 +2,12 @@
 [![Gemfury](https://badge.fury.io/fp/gemfury.svg)](https://gemfury.com/f/partner)
 
 # MediaCockpit (MDC)
-## Functions
+
+![Screenshot](mdc1.png)
+
+![Screenshot](mdc2.png)
+
+# Functions
 - MDC is a plugin for browsing media files on DreamOs receivers
 - Manual picture rotation
 - Automatic picture rotation using Exif data

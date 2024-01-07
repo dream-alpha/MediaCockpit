@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2023 by dream-alpha
+# Copyright (C) 2018-2024 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -21,7 +21,6 @@
 
 import os
 import glob
-from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Screens.LocationBox import LocationBox
 from Screens.MessageBox import MessageBox
@@ -29,14 +28,15 @@ from Components.ActionMap import HelpableActionMap
 from Components.config import config
 from Components.Sources.StaticText import StaticText
 from Components.Label import Label
+from Components.Button import Button
 from enigma import getDesktop
 from Plugins.SystemPlugins.MountCockpit.MountCockpit import MountCockpit
 from .__init__ import _
 from .Version import ID, PLUGIN
 from .Debug import logger
-from .FileListUtils import FILE_IDX_TYPE, FILE_IDX_PATH
+from .FileListUtils import FILE_IDX_TYPE, FILE_IDX_PATH, getPath
 from .FileListUtils import FILE_TYPE_FILE, FILE_TYPE_UP, FILE_TYPE_DIR, FILE_TYPE_PLAYLIST, FILE_TYPE_PICTURE, FILE_TYPE_MOVIE, FILE_TYPE_MUSIC
-from .FileListUtils import getIndex, nextIndex, splitMediaSongList
+from .FileListUtils import getIndex, nextIndex, splitMediaSongList, os_path_dirname
 from .FileListCache import FileListCache
 from .FileUtils import deleteFile, deleteFiles
 from .MediaInfo import MediaInfo
@@ -47,19 +47,11 @@ from .ConfigScreen import ConfigScreen
 from .CockpitContextMenu import CockpitContextMenu
 from .MusicPlayer import CockpitMusicPlayer
 from .CockpitPlayer import CockpitPlayer
-from .SkinUtils import getSkinName
 from .ServiceUtils import getService
 from .ServiceCenter import ServiceCenter
 
 
-class CockpitDisplaySummary(Screen):
-
-	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent=parent)
-		self.skinName = ID + self.__class__.__name__
-
-
-class MediaCockpit(Tiles, FileListCache, HelpableScreen, Screen):
+class MediaCockpit(Tiles, FileListCache, HelpableScreen):
 
 	def __init__(self, session):
 		logger.info("session: %s", session)
@@ -73,7 +65,6 @@ class MediaCockpit(Tiles, FileListCache, HelpableScreen, Screen):
 		self.slideshow = False
 		self.busy = False
 		self.cancel_request = False
-		self.bookmarks = []
 		self.first_start = True
 		self.current_dir = None
 		self.service_center = ServiceCenter()
@@ -82,15 +73,16 @@ class MediaCockpit(Tiles, FileListCache, HelpableScreen, Screen):
 		self["lcd_info"] = StaticText()
 		self["lcd_title"] = StaticText()
 
-		self["no_support"] = Label()
+		self["key_red"] = Button(_("Delete file"))
+		self["key_green"] = Button(_("HOME"))
+		self["key_yellow"] = Button(_("Reload cache"))
+		self["key_blue"] = Button(_("Bookmarks"))
 
-		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		Tiles.__init__(self, self)
+		Tiles.__init__(self, self, session)
 		FileListCache.__init__(self)
 
 		self.desktop_size = getDesktop(0).size()
-		self.skinName = getSkinName(self.__class__.__name__)
 
 		self["actions"] = HelpableActionMap(
 			self,
@@ -108,7 +100,7 @@ class MediaCockpit(Tiles, FileListCache, HelpableScreen, Screen):
 				"MENU":		(self.openContextMenu, 	_("Context menu")),
 				"RED":		(self.deleteFile,	_("Delete file")),
 				"GREEN":	(self.goHome,		_("Home")),
-				"YELLOW":	(self.reloadFiles,	_("Reload files")),
+				"YELLOW":	(self.reloadFiles,	_("Reload cache")),
 				"BLUE":		(self.openBookmarks,	_("Bookmarks")),
 				"EXIT":		(self.exit,		_("Exit")),
 				"POWER":	(self.exit,		_("Exit")),
@@ -127,34 +119,24 @@ class MediaCockpit(Tiles, FileListCache, HelpableScreen, Screen):
 		animations_enabled = getDesktop(0).isAnimationsEnabled()
 		logger.info("animations_enabled: %s", animations_enabled)
 
+		self.bookmarks = config.plugins.mediacockpit.bookmarks.value
+		MountCockpit.getInstance().registerBookmarks(ID, config.plugins.mediacockpit.bookmarks.value)
+
 		self.setTitle(PLUGIN)
 		self.onShow.append(self.onDialogShow)
-
-	def displayLCD(self, title, info):
-		# logger.debug("title: %s, info: %s", title, info)
-		self["lcd_title"].setText(title)
-		self["lcd_info"].setText(info)
-
-	def displayOSD(self, info):
-		# logger.debug("info: %s", info)
-		self["osd_info"].setText(_("MediaCockpit") + " - " + info)
-
-	def createSummary(self):
-		return CockpitDisplaySummary
 
 	def onDialogShow(self):
 		logger.info("...")
 		if self.first_start:
 			self.first_start = False
-			self.bookmarks = config.plugins.mediacockpit.bookmarks.value
 			self.last_service = self.session.nav.getCurrentlyPlayingServiceReference()
 			self.stopService(self.session, self.last_service)
 			DelayTimer(10, self.firstStart)
 
 	def firstStart(self):
-		logger.info("...")
-		self.initTileAttribs()
-		adir = self.home_dir if self.last_path in self.bookmarks else os.path.dirname(self.last_path)
+		logger.info("last_path: %s", self.last_path)
+		adir = os_path_dirname(self.last_path, self.bookmarks)
+		logger.debug("adir: %s", adir)
 		self.readFileList(adir)
 
 	def readFileList(self, adir):
@@ -171,7 +153,7 @@ class MediaCockpit(Tiles, FileListCache, HelpableScreen, Screen):
 		self.file_index = getIndex(self.file_list, self.last_path)
 		self.last_path = self.current_dir
 		if self.file_index >= 0:
-			logger.debug("file_index: %s, path: %s, len(file_list): %s", self.file_index, self.file_list[self.file_index][FILE_IDX_PATH], len(self.file_list))
+			logger.debug("file_index: %s, path: %s, len(file_list): %s", self.file_index, getPath(self.file_list, self.file_index), len(self.file_list))
 		logger.debug("media_index: %s, song_index: %s", self.media_index, self.song_index)
 
 		if self.slideshow:
@@ -180,15 +162,15 @@ class MediaCockpit(Tiles, FileListCache, HelpableScreen, Screen):
 			self.paintTiles(is_mounted)
 
 	def goUp(self):
-		if not self.busy and self.current_dir != self.home_dir:
+		if not self.busy:
 			logger.debug("current_dir: %s", self.current_dir)
 			self.last_path = self.current_dir
-			adir = self.home_dir if self.current_dir in self.bookmarks else os.path.dirname(self.current_dir)
+			adir = os_path_dirname(self.current_dir, self.bookmarks)
 			self.readFileList(adir)
 
 	def startSlideshow(self):
 		self.hide()
-		start_path = self.file_list[self.file_index][FILE_IDX_PATH] if self.file_list else ""
+		start_path = getPath(self.file_list, self.file_index) if self.file_list else ""
 		if self.media_list and self.file_list[self.file_index][FILE_IDX_TYPE] in [FILE_TYPE_PICTURE, FILE_TYPE_MOVIE]:
 			self.media_index = getIndex(self.media_list, start_path)
 			self.session.openWithCallback(self.SlideshowCallback, Slideshow, self.media_list, self.media_index, self.slideshow, self.song_list)
@@ -224,7 +206,7 @@ class MediaCockpit(Tiles, FileListCache, HelpableScreen, Screen):
 			self.cancelFileList()
 		else:
 			if self.file_list:
-				path = self.file_list[self.file_index][FILE_IDX_PATH]
+				path = getPath(self.file_list, self.file_index)
 				config.plugins.mediacockpit.last_path.value = path
 				config.plugins.mediacockpit.save()
 			self.startService(self.session, self.last_service)
@@ -245,7 +227,7 @@ class MediaCockpit(Tiles, FileListCache, HelpableScreen, Screen):
 				del self.file_list[self.file_index]
 				self.saveMetaList(os.path.dirname(path), self.file_list)
 				if self.file_index < len(self.file_list):
-					self.last_path = self.file_list[self.file_index][FILE_IDX_PATH]
+					self.last_path = getPath(self.file_list, self.file_index)
 				else:
 					self.last_path = self.current_dir
 				self.paintTiles()
@@ -270,7 +252,6 @@ class MediaCockpit(Tiles, FileListCache, HelpableScreen, Screen):
 				for path2 in glob.glob(filename + ".*"):
 					filename2, ext2 = os.path.splitext(path2)
 					if filename2.endswith((".rotated", ".scaled", ".thumbnail", ".transformed")) or ext2 in [".media"]:
-						print("removing: %s" % path2)
 						deleteFile(path2)
 			self.readFileList(self.current_dir)
 
@@ -307,7 +288,7 @@ class MediaCockpit(Tiles, FileListCache, HelpableScreen, Screen):
 					media_index = getIndex(self.media_list, path)
 					self.session.openWithCallback(self.SlideshowCallback, Slideshow, self.media_list, media_index, False)
 				elif afile[FILE_IDX_TYPE] == FILE_TYPE_MOVIE:
-					self.session.openWithCallback(self.CockpitPlayerCallback, CockpitPlayer, getService(self.file_list[self.file_index][FILE_IDX_PATH]), config.plugins.mediacockpit, True, 0, None, self.service_center)
+					self.session.openWithCallback(self.CockpitPlayerCallback, CockpitPlayer, getService(getPath(self.file_list, self.file_index)), config.plugins.mediacockpit, True, 0, None, self.service_center)
 				elif afile[FILE_IDX_TYPE] == FILE_TYPE_MUSIC:
 					song_index = getIndex(self.song_list, path)
 					self.session.openWithCallback(self.CockpitMusicPlayerCallback, CockpitMusicPlayer, self.song_list, song_index, self.service_center)
@@ -323,9 +304,7 @@ class MediaCockpit(Tiles, FileListCache, HelpableScreen, Screen):
 		self.session.openWithCallback(self.openConfigScreenCallback, ConfigScreen, config.plugins.mediacockpit)
 
 	def openConfigScreenCallback(self, _restart=False):
-		self.last_path = None
-		if self.file_list:
-			self.last_path = self.file_list[self.file_index][FILE_IDX_PATH]
+		getPath(self.file_list, self.file_index)
 		self.firstStart()
 
 	def openContextMenu(self):
@@ -364,7 +343,7 @@ class MediaCockpit(Tiles, FileListCache, HelpableScreen, Screen):
 		config.plugins.mediacockpit.bookmarks.value = self.bookmarks[:]
 		config.plugins.mediacockpit.bookmarks.save()
 		MountCockpit.getInstance().registerBookmarks(ID, config.plugins.mediacockpit.bookmarks.value)
-		self.readFileList(self.home_dir)
+		self.goHome()
 
 	def stopService(self, session, service):
 		logger.debug("clear video buffer")

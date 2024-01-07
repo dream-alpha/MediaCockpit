@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2023 by dream-alpha
+# Copyright (C) 2018-2024 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -23,20 +23,24 @@ import os
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.config import config
+from Screens.Screen import Screen
 from enigma import eSize, ePoint, gFont
 from skin import parseColor
 from Tools.LoadPixmap import LoadPixmap
-from .SkinUtils import getSkinPath
+from .SkinUtils import getSkinPath, getSkinName
 from .Debug import logger
 from .__init__ import _
 from .FileListUtils import FILE_IDX_TYPE, FILE_IDX_PATH
 from .FileListUtils import FILE_TYPE_FILE, FILE_TYPE_UP, FILE_TYPE_DIR, FILE_TYPE_PLAYLIST, FILE_TYPE_PICTURE, FILE_TYPE_MOVIE, FILE_TYPE_MUSIC
+from .MediaCockpitSummary import MediaCockpitSummary
 
 
-class Tiles():
+class Tiles(Screen):
 
-	def __init__(self, csel):
+	def __init__(self, csel, session):
 		self.csel = csel
+		Screen.__init__(self, session)
+		self.skinName = getSkinName(self.__class__.__name__)
 		self.tile_columns = 5
 		self.tile_rows = 3
 		self.file_list = []
@@ -63,6 +67,7 @@ class Tiles():
 		self.icons = {}
 		self.busy = False
 		self.last_tile_pos = -1
+		self.onShow.append(self.initTileAttribs)
 
 	def initTileAttribs(self):
 		logger.debug("...")
@@ -105,6 +110,8 @@ class Tiles():
 				self.csel[tile_element % tile_pos].instance.setBackgroundColor(self.selection_background_color)
 				self.csel[tile_element % tile_pos].instance.setForegroundColor(self.selection_foreground_color)
 			self.csel["Text%d" % tile_pos].instance.setFont(gFont(self.font_family, self.font_size + self.selection_font_offset))
+			pos = self.csel["Text%d" % tile_pos].instance.position()
+			self.csel["Text%s" % tile_pos].move(ePoint(pos.x(), pos.y() + self.selection_size_offset))
 			self.last_tile_pos = tile_pos
 
 	def unselectTile(self, tile_pos):
@@ -120,13 +127,18 @@ class Tiles():
 				self.csel[tile_element % tile_pos].instance.setBackgroundColor(self.normal_background_color)
 				self.csel[tile_element % tile_pos].instance.setForegroundColor(self.normal_foreground_color)
 			self.csel["Text%d" % tile_pos].instance.setFont(gFont(self.font_family, self.font_size))
+			pos = self.csel["Text%d" % tile_pos].instance.position()
+			self.csel["Text%s" % tile_pos].move(ePoint(pos.x(), pos.y() - self.selection_size_offset))
 		self.last_tile_pos = -1
 
-	def displayLCD(self, _file_of_files, _path):
-		logger.error("overridden in child class")
+	def displayLCD(self, title, info):
+		# logger.debug("title: %s, info: %s", title, info)
+		self["lcd_title"].setText(title)
+		self["lcd_info"].setText(info)
 
-	def displayOSD(self, _msg):
-		logger.error("overridden in child class")
+	def displayOSD(self, info):
+		# logger.debug("info: %s", info)
+		self["osd_info"].setText(_("MediaCockpit") + " - " + info)
 
 	def hideTile(self, tile_pos):
 		for tile_element in ["Frame%d", "Tile%d", "Picture%d", "Icon%d", "Text%d"]:
@@ -250,3 +262,6 @@ class Tiles():
 				self.file_index = len(self.file_list) - 1
 			self.file_index = self.file_index / self.tiles * self.tiles
 			self.paintTiles()
+
+	def createSummary(self):
+		return MediaCockpitSummary

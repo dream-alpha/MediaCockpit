@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2023 by dream-alpha
+# Copyright (C) 2018-2024 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -33,33 +33,31 @@ from .UnicodeUtils import convertToUtf8
 
 def getID3Tags(filename):
 	audio = None
-	isFlac = False
-	is_audio = True
-	title = ""
-	genre = ""
-	artist = ""
-	album = ""
+	is_flac = False
+	title = os.path.splitext(os.path.basename(filename))[0]
+	genre = "n/a"
+	artist = "n/a"
+	album = "n/a"
 	tracknr = -1
 	track = None
 	date = None
 	length = ""
 	bitrate = None
+
 	try:
 		if filename.lower().endswith(".mp3"):
 			audio = MP3(filename, ID3=EasyID3)
 		elif filename.lower().endswith(".flac"):
 			audio = FLAC(filename)
-			isFlac = True
+			is_flac = True
 		elif filename.lower().endswith(".m4a"):
 			audio = EasyMP4(filename)
 		elif filename.lower().endswith(".ogg"):
 			audio = OggVorbis(filename)
 		elif filename.lower().endswith(".aif") or filename.lower().endswith(".aiff"):
 			audio = AIFF(filename)
-		else:
-			is_audio = False
 	except Exception:
-		is_audio = False
+		pass
 
 	if audio:
 		title = convertToUtf8(audio.get('title', [os.path.splitext(os.path.basename(filename))[0]])[0], "cp1252")
@@ -80,21 +78,11 @@ def getID3Tags(filename):
 			length = str(timedelta(seconds=int(audio.info.length))).encode("utf-8", 'ignore')
 		except Exception:
 			length = -1
-		if not isFlac:
+		if not is_flac:
 			bitrate = audio.info.bitrate / 1000
 		else:
 			bitrate = None
-	elif is_audio:
-		title = os.path.splitext(os.path.basename(filename))[0]
-		genre = "n/a"
-		artist = "n/a"
-		album = "n/a"
-		tracknr = -1
-		track = None
-		date = None
-		length = ""
-		bitrate = None
 
-	tags = (audio, is_audio, title, genre, artist, album, tracknr, track, date, length, bitrate)
+	tags = (audio, title, genre, artist, album, tracknr, track, date, length, bitrate)
 	logger.debug("%s", tags)
 	return tags

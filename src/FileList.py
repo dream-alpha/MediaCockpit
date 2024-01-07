@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2023 by dream-alpha
+# Copyright (C) 2018-2024 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -35,6 +35,10 @@ from .DelayTimer import DelayTimer
 from .ServiceUtils import ALL_MEDIA, EXT_PICTURE, ALL_VIDEO, EXT_MUSIC, EXT_PLAYLIST
 from .ConfigInit import sort_modes
 from .Thumbnail import Thumbnail
+from .FileManagerUtils import file_op_msg, FILE_OP_LOAD
+
+
+LOADING = file_op_msg[FILE_OP_LOAD]
 
 
 class FileList(Thumbnail):
@@ -69,14 +73,14 @@ class FileList(Thumbnail):
 			if self.show_loading_details:
 				if percent:
 					adir = os.path.basename(path) if path != "/" else "/"
-					self.displayOSD("%s %2d%% - %s ..." % (_("Loading"), percent, adir))
-					self.displayLCD("%s %2d%%" % (_("Loading"), percent), adir)
+					self.displayOSD("%s %2d%% - %s ..." % (LOADING, percent, adir))
+					self.displayLCD("%s %2d%%" % (LOADING, percent), adir)
 				else:
 					self.displayOSD("%s ..." % _("Initializing"))
 					self.displayLCD("%s" % _("Initializing"), "...")
 			else:
-				self.displayOSD("%s %s ..." % (_("Loading"), _("files")))
-				self.displayLCD(_("Loading"), _("files"))
+				self.displayOSD("%s %s ..." % (LOADING, _("files")))
+				self.displayLCD(LOADING, _("files"))
 
 	def progress(self, path):
 		path = os.path.dirname(path)
@@ -284,7 +288,6 @@ class FileList(Thumbnail):
 
 	def scanDirectory(self, adir):
 		logger.debug("...")
-		self.file_list = []
 		self.dir_list = []
 		self.last_percent = 0
 		self.total_count = 0

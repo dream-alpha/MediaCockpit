@@ -1,6 +1,6 @@
 	<screen name="MDCMediaInfo" position="center,110" size="1800,930">
-		<xmlinc file="screenpart_ColorButtons"/>
-		<xmlinc file="screenpart_ColorButtonsLabels"/>
+		<xmlinc file="screenpart_ColorButtons" position="10,5" width="300"/>
+		<xmlinc file="screenpart_ColorButtonsLabels" position="10,5" width="300"/>
 		<xmlinc file="screenpart_DateTime"/>
 		<widget name="icon" position="135,225" size="150,150"/>
 		<widget name="thumbnail" position="10,100" size="400,400"/>

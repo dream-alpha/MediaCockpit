@@ -1,21 +1,7 @@
 msgid ""
 msgstr ""
-"#-#-#-#-#  de.po  #-#-#-#-#\n"
-"Project-Id-Version: \n"
-"POT-Creation-Date: 2023-10-16 15:21+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: dream-alpha\n"
-"Language-Team: \n"
-"Language: de\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.3.2\n"
-"X-Poedit-Basepath: ../src\n"
-"X-Poedit-SearchPath-0: .\n"
-"#-#-#-#-#  de.po (MediaCockpit)  #-#-#-#-#\n"
 "Project-Id-Version: MediaCockpit\n"
-"POT-Creation-Date: 2023-10-18 17:50+0200\n"
+"POT-Creation-Date: 2024-01-14 17:00+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: dream-alpha\n"
 "Language-Team: \n"
@@ -23,95 +9,32 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-msgid "Plugin"
-msgstr ""
-
-msgid "Version"
-msgstr ""
-
-msgid "Copyright"
-msgstr ""
-
-msgid "License"
-msgstr ""
-
-msgid "End"
-msgstr ""
-
-msgid "Skip forward"
-msgstr ""
-
-msgid "Skip backward"
-msgstr ""
-
-msgid "Cancel"
-msgstr ""
-
-msgid "Save"
-msgstr ""
-
-msgid "Defaults"
-msgstr ""
-
-msgid "Setup"
-msgstr ""
-
-msgid "Really close without saving settings?"
-msgstr ""
-
-msgid "Loading default settings will overwrite all settings, really load them?"
-msgstr ""
-
-msgid "Some changes require a GUI restart"
-msgstr ""
-
-msgid "Restart GUI now?"
+msgid "Select function"
 msgstr ""
 
 msgid "Bookmarks"
 msgstr ""
 
-msgid "Select directory"
+msgid "Reload cache"
 msgstr ""
 
-msgid "Path does not exist"
-msgstr ""
-
-msgid "Close"
-msgstr ""
-
-msgid "Hide"
-msgstr ""
-
-msgid "Cancelling, please wait"
-msgstr ""
-
-msgid "Processing"
-msgstr ""
-
-msgid "of"
-msgstr ""
-
-msgid "Done"
-msgstr ""
-
-msgid "Cancelled"
-msgstr ""
-
-msgid "Please wait"
-msgstr ""
-
-msgid "Select function"
+msgid "Setup"
 msgstr ""
 
 msgid "About"
 msgstr ""
 
 msgid "Stop playback"
+msgstr ""
+
+msgid "Skip forward"
+msgstr ""
+
+msgid "Skip backward"
 msgstr ""
 
 msgid "EPG Info"
@@ -422,13 +345,16 @@ msgstr ""
 msgid "Should a debug log be activated?"
 msgstr ""
 
-msgid "Loading"
-msgstr ""
-
 msgid "Initializing"
 msgstr ""
 
 msgid "files"
+msgstr ""
+
+msgid "Delete file"
+msgstr ""
+
+msgid "HOME"
 msgstr ""
 
 msgid "Play/Pause"
@@ -464,13 +390,7 @@ msgstr ""
 msgid "Context menu"
 msgstr ""
 
-msgid "Delete file"
-msgstr ""
-
 msgid "Home"
-msgstr ""
-
-msgid "Reload files"
 msgstr ""
 
 msgid "Exit"
@@ -482,19 +402,25 @@ msgstr ""
 msgid "Previous directory"
 msgstr ""
 
-msgid "MediaCockpit"
-msgstr ""
-
 msgid "Do you really want to delete the file?"
 msgstr ""
 
 msgid "Do you really want to reload the media files?"
 msgstr ""
 
+msgid "Select directory"
+msgstr ""
+
 msgid "Thumbnail"
 msgstr ""
 
 msgid "Media Infos"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "MediaCockpit"
 msgstr ""
 
 msgid "Directory"
@@ -581,10 +507,16 @@ msgstr ""
 msgid "This Dreambox can't decode %s streams!"
 msgstr ""
 
-msgid "Stop video/slideshow"
+msgid "Rotate picture"
 msgstr ""
 
-msgid "Rotate picture"
+msgid "Toggle Transition"
+msgstr ""
+
+msgid "Toggle buttons"
+msgstr ""
+
+msgid "Stop video/slideshow"
 msgstr ""
 
 msgid "Toggle transition"
@@ -606,4 +538,58 @@ msgid "Page"
 msgstr ""
 
 msgid "Pictures, Movies, and Slideshows"
+msgstr ""
+
+msgid "Plugin"
+msgstr ""
+
+msgid "Version"
+msgstr ""
+
+msgid "Copyright"
+msgstr ""
+
+msgid "License"
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Defaults"
+msgstr ""
+
+msgid "Really close without saving settings?"
+msgstr ""
+
+msgid "Loading default settings will overwrite all settings, really load them?"
+msgstr ""
+
+msgid "Some changes require a GUI restart"
+msgstr ""
+
+msgid "Restart GUI now?"
+msgstr ""
+
+msgid "Path does not exist"
+msgstr ""
+
+msgid "File Task"
+msgstr ""
+
+msgid "Loading"
+msgstr ""
+
+msgid "Deleting"
+msgstr ""
+
+msgid "Moving"
+msgstr ""
+
+msgid "Copying"
+msgstr ""
+
+msgid "FSTrim"
 msgstr ""

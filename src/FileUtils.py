@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2023 by dream-alpha
+# Copyright (C) 2018-2024 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -60,7 +60,7 @@ def deleteFiles(path, clear=False):
 	for afile in glob.glob(path):
 		if clear:
 			writeFile(afile, "")
-		os.remove(afile)
+		deleteFile(afile)
 
 
 def touchFile(path):

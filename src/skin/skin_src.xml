@@ -3,9 +3,10 @@
 	<colors>
 		<color name="darkblue" value="#000d1940"/>
 		<color name="darkgrey" value="#141414"/>
+		<color name="mediumgrey" value="#808080"/>
 	</colors>
 	<xmlinc file="listboxcontent"/>
-	<xmlinc file="screen_CockpitDisplaySummary"/>
+	<xmlinc file="screen_MediaCockpitSummary"/>
 	<xmlinc file="screen_ConfigScreen"/>
 	<xmlinc file="screen_Slideshow"/>
 	<xmlinc file="screen_MediaInfo"/>

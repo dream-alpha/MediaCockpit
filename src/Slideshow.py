@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2023 by dream-alpha
+# Copyright (C) 2018-2024 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -27,6 +27,7 @@ from Components.ActionMap import HelpableActionMap
 from Components.Sources.StaticText import StaticText
 from Components.Label import Label
 from Components.Pixmap import Pixmap
+from Components.Button import Button
 from Components.config import config
 from Components.ScreenAnimations import ScreenAnimations
 try:
@@ -37,7 +38,7 @@ except ImportError as e:
 	merlin_picture_viewer = False
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from Tools.LoadPixmap import LoadPixmap
-from enigma import eTimer, getDesktop, gPixmapPtr
+from enigma import ePoint, eSize, eTimer, getDesktop, gPixmapPtr
 try:
 	from enigma import eAlsaOutput
 except ImportError as e:
@@ -58,13 +59,7 @@ from .ConsoleAppContainer import ConsoleAppContainer
 from .FileListUtils import previousIndex, nextIndex
 from .ConfigInit import int_slideshow_animations, ext_slideshow_animations
 from .Thumbnail import Thumbnail
-
-
-class CockpitDisplaySummary(Screen):
-
-	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent=parent)
-		self.skinName = getSkinName(self.__class__.__name__)
+from .MediaCockpitSummary import MediaCockpitSummary
 
 
 class Slideshow(Thumbnail, HelpableScreen, Screen):
@@ -78,6 +73,11 @@ class Slideshow(Thumbnail, HelpableScreen, Screen):
 		self["lcd_info"] = StaticText()
 		self["lcd_title"] = StaticText()
 
+		self["key_red"] = Button(_("Exit"))
+		self["key_green"] = Button(_("Slideshow"))
+		self["key_yellow"] = Button(_("Rotate picture"))
+		self["key_blue"] = Button(_("Toggle Transition"))
+
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		self.skinName = getSkinName(self.__class__.__name__)
@@ -87,6 +87,7 @@ class Slideshow(Thumbnail, HelpableScreen, Screen):
 			self,
 			"CockpitActions",
 			{
+				"OK":		(self.toggleButtons,		_("Toggle buttons")),
 				"INFO":		(self.openInfo,			_("Information")),
 				"PLAY":		(self.playpause,		_("Play/Pause") + " " + _("Slideshow")),
 				"STOP":		(self.stop,			_("Stop video/slideshow")),
@@ -96,6 +97,7 @@ class Slideshow(Thumbnail, HelpableScreen, Screen):
 				"LEFTR":	(self.left,			_("Previous picture")),
 				"EXIT":		(self.exit,			_("Exit")),
 				"RED":		(self.exit,			_("Exit")),
+				"GREEN":	(self.playpause,		_("Slideshow")),
 				"YELLOW":	(self.yellow,			_("Rotate picture")),
 				"BLUE": 	(self.toggleTransitionMode,	_("Toggle transition")),
 			},
@@ -147,6 +149,25 @@ class Slideshow(Thumbnail, HelpableScreen, Screen):
 		if getBoxType().startswith("dream"):
 			eAlsaOutput.getInstance().close()
 
+	def showButtons(self):
+		logger.info("...")
+		size = self["picture"].instance.size()
+		self["picture"].instance.resize(eSize(size.width() * 9 / 10, size.height() * 9 / 10))
+		self["picture"].instance.move(ePoint(self.desktop_size.width() / 10 / 2, self.desktop_size.height() / 10 / 4))
+		self["picture_background"].hide()
+
+	def hideButtons(self):
+		logger.info("...")
+		self["picture"].instance.resize(eSize(self.desktop_size.width(), self.desktop_size.height()))
+		self["picture"].instance.move(ePoint(0, 0))
+		self["picture_background"].show()
+
+	def toggleButtons(self):
+		if self.desktop_size.width() == self["picture"].instance.size().width():
+			self.showButtons()
+		else:
+			self.hideButtons()
+
 	def displayLCD(self, title, info):
 		# logger.debug("title: %s, info: %s", title, info)
 		self["lcd_title"].setText(title)
@@ -157,7 +178,7 @@ class Slideshow(Thumbnail, HelpableScreen, Screen):
 		self["osd_info"].setText(_("MediaCockpit") + " - " + info)
 
 	def createSummary(self):
-		return CockpitDisplaySummary
+		return MediaCockpitSummary
 
 	def __onLayoutFinish(self):
 		logger.debug("...")
@@ -172,13 +193,16 @@ class Slideshow(Thumbnail, HelpableScreen, Screen):
 				self["image"].scaleToScreen(True)
 			self.setSlideshowAnimation(self.animation)
 			if self.start_slideshow:
+				self["image"].show()
 				self.start_slideshow = False
 				if self.song_list:
+					self["image"].hide()
 					shuffle(self.song_index_list)
 					self.playSong(self.song_list[self.song_index_list[self.song_index]])
 					logger.debug("song_index: %s, song_list: %s", self.song_index, self.song_list)
 				self.playpause()
 			else:
+				self["image"].hide()
 				self.showSlide()
 		else:
 			self.close(self.file_index)
@@ -401,11 +425,13 @@ class Slideshow(Thumbnail, HelpableScreen, Screen):
 		logger.debug("...")
 		self.slideshow_active = not self.slideshow_active
 		if self.slideshow_active:
+			self["image"].show()
 			self.showSlide()
 		else:
 			self.slide_timer.stop()
 			self.stopVideo()
 			self.showLCDInfo()
+			self["image"].hide()
 
 	def openInfo(self):
 		if not self.slideshow_active and self.file[FILE_IDX_TYPE] in FILE_TYPE_FILE:

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2023 by dream-alpha
+# Copyright (C) 2018-2024 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -33,7 +33,8 @@ def initLocale():
 	locale = resolveFilename(SCOPE_PLUGINS, "Extensions/" + PLUGIN + "/locale")
 	if not os.path.exists(locale):
 		locale = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/" + PLUGIN + "/locale")
-	gettext.bindtextdomain(PLUGIN, locale)
+	if os.path.exists(locale):
+		gettext.bindtextdomain(PLUGIN, locale)
 
 
 def _(txt):

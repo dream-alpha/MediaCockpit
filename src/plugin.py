@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2023 by dream-alpha
+# Copyright (C) 2018-2024 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -20,12 +20,10 @@
 
 
 from Plugins.Plugin import PluginDescriptor
-from Plugins.SystemPlugins.MountCockpit.MountCockpit import MountCockpit
-from Components.config import config
 from .__init__ import _
 from .Debug import logger
 from .SkinUtils import loadPluginSkin
-from .Version import ID, VERSION
+from .Version import VERSION
 from .MediaCockpit import MediaCockpit
 from .ConfigInit import ConfigInit
 
@@ -40,7 +38,6 @@ def autoStart(reason, **kwargs):
 		if "session" in kwargs:
 			logger.info("+++ Version: %s starts...", VERSION)
 			# session = kwargs["session"]
-			MountCockpit.getInstance().registerBookmarks(ID, config.plugins.mediacockpit.bookmarks.value)
 			loadPluginSkin("skin.xml")
 	elif reason == 1:  # shutdown
 		logger.info("--- shutdown")

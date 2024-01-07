@@ -27,7 +27,7 @@
 		</widget>
 		<eLabel backgroundColor="CursorBackground" cornerRadius="80" position="40,1340" size="700,80" zPosition="1"/>
 		<eLabel backgroundColor="background" cornerRadius="80" position="40,1340" size="155,80" zPosition="1"/>
-		<widget path="/usr/share/enigma2/Shadow-FHD/skin_default/icons/" position="65,1359" render="ExtAudioIcon" size="105,47" source="session.CurrentService" zPosition="2">
+		<widget path="/usr/share/enigma2/Default-WQHD/skin_default/icons/" position="65,1359" render="ExtAudioIcon" size="105,47" source="session.CurrentService" zPosition="2">
 			<convert type="Extaudioinfo">AudioIcon</convert>
 		</widget>
 		<widget backgroundColor="CursorBackground" font="Regular;35" foregroundColor="$HeaderForeground" halign="center" position="200,1351" render="Label" size="491,60" source="session.CurrentService" valign="center" zPosition="2">

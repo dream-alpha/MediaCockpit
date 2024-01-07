@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2023 by dream-alpha
+# Copyright (C) 2018-2024 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -103,7 +103,7 @@ class ConfigInit():
 
 		config.plugins.mediacockpit = ConfigSubsection()
 		config.plugins.mediacockpit.sort = ConfigSelection(default="2", choices=choices_sort)
-		config.plugins.mediacockpit.last_path = ConfigText(default="/[HOME]")
+		config.plugins.mediacockpit.last_path = ConfigText(default="")
 		config.plugins.mediacockpit.start_home_dir = ConfigYesNo(default=False)
 		config.plugins.mediacockpit.home_dir = ConfigText(default="/[HOME]", fixed_size=False, visible_width=35)
 		config.plugins.mediacockpit.cache = ConfigYesNo(default=True)
@@ -113,7 +113,7 @@ class ConfigInit():
 		config.plugins.mediacockpit.thumbnail_size_height = ConfigInteger(default=0)
 		config.plugins.mediacockpit.show_dirup_tile = ConfigYesNo(default=True)
 		config.plugins.mediacockpit.selection_size_offset = ConfigInteger(default=10, limits=(0, 50))
-		config.plugins.mediacockpit.selection_font_offset = ConfigInteger(default=2, limits=(1, 10))
+		config.plugins.mediacockpit.selection_font_offset = ConfigInteger(default=2, limits=(0, 10))
 		config.plugins.mediacockpit.normal_background_color = ConfigSelection(default="#20294071", choices=choices_color + [("#20294071", _("default"))])
 		config.plugins.mediacockpit.selection_background_color = ConfigSelection(default="#204176b6", choices=choices_color + [("#204176b6", _("default"))])
 		config.plugins.mediacockpit.normal_foreground_color = ConfigSelection(default="#eeeeee", choices=choices_color + [("#eeeeee", _("default"))])

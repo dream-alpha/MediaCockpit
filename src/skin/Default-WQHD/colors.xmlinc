@@ -1,6 +1,13 @@
 	<colors>
-		<color name="white" value="#ffffff"/>
 		<color name="grey" value="#bababa"/>
+		<color name="grey1" value="#e0e0e0"/>
+		<color name="grey2" value="#c0c0c0"/>
+		<color name="grey3" value="#a0a0a0"/>
+		<color name="grey4" value="#808080"/>
+		<color name="grey5" value="#606060"/>
+		<color name="grey6" value="#404040"/>
+		<color name="grey7" value="#202020"/>
+		<color name="white" value="#ffffff"/>
 		<color name="black" value="#000000"/>
 		<color name="dark" value="#212121"/>
 		<color name="red" value="#ff0000"/>
@@ -20,7 +27,8 @@
 		<color name="gradient" value="#131a1d"/>
 		<color name="Tile" value="#131a1d"/>
 		<color name="TileBackground" value="#131a1d"/>
-		<color name="ScreenBackground" value="#263237"/>
+		<color name="ScreenBackground" value="#000000"/>
 		<color name="InfoBackground" value="#10131a1d"/>
+		<color name="ColorSeparation" value="#28343b"/>
 		<color name="Entryselect" value="#556973"/>
 	</colors>

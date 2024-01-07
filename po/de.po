@@ -1,21 +1,7 @@
 msgid ""
 msgstr ""
-"#-#-#-#-#  de.po  #-#-#-#-#\n"
-"Project-Id-Version: \n"
-"POT-Creation-Date: 2023-10-16 15:21+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: dream-alpha\n"
-"Language-Team: \n"
-"Language: de\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.3.2\n"
-"X-Poedit-Basepath: ../src\n"
-"X-Poedit-SearchPath-0: .\n"
-"#-#-#-#-#  de.po (MediaCockpit)  #-#-#-#-#\n"
 "Project-Id-Version: MediaCockpit\n"
-"POT-Creation-Date: 2023-10-18 17:50+0200\n"
+"POT-Creation-Date: 2024-01-14 17:00+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: dream-alpha\n"
 "Language-Team: \n"
@@ -23,99 +9,33 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-msgid "Plugin"
-msgstr "Plugin"
-
-msgid "Version"
-msgstr "Version"
-
-msgid "Copyright"
-msgstr "Copyright"
-
-msgid "License"
-msgstr "Lizenz"
-
-msgid "End"
-msgstr "Ende"
-
-msgid "Skip forward"
-msgstr "Springe vorwärts"
-
-msgid "Skip backward"
-msgstr "Springe zurück"
-
-msgid "Cancel"
-msgstr "Abbruch"
-
-msgid "Save"
-msgstr "Speichern"
-
-msgid "Defaults"
-msgstr "Standard"
-
-msgid "Setup"
-msgstr "Einstellungen"
-
-msgid "Really close without saving settings?"
-msgstr "Fortfahren ohne Speichern der Einstellungen?"
-
-msgid "Loading default settings will overwrite all settings, really load them?"
-msgstr ""
-"Das Laden der Standardeinstellungen überschreibt alle aktuellen "
-"Einstellungen.\n"
-"Sollen die Standardeinstellungen wirklich geladen werden?"
-
-msgid "Some changes require a GUI restart"
-msgstr "Einige Änderungen erfordern einen Neustart der GUI"
-
-msgid "Restart GUI now?"
-msgstr "Soll die GUI jetzt neu gestartet werden?"
+msgid "Select function"
+msgstr "Funktionen"
 
 msgid "Bookmarks"
 msgstr "Lesezeichen"
 
-msgid "Select directory"
-msgstr "Verzeichnis-Auswahl"
+msgid "Reload cache"
+msgstr "Datei-Cache neu laden"
 
-msgid "Path does not exist"
-msgstr "Verzeichnis existiert nicht"
-
-msgid "Close"
-msgstr "Schliessen"
-
-msgid "Hide"
-msgstr "Ausblenden"
-
-msgid "Cancelling, please wait"
-msgstr "Breche ab, bitte warten"
-
-msgid "Processing"
-msgstr "In Bearbeitung"
-
-msgid "of"
-msgstr "von"
-
-msgid "Done"
-msgstr "Fertig"
-
-msgid "Cancelled"
-msgstr "Abgebrochen"
-
-msgid "Please wait"
-msgstr "Bitte warten"
-
-msgid "Select function"
-msgstr "Funktionen"
+msgid "Setup"
+msgstr "Einstellungen"
 
 msgid "About"
 msgstr "Über"
 
 msgid "Stop playback"
 msgstr "Stoppe Wiedergabe"
+
+msgid "Skip forward"
+msgstr "Springe vorwärts"
+
+msgid "Skip backward"
+msgstr "Springe zurück"
 
 msgid "EPG Info"
 msgstr "EPG Info"
@@ -296,7 +216,7 @@ msgstr ""
 "werden?"
 
 msgid "Tile selection background color"
-msgstr "Hintergrundfarbe für auswählte Kachel"
+msgstr "Hintergrundfarbe für ausgewählte Kachel"
 
 msgid "Select the tile selection background color."
 msgstr ""
@@ -446,14 +366,17 @@ msgstr "Debug Log"
 msgid "Should a debug log be activated?"
 msgstr "Soll ein Debug Log aktiviert werden?"
 
-msgid "Loading"
-msgstr "Lade"
-
 msgid "Initializing"
 msgstr "Vorbereitung"
 
 msgid "files"
 msgstr "Dateien"
+
+msgid "Delete file"
+msgstr "Löschen"
+
+msgid "HOME"
+msgstr "HOME"
 
 msgid "Play/Pause"
 msgstr "Abspielen/Pausieren"
@@ -488,14 +411,8 @@ msgstr "Information"
 msgid "Context menu"
 msgstr "Kontext Menü"
 
-msgid "Delete file"
-msgstr "Löschen"
-
 msgid "Home"
 msgstr "Anfang"
-
-msgid "Reload files"
-msgstr "Dateien neu laden"
 
 msgid "Exit"
 msgstr "Beenden"
@@ -506,20 +423,26 @@ msgstr "Listenanfang"
 msgid "Previous directory"
 msgstr "Vorheriges Verzeichnis"
 
-msgid "MediaCockpit"
-msgstr "MediaCockpit"
-
 msgid "Do you really want to delete the file?"
 msgstr "Soll das File wirklich gelöscht werden?"
 
 msgid "Do you really want to reload the media files?"
 msgstr "Sollen die Dateien wirklich neu geladen werden?"
 
+msgid "Select directory"
+msgstr "Verzeichnis-Auswahl"
+
 msgid "Thumbnail"
 msgstr "Vorschaubild"
 
 msgid "Media Infos"
 msgstr "Media Informationen"
+
+msgid "Cancel"
+msgstr "Abbruch"
+
+msgid "MediaCockpit"
+msgstr "MediaCockpit"
 
 msgid "Directory"
 msgstr "Verzeichnis"
@@ -605,11 +528,17 @@ msgstr "Wiederholen an/aus"
 msgid "This Dreambox can't decode %s streams!"
 msgstr "Diese Dreambox kann keine %s Streams decodieren!"
 
-msgid "Stop video/slideshow"
-msgstr "Stoppe Video/Diaschau"
-
 msgid "Rotate picture"
 msgstr "Bild drehen"
+
+msgid "Toggle Transition"
+msgstr "Wechsle Übergang"
+
+msgid "Toggle buttons"
+msgstr "Wechsle Tasten"
+
+msgid "Stop video/slideshow"
+msgstr "Stoppe Video/Diaschau"
 
 msgid "Toggle transition"
 msgstr "Wechsle Diaübergang"
@@ -631,3 +560,60 @@ msgstr "Seite"
 
 msgid "Pictures, Movies, and Slideshows"
 msgstr "Bilder, Filme und Diashows"
+
+msgid "Plugin"
+msgstr "Plugin"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Copyright"
+msgstr "Copyright"
+
+msgid "License"
+msgstr "Lizenz"
+
+msgid "End"
+msgstr "Ende"
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Defaults"
+msgstr "Standard"
+
+msgid "Really close without saving settings?"
+msgstr "Fortfahren ohne Speichern der Einstellungen?"
+
+msgid "Loading default settings will overwrite all settings, really load them?"
+msgstr ""
+"Das Laden der Standardeinstellungen überschreibt alle aktuellen "
+"Einstellungen.\n"
+"Sollen die Standardeinstellungen wirklich geladen werden?"
+
+msgid "Some changes require a GUI restart"
+msgstr "Einige Änderungen erfordern einen Neustart der GUI"
+
+msgid "Restart GUI now?"
+msgstr "Soll die GUI jetzt neu gestartet werden?"
+
+msgid "Path does not exist"
+msgstr "Verzeichnis existiert nicht"
+
+msgid "File Task"
+msgstr "Datei-Operation"
+
+msgid "Loading"
+msgstr "Laden"
+
+msgid "Deleting"
+msgstr "Löschen"
+
+msgid "Moving"
+msgstr "Verschieben"
+
+msgid "Copying"
+msgstr "Kopieren"
+
+msgid "FSTrim"
+msgstr "FSTrimmen"
