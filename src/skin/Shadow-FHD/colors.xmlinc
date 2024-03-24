@@ -23,7 +23,7 @@
 		<color name="CursorForeground" value="#ffffff"/>
 		<color name="HeaderForeground" value="#ffffff"/>
 		<color name="Heading" value="#768b94"/>
-		<color name="Progress" value="#607d8a"/>
+		<color name="Progress" value="#e5b243"/>
 		<color name="gradient" value="#131a1d"/>
 		<color name="Tile" value="#131a1d"/>
 		<color name="TileBackground" value="#131a1d"/>
