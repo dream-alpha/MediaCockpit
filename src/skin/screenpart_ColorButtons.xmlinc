@@ -1,0 +1,4 @@
+	<ePixmap pixmap="Default-FHD/skin_default/buttons/red.svg" position="0,0" size="$width,70"/>
+	<ePixmap pixmap="Default-FHD/skin_default/buttons/green.svg" position="$width,0" size="$width,70"/>
+	<ePixmap pixmap="Default-FHD/skin_default/buttons/yellow.svg" position="eval($width*$2),0" size="$width,70"/>
+	<ePixmap pixmap="Default-FHD/skin_default/buttons/blue.svg" position="eval($width*$3),0" size="$width,70"/>

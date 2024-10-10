@@ -1,0 +1,7 @@
+	<screen backgroundColor="$background" flags="wfNoBorder" name="MDCConfigScreen" position="0,center" size="1200,1080">
+		<xmlinc file="screenpart_Background"/>
+		<xmlinc file="screenpart_TitleOnly" source="Title"/>
+		<widget enableWrapAround="1" itemHeight="45" name="config" position="20,90" scrollbarMode="showOnDemand" size="eval($screen_width-40),765" transparent="1"/>
+		<widget font="Regular;30" halign="center" position="20,880" render="Label" size="eval($screen_width-40),120" source="help" transparent="1" valign="center"/>
+		<xmlinc file="screenpart_4Buttons_name" position="0,eval($screen_height-50)" width="eval($screen_width/$4)"/>
+	</screen>

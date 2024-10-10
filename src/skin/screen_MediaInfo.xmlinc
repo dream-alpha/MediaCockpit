@@ -1,0 +1,19 @@
+	<screen name="MDCMediaInfo" position="center,110" size="1800,930">
+		<xmlinc file="screenpart_ColorButtons" position="10,5" width="300"/>
+		<xmlinc file="screenpart_ColorButtonsLabels" position="10,5" width="300"/>
+		<xmlinc file="screenpart_DateTime"/>
+		<widget name="icon" position="135,225" size="150,150"/>
+		<widget name="thumbnail" position="10,100" size="400,400"/>
+		<widget enableWrapAround="1" position="460,100" render="Listbox" scrollbarMode="showOnDemand" size="1330,800" source="list">
+			<convert type="TemplatedMultiContent">
+				{
+				"template": [
+				MultiContentEntryText(pos=(5,0), size=(340,40), flags=RT_VALIGN_CENTER, text=0),
+				MultiContentEntryText(pos=(350,0), size=(980,40), flags=RT_VALIGN_CENTER, text=1),
+				],
+				"fonts": [gFont("Regular",29)],
+				"itemHeight":40
+				}
+			</convert>
+		</widget>
+	</screen>

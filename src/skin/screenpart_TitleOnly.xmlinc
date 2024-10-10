@@ -1,0 +1,1 @@
+	<widget font="Bold;32" noWrap="1" position="20,30" render="Label" size="eval($screen_width-40),43" source="$source" transparent="1"/>

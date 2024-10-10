@@ -1,0 +1,8 @@
+	<screen name="MDCCockpitContextMenu" position="0,0" size="1200,1080" title="">
+		<xmlinc file="screenpart_Background"/>
+		<xmlinc file="screenpart_TitleOnly" source="Title"/>
+		<widget enableWrapAround="1" itemHeight="45" position="20,90" render="Listbox" scrollbarMode="showOnDemand" size="eval($screen_width-40),1000" source="menu" transparent="1">
+			<convert type="StringList"/>
+		</widget>
+		<xmlinc file="screenpart_menu_arrow_down"/>
+	</screen>

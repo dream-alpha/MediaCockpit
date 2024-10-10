@@ -1,0 +1,8 @@
+	<screen flags="wfNoBorder" name="MDCSlideshow" position="0,0" size="1920,1080">
+		<widget name="image" position="0,0" size="1920,1080" zPosition="3"/>
+		<widget name="picture_background" position="0,0" size="1920,1080" zPosition="1"/>
+		<widget name="picture" position="0,0" size="1920,1080" zPosition="2"/>
+		<widget font="Regular;20" halign="left" name="osd_info" noWrap="1" position="20,10" size="1885,25" transparent="1" zPosition="2"/>
+		<xmlinc file="screenpart_ColorButtons" position="50,eval($screen_height-75)" width="eval(($screen_width-100)/$4)"/>
+		<xmlinc file="screenpart_ColorButtonsLabels" position="50,eval($screen_height-75)" width="eval(($screen_width-100)/$4)"/>
+	</screen>

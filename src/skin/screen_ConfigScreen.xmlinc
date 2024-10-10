@@ -1,0 +1,9 @@
+	<screen name="MDCConfigScreen" position="center,110" size="1800,930" title="">
+		<xmlinc file="screenpart_ColorButtons" position="10,5" width="300"/>
+		<xmlinc file="screenpart_ColorButtonsLabels" position="10,5" width="300"/>
+		<xmlinc file="screenpart_DateTime"/>
+		<eLabel backgroundColor="$grey" position="10,80" size="1780,1"/>
+		<widget enableWrapAround="1" itemHeight="45" name="config" position="10,90" scrollbarMode="showOnDemand" size="1780,630"/>
+		<eLabel backgroundColor="$grey" position="10,730" size="1780,1"/>
+		<widget font="Regular;32" halign="center" position="10,740" render="Label" size="1780,180" source="help" valign="center"/>
+	</screen>

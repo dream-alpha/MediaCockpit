@@ -1,0 +1,67 @@
+	<screen backgroundColor="$transparent" flags="wfNoBorder" name="MDCCockpitPlayer" position="center,center" size="2560,1440">
+		<widget backgroundColor="$CursorBackground" cornerRadius="80" font="Regular;35" foregroundColor="white" halign="center" position="2440,1340" render="FixedLabel" size="80,80" source="session.CurrentService" text="UHD" valign="center" zPosition="2">
+			<convert type="COCServiceInfo">VideoWidth</convert>
+			<convert type="ValueRange">2160,4320</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget backgroundColor="$CursorBackground" cornerRadius="80" font="Regular;35" foregroundColor="white" halign="center" position="2440,1340" render="FixedLabel" size="80,80" source="session.CurrentService" text="FHD" valign="center" zPosition="2">
+			<convert type="COCServiceInfo">VideoWidth</convert>
+			<convert type="ValueRange">1920,2159</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget backgroundColor="$CursorBackground" cornerRadius="80" font="Regular;35" foregroundColor="white" halign="center" position="2440,1340" render="FixedLabel" size="80,80" source="session.CurrentService" text="HD" valign="center" zPosition="2">
+			<convert type="COCServiceInfo">VideoWidth</convert>
+			<convert type="ValueRange">1280,1919</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget backgroundColor="$CursorBackground" cornerRadius="80" font="Regular;35" foregroundColor="white" halign="center" position="2440,1340" render="FixedLabel" size="80,80" source="session.CurrentService" text="qHD" valign="center" zPosition="2">
+			<convert type="COCServiceInfo">VideoWidth</convert>
+			<convert type="ValueRange">960,1279</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<eLabel backgroundColor="$CursorBackground" cornerRadius="80" font="Regular;35" foregroundColor="white" halign="center" position="2440,1340" size="80,80" text="SD" valign="center"/>
+		<eLabel backgroundColor="$CursorBackground" cornerRadius="80" font="Regular;35" foregroundColor="white" halign="center" position="2331,1340" size="80,80" text="4:3" valign="center"/>
+		<widget backgroundColor="$CursorBackground" cornerRadius="80" font="Regular;35" foregroundColor="white" halign="center" position="2331,1340" render="FixedLabel" size="80,80" source="session.CurrentService" text="16:9" valign="center" zPosition="1">
+			<convert type="COCServiceInfo">IsWidescreen</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<eLabel backgroundColor="CursorBackground" cornerRadius="80" position="40,1340" size="700,80" zPosition="1"/>
+		<eLabel backgroundColor="background" cornerRadius="80" position="40,1340" size="155,80" zPosition="1"/>
+		<widget path="/usr/share/enigma2/Default-WQHD/skin_default/icons/" position="65,1359" render="ExtAudioIcon" size="105,47" source="session.CurrentService" zPosition="2">
+			<convert type="Extaudioinfo">AudioIcon</convert>
+		</widget>
+		<widget backgroundColor="CursorBackground" font="Regular;35" foregroundColor="$HeaderForeground" halign="center" position="200,1351" render="Label" size="491,60" source="session.CurrentService" valign="center" zPosition="2">
+			<convert type="ServiceResolution">VideoInfoCodec</convert>
+		</widget>
+		<widget font="Regular;45" halign="right" position="800,1360" render="Label" size="300,55" source="Service" transparent="1">
+			<convert type="COCServicePosition">Position,Negate</convert>
+		</widget>
+		<widget font="Regular;55" halign="center" position="1151,1355" render="Label" size="260,55" source="Service" transparent="1">
+			<convert type="COCMovieInfo">MovieDuration</convert>
+			<convert type="COCClockToText">InMinutes</convert>
+		</widget>
+		<widget font="Regular;45" halign="left" position="1465,1360" render="Label" size="300,55" source="Service" transparent="1">
+			<convert type="COCServicePosition">Remaining</convert>
+		</widget>
+		<xmlinc file="screenpart_Bar_gradient"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/player.svg" position="40,1191" size="80,80" zPosition="2"/>
+		<widget font="Regular;56" noWrap="1" position="140,1200" render="Label" size="2133,67" source="Service" transparent="1">
+			<convert type="COCEventName">Name</convert>
+		</widget>
+		<widget backgroundColor="$CursorBackground" cornerRadius="69" font="Bold;40" halign="center" position="2360,27" render="Label" size="160,71" source="global.CurrentTime" valign="center" zPosition="-1">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget backgroundColor="$CursorBackground" cornerRadius="69" font="Bold;40" halign="center" position="2360,1200" render="Label" size="160,71" source="Service" transparent="1" valign="center">
+			<convert type="COCServicePosition">EndTime,ShowNoSeconds</convert>
+		</widget>
+		<widget backgroundColor="$grey" pointer="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/Default-WQHD/images/progress.png:2480,0" position="40,1295" render="PositionGauge" size="2480,13" source="Service" transparent="1" zPosition="2">
+			<convert type="COCServicePosition">Gauge</convert>
+		</widget>
+		<widget backgroundColor="$grey" pointer="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/Default-WQHD/images/progress_before.png:2480,0" position="40,1295" render="PositionGauge" size="2480,13" source="Service" transparent="1" zPosition="3">
+			<convert type="COCBeforeTSPosition">Gauge</convert>
+		</widget>
+		<widget backgroundColor="$dark" pointer="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/Default-WQHD/images/progress_rec.png:2480,0" position="40,1295" render="PositionGauge" size="2480,13" source="Service" zPosition="1">
+			<convert type="COCRecordPosition">Gauge</convert>
+		</widget>
+	</screen>
+	<xmlinc file="screen_CockpitPlayerSummary"/>

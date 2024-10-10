@@ -1,0 +1,24 @@
+# Windows image file caches
+Thumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Mac crap
+.DS_Store
+
+# Eclipse Files
+#.pydevproject
+#.project
+#.settings
+
+# Python Files
+*.pyo
+*.pyc
+
+# Ignore *.mo Files in po-folder
+/po/*.mo
+
+# For lunatic users of multiple revision control systems
+.svn
+.svnignore
