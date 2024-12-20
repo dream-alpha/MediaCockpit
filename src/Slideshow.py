@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2024 by dream-alpha
+# Copyright (C) 2018-2025 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -24,7 +24,6 @@ from random import shuffle
 from Screens.HelpMenu import HelpableScreen
 from Screens.Screen import Screen
 from Components.ActionMap import HelpableActionMap
-from Components.Sources.StaticText import StaticText
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Button import Button
@@ -36,6 +35,7 @@ try:
 except ImportError as e:
 	print(("MDC: exception: %s" % e))
 	merlin_picture_viewer = False
+from Plugins.SystemPlugins.CacheCockpit.FileManager import FileManager
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from Tools.LoadPixmap import LoadPixmap
 from enigma import ePoint, eSize, eTimer, getDesktop, gPixmapPtr
@@ -46,11 +46,11 @@ except ImportError as e:
 from skin import colorNames
 from .BoxUtils import getBoxType
 from .__init__ import _
+from .MediaCockpitSummary import MediaCockpitSummary
 from .Debug import logger
 from .PictureUtils import getPicturePath, rotatePicture, setExifOrientation
-from .MetaUtils import saveMetaFile
-from .FileListUtils import FILE_IDX_TYPE, FILE_IDX_PATH, FILE_IDX_META
-from .FileListUtils import FILE_TYPE_FILE, FILE_TYPE_PICTURE, FILE_TYPE_MOVIE
+from .FileManagerUtils import MDC_IDX_MEDIA, MDC_IDX_PATH, MDC_IDX_META
+from .FileManagerUtils import MDC_MEDIA_TYPE_FILE, MDC_MEDIA_TYPE_PICTURE, MDC_MEDIA_TYPE_MOVIE
 from .SkinUtils import getSkinName, getSkinPath
 from .MediaInfo import MediaInfo
 from .DelayTimer import DelayTimer
@@ -59,30 +59,27 @@ from .ConsoleAppContainer import ConsoleAppContainer
 from .FileListUtils import previousIndex, nextIndex
 from .ConfigInit import int_slideshow_animations, ext_slideshow_animations
 from .Thumbnail import Thumbnail
-from .MediaCockpitSummary import MediaCockpitSummary
+from .Display import Display
+from .Version import ID
 
 
-class Slideshow(Thumbnail, HelpableScreen, Screen):
+class Slideshow(Screen, Thumbnail, Display, HelpableScreen):
 
-	def __init__(self, session, file_list, file_index, start_slideshow=False, song_list=None):
+	def __init__(self, session, csel, file_list, file_index, start_slideshow=False, song_list=None):
 		logger.info("file_index: %s, start_slideshow: %s, file_list: %s, song_list: %s", file_index, start_slideshow, file_list, song_list)
+		self.csel = csel
 		self.slideshow_active = False
 		self.start_slideshow = start_slideshow
-
-		self["osd_info"] = Label()
-		self["lcd_info"] = StaticText()
-		self["lcd_title"] = StaticText()
-
 		self["key_red"] = Button(_("Exit"))
 		self["key_green"] = Button(_("Slideshow"))
 		self["key_yellow"] = Button(_("Rotate picture"))
 		self["key_blue"] = Button(_("Toggle Transition"))
 
+		Thumbnail.__init__(self)
+		Display.__init__(self, self)
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		self.skinName = getSkinName(self.__class__.__name__)
-		Thumbnail.__init__(self)
-
 		self["actions"] = HelpableActionMap(
 			self,
 			"CockpitActions",
@@ -149,6 +146,9 @@ class Slideshow(Thumbnail, HelpableScreen, Screen):
 		if getBoxType().startswith("dream"):
 			eAlsaOutput.getInstance().close()
 
+	def createSummary(self):
+		return MediaCockpitSummary
+
 	def showButtons(self):
 		logger.info("...")
 		size = self["picture"].instance.size()
@@ -167,18 +167,6 @@ class Slideshow(Thumbnail, HelpableScreen, Screen):
 			self.showButtons()
 		else:
 			self.hideButtons()
-
-	def displayLCD(self, title, info):
-		# logger.debug("title: %s, info: %s", title, info)
-		self["lcd_title"].setText(title)
-		self["lcd_info"].setText(info)
-
-	def displayOSD(self, info):
-		# logger.debug("info: %s", info)
-		self["osd_info"].setText(_("MediaCockpit") + " - " + info)
-
-	def createSummary(self):
-		return MediaCockpitSummary
 
 	def __onLayoutFinish(self):
 		logger.debug("...")
@@ -222,7 +210,7 @@ class Slideshow(Thumbnail, HelpableScreen, Screen):
 
 	def showLCDInfo(self):
 		# logger.info("file_index: %s, len(file_list): %s, slideshow_active: %s", self.file_index, len(self.file_list), self.slideshow_active)
-		path = self.file[FILE_IDX_PATH]
+		path = self.file[MDC_IDX_PATH]
 		adir = os.path.basename(os.path.dirname(path))
 		direction = "> " if self.direction else "< "
 		if not self.slideshow_active:
@@ -243,21 +231,21 @@ class Slideshow(Thumbnail, HelpableScreen, Screen):
 		DelayTimer(500, self.showSlide)
 
 	def showSlide(self):
-		logger.info("file_index: %s, len(self.file_list): %s, media: %s", self.file_index, len(self.file_list), self.file[FILE_IDX_TYPE])
-		if self.file[FILE_IDX_TYPE] == FILE_TYPE_PICTURE:
+		logger.info("file_index: %s, len(self.file_list): %s, media: %s", self.file_index, len(self.file_list), self.file[MDC_IDX_MEDIA])
+		if self.file[MDC_IDX_MEDIA] == MDC_MEDIA_TYPE_PICTURE:
 			self.show()
 			if self.external_slideshow and self.slideshow_active:
-				self["image"].setPicture(self.file[FILE_IDX_PATH])
+				self["image"].setPicture(self.file[MDC_IDX_PATH])
 			else:
 				self.unhidePicture()
-				self.showPicture(self.file[FILE_IDX_PATH])
+				self.showPicture(self.file[MDC_IDX_PATH])
 			if self.slideshow_active:
 				self.slide_timer.start(self.slideshow_duration, True)
-		elif self.file[FILE_IDX_TYPE] == FILE_TYPE_MOVIE:
+		elif self.file[MDC_IDX_MEDIA] == MDC_MEDIA_TYPE_MOVIE:
 			self.hide()
-			self.showVideo(self.file[FILE_IDX_PATH])
+			self.showVideo(self.file[MDC_IDX_PATH])
 		else:
-			logger.debug("skip slide: %s", self.file[FILE_IDX_TYPE])
+			logger.debug("skip slide: %s", self.file[MDC_IDX_MEDIA])
 			self.nextSlide()
 		self.showLCDInfo()
 
@@ -297,8 +285,8 @@ class Slideshow(Thumbnail, HelpableScreen, Screen):
 			self.nextSlide()
 
 	def stopVideo(self):
-		if self.file[FILE_IDX_TYPE] == FILE_TYPE_MOVIE:
-			logger.debug("media: %s", self.file[FILE_IDX_TYPE])
+		if self.file[MDC_IDX_MEDIA] == MDC_MEDIA_TYPE_MOVIE:
+			logger.debug("media: %s", self.file[MDC_IDX_MEDIA])
 			self.video_container.kill()
 			if self.slideshow_active:
 				self.blackScreen()
@@ -339,7 +327,7 @@ class Slideshow(Thumbnail, HelpableScreen, Screen):
 
 	def playSong(self, afile):
 		logger.info("song_index: %s, afile: %s", self.song_index, afile)
-		cmd = "gst-launch-1.0 playbin uri='file://%s' audio-sink='alsasink'" % afile[FILE_IDX_PATH]
+		cmd = "gst-launch-1.0 playbin uri='file://%s' audio-sink='alsasink'" % afile[MDC_IDX_PATH]
 		logger.debug("cmd: %s", cmd)
 		self.audio_container.execute(cmd)
 
@@ -356,7 +344,7 @@ class Slideshow(Thumbnail, HelpableScreen, Screen):
 
 	def rotatePicture(self):
 		logger.debug("file_index: %s", self.file_index)
-		path = self.file[FILE_IDX_PATH]
+		path = self.file[MDC_IDX_PATH]
 		filename, ext = os.path.splitext(path)
 		out_file = in_file = filename + ".transformed" + ext
 		if not os.path.exists(in_file):
@@ -365,7 +353,7 @@ class Slideshow(Thumbnail, HelpableScreen, Screen):
 		if rc:
 			self.createThumbnail(path, True)
 
-			orientation = self.file[FILE_IDX_META]["Orientation"]
+			orientation = self.file[MDC_IDX_META]["Orientation"]
 			if orientation == 1:
 				new_orientation = 6
 			elif orientation == 6:
@@ -377,8 +365,7 @@ class Slideshow(Thumbnail, HelpableScreen, Screen):
 				deleteFile(out_file)
 
 			setExifOrientation(path, new_orientation)
-			self.file[FILE_IDX_META]["Orientation"] = new_orientation
-			saveMetaFile(path, self.file)
+			FileManager.getInstance(ID).loadDatabaseFile(path)
 			if new_orientation == 1:
 				deleteFile(out_file)
 
@@ -393,12 +380,12 @@ class Slideshow(Thumbnail, HelpableScreen, Screen):
 		self.stopSong()
 		config.plugins.mediacockpit.animation.value = str(self.animation)
 		config.plugins.mediacockpit.animation.save()
-		path = self.file[FILE_IDX_PATH]
+		path = self.file[MDC_IDX_PATH]
 		logger.debug("file_index: %s, path: %s", self.file_index, path)
 		self.close(path)
 
 	def yellow(self):
-		if self.file[FILE_IDX_TYPE] == FILE_TYPE_PICTURE:
+		if self.file[MDC_IDX_MEDIA] == MDC_MEDIA_TYPE_PICTURE:
 			if self.toast is not None:
 				self.session.toastManager.hide(self.toast)
 			self.session.toastManager.showToast(_("Rotating picture..."))
@@ -413,7 +400,7 @@ class Slideshow(Thumbnail, HelpableScreen, Screen):
 		self.nextSlide()
 
 	def stop(self):
-		if self.file[FILE_IDX_TYPE] == FILE_TYPE_MOVIE:
+		if self.file[MDC_IDX_MEDIA] == MDC_MEDIA_TYPE_MOVIE:
 			self.stopVideo()
 			DelayTimer(250, self.showVideoCallback)
 		else:
@@ -425,6 +412,7 @@ class Slideshow(Thumbnail, HelpableScreen, Screen):
 		logger.debug("...")
 		self.slideshow_active = not self.slideshow_active
 		if self.slideshow_active:
+			self.hideButtons()
 			self["image"].show()
 			self.showSlide()
 		else:
@@ -434,8 +422,8 @@ class Slideshow(Thumbnail, HelpableScreen, Screen):
 			self["image"].hide()
 
 	def openInfo(self):
-		if not self.slideshow_active and self.file[FILE_IDX_TYPE] in FILE_TYPE_FILE:
-			self.session.openWithCallback(self.openInfoCallback, MediaInfo, self.file_list, self.file_index)
+		if not self.slideshow_active and self.file[MDC_IDX_MEDIA] in MDC_MEDIA_TYPE_FILE:
+			self.session.openWithCallback(self.openInfoCallback, MediaInfo, self.csel, self.file_list, self.file_index)
 
 	def openInfoCallback(self, file_index):
 		self.file_index = file_index

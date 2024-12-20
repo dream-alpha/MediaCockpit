@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2024 by dream-alpha
+# Copyright (C) 2018-2025 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -48,7 +48,7 @@ def getExifData(path):
 		exif_data = img._getexif()  # pylint: disable=W0212
 	except Exception as e:
 		logger.error("exception: %s", e)
-	logger.debug("exif_data: %s", str(exif_data))
+	# logger.debug("exif_data: %s", str(exif_data))
 	if exif_data:
 		for key, value in list(exif_data.items()):
 			if key in TAGS:

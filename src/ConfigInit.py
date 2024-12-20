@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2024 by dream-alpha
+# Copyright (C) 2018-2025 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -102,11 +102,10 @@ class ConfigInit():
 		choices_slideshow_animation = ext_slideshow_animations + int_slideshow_animations
 
 		config.plugins.mediacockpit = ConfigSubsection()
+		config.plugins.mediacockpit.fake_entry = NoSave(ConfigNothing())
 		config.plugins.mediacockpit.sort = ConfigSelection(default="2", choices=choices_sort)
 		config.plugins.mediacockpit.last_path = ConfigText(default="")
-		config.plugins.mediacockpit.start_home_dir = ConfigYesNo(default=False)
-		config.plugins.mediacockpit.home_dir = ConfigText(default="/[HOME]", fixed_size=False, visible_width=35)
-		config.plugins.mediacockpit.cache = ConfigYesNo(default=True)
+		config.plugins.mediacockpit.start_home_dir = ConfigYesNo(default=True)
 		config.plugins.mediacockpit.frame = ConfigYesNo(default=True)
 		config.plugins.mediacockpit.create_thumbnails = ConfigYesNo(default=True)
 		config.plugins.mediacockpit.thumbnail_size_width = ConfigInteger(default=0)
@@ -126,17 +125,15 @@ class ConfigInit():
 		config.plugins.mediacockpit.sort_across_dirs = ConfigYesNo(default=False)
 		config.plugins.mediacockpit.picture_background = ConfigSelection(default="black", choices=choices_color)
 		config.plugins.mediacockpit.picture_foreground = ConfigSelection(default="foreground", choices=choices_color)
-		config.plugins.mediacockpit.show_loading_details = ConfigYesNo(default=True)
-		config.plugins.mediacockpit.fake_entry = NoSave(ConfigNothing())
-		config.plugins.mediacockpit.debug_log_level = ConfigSelection(default="INFO", choices=list(log_levels.keys()))
+		config.plugins.mediacockpit.debug_log_level = ConfigSelection(default="DEBUG", choices=list(log_levels.keys()))
 		config.plugins.mediacockpit.non_standard_decoder = ConfigYesNo(default=True)
 		config.plugins.mediacockpit.cover_downloader = ConfigSelection(default="lastfm", choices=choices_cover_downloader)
 		config.plugins.mediacockpit.cover_download_path = ConfigDirectory(default="/data/music/covers")
+		config.plugins.mediacockpit.database_directory = ConfigDirectory(default="/etc/enigma2")
 		config.plugins.mediacockpit.gapless = ConfigYesNo(default=True)
 		config.plugins.mediacockpit.alsasink = ConfigYesNo(default=True)
 		config.plugins.mediacockpit.movie_resume_at_last_pos = ConfigYesNo(default=False)
 		config.plugins.mediacockpit.movie_start_position = ConfigSelection(default="beginning", choices=[("beginning", _("beginning")), ("first_mark", _("first mark")), ("event_start", _("event start"))])
-
 		config.plugins.mediacockpit.movie_date_format = ConfigSelection(default="%d.%m.%Y %H:%M", choices=choices_date)
 		config.plugins.mediacockpit.bookmarks = ConfigSet([], [])
 		if not config.plugins.mediacockpit.bookmarks.value:

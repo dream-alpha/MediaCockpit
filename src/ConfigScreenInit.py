@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2024 by dream-alpha
+# Copyright (C) 2018-2025 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -48,7 +48,6 @@ class ConfigScreenInit():
 		self.config_list = [
 			(self.section                                       , _("COCKPIT")                                                  , None                  , None                  , 0     , []          , ""),
 			(_("Start with top level favorites")                , config.plugins.mediacockpit.start_home_dir                    , None                  , None                  , 0     , []          , _("Should the plugin load the top level favorite directories or the directory that was used last?")),
-			(_("Activate File Cache")                           , config.plugins.mediacockpit.cache                             , None                  , None                  , 0     , []          , _("Activate the media file cache for faster loading.")),
 			(_("Sort")                                          , config.plugins.mediacockpit.sort                              , None                  , None                  , 0     , []          , _("Select the list sort mode.")),
 			(_("Sort across directories")                       , config.plugins.mediacockpit.sort_across_dirs                  , None                  , None                  , 0     , []          , _("Should directories be sorted recursively?")),
 			(_("Show parent directory tile")                    , config.plugins.mediacockpit.show_dirup_tile                   , None                  , None                  , 0     , []          , _("Should a tile be displayed for navigation to the parent directory?")),
@@ -61,7 +60,6 @@ class ConfigScreenInit():
 			(_("Tile selection frame")                          , config.plugins.mediacockpit.frame                             , None                  , None                  , 0     , []          , _("Should a tile selection frame be displayed?")),
 			(_("Tile selection frame color")                    , config.plugins.mediacockpit.selection_frame_color             , self.needsRestart     , None                  , 0     , [-1]        , _("Select the tile selection frame color.")),
 			(_("Create thumbnails")                             , config.plugins.mediacockpit.create_thumbnails                 , None                  , None                  , 0     , []          , _("Should thumbnails be created automatically?")),
-			(_("Show detailed loading info")                    , config.plugins.mediacockpit.show_loading_details              , None                  , None                  , 0     , []          , _("Should detailed loading info be shown?")),
 			(self.section                                       , _("SLIDESHOW")                                                , None                  , None                  , 0     , []          , ""),
 			(_("Duration")                                      , config.plugins.mediacockpit.slideshow_duration                , None                  , None                  , 0     , []          , _("Select the duration for the display of a slide.")),
 			(_("Animation")                                     , config.plugins.mediacockpit.animation                         , None                  , None                  , 0     , []          , _("Which animation should be used for slide transistions?")),
@@ -79,6 +77,8 @@ class ConfigScreenInit():
 			(_("Gapless playback")                              , config.plugins.mediacockpit.gapless                           , None                  , None                  , 0     , []          , _("Should gapless playback be used?")),
 			(_("Alsasink")                                      , config.plugins.mediacockpit.alsasink                          , None                  , None                  , 0     , []          , _("Should the GStreamer Alsasink decoder be used?")),
 			(_("Cover download path")                           , config.plugins.mediacockpit.cover_download_path               , self.validatePath     , self.openLocationBox  , 0     , []          , _("Select the path for cover downloads.")),
+			(self.section                                       , _("CACHE")                                                    , None                  , None                  , 0     , []          , ""),
+			(_("Cache directory")                               , config.plugins.mediacockpit.database_directory		    , self.validatePath     , self.openLocationBox  , 0     , []          , _("Select directory for cache database file.")),
 			(self.section                                       , _("DEBUG")                                                    , None                  , None                  , 2     , []          , ""),
 			(_("Debug log")                                     , config.plugins.mediacockpit.debug_log_level                   , self.setLogLevel      , None                  , 2     , []          , _("Should a debug log be activated?")),
 		]

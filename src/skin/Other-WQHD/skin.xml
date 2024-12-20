@@ -12,6 +12,7 @@
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/Other-WQHD/images/display_bg.png" position="0,0" size="400,240" zPosition="-1"/>
 		<widget font="Display;75" halign="center" position="0,10" render="Label" size="400,75" source="parent.lcd_title" transparent="1" valign="top"/>
 		<widget font="Display;60" halign="center" position="0,100" render="Label" size="400,125" source="parent.lcd_info" transparent="1" valign="center"/>
+		<widget name="background" position="0,0" size="400,240" zPosition="2"/>
 	</screen>
 	<screen name="MDCConfigScreen" position="center,147" size="2400,1240" title="">
 		<ePixmap pixmap="Default-FHD/skin_default/buttons/red.svg" position="13,7" size="400,93"/>
@@ -292,5 +293,23 @@
 	<screen backgroundColor="#ff000000" flags="wfNoBorder" name="ScreenPVRState" position="center,center" size="133,213" zPosition="1000">
 		<widget name="state_pic" position="0,0" size="133,133" transparent="1"/>
 		<widget backgroundColor="#0528343b" font="Regular;53" halign="center" name="state" position="0,147" size="133,72" transparent="1" valign="center"/>
+	</screen>
+	<screen name="MDCFileManagerProgress" position="center,center" size="1627,487" title="">
+		<ePixmap pixmap="Default-FHD/skin_default/buttons/red.svg" position="13,7" size="400,93"/>
+		<ePixmap pixmap="Default-FHD/skin_default/buttons/green.svg" position="413,7" size="400,93"/>
+		<ePixmap pixmap="Default-FHD/skin_default/buttons/yellow.svg" position="813,7" size="400,93"/>
+		<ePixmap pixmap="Default-FHD/skin_default/buttons/blue.svg" position="1213,7" size="400,93"/>
+		<widget backgroundColor="#ff0000" font="Regular;40" foregroundColor="#ffffff" halign="center" name="key_red" position="13,7" shadowColor="#000000" shadowOffset="-2,-2" size="400,93" transparent="1" valign="center" zPosition="1"/>
+		<widget backgroundColor="#669900" font="Regular;40" foregroundColor="#ffffff" halign="center" name="key_green" position="413,7" shadowColor="#000000" shadowOffset="-2,-2" size="400,93" transparent="1" valign="center" zPosition="1"/>
+		<widget backgroundColor="#e5b243" font="Regular;40" foregroundColor="#ffffff" halign="center" name="key_yellow" position="813,7" shadowColor="#000000" shadowOffset="-2,-2" size="400,93" transparent="1" valign="center" zPosition="1"/>
+		<widget backgroundColor="#3366cc" font="Regular;40" foregroundColor="#ffffff" halign="center" name="key_blue" position="1213,7" shadowColor="#000000" shadowOffset="-2,-2" size="400,93" transparent="1" valign="center" zPosition="1"/>
+		<eLabel backgroundColor="grey" position="13,100" size="1600,1"/>
+		<widget font="Regular;43" halign="left" name="operation" position="13,127" size="1574,57" transparent="1"/>
+		<widget font="Regular;43" halign="left" name="name" position="13,200" size="1574,57" transparent="1"/>
+		<widget name="slider1" position="13,271" size="1574,33" transparent="1"/>
+		<widget font="Regular;43" halign="left" name="status" position="13,320" size="1574,57" transparent="1"/>
+		<widget font="Regular;35" halign="left" position="13,407" render="Label" size="1574,47" source="DiskSpace" transparent="1">
+			<convert type="COCDiskSpaceInfo">SpaceInfo</convert>
+		</widget>
 	</screen>
 </skin>

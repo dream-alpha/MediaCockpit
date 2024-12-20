@@ -1,6 +1,6 @@
 Description: MediaCockpit
 Maintainer: dream-alpha
 Package: enigma2-plugin-extensions-mediacockpit
-Version: 18.3.3
+Version: 19.1.0
 Architecture: all
-Depends: python-imaging, python-twisted, python-mutagen, ffmpeg, python-merlinpictureviewer, python-merlinmusicplayer, enigma2-plugin-systemplugins-mountcockpit, enigma2-plugin-skincomponents-cockpit
+Depends: python-imaging, python-twisted, python-mutagen, ffmpeg, python-merlinpictureviewer, python-merlinmusicplayer, enigma2-plugin-systemplugins-mountcockpit, enigma2-plugin-skincomponents-cockpit, enigma2-plugin-systemplugins-cachecockpit

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: MediaCockpit\n"
-"POT-Creation-Date: 2024-01-14 17:00+0100\n"
+"POT-Creation-Date: 2024-11-09 12:54+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: dream-alpha\n"
 "Language-Team: \n"
@@ -9,26 +9,35 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-msgid "Select function"
+msgid "Exit"
 msgstr ""
 
-msgid "Bookmarks"
+msgid "Play/Pause"
 msgstr ""
 
-msgid "Reload cache"
-msgstr ""
-
-msgid "Setup"
-msgstr ""
-
-msgid "About"
+msgid "Song"
 msgstr ""
 
 msgid "Stop playback"
+msgstr ""
+
+msgid "Next song"
+msgstr ""
+
+msgid "Previous song"
+msgstr ""
+
+msgid "Toggle shuffle"
+msgstr ""
+
+msgid "Toggle repeat"
+msgstr ""
+
+msgid "This Dreambox can't decode %s streams!"
 msgstr ""
 
 msgid "Skip forward"
@@ -165,12 +174,6 @@ msgid ""
 "that was used last?"
 msgstr ""
 
-msgid "Activate File Cache"
-msgstr ""
-
-msgid "Activate the media file cache for faster loading."
-msgstr ""
-
 msgid "Sort"
 msgstr ""
 
@@ -241,12 +244,6 @@ msgid "Create thumbnails"
 msgstr ""
 
 msgid "Should thumbnails be created automatically?"
-msgstr ""
-
-msgid "Show detailed loading info"
-msgstr ""
-
-msgid "Should detailed loading info be shown?"
 msgstr ""
 
 msgid "SLIDESHOW"
@@ -336,6 +333,15 @@ msgstr ""
 msgid "Select the path for cover downloads."
 msgstr ""
 
+msgid "CACHE"
+msgstr ""
+
+msgid "Cache directory"
+msgstr ""
+
+msgid "Select directory for cache database file."
+msgstr ""
+
 msgid "DEBUG"
 msgstr ""
 
@@ -345,19 +351,19 @@ msgstr ""
 msgid "Should a debug log be activated?"
 msgstr ""
 
-msgid "Initializing"
-msgstr ""
-
-msgid "files"
+msgid "MediaCockpit"
 msgstr ""
 
 msgid "Delete file"
 msgstr ""
 
-msgid "HOME"
+msgid "Home"
 msgstr ""
 
-msgid "Play/Pause"
+msgid "Load cache directory"
+msgstr ""
+
+msgid "Bookmarks"
 msgstr ""
 
 msgid "Slideshow"
@@ -390,13 +396,13 @@ msgstr ""
 msgid "Context menu"
 msgstr ""
 
-msgid "Home"
-msgstr ""
-
-msgid "Exit"
+msgid "Menu"
 msgstr ""
 
 msgid "Start of list"
+msgstr ""
+
+msgid "Show load progress"
 msgstr ""
 
 msgid "Previous directory"
@@ -405,10 +411,19 @@ msgstr ""
 msgid "Do you really want to delete the file?"
 msgstr ""
 
-msgid "Do you really want to reload the media files?"
+msgid "Select directory"
 msgstr ""
 
-msgid "Select directory"
+msgid "Do you really want to load the following directory?"
+msgstr ""
+
+msgid "Can't load directory because it is not mounted."
+msgstr ""
+
+msgid "Do you really want to load the following bookmark?"
+msgstr ""
+
+msgid "Can't load bookmark because it is not mounted."
 msgstr ""
 
 msgid "Thumbnail"
@@ -418,9 +433,6 @@ msgid "Media Infos"
 msgstr ""
 
 msgid "Cancel"
-msgstr ""
-
-msgid "MediaCockpit"
 msgstr ""
 
 msgid "Directory"
@@ -486,25 +498,19 @@ msgstr ""
 msgid "Exif Version"
 msgstr ""
 
+msgid "Load cache bookmark"
+msgstr ""
+
+msgid "Setup"
+msgstr ""
+
+msgid "About"
+msgstr ""
+
+msgid "Input"
+msgstr ""
+
 msgid "min"
-msgstr ""
-
-msgid "Song"
-msgstr ""
-
-msgid "Next song"
-msgstr ""
-
-msgid "Previous song"
-msgstr ""
-
-msgid "Toggle shuffle"
-msgstr ""
-
-msgid "Toggle repeat"
-msgstr ""
-
-msgid "This Dreambox can't decode %s streams!"
 msgstr ""
 
 msgid "Rotate picture"
@@ -576,6 +582,27 @@ msgstr ""
 msgid "Path does not exist"
 msgstr ""
 
+msgid "File operation(s)"
+msgstr ""
+
+msgid "Remaining files"
+msgstr ""
+
+msgid "Cancelling, please wait"
+msgstr ""
+
+msgid "Cancelled"
+msgstr ""
+
+msgid "Please wait"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+msgid "No file operation in process"
+msgstr ""
+
 msgid "File Task"
 msgstr ""
 
@@ -592,4 +619,16 @@ msgid "Copying"
 msgstr ""
 
 msgid "FSTrim"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Hide"
+msgstr ""
+
+msgid "Processing"
+msgstr ""
+
+msgid "of"
 msgstr ""

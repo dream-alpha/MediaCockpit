@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: MediaCockpit\n"
-"POT-Creation-Date: 2024-01-14 17:00+0100\n"
+"POT-Creation-Date: 2024-11-09 12:54+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: dream-alpha\n"
 "Language-Team: \n"
@@ -9,27 +9,36 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-msgid "Select function"
-msgstr "Funktionen"
+msgid "Exit"
+msgstr "Beenden"
 
-msgid "Bookmarks"
-msgstr "Lesezeichen"
+msgid "Play/Pause"
+msgstr "Abspielen/Pausieren"
 
-msgid "Reload cache"
-msgstr "Datei-Cache neu laden"
-
-msgid "Setup"
-msgstr "Einstellungen"
-
-msgid "About"
-msgstr "Über"
+msgid "Song"
+msgstr "Lied"
 
 msgid "Stop playback"
 msgstr "Stoppe Wiedergabe"
+
+msgid "Next song"
+msgstr "Nächstes Lied"
+
+msgid "Previous song"
+msgstr "Vorheriges Lied"
+
+msgid "Toggle shuffle"
+msgstr "Mischen an/aus"
+
+msgid "Toggle repeat"
+msgstr "Wiederholen an/aus"
+
+msgid "This Dreambox can't decode %s streams!"
+msgstr "Diese Dreambox kann keine %s Streams decodieren!"
 
 msgid "Skip forward"
 msgstr "Springe vorwärts"
@@ -158,7 +167,7 @@ msgid "COCKPIT"
 msgstr "COCKPIT"
 
 msgid "Start with top level favorites"
-msgstr "Favoriten-Verzeichnisse beim Start des Plugins"
+msgstr "Lesezeichen beim Start des Plugins"
 
 msgid ""
 "Should the plugin load the top level favorite directories or the directory "
@@ -166,12 +175,6 @@ msgid ""
 msgstr ""
 "Sollen die Favoriten-Verzeichnisse oder das zuletzt benutze Verzeichnis "
 "geladen werden, wenn das Plugin startet?"
-
-msgid "Activate File Cache"
-msgstr "Datei-Cache"
-
-msgid "Activate the media file cache for faster loading."
-msgstr "Soll der Datei-Cache für schnelleres Laden aktiviert werden?"
 
 msgid "Sort"
 msgstr "Sortierung"
@@ -257,12 +260,6 @@ msgstr "Vorschaubilder"
 
 msgid "Should thumbnails be created automatically?"
 msgstr "Sollen Vorschaubilder automatisch generiert werden?"
-
-msgid "Show detailed loading info"
-msgstr "Detaillierte Anzeige des Ladefortschritts"
-
-msgid "Should detailed loading info be shown?"
-msgstr "Soll ein detaillierter Ladefortschritt angezeigt werden?"
 
 msgid "SLIDESHOW"
 msgstr "DIASHOW"
@@ -357,6 +354,15 @@ msgstr "Musik Cover Verzeichnis"
 msgid "Select the path for cover downloads."
 msgstr "In welchem Verzeichnis sollen Musik Cover gespeichert werden?"
 
+msgid "CACHE"
+msgstr "CACHE"
+
+msgid "Cache directory"
+msgstr "Cache-Verzeichnis"
+
+msgid "Select directory for cache database file."
+msgstr "Auswahl des Verzeichnisses für die Cache Datenbank"
+
 msgid "DEBUG"
 msgstr "DEBUG"
 
@@ -366,20 +372,20 @@ msgstr "Debug Log"
 msgid "Should a debug log be activated?"
 msgstr "Soll ein Debug Log aktiviert werden?"
 
-msgid "Initializing"
-msgstr "Vorbereitung"
-
-msgid "files"
-msgstr "Dateien"
+msgid "MediaCockpit"
+msgstr "MediaCockpit"
 
 msgid "Delete file"
 msgstr "Löschen"
 
-msgid "HOME"
-msgstr "HOME"
+msgid "Home"
+msgstr "Home"
 
-msgid "Play/Pause"
-msgstr "Abspielen/Pausieren"
+msgid "Load cache directory"
+msgstr "Cache Verzeichnis laden"
+
+msgid "Bookmarks"
+msgstr "Lesezeichen"
 
 msgid "Slideshow"
 msgstr "Diashow"
@@ -411,26 +417,35 @@ msgstr "Information"
 msgid "Context menu"
 msgstr "Kontext Menü"
 
-msgid "Home"
-msgstr "Anfang"
-
-msgid "Exit"
-msgstr "Beenden"
+msgid "Menu"
+msgstr "Menü"
 
 msgid "Start of list"
 msgstr "Listenanfang"
+
+msgid "Show load progress"
+msgstr "Ladeanzeige"
 
 msgid "Previous directory"
 msgstr "Vorheriges Verzeichnis"
 
 msgid "Do you really want to delete the file?"
-msgstr "Soll das File wirklich gelöscht werden?"
-
-msgid "Do you really want to reload the media files?"
-msgstr "Sollen die Dateien wirklich neu geladen werden?"
+msgstr "Soll die Datei wirklich gelöscht werden?"
 
 msgid "Select directory"
 msgstr "Verzeichnis-Auswahl"
+
+msgid "Do you really want to load the following directory?"
+msgstr "Soll das folgende Verzeichnis wirklich geladen werden?"
+
+msgid "Can't load directory because it is not mounted."
+msgstr "Verzeichnis ist nicht eingehängt und kann daher nicht geladen werden."
+
+msgid "Do you really want to load the following bookmark?"
+msgstr "Soll das folgende Lesezeichen wirklich geladen werden?"
+
+msgid "Can't load bookmark because it is not mounted."
+msgstr "Lesezeichen ist nicht eingehängt und kann daher nicht geladen werden."
 
 msgid "Thumbnail"
 msgstr "Vorschaubild"
@@ -440,9 +455,6 @@ msgstr "Media Informationen"
 
 msgid "Cancel"
 msgstr "Abbruch"
-
-msgid "MediaCockpit"
-msgstr "MediaCockpit"
 
 msgid "Directory"
 msgstr "Verzeichnis"
@@ -507,26 +519,20 @@ msgstr "GPS Längengrad"
 msgid "Exif Version"
 msgstr "Exif Version"
 
+msgid "Load cache bookmark"
+msgstr "Cache Lesezeichen laden"
+
+msgid "Setup"
+msgstr "Einstellungen"
+
+msgid "About"
+msgstr "Über"
+
+msgid "Input"
+msgstr "Eingabe"
+
 msgid "min"
 msgstr "Min"
-
-msgid "Song"
-msgstr "Lied"
-
-msgid "Next song"
-msgstr "Nächstes Lied"
-
-msgid "Previous song"
-msgstr "Vorheriges Lied"
-
-msgid "Toggle shuffle"
-msgstr "Mischen an/aus"
-
-msgid "Toggle repeat"
-msgstr "Wiederholen an/aus"
-
-msgid "This Dreambox can't decode %s streams!"
-msgstr "Diese Dreambox kann keine %s Streams decodieren!"
 
 msgid "Rotate picture"
 msgstr "Bild drehen"
@@ -600,11 +606,32 @@ msgstr "Soll die GUI jetzt neu gestartet werden?"
 msgid "Path does not exist"
 msgstr "Verzeichnis existiert nicht"
 
+msgid "File operation(s)"
+msgstr "Dateioperationen"
+
+msgid "Remaining files"
+msgstr "Verbleibende Dateien"
+
+msgid "Cancelling, please wait"
+msgstr "Breche ab, bitte warten"
+
+msgid "Cancelled"
+msgstr "Abgebrochen"
+
+msgid "Please wait"
+msgstr "Bitte warten"
+
+msgid "Done"
+msgstr "Fertig"
+
+msgid "No file operation in process"
+msgstr "Keine Dateioperation aktiv"
+
 msgid "File Task"
 msgstr "Datei-Operation"
 
 msgid "Loading"
-msgstr "Laden"
+msgstr "Lade"
 
 msgid "Deleting"
 msgstr "Löschen"
@@ -617,3 +644,15 @@ msgstr "Kopieren"
 
 msgid "FSTrim"
 msgstr "FSTrimmen"
+
+msgid "Close"
+msgstr "Schliessen"
+
+msgid "Hide"
+msgstr "Ausblenden"
+
+msgid "Processing"
+msgstr "In Bearbeitung"
+
+msgid "of"
+msgstr "von"

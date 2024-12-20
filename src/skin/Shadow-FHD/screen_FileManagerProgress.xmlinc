@@ -1,0 +1,6 @@
+	<screen flags="wfNoBorder" name="MDCFileManagerProgress" position="center,center" size="1200,410">
+		<xmlinc file="screenpart_Background"/>
+		<xmlinc file="screenpart_TitleOnly" source="Title"/>
+		<xmlinc file="screenpart_FileManagerProgressBody" position="20,90"/>
+		<xmlinc file="screenpart_4Buttons_name" position="0,eval($screen_height-50)"/>
+	</screen>

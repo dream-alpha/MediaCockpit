@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2024 by dream-alpha
+# Copyright (C) 2018-2025 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -20,25 +20,17 @@
 
 
 import os
+import json
+from six import text_type
 from Components.config import config
-
-
-# file indexes
-FILE_IDX_PATH = 0
-FILE_IDX_TYPE = 1
-FILE_IDX_DATE = 2
-FILE_IDX_META = 3
-
-
-# file types (FILE_IDX_TYPE)
-FILE_TYPE_UP = 0
-FILE_TYPE_DIR = 1
-FILE_TYPE_PLAYLIST = 2
-FILE_TYPE_PICTURE = 3
-FILE_TYPE_MOVIE = 4
-FILE_TYPE_MUSIC = 5
-
-FILE_TYPE_FILE = [FILE_TYPE_PICTURE, FILE_TYPE_MOVIE, FILE_TYPE_MUSIC]
+from Plugins.SystemPlugins.CacheCockpit.FileManager import FileManager
+from .Debug import logger
+from .FileManagerUtils import MDC_TYPE_DIR
+from .FileManagerUtils import MDC_IDX_TYPE, MDC_IDX_PATH, MDC_IDX_MEDIA, MDC_IDX_META, MDC_IDX_DATE
+from .FileManagerUtils import MDC_MEDIA_TYPE_FILE, MDC_MEDIA_TYPE_PICTURE, MDC_MEDIA_TYPE_MUSIC, MDC_MEDIA_TYPE_DIR, MDC_MEDIA_TYPE_UP
+from .ConfigInit import sort_modes
+from .Version import ID
+from .FileUtils import readFile
 
 
 def nextIndex(file_index, file_list_length):
@@ -58,38 +50,118 @@ def previousIndex(file_index, file_list_length):
 def getIndex(file_list, path):
 	file_index = 0 if file_list else -1
 	for i, afile in enumerate(file_list):
-		if afile[FILE_IDX_PATH] == path:
+		if afile[MDC_IDX_PATH] == path:
 			file_index = i
 			break
 	return file_index
 
 
 def getPath(file_list, index):
-	path = ""
+	current_path = ""
 	if file_list:
-		path = file_list[index][FILE_IDX_PATH]
-	return path
+		afile = file_list[index]
+		current_path = afile[MDC_IDX_PATH]
+	logger.debug("current_path: %s", current_path)
+	return current_path
 
 
-def getFile(file_list, path):
-	return file_list[getIndex(file_list, path)]
+def getDir(file_list, index):
+	current_dir = ""
+	if file_list:
+		afile = file_list[index]
+		logger.debug("afile: %s", afile)
+		path = afile[MDC_IDX_PATH]
+		if afile[MDC_IDX_TYPE] == MDC_TYPE_DIR and not path.endswith(".."):
+			current_dir = path
+		else:
+			current_dir = os.path.dirname(path)
+	logger.debug("current_dir: %s", current_dir)
+	return current_dir
 
 
-def os_path_dirname(path, bookmarks):
-	home_dir = config.plugins.mediacockpit.home_dir.value
-	adir = home_dir
-	if path and path != home_dir and path not in bookmarks:
-		adir = os.path.dirname(path)
-	return adir
+def getFile(file_list, value):
+	afile = []
+	if file_list:
+		if isinstance(value, int):
+			afile = file_list[value]
+		elif isinstance(value, text_type):
+			afile = file_list[getIndex(file_list, value)]
+	return afile
 
 
 def splitMediaSongList(file_list):
 	song_list = []
 	media_list = []
 	for afile in file_list:
-		if afile[FILE_IDX_TYPE] in FILE_TYPE_FILE:
-			if afile[FILE_IDX_TYPE] == FILE_TYPE_MUSIC:
+		logger.debug("afile: %s", afile)
+		if afile[MDC_IDX_MEDIA] in MDC_MEDIA_TYPE_FILE:
+			if afile[MDC_IDX_MEDIA] == MDC_MEDIA_TYPE_MUSIC:
 				song_list.append(afile)
 			else:
 				media_list.append(afile)
 	return media_list, song_list
+
+
+def sortList(file_list):
+	file_list_sort = config.plugins.mediacockpit.sort.value
+	sort_across_dirs = config.plugins.mediacockpit.sort_across_dirs.value
+	mode, order = sort_modes[file_list_sort][0]
+	logger.debug("sort_mode: %s, sort_order: %s", mode, order)
+
+	if mode == "alpha":
+		if sort_across_dirs:
+			if order:
+				file_list.sort(key=lambda afile: (min(afile[MDC_IDX_MEDIA], MDC_MEDIA_TYPE_PICTURE), os.path.basename(afile[MDC_IDX_PATH]).lower()), reverse=True)
+			else:
+				file_list.sort(key=lambda afile: (min(afile[MDC_IDX_MEDIA], MDC_MEDIA_TYPE_PICTURE), os.path.basename(afile[MDC_IDX_PATH]).lower()))
+		else:
+			if order:
+				file_list.sort(key=lambda afile: (min(afile[MDC_IDX_MEDIA], MDC_MEDIA_TYPE_PICTURE), afile[MDC_IDX_PATH].lower()), reverse=True)
+			else:
+				file_list.sort(key=lambda afile: (min(afile[MDC_IDX_MEDIA], MDC_MEDIA_TYPE_PICTURE), afile[MDC_IDX_PATH].lower()))
+	elif mode == "date":
+		if order:
+			file_list.sort(key=lambda afile: (min(afile[MDC_IDX_MEDIA], MDC_MEDIA_TYPE_PICTURE), afile[MDC_IDX_DATE]), reverse=True)
+		else:
+			file_list.sort(key=lambda afile: (min(afile[MDC_IDX_MEDIA], MDC_MEDIA_TYPE_PICTURE), afile[MDC_IDX_DATE]))
+	return file_list
+
+
+def scanPlaylistFiles(path):
+	logger.debug("path: %s", path)
+	file_list = []
+	playlist_dir = os.path.dirname(path)
+	lines = readFile(path).splitlines()
+	for line in lines:
+		if line and not line.startswith("#"):
+			logger.debug("line: %s", line)
+			path = line
+			if not path.startswith("/"):
+				path = os.path.join(playlist_dir, path)
+			file_list.append(path)
+	return file_list
+
+
+def createBookmarkEntries(bookmarks):
+	logger.debug("bookmarks: %s", bookmarks)
+	alist = []
+	meta = {}
+	for bookmark in bookmarks:
+		afile = list(FileManager.getInstance(ID).newDirData(bookmark, MDC_TYPE_DIR))
+		logger.debug("afile: %s", afile)
+		afile[MDC_IDX_MEDIA] = MDC_MEDIA_TYPE_DIR
+		afile[MDC_IDX_META] = json.dumps(meta)
+		alist.append(afile)
+	return alist
+
+
+def createParentDirEntry(path):
+	logger.debug("path: %s", path)
+	meta = {}
+	if os.path.splitext(path)[1] != ".m3u":
+		path = os.path.join(path, "..")
+	afile = list(FileManager.getInstance(ID).newDirData(path, MDC_TYPE_DIR))
+	afile[MDC_IDX_MEDIA] = MDC_MEDIA_TYPE_UP
+	afile[MDC_IDX_META] = json.dumps(meta)
+	logger.debug("afile: %s", afile)
+	return afile

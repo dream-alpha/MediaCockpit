@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2024 by dream-alpha
+# Copyright (C) 2018-2025 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -28,8 +28,7 @@ from .Debug import initLogging
 
 
 def initLocale():
-	lang = language.getLanguage()[:2]
-	os.environ["LANGUAGE"] = lang
+	os.environ["LANGUAGE"] = language.getLanguage()[:2]
 	locale = resolveFilename(SCOPE_PLUGINS, "Extensions/" + PLUGIN + "/locale")
 	if not os.path.exists(locale):
 		locale = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/" + PLUGIN + "/locale")
@@ -38,8 +37,7 @@ def initLocale():
 
 
 def _(txt):
-	translation = gettext.dgettext(PLUGIN, txt)
-	return translation
+	return gettext.dgettext(PLUGIN, txt)
 
 
 initLogging()

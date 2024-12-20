@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2024 by dream-alpha
+# Copyright (C) 2018-2025 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -27,16 +27,6 @@ from ServiceReference import ServiceReference
 import NavigationInstance
 from Screens.InfoBar import InfoBar
 from Plugins.SystemPlugins.JobCockpit.JobCockpit import JobCockpit
-try:
-	from Plugins.SystemPlugins.SocketCockpit.SocketCockpit import SocketCockpit
-except ImportError:
-	class SocketCockpit():
-		def __init__(self):
-			return
-
-		@staticmethod
-		def getInstance():
-			return None
 from .Debug import logger
 from .JobUtils import getPendingJobs
 
@@ -63,7 +53,7 @@ def getTimeshiftRecordings():
 
 
 def isRecording(path=""):
-	return isLiveRecording(path) or isTimeshiftRecording(path)
+	return isLiveRecording(path) or isTimeshiftRecording(path) or isDownloadRecording(path)
 
 
 def isLiveRecording(path=""):
@@ -100,13 +90,13 @@ def isTimeshiftRecording(path=""):
 	return is_timeshift_recording
 
 
-def isFileStreaming():
-	is_file_streaming = False
-	socket_cockpit = SocketCockpit.getInstance()
-	if socket_cockpit:
-		is_file_streaming = socket_cockpit.isFileStreaming()
-	logger.debug("is_file_streaming: %s", is_file_streaming)
-	return is_file_streaming
+def isDownloadRecording(path=""):
+	jobs = getPendingJobs("MTC")
+	for job in jobs:
+		if job.target_path == path:
+			logger.info("download recording path: %s", path)
+			return True
+	return False
 
 
 def stopRecording(path, force=True):

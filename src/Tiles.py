@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2024 by dream-alpha
+# Copyright (C) 2018-2025 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -23,38 +23,31 @@ import os
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.config import config
-from Screens.Screen import Screen
 from enigma import eSize, ePoint, gFont
 from skin import parseColor
 from Tools.LoadPixmap import LoadPixmap
-from .SkinUtils import getSkinPath, getSkinName
+from Plugins.SystemPlugins.MountCockpit.MountCockpit import MountCockpit
+from .SkinUtils import getSkinPath
 from .Debug import logger
 from .__init__ import _
-from .FileListUtils import FILE_IDX_TYPE, FILE_IDX_PATH
-from .FileListUtils import FILE_TYPE_FILE, FILE_TYPE_UP, FILE_TYPE_DIR, FILE_TYPE_PLAYLIST, FILE_TYPE_PICTURE, FILE_TYPE_MOVIE, FILE_TYPE_MUSIC
-from .MediaCockpitSummary import MediaCockpitSummary
+from .FileManagerUtils import MDC_IDX_MEDIA, MDC_IDX_PATH
+from .FileManagerUtils import MDC_MEDIA_TYPE_FILE, MDC_MEDIA_TYPE_UP, MDC_MEDIA_TYPE_DIR, MDC_MEDIA_TYPE_PLAYLIST, MDC_MEDIA_TYPE_PICTURE, MDC_MEDIA_TYPE_MOVIE, MDC_MEDIA_TYPE_MUSIC
+from .FileListUtils import getDir
+from .Display import Display
+from .Version import ID
 
 
-class Tiles(Screen):
+class Tiles(Display):
 
-	def __init__(self, csel, session):
+	def __init__(self, csel):
 		self.csel = csel
-		Screen.__init__(self, session)
-		self.skinName = getSkinName(self.__class__.__name__)
+		Display.__init__(self, self)
 		self.tile_columns = 5
 		self.tile_rows = 3
 		self.file_list = []
 		self.current_dir = None
 		self.tiles = self.tile_columns * self.tile_rows
-
-		self.selection_size_offset = config.plugins.mediacockpit.selection_size_offset.value
-		self.selection_font_offset = config.plugins.mediacockpit.selection_font_offset.value
-		self.normal_background_color = parseColor(config.plugins.mediacockpit.normal_background_color.value)
-		self.selection_background_color = parseColor(config.plugins.mediacockpit.selection_background_color.value)
-		self.normal_foreground_color = parseColor(config.plugins.mediacockpit.normal_foreground_color.value)
-		self.selection_foreground_color = parseColor(config.plugins.mediacockpit.selection_foreground_color.value)
-		self.selection_frame_color = parseColor(config.plugins.mediacockpit.selection_frame_color.value)
-
+		self.initTileConfig()
 		for tile_pos in range(self.tiles):
 			self.csel["Frame%d" % tile_pos] = Label()
 			self.csel["Frame%d" % tile_pos].hide()
@@ -65,26 +58,35 @@ class Tiles(Screen):
 			self.csel["Text%d" % tile_pos] = Label()
 
 		self.icons = {}
-		self.busy = False
 		self.last_tile_pos = -1
+		self.is_mounted = False
 		self.onShow.append(self.initTileAttribs)
+
+	def initTileConfig(self):
+		self.selection_size_offset = config.plugins.mediacockpit.selection_size_offset.value
+		self.selection_font_offset = config.plugins.mediacockpit.selection_font_offset.value
+		self.normal_background_color = parseColor(config.plugins.mediacockpit.normal_background_color.value)
+		self.selection_background_color = parseColor(config.plugins.mediacockpit.selection_background_color.value)
+		self.normal_foreground_color = parseColor(config.plugins.mediacockpit.normal_foreground_color.value)
+		self.selection_foreground_color = parseColor(config.plugins.mediacockpit.selection_foreground_color.value)
+		self.selection_frame_color = parseColor(config.plugins.mediacockpit.selection_frame_color.value)
 
 	def initTileAttribs(self):
 		logger.debug("...")
 		self.icons = {}
 		self.icon_size = self.csel["Icon0"].instance.size()
-		self.icons[FILE_TYPE_PICTURE] = LoadPixmap(getSkinPath("images/" + "picture.svg"), cached=True, size=self.icon_size)
-		self.icons[FILE_TYPE_MOVIE] = LoadPixmap(getSkinPath("images/" + "movie.svg"), cached=True, size=self.icon_size)
-		self.icons[FILE_TYPE_MUSIC] = LoadPixmap(getSkinPath("images/" + "music.svg"), cached=True, size=self.icon_size)
-		self.icons[FILE_TYPE_DIR] = LoadPixmap(getSkinPath("images/" + "folder.svg"), cached=True, size=self.icon_size)
-		self.icons[FILE_TYPE_PLAYLIST] = LoadPixmap(getSkinPath("images/" + "playlist.svg"), cached=True, size=self.icon_size)
-		self.icons[FILE_TYPE_UP] = LoadPixmap(getSkinPath("images/" + "dirup.svg"), cached=True, size=self.icon_size)
-
 		self.thumbnail_size = self.csel["Picture0"].instance.size()
 		config.plugins.mediacockpit.thumbnail_size_width.value = self.thumbnail_size.width()
 		config.plugins.mediacockpit.thumbnail_size_width.save()
 		config.plugins.mediacockpit.thumbnail_size_height.value = self.thumbnail_size.height()
 		config.plugins.mediacockpit.thumbnail_size_height.save()
+		self.icons[MDC_MEDIA_TYPE_PICTURE] = LoadPixmap(getSkinPath("images/" + "picture.svg"), cached=True, size=self.icon_size)
+		logger.info("...")
+		self.icons[MDC_MEDIA_TYPE_MOVIE] = LoadPixmap(getSkinPath("images/" + "movie.svg"), cached=True, size=self.icon_size)
+		self.icons[MDC_MEDIA_TYPE_MUSIC] = LoadPixmap(getSkinPath("images/" + "music.svg"), cached=True, size=self.icon_size)
+		self.icons[MDC_MEDIA_TYPE_DIR] = LoadPixmap(getSkinPath("images/" + "folder.svg"), cached=True, size=self.icon_size)
+		self.icons[MDC_MEDIA_TYPE_PLAYLIST] = LoadPixmap(getSkinPath("images/" + "playlist.svg"), cached=True, size=self.icon_size)
+		self.icons[MDC_MEDIA_TYPE_UP] = LoadPixmap(getSkinPath("images/" + "dirup.svg"), cached=True, size=self.icon_size)
 
 		for tile_pos in range(self.tiles):
 			for tile_element in ["Tile%d", "Text%d"]:
@@ -131,15 +133,6 @@ class Tiles(Screen):
 			self.csel["Text%s" % tile_pos].move(ePoint(pos.x(), pos.y() - self.selection_size_offset))
 		self.last_tile_pos = -1
 
-	def displayLCD(self, title, info):
-		# logger.debug("title: %s, info: %s", title, info)
-		self["lcd_title"].setText(title)
-		self["lcd_info"].setText(info)
-
-	def displayOSD(self, info):
-		# logger.debug("info: %s", info)
-		self["osd_info"].setText(_("MediaCockpit") + " - " + info)
-
 	def hideTile(self, tile_pos):
 		for tile_element in ["Frame%d", "Tile%d", "Picture%d", "Icon%d", "Text%d"]:
 			self.csel[tile_element % tile_pos].hide()
@@ -151,15 +144,16 @@ class Tiles(Screen):
 
 	def paintTile(self, idx, tile_pos):
 		logger.debug("idx: %s, tile_pos: %s", idx, tile_pos)
-		path, atype, _date, _meta = self.file_list[idx]
+		path = self.file_list[idx][MDC_IDX_PATH]
+		atype = self.file_list[idx][MDC_IDX_MEDIA]
 		logger.debug("path: %s", path)
 		self.csel["Tile%d" % tile_pos].show()
-		if atype == FILE_TYPE_UP:
+		if atype == MDC_MEDIA_TYPE_UP:
 			self.csel["Text%d" % tile_pos].setText("..")
 		else:
 			self.csel["Text%d" % tile_pos].setText(os.path.basename(path))
 		thumbnail_path = None
-		if atype != FILE_TYPE_UP:
+		if atype != MDC_MEDIA_TYPE_UP:
 			filename, ext = os.path.splitext(path)
 			for thumbnail in [filename + ".thumbnail" + ext, filename + ".thumbnail.jpg"]:
 				if os.path.exists(thumbnail):
@@ -176,8 +170,14 @@ class Tiles(Screen):
 			self.csel["Icon%d" % tile_pos].show()
 			self.csel["Text%d" % tile_pos].show()
 
-	def paintTiles(self, is_mounted=True):
+	def paintTiles(self):
 		logger.info("file_index: %s, len(file_list): %s", self.file_index, len(self.file_list))
+		adir = getDir(self.file_list, self.file_index)
+		bookmark = MountCockpit.getInstance().getBookmark(ID, adir)
+		logger.debug("bookmark: %s", bookmark)
+		mounted_bookmarks = MountCockpit.getInstance().getMountedBookmarks(ID)
+		logger.debug("mounted_bookmarks: %s", mounted_bookmarks)
+		self.is_mounted = bookmark in mounted_bookmarks
 		file_list_len = len(self.file_list)
 		first_idx = self.file_index / self.tiles * self.tiles
 		last_idx = first_idx + self.tiles
@@ -194,13 +194,14 @@ class Tiles(Screen):
 		logger.debug("tile_pos: %s, last_tile_pos: %s", tile_pos, self.last_tile_pos)
 		self.unselectTile(self.last_tile_pos)
 		self.selectTile(tile_pos)
-		self.showInfo(is_mounted)
+		self.showInfo(self.is_mounted)
+		self.onSelectionChange()
 
 	def showInfo(self, is_mounted=True):
 		if self.file_list:
 			afile = self.file_list[self.file_index]
-			path = afile[FILE_IDX_PATH]
-			filetype = _("File") if afile[FILE_IDX_TYPE] in FILE_TYPE_FILE else _("Path")
+			path = afile[MDC_IDX_PATH]
+			filetype = _("File") if afile[MDC_IDX_MEDIA] in MDC_MEDIA_TYPE_FILE else _("Path")
 		else:
 			path = self.current_dir
 			filetype = _("Path")
@@ -215,53 +216,43 @@ class Tiles(Screen):
 # cursor moves
 
 	def moveTop(self):
-		if not self.busy:
-			self.file_index = 0
-			self.paintTiles()
+		self.file_index = 0
+		self.paintTiles()
 
 	def moveLeft(self):
-		if not self.busy:
-			self.file_index -= 1
-			if self.file_index < 0:
-				self.file_index = len(self.file_list) - 1
-			self.paintTiles()
+		self.file_index -= 1
+		if self.file_index < 0:
+			self.file_index = len(self.file_list) - 1
+		self.paintTiles()
 
 	def moveRight(self):
-		if not self.busy:
-			self.file_index += 1
-			if self.file_index > len(self.file_list) - 1:
-				self.file_index = 0
-			self.paintTiles()
+		self.file_index += 1
+		if self.file_index > len(self.file_list) - 1:
+			self.file_index = 0
+		self.paintTiles()
 
 	def moveUp(self):
-		if not self.busy:
-			self.file_index -= self.tile_columns
-			if self.file_index < 0:
-				self.file_index = len(self.file_list) - 1
-			self.paintTiles()
+		self.file_index -= self.tile_columns
+		if self.file_index < 0:
+			self.file_index = len(self.file_list) - 1
+		self.paintTiles()
 
 	def moveDown(self):
-		if not self.busy:
-			self.file_index += self.tile_columns
-			if self.file_index > len(self.file_list) - 1:
-				self.file_index = 0
-			self.paintTiles()
+		self.file_index += self.tile_columns
+		if self.file_index > len(self.file_list) - 1:
+			self.file_index = 0
+		self.paintTiles()
 
 	def nextPage(self):
-		if not self.busy:
-			self.file_index += self.tiles
-			self.file_index = self.file_index / self.tiles * self.tiles
-			if self.file_index > len(self.file_list) - 1:
-				self.file_index = 0
-			self.paintTiles()
+		self.file_index += self.tiles
+		self.file_index = self.file_index / self.tiles * self.tiles
+		if self.file_index > len(self.file_list) - 1:
+			self.file_index = 0
+		self.paintTiles()
 
 	def prevPage(self):
-		if not self.busy:
-			self.file_index -= self.tiles
-			if self.file_index < 0:
-				self.file_index = len(self.file_list) - 1
-			self.file_index = self.file_index / self.tiles * self.tiles
-			self.paintTiles()
-
-	def createSummary(self):
-		return MediaCockpitSummary
+		self.file_index -= self.tiles
+		if self.file_index < 0:
+			self.file_index = len(self.file_list) - 1
+		self.file_index = self.file_index / self.tiles * self.tiles
+		self.paintTiles()

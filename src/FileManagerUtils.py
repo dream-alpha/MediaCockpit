@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2024 by dream-alpha
+# Copyright (C) 2018-2025 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -47,10 +47,10 @@ FILE_OP_ERROR_ABORT = 2
 FILE_OP_ERROR = 100
 
 # database file
-SQL_DB_NAME = "/etc/enigma2/cachecockpit.db"
+SQL_DB_MVC = "moviecockpit.db"
+SQL_DB_MDC = "mediacockpit.db"
 
 # file types
-FILE_TYPE_DELETED = 0
 FILE_TYPE_FILE = 1
 FILE_TYPE_DIR = 2
 FILE_TYPE_LINK = 3
@@ -76,6 +76,34 @@ FILE_IDX_SIZE = 16
 FILE_IDX_CUTS = 17
 FILE_IDX_SORT = 18
 FILE_IDX_HOSTNAME = 19
+
+# file types
+MDC_TYPE_FILE = 1
+MDC_TYPE_DIR = 2
+MDC_TYPE_LINK = 3
+
+# media indexes
+MDC_IDX_TYPE = 0
+MDC_IDX_BOOKMARK = 1
+MDC_IDX_PATH = 2
+MDC_IDX_RELPATH = 3
+MDC_IDX_DIR = 4
+MDC_IDX_RELDIR = 5
+MDC_IDX_FILENAME = 6
+MDC_IDX_EXT = 7
+MDC_IDX_NAME = 8
+MDC_IDX_DATE = 9
+MDC_IDX_MEDIA = 10
+MDC_IDX_META = 11
+
+# media types
+MDC_MEDIA_TYPE_UP = 0
+MDC_MEDIA_TYPE_DIR = 1
+MDC_MEDIA_TYPE_PLAYLIST = 2
+MDC_MEDIA_TYPE_PICTURE = 3
+MDC_MEDIA_TYPE_MOVIE = 4
+MDC_MEDIA_TYPE_MUSIC = 5
+MDC_MEDIA_TYPE_FILE = [MDC_MEDIA_TYPE_PICTURE, MDC_MEDIA_TYPE_MOVIE, MDC_MEDIA_TYPE_MUSIC]
 
 # covers indexes
 COVER_IDX_PATH = 0

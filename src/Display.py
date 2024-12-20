@@ -19,15 +19,23 @@
 # <http://www.gnu.org/licenses/>.
 
 
-from Components.Pixmap import Pixmap
-from Screens.Screen import Screen
-from .SkinUtils import getSkinName
+from Components.Label import Label
+from Components.Sources.StaticText import StaticText
+from .__init__ import _
 
 
-class MediaCockpitSummary(Screen):
+class Display():
+	def __init__(self, csel):
+		self.csel = csel
+		self.csel["osd_info"] = Label()
+		self.csel["lcd_info"] = StaticText()
+		self.csel["lcd_title"] = StaticText()
 
-	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent=parent)
-		self.skinName = getSkinName(self.__class__.__name__)
-		self["lcd_pic_loading"] = Pixmap()
-		self["background"] = Pixmap()
+	def displayLCD(self, title, info):
+		# logger.debug("title: %s, info: %s", title, info)
+		self.csel["lcd_title"].setText(title)
+		self.csel["lcd_info"].setText(info)
+
+	def displayOSD(self, info):
+		# logger.debug("info: %s", info)
+		self.csel["osd_info"].setText(_("MediaCockpit") + " - " + info)

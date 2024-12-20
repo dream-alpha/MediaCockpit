@@ -11,6 +11,7 @@
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/Default-WQHD/images/display_bg.png" position="0,0" size="400,240" zPosition="-1"/>
 		<widget font="Display;75" halign="center" position="0,10" render="Label" size="400,75" source="parent.lcd_title" transparent="1" valign="top"/>
 		<widget font="Display;60" halign="center" position="0,100" render="Label" size="400,125" source="parent.lcd_info" transparent="1" valign="center"/>
+		<widget name="background" position="0,0" size="400,240" zPosition="2"/>
 	</screen>
 	<screen backgroundColor="#000000" flags="wfNoBorder" name="MDCConfigScreen" position="0,center" size="1600,1440">
 		<ePixmap gradient="#ff000000,#131a1d,vertical" position="0,0" size="1600,648" zPosition="-1"/>
@@ -238,11 +239,14 @@
 		<eLabel backgroundColor="#e5b243" position="1280,1426" size="640,13"/>
 		<eLabel backgroundColor="#3366cc" position="1920,1426" size="640,13"/>
 	</screen>
-	<screen backgroundColor="darkblue" flags="wfNoBorder" name="MDCCockpitMusicPlayer" position="0,0" size="2560,1440">
-		<eLabel backgroundColor="#20294071" position="67,133" size="2427,213"/>
+	<screen backgroundColor="background" flags="wfNoBorder" name="MDCCockpitMusicPlayer" position="0,0" size="2560,1440">
+		<eLabel backgroundColor="dark" position="67,133" size="2427,213"/>
+		<ePixmap gradient="#ff000000,#131a1d,vertical" position="0,0" size="2560,648" zPosition="-1"/>
+		<eLabel backgroundColor="#131a1d" position="0,648" size="2560,144" zPosition="-1"/>
+		<ePixmap gradient="#131a1d,#ff000000,vertical" position="0,792" size="2560,648" zPosition="-1"/>
 		<widget alphatest="on" name="play" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/dvr_play.svg" position="160,160" size="80,80" zPosition="3"/>
 		<widget alphatest="on" name="pause" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/dvr_pause.svg" position="160,160" size="80,80" zPosition="3"/>
-		<eLabel alphatest="on" backgroundColor="darkblue" position="265,185" size="1776,16" zPosition="2"/>
+		<eLabel alphatest="on" backgroundColor="gradient" position="265,185" size="1776,16" zPosition="2"/>
 		<widget pointer="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/Default-WQHD/images/progress.png:1773,0" position="267,187" render="PositionGauge" size="1773,13" source="Service" transparent="1" zPosition="3">
 			<convert type="COCServicePosition">Gauge</convert>
 		</widget>
@@ -295,5 +299,26 @@
 	<screen backgroundColor="#ff000000" flags="wfNoBorder" name="ScreenPVRState" position="center,center" size="133,213" zPosition="1000">
 		<widget name="state_pic" position="0,0" size="133,133" transparent="1"/>
 		<widget backgroundColor="#000000" font="Regular;53" halign="center" name="state" position="0,147" size="133,72" transparent="1" valign="center"/>
+	</screen>
+	<screen flags="wfNoBorder" name="MDCFileManagerProgress" position="center,center" size="1600,547">
+		<ePixmap gradient="#ff000000,#131a1d,vertical" position="0,0" size="1600,246" zPosition="-1"/>
+		<eLabel backgroundColor="#131a1d" position="0,246" size="1600,54" zPosition="-1"/>
+		<ePixmap gradient="#131a1d,#ff000000,vertical" position="0,300" size="1600,246" zPosition="-1"/>
+		<widget font="Bold;43" noWrap="1" position="27,40" render="Label" size="1547,57" source="Title" transparent="1"/>
+		<widget font="Regular;43" halign="left" name="operation" position="27,120" size="1547,57" transparent="1"/>
+		<widget font="Regular;43" halign="left" name="name" position="27,193" size="1547,57" transparent="1"/>
+		<widget name="slider1" position="27,264" size="1547,33" transparent="1"/>
+		<widget font="Regular;43" halign="left" name="status" position="27,313" size="1547,57" transparent="1"/>
+		<widget font="Regular;35" halign="left" position="27,400" render="Label" size="1547,47" source="DiskSpace" transparent="1">
+			<convert type="COCDiskSpaceInfo">SpaceInfo</convert>
+		</widget>
+		<widget font="Regular;35" halign="center" name="key_red" position="0,480" size="400,47" transparent="1"/>
+		<widget font="Regular;35" halign="center" name="key_green" position="400,480" size="400,47" transparent="1"/>
+		<widget font="Regular;35" halign="center" name="key_yellow" position="800,480" size="400,47" transparent="1"/>
+		<widget font="Regular;35" halign="center" name="key_blue" position="1200,480" size="400,47" transparent="1"/>
+		<eLabel backgroundColor="#ff0000" position="0,533" size="400,13"/>
+		<eLabel backgroundColor="#669900" position="400,533" size="400,13"/>
+		<eLabel backgroundColor="#e5b243" position="800,533" size="400,13"/>
+		<eLabel backgroundColor="#3366cc" position="1200,533" size="400,13"/>
 	</screen>
 </skin>

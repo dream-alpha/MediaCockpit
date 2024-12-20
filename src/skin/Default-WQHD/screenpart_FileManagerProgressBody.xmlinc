@@ -1,0 +1,7 @@
+	<widget font="Regular;43" halign="left" name="operation" position="0,0" size="eval($screen_width-53),57" transparent="1"/>
+	<widget font="Regular;43" halign="left" name="name" position="0,73" size="eval($screen_width-53),57" transparent="1"/>
+	<widget name="slider1" position="0,144" size="eval($screen_width-53),33" transparent="1"/>
+	<widget font="Regular;43" halign="left" name="status" position="0,193" size="eval($screen_width-53),57" transparent="1"/>
+	<widget font="Regular;35" halign="left" position="0,280" render="Label" size="eval($screen_width-53),47" source="DiskSpace" transparent="1">
+		<convert type="COCDiskSpaceInfo">SpaceInfo</convert>
+	</widget>

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2024 by dream-alpha
+# Copyright (C) 2018-2025 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -26,29 +26,30 @@ from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Components.Pixmap import Pixmap
 from Components.Button import Button
-from Components.Label import Label
-from Components.Sources.StaticText import StaticText
 from Components.Sources.List import List
 from Components.ActionMap import HelpableActionMap
 from Tools.LoadPixmap import LoadPixmap
 from .__init__ import _
 from .Debug import logger
-from .FileListUtils import FILE_IDX_PATH, FILE_IDX_TYPE, FILE_IDX_DATE
-from .FileListUtils import FILE_TYPE_UP, FILE_TYPE_DIR, FILE_TYPE_PLAYLIST, FILE_TYPE_PICTURE, FILE_TYPE_MOVIE, FILE_TYPE_MUSIC
+from .FileManagerUtils import MDC_IDX_PATH, MDC_IDX_MEDIA, MDC_IDX_DATE
+from .FileManagerUtils import MDC_MEDIA_TYPE_UP, MDC_MEDIA_TYPE_DIR, MDC_MEDIA_TYPE_PLAYLIST, MDC_MEDIA_TYPE_PICTURE, MDC_MEDIA_TYPE_MOVIE, MDC_MEDIA_TYPE_MUSIC
 from .PictureUtils import getExifData
 from .SkinUtils import getSkinName, getSkinPath
 from .FileListUtils import nextIndex, previousIndex
 from .MediaCockpitSummary import MediaCockpitSummary
+from .Display import Display
 
 
-class MediaInfo(Screen, HelpableScreen):
+class MediaInfo(Screen, HelpableScreen, Display):
 
-	def __init__(self, session, file_list, file_index):
+	def __init__(self, session, csel, file_list, file_index):
+		self.csel = csel
 		self.file_list = file_list
 		self.file_index = file_index
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		self.skinName = getSkinName(self.__class__.__name__)
+		Display.__init__(self, self)
 
 		self["actions"] = HelpableActionMap(
 			self,
@@ -65,10 +66,6 @@ class MediaInfo(Screen, HelpableScreen):
 			prio=-1
 		)
 
-		self["osd_info"] = Label()
-		self["lcd_info"] = StaticText()
-		self["lcd_title"] = StaticText()
-
 		self.thumbnail = None
 		self.setTitle(_("Media Infos"))
 		self["list"] = List()
@@ -80,25 +77,16 @@ class MediaInfo(Screen, HelpableScreen):
 		self["key_blue"] = Button(_("Thumbnail"))
 
 		self.icons = {}
-		self.icons[FILE_TYPE_PICTURE] = LoadPixmap(getSkinPath("images/" + "picture.svg"), cached=True)
-		self.icons[FILE_TYPE_MOVIE] = LoadPixmap(getSkinPath("images/" + "movie.svg"), cached=True)
-		self.icons[FILE_TYPE_MUSIC] = LoadPixmap(getSkinPath("images/" + "music.svg"), cached=True)
-		self.icons[FILE_TYPE_DIR] = LoadPixmap(getSkinPath("images/" + "folder.svg"), cached=True)
-		self.icons[FILE_TYPE_PLAYLIST] = LoadPixmap(getSkinPath("images/" + "playlist.svg"), cached=True)
-		self.icons[FILE_TYPE_UP] = LoadPixmap(getSkinPath("images/" + "dirup.svg"), cached=True)
+		self.icons[MDC_MEDIA_TYPE_PICTURE] = LoadPixmap(getSkinPath("images/" + "picture.svg"), cached=True)
+		self.icons[MDC_MEDIA_TYPE_MOVIE] = LoadPixmap(getSkinPath("images/" + "movie.svg"), cached=True)
+		self.icons[MDC_MEDIA_TYPE_MUSIC] = LoadPixmap(getSkinPath("images/" + "music.svg"), cached=True)
+		self.icons[MDC_MEDIA_TYPE_DIR] = LoadPixmap(getSkinPath("images/" + "folder.svg"), cached=True)
+		self.icons[MDC_MEDIA_TYPE_PLAYLIST] = LoadPixmap(getSkinPath("images/" + "playlist.svg"), cached=True)
+		self.icons[MDC_MEDIA_TYPE_UP] = LoadPixmap(getSkinPath("images/" + "dirup.svg"), cached=True)
 
 		self.container = eConsoleAppContainer()
 		self.container_appClosed_conn = self.container.appClosed.connect(self.grabThumbnailCallback)
 		self.onLayoutFinish.append(self.firstStart)
-
-	def displayLCD(self, title, info):
-		# logger.debug("title: %s, info: %s", title, info)
-		self["lcd_title"].setText(title)
-		self["lcd_info"].setText(info)
-
-	def displayOSD(self, info):
-		# logger.debug("info: %s", info)
-		self["osd_info"].setText(_("MediaCockpit") + " - " + info)
 
 	def createSummary(self):
 		return MediaCockpitSummary
@@ -118,11 +106,11 @@ class MediaInfo(Screen, HelpableScreen):
 		self.close(self.file_index)
 
 	def grabThumbnail(self):
-		if self.file[FILE_IDX_TYPE] == FILE_TYPE_MOVIE and not self.container.running():
+		if self.file[MDC_IDX_MEDIA] == MDC_MEDIA_TYPE_MOVIE and not self.container.running():
 			self["key_blue"].hide()
-			filename = os.path.splitext(self.file[FILE_IDX_PATH])[0]
+			filename = os.path.splitext(self.file[MDC_IDX_PATH])[0]
 			self.thumbnail = filename + ".thumbnail.jpg"
-			cmd = "ffmpeg -v quiet -i '%s' -ss %d -vf scale=320:-1 -vframes 1 '%s' -y" % (self.file[FILE_IDX_PATH], 0.5, self.thumbnail)
+			cmd = "ffmpeg -v quiet -i '%s' -ss %d -vf scale=320:-1 -vframes 1 '%s' -y" % (self.file[MDC_IDX_PATH], 0.5, self.thumbnail)
 			self.container.execute(cmd)
 
 	def grabThumbnailCallback(self, retval):
@@ -132,21 +120,21 @@ class MediaInfo(Screen, HelpableScreen):
 
 	def fillList(self):
 		self.file = self.file_list[self.file_index]
-		self.displayLCD("%d/%d" % (self.file_index + 1, len(self.file_list)), os.path.basename(self.file[FILE_IDX_PATH]))
+		self.displayLCD("%d/%d" % (self.file_index + 1, len(self.file_list)), os.path.basename(self.file[MDC_IDX_PATH]))
 		self["thumbnail"].hide()
-		ptr = self.icons[FILE_IDX_TYPE]
+		ptr = self.icons[self.file[MDC_IDX_MEDIA]]
 		self["icon"].instance.setPixmap(ptr)
 		self["icon"].show()
 		alist = []
-		alist.append((_("Directory"), os.path.dirname(self.file[FILE_IDX_PATH]), None))
-		alist.append((_("Filename"), os.path.basename(self.file[FILE_IDX_PATH]), None))
-		date_time = datetime.fromtimestamp(self.file[FILE_IDX_DATE]).strftime("%Y-%m-%d %H:%M:%S")
+		alist.append((_("Directory"), os.path.dirname(self.file[MDC_IDX_PATH]), None))
+		alist.append((_("Filename"), os.path.basename(self.file[MDC_IDX_PATH]), None))
+		date_time = datetime.fromtimestamp(self.file[MDC_IDX_DATE]).strftime("%Y-%m-%d %H:%M:%S")
 		alist.append((_("Date"), date_time, None))
 		alist.append(("", "", None))
-		filename, ext = os.path.splitext(self.file[FILE_IDX_PATH])
-		if self.file[FILE_IDX_TYPE] == FILE_TYPE_PICTURE:
+		filename, ext = os.path.splitext(self.file[MDC_IDX_PATH])
+		if self.file[MDC_IDX_MEDIA] == MDC_MEDIA_TYPE_PICTURE:
 			self["key_blue"].hide()
-			exif_data = getExifData(self.file[FILE_IDX_PATH])
+			exif_data = getExifData(self.file[MDC_IDX_PATH])
 			logger.debug("exif_data: %s", str(exif_data))
 			thumbnail = filename + ".thumbnail" + ext
 			self.showThumbnail(thumbnail)
@@ -183,7 +171,7 @@ class MediaInfo(Screen, HelpableScreen):
 				alist.append((_("GPS Longitude"), exif_data["GPSLongitude"], None))
 			if "ExifVersion" in exif_data:
 				alist.append((_("Exif Version"), exif_data["ExifVersion"], None))
-		elif self.file[FILE_IDX_TYPE] == FILE_TYPE_MOVIE:
+		elif self.file[MDC_IDX_MEDIA] == MDC_MEDIA_TYPE_MOVIE:
 			self["key_blue"].show()
 			thumbnail = filename + ".thumbnail.jpg"
 			self.showThumbnail(thumbnail)

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2024 by dream-alpha
+# Copyright (C) 2018-2025 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -40,7 +40,7 @@ except ImportError:
 	from .MerlinMusicPlayer import eMerlinMusicPlayer
 from .__init__ import _
 from .Debug import logger
-from .FileListUtils import FILE_IDX_PATH
+from .FileManagerUtils import MDC_IDX_PATH
 from .ID3Tags import getID3Tags
 from .ServiceUtils import SID_GST, getService
 from .FileListUtils import previousIndex, nextIndex
@@ -77,7 +77,7 @@ class CockpitMusicPlayer(Screen, HelpableScreen, CockpitSeek, CockpitCueSheet):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		self.skinName = getSkinName(self.__class__.__name__)
-		service = getService(song_list[song_index][FILE_IDX_PATH])
+		service = getService(song_list[song_index][MDC_IDX_PATH])
 		CockpitSeek.__init__(self, session, service, False, 0, None, service_center)
 		CockpitCueSheet.__init__(self, service)
 
@@ -180,7 +180,7 @@ class CockpitMusicPlayer(Screen, HelpableScreen, CockpitSeek, CockpitCueSheet):
 		self.got_embedded_cover_art = False
 		if not self.repeat:
 			self.song_index = nextIndex(self.song_index, len(self.song_list))
-		filename = self.song_list[self.song_index_list[self.song_index]][FILE_IDX_PATH]
+		filename = self.song_list[self.song_index_list[self.song_index]][MDC_IDX_PATH]
 		self.current_filename = filename
 		self["next_title"].setText(self.nextTitle())
 		return filename
@@ -192,7 +192,7 @@ class CockpitMusicPlayer(Screen, HelpableScreen, CockpitSeek, CockpitCueSheet):
 	def exit(self):
 		logger.debug("song_index: %s", self.song_index)
 		eMerlinMusicPlayer.getInstance().setFunc(None)
-		path = self.song_list[self.song_index_list[self.song_index]][FILE_IDX_PATH]
+		path = self.song_list[self.song_index_list[self.song_index]][MDC_IDX_PATH]
 		self.close(path)
 
 	def playSong(self, afile):
@@ -200,7 +200,7 @@ class CockpitMusicPlayer(Screen, HelpableScreen, CockpitSeek, CockpitCueSheet):
 		self.service_started = False
 		self.session.nav.stopService()
 		self.sTitle = self.sAlbum = self.sArtist = self.sGenre = self.sYear = self.sTrackNumber = self.sTrackCount = ""
-		self.current_filename = afile[FILE_IDX_PATH]
+		self.current_filename = afile[MDC_IDX_PATH]
 		self.got_embedded_cover_art = False
 
 		if config.plugins.mediacockpit.non_standard_decoder.value:
@@ -369,7 +369,7 @@ class CockpitMusicPlayer(Screen, HelpableScreen, CockpitSeek, CockpitCueSheet):
 		next_index = self.song_index
 		if not self.repeat:
 			next_index = nextIndex(self.song_index, len(self.song_list))
-		audio, title, _genre, artist, _album, _tracknr, _track, _date, _length, _bitrate = getID3Tags(self.song_list[self.song_index_list[next_index]][FILE_IDX_PATH])
+		audio, title, _genre, artist, _album, _tracknr, _track, _date, _length, _bitrate = getID3Tags(self.song_list[self.song_index_list[next_index]][MDC_IDX_PATH])
 		if title is None:
 			title = ""
 		if audio and artist:

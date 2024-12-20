@@ -1,0 +1,6 @@
+	<screen name="MDCFileManagerProgress" position="center,center" size="1220,365" title="">
+		<xmlinc file="screenpart_ColorButtons" position="10,5" width="300"/>
+		<xmlinc file="screenpart_ColorButtonsLabels" position="10,5" width="300"/>
+		<eLabel backgroundColor="grey" position="10,75" size="eval($screen_width-20),1"/>
+		<xmlinc file="screenpart_FileManagerProgressBody" position="10,95"/>
+	</screen>

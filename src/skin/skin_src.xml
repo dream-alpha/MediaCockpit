@@ -16,4 +16,5 @@
 	<xmlinc file="screen_CockpitMusicPlayerSummary"/>
 	<xmlinc file="screen_CockpitContextMenu"/>
 	<xmlinc file="screen_ScreenPVRState"/>
+	<xmlinc file="screen_FileManagerProgress"/>
 </skin>

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 #
-# Copyright (C) 2018-2024 by dream-alpha
+# Copyright (C) 2018-2025 by dream-alpha
 #
 # In case of reuse of this source code please do not remove this copyright.
 #
@@ -23,7 +23,7 @@ from time import time
 from .Debug import logger
 from .CutListUtils import secondsToPts, ptsToSeconds
 from .ServiceUtils import SID_DVB
-from .RecordingUtils import isRecording, isFileStreaming
+from .RecordingUtils import isRecording
 from .CockpitSmartSeek import CockpitSmartSeek
 from .CockpitEvent import CockpitEvent
 
@@ -82,8 +82,6 @@ class CockpitSeek(CockpitSmartSeek, CockpitEvent):
 			if self.isRecording():
 				before, offset, _, _, recording_start_time = self.getEventInfo()
 				position = secondsToPts(int(time()) - recording_start_time - offset + before)
-			elif isFileStreaming():
-				position = self.getSeekLength()
 		logger.debug("recording_position: %ss (%s)", ptsToSeconds(position), position)
 		return position
 
