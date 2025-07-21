@@ -302,8 +302,8 @@
 	</screen>
 	<screen flags="wfNoBorder" name="MDCFileManagerProgress" position="center,center" size="1600,547">
 		<ePixmap gradient="#ff000000,#131a1d,vertical" position="0,0" size="1600,246" zPosition="-1"/>
-		<eLabel backgroundColor="#131a1d" position="0,246" size="1600,54" zPosition="-1"/>
-		<ePixmap gradient="#131a1d,#ff000000,vertical" position="0,300" size="1600,246" zPosition="-1"/>
+		<eLabel backgroundColor="#131a1d" position="0,246" size="1600,55" zPosition="-1"/>
+		<ePixmap gradient="#131a1d,#ff000000,vertical" position="0,301" size="1600,246" zPosition="-1"/>
 		<widget font="Bold;43" noWrap="1" position="27,40" render="Label" size="1547,57" source="Title" transparent="1"/>
 		<widget font="Regular;43" halign="left" name="operation" position="27,120" size="1547,57" transparent="1"/>
 		<widget font="Regular;43" halign="left" name="name" position="27,193" size="1547,57" transparent="1"/>

@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # coding=utf-8
 #
 # Copyright (C) 2018-2025 by dream-alpha
@@ -25,11 +24,11 @@ from .__init__ import _
 
 
 def about(session):
-	session.open(
-		MessageBox,
-		_("Plugin") + ": " + PLUGIN + "\n\n"
-		+ _("Version") + ": " + VERSION + "\n\n"
-		+ _("Copyright") + ": " + COPYRIGHT + "\n\n"
-		+ _("License") + ": " + LICENSE,
-		MessageBox.TYPE_INFO
-	)
+    session.open(
+        MessageBox,
+        _("Plugin") + ": " + PLUGIN + "\n\n"
+        + _("Version") + ": " + VERSION + "\n\n"
+        + _("Copyright") + ": " + COPYRIGHT + "\n\n"
+        + _("License") + ": " + LICENSE,
+        MessageBox.TYPE_INFO
+    )

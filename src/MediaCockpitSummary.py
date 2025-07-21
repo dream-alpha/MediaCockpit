@@ -26,8 +26,8 @@ from .SkinUtils import getSkinName
 
 class MediaCockpitSummary(Screen):
 
-	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent=parent)
-		self.skinName = getSkinName(self.__class__.__name__)
-		self["lcd_pic_loading"] = Pixmap()
-		self["background"] = Pixmap()
+    def __init__(self, session, parent):
+        Screen.__init__(self, session, parent=parent)
+        self.skinName = getSkinName(self.__class__.__name__)
+        self["lcd_pic_loading"] = Pixmap()
+        self["background"] = Pixmap()

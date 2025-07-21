@@ -31,39 +31,40 @@ from .ConfigInit import ConfigInit
 
 
 def openMediaCockpit(session, **__):
-	logger.info("...")
-	session.open(MediaCockpit)
+    logger.info("...")
+    session.open(MediaCockpit)
 
 
 def autoStart(reason, **kwargs):
-	if reason == 0:  # startup
-		if "session" in kwargs:
-			logger.info("+++ Version: %s starts...", VERSION)
-			# session = kwargs["session"]
-			MountCockpit.getInstance().registerBookmarks(ID, config.plugins.mediacockpit.bookmarks.value)
-			loadPluginSkin("skin.xml")
-	elif reason == 1:  # shutdown
-		logger.info("--- shutdown")
+    if reason == 0:  # startup
+        if "session" in kwargs:
+            logger.info("+++ Version: %s starts...", VERSION)
+            # session = kwargs["session"]
+            MountCockpit.getInstance().registerBookmarks(
+                ID, config.plugins.mediacockpit.bookmarks.value)
+            loadPluginSkin("skin.xml")
+    elif reason == 1:  # shutdown
+        logger.info("--- shutdown")
 
 
 def Plugins(**__):
-	ConfigInit()
-	descriptors = [
-		PluginDescriptor(
-			name="MediaCockpit",
-			description=_("Pictures, Movies, and Slideshows"),
-			where=[
-				PluginDescriptor.WHERE_PLUGINMENU,
-			],
-			fnc=openMediaCockpit,
-			icon="MediaCockpit.svg"
-		),
-		PluginDescriptor(
-			where=[
-				PluginDescriptor.WHERE_SESSIONSTART,
-				PluginDescriptor.WHERE_AUTOSTART
-			],
-			fnc=autoStart,
-		),
-	]
-	return descriptors
+    ConfigInit()
+    descriptors = [
+        PluginDescriptor(
+            name="MediaCockpit",
+            description=_("Pictures, Movies, and Slideshows"),
+            where=[
+                PluginDescriptor.WHERE_PLUGINMENU,
+            ],
+            fnc=openMediaCockpit,
+            icon="MediaCockpit.svg"
+        ),
+        PluginDescriptor(
+            where=[
+                PluginDescriptor.WHERE_SESSIONSTART,
+                PluginDescriptor.WHERE_AUTOSTART
+            ],
+            fnc=autoStart,
+        ),
+    ]
+    return descriptors

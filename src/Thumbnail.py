@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # encoding: utf-8
 #
 # Copyright (C) 2018-2025 by dream-alpha
@@ -26,11 +25,11 @@ from .PictureUtils import createThumbnail
 
 class Thumbnail():
 
-	def __init__(self):
-		self.thumbnail_size = eSize(
-			int(config.plugins.mediacockpit.thumbnail_size_width.value),
-			int(config.plugins.mediacockpit.thumbnail_size_height.value)
-		)
+    def __init__(self):
+        self.thumbnail_size = eSize(
+            int(config.plugins.mediacockpit.thumbnail_size_width.value),
+            int(config.plugins.mediacockpit.thumbnail_size_height.value)
+        )
 
-	def createThumbnail(self, path, create=False):
-		createThumbnail(path, self.thumbnail_size, create)
+    def createThumbnail(self, path, create=False):
+        createThumbnail(path, self.thumbnail_size, create)

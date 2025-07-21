@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # coding=utf-8
 #
 # Copyright (C) 2018-2025 by dream-alpha
@@ -35,19 +34,19 @@ exec("config.plugins." + plugin + ".debug_log_level = ConfigSelection(default='I
 
 
 def initLogging():
-	global logger
-	global streamer
-	if not logger:
-		logger = logging.getLogger(ID)
-		formatter = logging.Formatter(format_string)
-		streamer = logging.StreamHandler(sys.stdout)
-		streamer.setFormatter(formatter)
-		logger.addHandler(streamer)
-		logger.propagate = False
-		setLogLevel(log_levels[eval("config.plugins." + plugin + ".debug_log_level").value])
+    global logger
+    global streamer
+    if not logger:
+        logger = logging.getLogger(ID)
+        formatter = logging.Formatter(format_string)
+        streamer = logging.StreamHandler(sys.stdout)
+        streamer.setFormatter(formatter)
+        logger.addHandler(streamer)
+        logger.propagate = False
+        setLogLevel(log_levels[eval("config.plugins." + plugin + ".debug_log_level").value])
 
 
 def setLogLevel(level):
-	logger.setLevel(level)
-	streamer.setLevel(level)
-	logger.info("level: %s", level)
+    logger.setLevel(level)
+    streamer.setLevel(level)
+    logger.info("level: %s", level)

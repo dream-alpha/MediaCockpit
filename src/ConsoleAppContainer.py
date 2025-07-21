@@ -24,21 +24,22 @@ from enigma import eConsoleAppContainer
 
 class ConsoleAppContainer():
 
-	def __init__(self, callback=None):
-		self.callback = callback
-		self.container = None
+    def __init__(self, callback=None):
+        self.callback = callback
+        self.container = None
 
-	def execute(self, cmd):
-		self.container = eConsoleAppContainer()
-		self.container_appClosed_conn = self.container.appClosed.connect(self.__callback)
-		self.container.execute(cmd)
+    def execute(self, cmd):
+        self.container = eConsoleAppContainer()
+        self.container_appClosed_conn = self.container.appClosed.connect(
+            self.__callback)
+        self.container.execute(cmd)
 
-	def __callback(self, _ret_val=None):
-		self.container = None
-		if self.callback is not None:
-			self.callback()
+    def __callback(self, _ret_val=None):
+        self.container = None
+        if self.callback is not None:
+            self.callback()
 
-	def kill(self):
-		if self.container is not None:
-			self.container.kill()
-			self.container = None
+    def kill(self):
+        if self.container is not None:
+            self.container.kill()
+            self.container = None

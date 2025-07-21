@@ -454,7 +454,7 @@ msgid "Media Infos"
 msgstr "Media Informationen"
 
 msgid "Cancel"
-msgstr "Abbruch"
+msgstr "Abbrechen"
 
 msgid "Directory"
 msgstr "Verzeichnis"

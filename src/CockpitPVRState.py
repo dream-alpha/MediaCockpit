@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # coding=utf-8
 #
 # Copyright (C) 2018-2025 by dream-alpha
@@ -34,67 +33,67 @@ from .SkinUtils import getSkinPath
 
 class ScreenPVRState(Screen):
 
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		self["state"] = Label()
-		self["state_pic"] = Pixmap()
+    def __init__(self, session):
+        Screen.__init__(self, session)
+        self["state"] = Label()
+        self["state_pic"] = Pixmap()
 
 
 class CockpitPVRState():
 
-	def __init__(self):
-		self.on_play_state_changed = self.onPlayStateChanged[:]
-		self.onPlayStateChanged = [self.playStateChanged]
-		self.pvr_state_dialog = self.session.instantiateDialog(ScreenPVRState)
-		self.pvr_state_dialog.neverAnimate()
-		self.show_state_pic = True
+    def __init__(self):
+        self.on_play_state_changed = self.onPlayStateChanged[:]
+        self.onPlayStateChanged = [self.playStateChanged]
+        self.pvr_state_dialog = self.session.instantiateDialog(ScreenPVRState)
+        self.pvr_state_dialog.neverAnimate()
+        self.show_state_pic = True
 
-		self.onShow.append(self.mayShow)
-		self.onHide.append(self.pvr_state_dialog.hide)
-		self.onClose.append(self.delPvrState)
+        self.onShow.append(self.mayShow)
+        self.onHide.append(self.pvr_state_dialog.hide)
+        self.onClose.append(self.delPvrState)
 
-	def playStateChanged(self, state):
-		logger.info("state: %s", state)
-		play_state = state[3]
-		logger.debug("play_state: %s", play_state)
-		state_pic = "dvr_stop.svg"
-		factor = ""
-		if play_state == ">":
-			state_pic = "dvr_play.svg"
-		elif play_state == "||":
-			state_pic = "dvr_pause.svg"
-		elif play_state == "Stop":
-			state_pic = "dvr_stop.svg"
-		elif play_state == "End":
-			state_pic = "dvr_stop.svg"
-			factor = _("End")
-		elif play_state.startswith(">>"):
-			factor = play_state.split(" ")[1]
-			state_pic = "dvr_forward.svg"
-		elif play_state.startswith("<<"):
-			state_pic = "dvr_backward.svg"
-			factor = play_state.split(" ")[1]
-		elif play_state.startswith("/"):
-			state_pic = "dvr_play.svg"
-			factor = "1" + play_state + "x"
+    def playStateChanged(self, state):
+        logger.info("state: %s", state)
+        play_state = state[3]
+        logger.debug("play_state: %s", play_state)
+        state_pic = "dvr_stop.svg"
+        factor = ""
+        if play_state == ">":
+            state_pic = "dvr_play.svg"
+        elif play_state == "||":
+            state_pic = "dvr_pause.svg"
+        elif play_state == "Stop":
+            state_pic = "dvr_stop.svg"
+        elif play_state == "End":
+            state_pic = "dvr_stop.svg"
+            factor = _("End")
+        elif play_state.startswith(">>"):
+            factor = play_state.split(" ")[1]
+            state_pic = "dvr_forward.svg"
+        elif play_state.startswith("<<"):
+            state_pic = "dvr_backward.svg"
+            factor = play_state.split(" ")[1]
+        elif play_state.startswith("/"):
+            state_pic = "dvr_play.svg"
+            factor = "1" + play_state + "x"
 
-		self.pvr_state_dialog["state_pic"].instance.setPixmap(LoadPixmap(getSkinPath("images/dvr_controls/" + state_pic), cached=False, size=eSize(100, 100)))
-		self.pvr_state_dialog["state"].setText(factor)
+        self.pvr_state_dialog["state_pic"].instance.setPixmap(LoadPixmap(getSkinPath("images/dvr_controls/" + state_pic), cached=False, size=eSize(100, 100)))
+        self.pvr_state_dialog["state"].setText(factor)
 
-		logger.debug("seekstate: %s, show_state_pic: %s", self.seekstate, self.show_state_pic)
-		if not self.show_state_pic or (not config.usage.show_infobar_on_skip.value and self.seekstate in (self.SEEK_STATE_PLAY, self.SEEK_STATE_STOP)):
-			self.pvr_state_dialog.hide()
-		else:
-			if self.show_state_pic:
-				self.mayShow()
+        logger.debug("seekstate: %s, show_state_pic: %s", self.seekstate, self.show_state_pic)
+        if not self.show_state_pic or (not config.usage.show_infobar_on_skip.value and self.seekstate in (self.SEEK_STATE_PLAY, self.SEEK_STATE_STOP)):
+            self.pvr_state_dialog.hide()
+        else:
+            if self.show_state_pic:
+                self.mayShow()
 
-	def delPvrState(self):
-		logger.info("...")
-		self.onPlayStateChanged = self.on_play_state_changed[:]
-		self.session.deleteDialog(self.pvr_state_dialog)
-		self.pvr_state_dialog = None
+    def delPvrState(self):
+        logger.info("...")
+        self.onPlayStateChanged = self.on_play_state_changed[:]
+        self.session.deleteDialog(self.pvr_state_dialog)
+        self.pvr_state_dialog = None
 
-	def mayShow(self):
-		logger.info("execing: %s", self.execing)
-		if self.execing and self.seekstate != self.SEEK_STATE_PLAY:
-			self.pvr_state_dialog.show()
+    def mayShow(self):
+        logger.info("execing: %s", self.execing)
+        if self.execing and self.seekstate != self.SEEK_STATE_PLAY:
+            self.pvr_state_dialog.show()

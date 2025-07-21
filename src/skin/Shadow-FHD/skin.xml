@@ -44,9 +44,9 @@
 		<eLabel backgroundColor="#3366cc" position="1440,1070" size="480,10"/>
 	</screen>
 	<screen backgroundColor="background" flags="wfNoBorder" name="MDCMediaInfo" position="center,110" size="1800,930">
-		<ePixmap gradient="#ff000000,#131a1d,vertical" position="0,0" size="1800,418" zPosition="-1"/>
-		<eLabel backgroundColor="#131a1d" position="0,418" size="1800,93" zPosition="-1"/>
-		<ePixmap gradient="#131a1d,#ff000000,vertical" position="0,511" size="1800,418" zPosition="-1"/>
+		<ePixmap gradient="#ff000000,#131a1d,vertical" position="0,0" size="1800,419" zPosition="-1"/>
+		<eLabel backgroundColor="#131a1d" position="0,419" size="1800,93" zPosition="-1"/>
+		<ePixmap gradient="#131a1d,#ff000000,vertical" position="0,512" size="1800,419" zPosition="-1"/>
 		<widget font="Bold;32" noWrap="1" position="20,30" render="Label" size="1760,43" source="Title" transparent="1"/>
 		<widget name="icon" position="135,225" size="150,150"/>
 		<widget name="thumbnail" position="10,100" size="400,400"/>
@@ -301,9 +301,9 @@
 		<widget backgroundColor="#000000" font="Regular;40" halign="center" name="state" position="0,110" size="100,54" transparent="1" valign="center"/>
 	</screen>
 	<screen flags="wfNoBorder" name="MDCFileManagerProgress" position="center,center" size="1200,410">
-		<ePixmap gradient="#ff000000,#131a1d,vertical" position="0,0" size="1200,184" zPosition="-1"/>
-		<eLabel backgroundColor="#131a1d" position="0,184" size="1200,41" zPosition="-1"/>
-		<ePixmap gradient="#131a1d,#ff000000,vertical" position="0,225" size="1200,184" zPosition="-1"/>
+		<ePixmap gradient="#ff000000,#131a1d,vertical" position="0,0" size="1200,185" zPosition="-1"/>
+		<eLabel backgroundColor="#131a1d" position="0,185" size="1200,41" zPosition="-1"/>
+		<ePixmap gradient="#131a1d,#ff000000,vertical" position="0,226" size="1200,185" zPosition="-1"/>
 		<widget font="Bold;32" noWrap="1" position="20,30" render="Label" size="1160,43" source="Title" transparent="1"/>
 		<widget font="Regular;32" halign="left" name="operation" position="20,90" size="1160,43" transparent="1"/>
 		<widget font="Regular;32" halign="left" name="name" position="20,145" size="1160,43" transparent="1"/>

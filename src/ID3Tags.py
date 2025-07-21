@@ -32,57 +32,59 @@ from .UnicodeUtils import convertToUtf8
 
 
 def getID3Tags(filename):
-	audio = None
-	is_flac = False
-	title = os.path.splitext(os.path.basename(filename))[0]
-	genre = "n/a"
-	artist = "n/a"
-	album = "n/a"
-	tracknr = -1
-	track = None
-	date = None
-	length = ""
-	bitrate = None
+    audio = None
+    is_flac = False
+    title = os.path.splitext(os.path.basename(filename))[0]
+    genre = "n/a"
+    artist = "n/a"
+    album = "n/a"
+    tracknr = -1
+    track = None
+    date = None
+    length = ""
+    bitrate = None
 
-	try:
-		if filename.lower().endswith(".mp3"):
-			audio = MP3(filename, ID3=EasyID3)
-		elif filename.lower().endswith(".flac"):
-			audio = FLAC(filename)
-			is_flac = True
-		elif filename.lower().endswith(".m4a"):
-			audio = EasyMP4(filename)
-		elif filename.lower().endswith(".ogg"):
-			audio = OggVorbis(filename)
-		elif filename.lower().endswith(".aif") or filename.lower().endswith(".aiff"):
-			audio = AIFF(filename)
-	except Exception:
-		pass
+    try:
+        if filename.lower().endswith(".mp3"):
+            audio = MP3(filename, ID3=EasyID3)
+        elif filename.lower().endswith(".flac"):
+            audio = FLAC(filename)
+            is_flac = True
+        elif filename.lower().endswith(".m4a"):
+            audio = EasyMP4(filename)
+        elif filename.lower().endswith(".ogg"):
+            audio = OggVorbis(filename)
+        elif filename.lower().endswith(".aif") or filename.lower().endswith(".aiff"):
+            audio = AIFF(filename)
+    except Exception:
+        pass
 
-	if audio:
-		title = convertToUtf8(audio.get('title', [os.path.splitext(os.path.basename(filename))[0]])[0], "cp1252")
-		try:
-			# list index out of range workaround
-			genre = convertToUtf8(audio.get('genre', ['n/a'])[0], "cp1252")
-		except Exception:
-			genre = "n/a"
-		artist = convertToUtf8(audio.get('artist', ['n/a'])[0], "cp1252")
-		album = convertToUtf8(audio.get('album', ['n/a'])[0], "cp1252")
-		try:
-			tracknr = int(audio.get('tracknumber', ['-1'])[0].split("/")[0], "cp1252")
-		except Exception:
-			tracknr = -1
-		track = convertToUtf8(audio.get('tracknumber', ['n/a'])[0], "cp1252")
-		date = convertToUtf8(audio.get('date', ['n/a'])[0], "cp1252")
-		try:
-			length = str(timedelta(seconds=int(audio.info.length))).encode("utf-8", 'ignore')
-		except Exception:
-			length = -1
-		if not is_flac:
-			bitrate = audio.info.bitrate / 1000
-		else:
-			bitrate = None
+    if audio:
+        title = convertToUtf8(audio.get(
+            'title', [os.path.splitext(os.path.basename(filename))[0]])[0], "cp1252")
+        try:
+            # list index out of range workaround
+            genre = convertToUtf8(audio.get('genre', ['n/a'])[0], "cp1252")
+        except Exception:
+            genre = "n/a"
+        artist = convertToUtf8(audio.get('artist', ['n/a'])[0], "cp1252")
+        album = convertToUtf8(audio.get('album', ['n/a'])[0], "cp1252")
+        try:
+            tracknr = int(audio.get('tracknumber', ['-1'])[0].split("/")[0], "cp1252")
+        except Exception:
+            tracknr = -1
+        track = convertToUtf8(audio.get('tracknumber', ['n/a'])[0], "cp1252")
+        date = convertToUtf8(audio.get('date', ['n/a'])[0], "cp1252")
+        try:
+            length = str(timedelta(seconds=int(audio.info.length))).encode("utf-8", 'ignore')
+        except Exception:
+            length = -1
+        if not is_flac:
+            bitrate = audio.info.bitrate / 1000
+        else:
+            bitrate = None
 
-	tags = (audio, title, genre, artist, album, tracknr, track, date, length, bitrate)
-	logger.debug("%s", tags)
-	return tags
+    tags = (audio, title, genre, artist, album,
+            tracknr, track, date, length, bitrate)
+    logger.debug("%s", tags)
+    return tags

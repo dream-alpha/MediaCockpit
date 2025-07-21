@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # coding=utf-8
 #
 # Copyright (C) 2018-2025 by dream-alpha
@@ -50,30 +49,30 @@ ALL_MEDIA = ALL_VIDEO + EXT_PICTURE + EXT_MUSIC + EXT_PLAYLIST
 
 
 def getService(path, name=""):
-	service = None
-	ext = os.path.splitext(path)[1].lower()
-	if ext in EXT_TS:
-		service = eServiceReference(SID_DVB, 0, path)
-	elif ext in EXT_DVD:
-		service = eServiceReference(SID_DVD, 0, path)
-	elif ext in EXT_M2TS:
-		service = eServiceReference(SID_M2TS, 0, path)
-	else:
-		service = eServiceReference(SID_GST, 0, path)
-		# service.setData(0, DEFAULT_VIDEO_PID)
-		# service.setData(1, DEFAULT_AUDIO_PID)
-	service.setName(name)
-	return service
+    service = None
+    ext = os.path.splitext(path)[1].lower()
+    if ext in EXT_TS:
+        service = eServiceReference(SID_DVB, 0, path)
+    elif ext in EXT_DVD:
+        service = eServiceReference(SID_DVD, 0, path)
+    elif ext in EXT_M2TS:
+        service = eServiceReference(SID_M2TS, 0, path)
+    else:
+        service = eServiceReference(SID_GST, 0, path)
+        # service.setData(0, DEFAULT_VIDEO_PID)
+        # service.setData(1, DEFAULT_AUDIO_PID)
+    service.setName(name)
+    return service
 
 
 def getPiconPath(service_reference):
-	pos = service_reference.rfind(':')
-	if pos != -1:
-		service_reference = service_reference[:pos].rstrip(':').replace(':', '_')
-	picon_path = os.path.join(config.usage.configselection_piconspath.value, service_reference + '.png')
-	logger.debug("picon_path: %s", picon_path)
-	return picon_path
+    pos = service_reference.rfind(':')
+    if pos != -1:
+        service_reference = service_reference[:pos].rstrip(':').replace(':', '_')
+    picon_path = os.path.join(config.usage.configselection_piconspath.value, service_reference + '.png')
+    logger.debug("picon_path: %s", picon_path)
+    return picon_path
 
 
 def getPicon(service_reference):
-	return loadPNG(getPiconPath(service_reference))
+    return loadPNG(getPiconPath(service_reference))

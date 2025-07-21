@@ -25,19 +25,20 @@ from .__init__ import _
 
 class MovieInfoEPG(EventViewSimple):
 
-	def __init__(self, session, event, service_reference):
-		EventViewSimple.__init__(self, session, event, service_reference)
-		self.skinName = ["EventViewSimple", "EventView"]
+    def __init__(self, session, event, service_reference):
+        EventViewSimple.__init__(self, session, event, service_reference)
+        self.skinName = ["EventViewSimple", "EventView"]
 
-	def setService(self, service):
-		EventViewSimple.setService(self, service)
-		if self.isRecording:
-			self["channel"].setText("")
+    def setService(self, service):
+        EventViewSimple.setService(self, service)
+        if self.isRecording:
+            self["channel"].setText("")
 
-	def setEvent(self, event):
-		EventViewSimple.setEvent(self, event)
-		if self.isRecording and event.getDuration() == 0:
-			self["duration"].setText("")
-		else:
-			self["duration"].setText(("%d" % (event.getDuration() / 60)) + " " + _("min"))
-			self["datetime"].setText(event.getBeginTimeString())
+    def setEvent(self, event):
+        EventViewSimple.setEvent(self, event)
+        if self.isRecording and event.getDuration() == 0:
+            self["duration"].setText("")
+        else:
+            self["duration"].setText(
+                ("%d" % (event.getDuration() / 60)) + " " + _("min"))
+            self["datetime"].setText(event.getBeginTimeString())

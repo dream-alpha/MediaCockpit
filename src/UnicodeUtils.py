@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # coding=utf-8
 #
 # Copyright (C) 2018-2025 by dream-alpha
@@ -24,27 +23,27 @@ from .Debug import logger
 
 
 def convertToUtf8(text, codepage="utf-8"):
-	if text:
-		try:
-			text.decode(codepage)
-		except UnicodeDecodeError:
-			try:
-				text = text.decode("cp1252")
-			except UnicodeDecodeError:
-				text = text.decode("iso-8859-1")
-		if codepage != "utf-8":
-			try:
-				text = text.encode("utf-8")
-			except UnicodeDecodeError as e:
-				logger.error("exception: %s", e)
-	return text.strip()
+    if text:
+        try:
+            text.decode(codepage)
+        except UnicodeDecodeError:
+            try:
+                text = text.decode("cp1252")
+            except UnicodeDecodeError:
+                text = text.decode("iso-8859-1")
+        if codepage != "utf-8":
+            try:
+                text = text.encode("utf-8")
+            except UnicodeDecodeError as e:
+                logger.error("exception: %s", e)
+    return text.strip()
 
 
 def convertUni2Str(data):
-	if isinstance(data, dict):
-		return {convertUni2Str(key): convertUni2Str(value) for key, value in data.iteritems()}
-	if isinstance(data, list):
-		return [convertUni2Str(element) for element in data]
-	if isinstance(data, text_type):
-		return data.encode("utf-8")
-	return data
+    if isinstance(data, dict):
+        return {convertUni2Str(key): convertUni2Str(value) for key, value in data.iteritems()}
+    if isinstance(data, list):
+        return [convertUni2Str(element) for element in data]
+    if isinstance(data, text_type):
+        return data.encode("utf-8")
+    return data

@@ -27,39 +27,39 @@ instance = None
 
 class MerlinMusicPlayerWidget():
 
-	def __init__(self):
-		config.plugins.mediacockpit.non_standard_decoder.value = False
+    def __init__(self):
+        config.plugins.mediacockpit.non_standard_decoder.value = False
 
-	def execBegin(self):
-		return
+    def execBegin(self):
+        return
 
-	def execEnd(self):
-		return
+    def execEnd(self):
+        return
 
-	def destroy(self):
-		return
+    def destroy(self):
+        return
 
-	def setCover(self, _cover):
-		return
+    def setCover(self, _cover):
+        return
 
 
 class eMerlinMusicPlayer():
 
-	def __init__(self):
-		return
+    def __init__(self):
+        return
 
-	@staticmethod
-	def getInstance():
-		global instance
-		if instance is None:
-			instance = eMerlinMusicPlayer()
-		return instance
+    @staticmethod
+    def getInstance():
+        global instance
+        if instance is None:
+            instance = eMerlinMusicPlayer()
+        return instance
 
-	def setFunc(self, _func):
-		return
+    def setFunc(self, _func):
+        return
 
-	def enableAlsa(self, _enable):
-		return
+    def enableAlsa(self, _enable):
+        return
 
-	def enableGapless(self, _enable):
-		return
+    def enableGapless(self, _enable):
+        return

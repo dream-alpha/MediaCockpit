@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # coding=utf-8
 #
 # Copyright (C) 2018-2025 by dream-alpha
@@ -26,63 +25,63 @@ from .Debug import logger
 
 
 def stripCutNumber(path):
-	filename, ext = os.path.splitext(path)
-	if len(filename) > 3:
-		if filename[-4] == "_" and filename[-3:].isdigit():
-			filename = filename[:-4]
-		path = filename + ext
-	return path
+    filename, ext = os.path.splitext(path)
+    if len(filename) > 3:
+        if filename[-4] == "_" and filename[-3:].isdigit():
+            filename = filename[:-4]
+        path = filename + ext
+    return path
 
 
 def readFile(path):
-	data = ""
-	try:
-		with open(path, "r") as f:
-			data = f.read()
-	except Exception as e:
-		logger.info("path: %s, exception: %s", path, e)
-	return data
+    data = ""
+    try:
+        with open(path, "r") as f:
+            data = f.read()
+    except Exception as e:
+        logger.info("path: %s, exception: %s", path, e)
+    return data
 
 
 def writeFile(path, data):
-	try:
-		with open(path, "w") as f:
-			f.write(data)
-	except Exception as e:
-		logger.error("path: %s, exception: %s", path, e)
+    try:
+        with open(path, "w") as f:
+            f.write(data)
+    except Exception as e:
+        logger.error("path: %s, exception: %s", path, e)
 
 
 def deleteFile(path):
-	os.popen("rm %s" % quote(path)).read()
+    os.popen("rm %s" % quote(path)).read()
 
 
 def deleteFiles(path, clear=False):
-	for afile in glob.glob(path):
-		if clear:
-			writeFile(afile, "")
-		deleteFile(afile)
+    for afile in glob.glob(path):
+        if clear:
+            writeFile(afile, "")
+        deleteFile(afile)
 
 
 def touchFile(path):
-	os.popen("touch %s" % quote(path)).read()
+    os.popen("touch %s" % quote(path)).read()
 
 
 def copyFile(src_path, dest_path):
-	os.popen("cp %s %s" % (quote(src_path), quote(dest_path))).read()
+    os.popen("cp %s %s" % (quote(src_path), quote(dest_path))).read()
 
 
 def renameFile(src_path, dest_path):
-	os.popen("mv %s %s" % (quote(src_path), quote(dest_path))).read()
+    os.popen("mv %s %s" % (quote(src_path), quote(dest_path))).read()
 
 
 def createDirectory(path):
-	os.popen("mkdir -p %s" % quote(path)).read()
+    os.popen("mkdir -p %s" % quote(path)).read()
 
 
 def createSymlink(src, dst):
-	logger.info("link: src: %s > %s", src, dst)
-	os.symlink(src, dst)
+    logger.info("link: src: %s > %s", src, dst)
+    os.symlink(src, dst)
 
 
 def deleteDirectory(path):
-	os.popen("rm -rf %s" % quote(path)).read()
+    os.popen("rm -rf %s" % quote(path)).read()

@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # coding=utf-8
 #
 # Copyright (C) 2018-2025 by dream-alpha
@@ -32,12 +31,12 @@ FILE_OP_FSTRIM = 5  # execute fstrim command
 
 FILE_TASK = _("File Task")
 file_op_msg = {
-	FILE_OP_NONE: _("None"),
-	FILE_OP_LOAD: _("Loading"),
-	FILE_OP_DELETE: _("Deleting"),
-	FILE_OP_MOVE: _("Moving"),
-	FILE_OP_COPY: _("Copying"),
-	FILE_OP_FSTRIM: _("FSTrim"),
+    FILE_OP_NONE: _("None"),
+    FILE_OP_LOAD: _("Loading"),
+    FILE_OP_DELETE: _("Deleting"),
+    FILE_OP_MOVE: _("Moving"),
+    FILE_OP_COPY: _("Copying"),
+    FILE_OP_FSTRIM: _("FSTrim"),
 }
 
 # file manager errors

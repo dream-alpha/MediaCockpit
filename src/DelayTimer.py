@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # coding=utf-8
 #
 # Copyright (C) 2018-2025 by dream-alpha
@@ -27,27 +26,27 @@ timer_instances = []
 
 class DelayTimer():
 
-	def __init__(self, delay, function, *args):
-		if delay:
-			timer_instances.append(self)
-			self.timer = eTimer()
-			self.function = function
-			self.args = args
-			self.timer_conn = self.timer.timeout.connect(self.fire)
-			self.timer.start(delay, True)
-		else:
-			function(*args)
+    def __init__(self, delay, function, *args):
+        if delay:
+            timer_instances.append(self)
+            self.timer = eTimer()
+            self.function = function
+            self.args = args
+            self.timer_conn = self.timer.timeout.connect(self.fire)
+            self.timer.start(delay, True)
+        else:
+            function(*args)
 
-	def fire(self):
-		timer_instances.remove(self)
-		self.function(*self.args)
+    def fire(self):
+        timer_instances.remove(self)
+        self.function(*self.args)
 
-	def stop(self):
-		if self in timer_instances:
-			timer_instances.remove(self)
-			self.timer.stop()
+    def stop(self):
+        if self in timer_instances:
+            timer_instances.remove(self)
+            self.timer.stop()
 
-	@staticmethod
-	def stopAll():
-		for timer_instance in timer_instances:
-			timer_instance.timer.stop()
+    @staticmethod
+    def stopAll():
+        for timer_instance in timer_instances:
+            timer_instance.timer.stop()

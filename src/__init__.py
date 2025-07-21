@@ -28,16 +28,16 @@ from .Debug import initLogging
 
 
 def initLocale():
-	os.environ["LANGUAGE"] = language.getLanguage()[:2]
-	locale = resolveFilename(SCOPE_PLUGINS, "Extensions/" + PLUGIN + "/locale")
-	if not os.path.exists(locale):
-		locale = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/" + PLUGIN + "/locale")
-	if os.path.exists(locale):
-		gettext.bindtextdomain(PLUGIN, locale)
+    os.environ["LANGUAGE"] = language.getLanguage()[:2]
+    locale = resolveFilename(SCOPE_PLUGINS, "Extensions/" + PLUGIN + "/locale")
+    if not os.path.exists(locale):
+        locale = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/" + PLUGIN + "/locale")
+    if os.path.exists(locale):
+        gettext.bindtextdomain(PLUGIN, locale)
 
 
 def _(txt):
-	return gettext.dgettext(PLUGIN, txt)
+    return gettext.dgettext(PLUGIN, txt)
 
 
 initLogging()
