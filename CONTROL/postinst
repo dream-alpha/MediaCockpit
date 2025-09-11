@@ -1,0 +1,11 @@
+#!/bin/sh
+echo "***********************************"
+echo "*          MediaCockpit           *"
+echo "*               by                *"
+echo "*          dream-alpha            *"
+echo "***********************************"
+echo ""
+echo "Plugin MediaCockpit installed successfully."
+echo "Please restart DreamOS now!"
+echo ""
+exit 0

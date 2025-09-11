@@ -1,0 +1,5 @@
+	<xmlinc file="screenpart_1Button_name" name="key_red" position="0,0" width="eval($screen_width/$4)"/>
+	<xmlinc file="screenpart_1Button_name" name="key_green" position="eval($screen_width/$4),0" width="eval($screen_width/$4)"/>
+	<xmlinc file="screenpart_1Button_name" name="key_yellow" position="eval($2*$screen_width/$4),0" width="eval($screen_width/$4)"/>
+	<xmlinc file="screenpart_1Button_name" name="key_blue" position="eval($3*$screen_width/$4),0" width="eval($screen_width/$4)"/>
+	<xmlinc file="screenpart_4Buttons_icon" position="0,40"/>

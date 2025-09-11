@@ -1,0 +1,3 @@
+	<ePixmap gradient="$transparent,$gradient,vertical" position="0,0" size="$screen_width,eval($screen_height*0.45)" zPosition="-1"/>
+	<eLabel backgroundColor="$gradient" position="0,eval($screen_height*0.45)" size="$screen_width,eval($screen_height*0.1)" zPosition="-1"/>
+	<ePixmap gradient="$gradient,$transparent,vertical" position="0,eval($screen_height*0.45+$screen_height*0.1)" size="$screen_width,eval($screen_height*0.45)" zPosition="-1"/>

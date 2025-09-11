@@ -1,0 +1,63 @@
+<keymap>
+	<!-- keymap.xml
+		m = make -> Normal
+		key press b = break -> Key released l = long -> Long key press r = repeat
+		-> Key locked (pressed continuously) "m" arrives once, as soon as the key
+		is pressed "b" arrives as soon as the key is released. "l" arrives after
+		5 repeats, but then only once (repeat still arrives) "r" arrives after "m",
+		when the key is pressed continuously until the key is released Flags can
+		be combined, eg. flags="mr" -->
+
+	<map context="CockpitActions">
+		<key id="KEY_0" mapto="0" flags="m" />
+		<key id="KEY_1" mapto="1" flags="m" />
+		<key id="KEY_8" mapto="8" flags="m" />
+		<key id="KEY_BLUE" mapto="BLUE" flags="m" />
+		<key id="KEY_BLUE" mapto="BLUEL" flags="l" />
+		<key id="KEY_BLUE" mapto="BLUES" flags="b" />
+		<key id="KEY_CHANNELDOWN" mapto="CHANNELDOWN" flags="m" />
+		<key id="KEY_CHANNELDOWN" mapto="CHANNELDOWNR" flags="mr" />
+		<key id="KEY_CHANNELUP" mapto="CHANNELUP" flags="m" />
+		<key id="KEY_CHANNELUP" mapto="CHANNELUPR" flags="mr" />
+		<key id="KEY_DOWN" mapto="DOWN" flags="m" />
+		<key id="KEY_DOWN" mapto="DOWNR" flags="mr" />
+		<key id="KEY_ENTER" mapto="OK" flags="m" />
+		<key id="KEY_ESC" mapto="EXIT" flags="m" />
+		<key id="KEY_EXIT" mapto="EXIT" flags="m" />
+		<key id="KEY_GREEN" mapto="GREEN" flags="m" />
+		<key id="KEY_GREEN" mapto="GREENL" flags="l" />
+		<key id="KEY_GREEN" mapto="GREENS" flags="b" />
+		<key id="KEY_HOME" mapto="EXIT" flags="m" />
+		<key id="KEY_INFO" mapto="INFO" flags="m" />
+		<key id="KEY_INFO" mapto="INFOL" flags="l" />
+		<key id="KEY_INFO" mapto="INFOS" flags="b" />
+		<key id="KEY_LEFT" mapto="LEFTR" flags="mr" />
+		<key id="KEY_MENU" mapto="MENU" flags="m" />
+		<key id="KEY_MENU" mapto="MENUL" flags="l" />
+		<key id="KEY_MENU" mapto="MENUS" flags="b" />
+		<key id="KEY_NEXT" mapto="NEXT" flags="m" />
+		<key id="KEY_OK" mapto="OK" flags="m" />
+		<key id="KEY_PLAY" mapto="PLAY" flags="m" />
+		<key id="KEY_POWER" mapto="POWER" flags="m" />
+		<key id="KEY_PREVIOUS" mapto="PREVIOUS" flags="m" />
+		<key id="KEY_PVR" mapto="VIDEOL" flags="l" />
+		<key id="KEY_PVR" mapto="VIDEOS" flags="b" />
+		<key id="KEY_RADIO" mapto="RADIO" flags="m" />
+		<key id="KEY_RED" mapto="RED" flags="m" />
+		<key id="KEY_RED" mapto="REDS" flags="b" />
+		<key id="KEY_RED" mapto="REDL" flags="l" />
+		<key id="KEY_RIGHT" mapto="RIGHTR" flags="mr" />
+		<key id="KEY_STOP" mapto="STOP" flags="m" />
+		<key id="KEY_TEXT" mapto="TEXT" flags="m" />
+		<key id="KEY_TV" mapto="EXIT" flags="m" />
+		<key id="KEY_TV" mapto="TVL" flags="l" />
+		<key id="KEY_TV" mapto="TVS" flags="b" />
+		<key id="KEY_UP" mapto="UP" flags="m" />
+		<key id="KEY_UP" mapto="UPR" flags="mr" />
+		<key id="KEY_VIDEO" mapto="VIDEOL" flags="l" />
+		<key id="KEY_VIDEO" mapto="VIDEOS" flags="b" />
+		<key id="KEY_YELLOW" mapto="YELLOW" flags="m" />
+		<key id="KEY_YELLOW" mapto="YELLOWL" flags="l" />
+		<key id="KEY_YELLOW" mapto="YELLOWS" flags="b" />
+	</map>
+</keymap>

@@ -1,0 +1,32 @@
+	<screen backgroundColor="background" flags="wfNoBorder" name="MDCCockpitMusicPlayer" position="0,0" size="1920,1080">
+		<eLabel backgroundColor="dark" position="50,100" size="1820,160"/>
+		<xmlinc file="screenpart_Background"/>
+		<widget alphatest="on" name="play" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/dvr_play.svg" position="120,120" size="60,60" zPosition="3"/>
+		<widget alphatest="on" name="pause" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/dvr_pause.svg" position="120,120" size="60,60" zPosition="3"/>
+		<eLabel alphatest="on" backgroundColor="gradient" position="199,139" size="1332,12" zPosition="2"/>
+		<widget pointer="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/Shadow-FHD/images/progress.png:1330,0" position="200,140" render="PositionGauge" size="1330,10" source="Service" transparent="1" zPosition="3">
+			<convert type="COCServicePosition">Gauge</convert>
+		</widget>
+		<widget aplphatest="on" font="Regular;40" foregroundColor="grey" halign="left" position="1570,120" render="Label" size="200,60" source="Service" transparent="1" valign="center" zPosition="3">
+			<convert type="COCServicePosition">Remaining</convert>
+		</widget>
+		<widget alphatest="on" name="shuffle" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/dvr_shuffle.svg" position="200,195" size="40,40" zPosition="3"/>
+		<widget alphatest="on" name="shuffle_off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/dvr_shuffle_off.svg" position="200,195" size="40,40" zPosition="3"/>
+		<widget alphatest="on" name="repeat" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/dvr_repeat.svg" position="270,195" size="40,40" zPosition="3"/>
+		<widget alphatest="on" name="repeat_off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/dvr_repeat_off.svg" position="270,195" size="40,40" zPosition="3"/>
+		<widget alphatest="on" name="gapless" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/gapless.svg" position="340,195" size="40,40" zPosition="3"/>
+		<widget alphatest="on" name="gapless_off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/gapless_off.svg" position="340,195" size="40,40" zPosition="3"/>
+		<widget mode="cover" name="cover" noCoverAvailablePic="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/no-cover.png" position="1350,350" size="450,450" transparent="1" zPosition="13"/>
+		<widget alphatest="on" name="play" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/dvr_play.svg" position="115,395" size="60,60" zPosition="3"/>
+		<widget alphatest="on" name="pause" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/dvr_pause.svg" position="115,395" size="60,60" zPosition="3"/>
+		<widget font="Regular;36" foregroundColor="grey" name="title" position="200,400" size="1100,50" transparent="1" valign="center" zPosition="1"/>
+		<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/album.svg" position="120,475" size="50,50"/>
+		<widget font="Regular;30" foregroundColor="grey" name="album" position="200,475" size="1100,50" transparent="1" valign="center" zPosition="1"/>
+		<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/artist.svg" position="120,550" size="50,50"/>
+		<widget font="Regular;30" foregroundColor="grey" name="artist" position="200,550" size="1100,50" transparent="1" valign="center" zPosition="1"/>
+		<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/genre.svg" position="120,625" size="51,51"/>
+		<widget font="Regular;30" foregroundColor="grey" name="genre" position="200,625" size="1100,50" transparent="1" valign="center" zPosition="1"/>
+		<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/next.svg" position="120,700" size="50,50"/>
+		<widget font="Regular;30" foregroundColor="grey" name="next_title" position="200,700" size="1100,50" transparent="1" valign="center" zPosition="1"/>
+		<widget blendColor="#fcc000" distance1="12" internalSize="0" mode="visUp" name="visual" pixmap1="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/bar_88_226.png" position="0,640" size="1920,340" smoothing="0.4" threshold1="24" transparent="1" zPosition="11"/>
+	</screen>

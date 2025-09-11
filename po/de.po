@@ -1,0 +1,658 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MediaCockpit\n"
+"POT-Creation-Date: 2024-11-09 12:54+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: dream-alpha\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+msgid "Exit"
+msgstr "Beenden"
+
+msgid "Play/Pause"
+msgstr "Abspielen/Pausieren"
+
+msgid "Song"
+msgstr "Lied"
+
+msgid "Stop playback"
+msgstr "Stoppe Wiedergabe"
+
+msgid "Next song"
+msgstr "Nächstes Lied"
+
+msgid "Previous song"
+msgstr "Vorheriges Lied"
+
+msgid "Toggle shuffle"
+msgstr "Mischen an/aus"
+
+msgid "Toggle repeat"
+msgstr "Wiederholen an/aus"
+
+msgid "This Dreambox can't decode %s streams!"
+msgstr "Diese Dreambox kann keine %s Streams decodieren!"
+
+msgid "Skip forward"
+msgstr "Springe vorwärts"
+
+msgid "Skip backward"
+msgstr "Springe zurück"
+
+msgid "EPG Info"
+msgstr "EPG Info"
+
+msgid "Do you want to resume playback at position: %d:%02d:%02d?"
+msgstr "Soll die Wiedergabe an Position: %d:%02d:%02d fortgesetzt werden?"
+
+msgid "DD.MM.YYYY"
+msgstr "TT.MM.JJJJ"
+
+msgid "WD DD.MM.YYYY"
+msgstr "WT TT.MM.JJJJ"
+
+msgid "DD.MM.YYYY HH:MM"
+msgstr "TT.MM.JJJJ HH:MM"
+
+msgid "WD DD.MM.YYYY HH:MM"
+msgstr "WT TT.MM.JJJJ HH:MM"
+
+msgid "DD.MM. HH:MM"
+msgstr "TT.MM. HH:MM"
+
+msgid "WD DD.MM. HH:MM"
+msgstr "WT TT.MM. HH:MM"
+
+msgid "YYYY/MM/DD"
+msgstr "JJJJ/MM/TT"
+
+msgid "WD YYYY/MM/DD"
+msgstr "WT JJJJ/MM/TT"
+
+msgid "YYYY/MM/DD HH:MM"
+msgstr "JJJJ/MM/TT HH:MM"
+
+msgid "WD YYYY/MM/DD HH:MM"
+msgstr "WT JJJJ/MM/TT HH:MM"
+
+msgid "MM/DD HH:MM"
+msgstr "MM/TT HH:MM"
+
+msgid "WD MM/DD HH:MM"
+msgstr "WT MM/TT HH:MM"
+
+msgid "None"
+msgstr "Nichts"
+
+msgid "Date sort down"
+msgstr "Datum abwärts"
+
+msgid "Date sort up"
+msgstr "Datum aufwärts"
+
+msgid "Alpha sort up"
+msgstr "Alphabetisch aufwärts"
+
+msgid "Alpha sort down"
+msgstr "Alphabetisch abwärts"
+
+msgid "blinds"
+msgstr "Jalousie"
+
+msgid "rotate"
+msgstr "Rotation"
+
+msgid "circular waves"
+msgstr "Kreiswellen"
+
+msgid "door"
+msgstr "Tor"
+
+msgid "dice"
+msgstr "Würfel"
+
+msgid "checkerboard"
+msgstr "Schachbrett"
+
+msgid "shutter"
+msgstr "Blende"
+
+msgid "waves"
+msgstr "Wellen"
+
+msgid "windmill"
+msgstr "Windmühle"
+
+msgid "earthquake"
+msgstr "Erdbeben"
+
+msgid "crossfade"
+msgstr "Überblenden"
+
+msgid "random"
+msgstr "Zufall"
+
+msgid "Crossfade fast"
+msgstr "Überblenden schnell"
+
+msgid "Crossfade slow"
+msgstr "Überblenden langsam"
+
+msgid "Crossfade accelerated"
+msgstr "Überblenden beschleunigt"
+
+msgid "Crossfade regular"
+msgstr "Überblenden normal"
+
+msgid "default"
+msgstr "Standard"
+
+msgid "beginning"
+msgstr "Filmanfang"
+
+msgid "first mark"
+msgstr "Erste Sprungmarke"
+
+msgid "event start"
+msgstr "Sendungsanfang"
+
+msgid "COCKPIT"
+msgstr "COCKPIT"
+
+msgid "Start with top level favorites"
+msgstr "Lesezeichen beim Start des Plugins"
+
+msgid ""
+"Should the plugin load the top level favorite directories or the directory "
+"that was used last?"
+msgstr ""
+"Sollen die Favoriten-Verzeichnisse oder das zuletzt benutze Verzeichnis "
+"geladen werden, wenn das Plugin startet?"
+
+msgid "Sort"
+msgstr "Sortierung"
+
+msgid "Select the list sort mode."
+msgstr "Wie soll die Medienliste sortiert werden?"
+
+msgid "Sort across directories"
+msgstr "Über Verzeichnisse hinweg sortieren"
+
+msgid "Should directories be sorted recursively?"
+msgstr "Sollen Verzeichnisse rekursiv sortiert werden?"
+
+msgid "Show parent directory tile"
+msgstr "Kachel für übergeordnetes Verzeichnis"
+
+msgid "Should a tile be displayed for navigation to the parent directory?"
+msgstr ""
+"Soll für die Navigation zum übergeordneten Verzeichnis eine Kachel angezeigt "
+"werden. Falls nicht, kann man dazu die Tab links Taste verwenden."
+
+msgid "Tile foreground color"
+msgstr "Kachel Vordergrundfarbe"
+
+msgid "Select the tile foreground color."
+msgstr ""
+"In welcher Farbe soll der Vordergrund für die Kacheln angezeigt werden?"
+
+msgid "Tile background color"
+msgstr "Kachel Hintergrundfarbe"
+
+msgid "Select the tile background color."
+msgstr ""
+"In welcher Farbe soll der Hintergrund für die Kacheln angezeigt werden?"
+
+msgid "Tile selection foreground color"
+msgstr "Vordergrundfarbe für ausgewählte Kachel"
+
+msgid "Select the tile selection foreground color."
+msgstr ""
+"In welcher Farbe soll der Vordergrund für die ausgewählte Kachel angezeigt "
+"werden?"
+
+msgid "Tile selection background color"
+msgstr "Hintergrundfarbe für ausgewählte Kachel"
+
+msgid "Select the tile selection background color."
+msgstr ""
+"In welcher Farbe soll der Hintergrund für die ausgewählte Kachel angezeigt "
+"werden?"
+
+msgid "Tile selection size offset"
+msgstr "Größe Offset für ausgewählte Kachel"
+
+msgid "Select the tile selection size offset."
+msgstr ""
+"Um wieviele Pixel soll die ausgewählten Kachel größer angezeigt werden?"
+
+msgid "Tile selection font offset"
+msgstr "Font Offset für ausgewählte Kachel"
+
+msgid "Select the tile selection font offset."
+msgstr ""
+"Um wie viele Pixel soll der Font der ausgewählten Kachel größer angezeigt "
+"werden?"
+
+msgid "Tile selection frame"
+msgstr "Rahmen für ausgewählte Kachel"
+
+msgid "Should a tile selection frame be displayed?"
+msgstr ""
+"In welcher Farbe soll der Rahmen für die ausgewählte Kachel angezeigt werden?"
+
+msgid "Tile selection frame color"
+msgstr "Rahmenfarbe ausgewählte Kachel"
+
+msgid "Select the tile selection frame color."
+msgstr ""
+"In welcher Farbe soll der Rahmen für die ausgewählte Kachel angezeigt werden?"
+
+msgid "Create thumbnails"
+msgstr "Vorschaubilder"
+
+msgid "Should thumbnails be created automatically?"
+msgstr "Sollen Vorschaubilder automatisch generiert werden?"
+
+msgid "SLIDESHOW"
+msgstr "DIASHOW"
+
+msgid "Duration"
+msgstr "Anzeigedauer"
+
+msgid "Select the duration for the display of a slide."
+msgstr "Wie lange soll ein Dia in einer Diashow angezeigt werden?"
+
+msgid "Animation"
+msgstr "Bildübergang"
+
+msgid "Which animation should be used for slide transistions?"
+msgstr "Welche Animation soll für den Übergang von Dias verwendet werden?"
+
+msgid "Endless loop"
+msgstr "Endlosschleife"
+
+msgid "Should slideshows be run in an endless loop?"
+msgstr "Sollen Diashows in einer Endlosschleife laufen?"
+
+msgid "PLAYLIST"
+msgstr "PLAYLISTE"
+
+msgid "Recurse directories"
+msgstr "Lade Verzeichnisse rekursiv"
+
+msgid "Should directories be loaded recursively?"
+msgstr "Sollen Verzeichnisse rekursiv geladen werden?"
+
+msgid "PICTURE"
+msgstr "BILD"
+
+msgid "Foreground color"
+msgstr "Vordergrundfarbe"
+
+msgid "Select the forground color of icons."
+msgstr ""
+"In welcher Farbe soll der Vordergrund für Media Icons angezeigt werden?"
+
+msgid "Background color"
+msgstr "Hintergrundfarbe"
+
+msgid "Select the background color for icons."
+msgstr ""
+"In welcher Farbe soll der Hintergrund für Media Icons angezeigt werden?"
+
+msgid "VIDEO"
+msgstr "VIDEO"
+
+msgid "Resume video at last position"
+msgstr "Starte Film an letzter Stopp-Marke"
+
+msgid "Select whether video should be resumed at last stop position."
+msgstr "Soll der Film an der letzten Stopp-Marke gestartet werden?"
+
+msgid "Video start at"
+msgstr "Starte den Film an"
+
+msgid "Select at which position video is started at."
+msgstr ""
+"An welcher Position soll der Film gestartet werden: Filmanfang, erste "
+"Sprungmarke oder Sendungsanfang?"
+
+msgid "Date format"
+msgstr "Datumsformat"
+
+msgid "Select the date format."
+msgstr ""
+"Welches Format für die Anzeige des Aufnahmedatums soll in der  Filmliste "
+"verwendet werden?"
+
+msgid "MUSIC"
+msgstr "MUSIK"
+
+msgid "Gapless playback"
+msgstr "Wiedergabe ohne Unterbrechungen"
+
+msgid "Should gapless playback be used?"
+msgstr "Soll die Wiedergabe ohne Unterbrechungen erfolgen?"
+
+msgid "Alsasink"
+msgstr "GStreamer Alsasink"
+
+msgid "Should the GStreamer Alsasink decoder be used?"
+msgstr "Soll der GStreamer Alsasink Decoder verwendet werden?"
+
+msgid "Cover download path"
+msgstr "Musik Cover Verzeichnis"
+
+msgid "Select the path for cover downloads."
+msgstr "In welchem Verzeichnis sollen Musik Cover gespeichert werden?"
+
+msgid "CACHE"
+msgstr "CACHE"
+
+msgid "Cache directory"
+msgstr "Cache-Verzeichnis"
+
+msgid "Select directory for cache database file."
+msgstr "Auswahl des Verzeichnisses für die Cache Datenbank"
+
+msgid "DEBUG"
+msgstr "DEBUG"
+
+msgid "Debug log"
+msgstr "Debug Log"
+
+msgid "Should a debug log be activated?"
+msgstr "Soll ein Debug Log aktiviert werden?"
+
+msgid "MediaCockpit"
+msgstr "MediaCockpit"
+
+msgid "Delete file"
+msgstr "Löschen"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Load cache directory"
+msgstr "Cache Verzeichnis laden"
+
+msgid "Bookmarks"
+msgstr "Lesezeichen"
+
+msgid "Slideshow"
+msgstr "Diashow"
+
+msgid "Previous page"
+msgstr "Vorherige Seite"
+
+msgid "Next page"
+msgstr "Nächste Seite"
+
+msgid "Next picture"
+msgstr "Nächstes Bild"
+
+msgid "Previous picture"
+msgstr "Vorheriges Bild"
+
+msgid "Previous row"
+msgstr "Vorherige Zeile"
+
+msgid "Next row"
+msgstr "Nächste Zeile"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Information"
+msgstr "Information"
+
+msgid "Context menu"
+msgstr "Kontext Menü"
+
+msgid "Menu"
+msgstr "Menü"
+
+msgid "Start of list"
+msgstr "Listenanfang"
+
+msgid "Show load progress"
+msgstr "Ladeanzeige"
+
+msgid "Previous directory"
+msgstr "Vorheriges Verzeichnis"
+
+msgid "Do you really want to delete the file?"
+msgstr "Soll die Datei wirklich gelöscht werden?"
+
+msgid "Select directory"
+msgstr "Verzeichnis-Auswahl"
+
+msgid "Do you really want to load the following directory?"
+msgstr "Soll das folgende Verzeichnis wirklich geladen werden?"
+
+msgid "Can't load directory because it is not mounted."
+msgstr "Verzeichnis ist nicht eingehängt und kann daher nicht geladen werden."
+
+msgid "Do you really want to load the following bookmark?"
+msgstr "Soll das folgende Lesezeichen wirklich geladen werden?"
+
+msgid "Can't load bookmark because it is not mounted."
+msgstr "Lesezeichen ist nicht eingehängt und kann daher nicht geladen werden."
+
+msgid "Thumbnail"
+msgstr "Vorschaubild"
+
+msgid "Media Infos"
+msgstr "Media Informationen"
+
+msgid "Cancel"
+msgstr "Abbrechen"
+
+msgid "Directory"
+msgstr "Verzeichnis"
+
+msgid "Filename"
+msgstr "Dateiname"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "unknown"
+msgstr "unbekannt"
+
+msgid "not defined"
+msgstr "nicht festgelegt"
+
+msgid "Model"
+msgstr "Kamera Modell"
+
+msgid "Producer"
+msgstr "Hersteller"
+
+msgid "Time"
+msgstr "Zeit"
+
+msgid "Width"
+msgstr "Breite"
+
+msgid "Height"
+msgstr "Höhe"
+
+msgid "Orientation"
+msgstr "Ausrichtung"
+
+msgid "Flash"
+msgstr "Blitz"
+
+msgid "Metering Mode"
+msgstr "Belichtungsmessmodus"
+
+msgid "ISO Speed Rating"
+msgstr "ISO Speed Rating"
+
+msgid "Photographic Sensitivity"
+msgstr "Fotographische Empfindlichkeit"
+
+msgid "Exposure Program"
+msgstr "Belichtungsprogramm"
+
+msgid "Software"
+msgstr "Software"
+
+msgid "GPS Altitude"
+msgstr "GPS Höhe"
+
+msgid "GPS Latitude"
+msgstr "GPS Breitengrad"
+
+msgid "GPS Longitude"
+msgstr "GPS Längengrad"
+
+msgid "Exif Version"
+msgstr "Exif Version"
+
+msgid "Load cache bookmark"
+msgstr "Cache Lesezeichen laden"
+
+msgid "Setup"
+msgstr "Einstellungen"
+
+msgid "About"
+msgstr "Über"
+
+msgid "Input"
+msgstr "Eingabe"
+
+msgid "min"
+msgstr "Min"
+
+msgid "Rotate picture"
+msgstr "Bild drehen"
+
+msgid "Toggle Transition"
+msgstr "Wechsle Übergang"
+
+msgid "Toggle buttons"
+msgstr "Wechsle Tasten"
+
+msgid "Stop video/slideshow"
+msgstr "Stoppe Video/Diaschau"
+
+msgid "Toggle transition"
+msgstr "Wechsle Diaübergang"
+
+msgid "Rotating picture..."
+msgstr "Bild wird gedreht..."
+
+msgid "File"
+msgstr "Datei"
+
+msgid "Path"
+msgstr "Verzeichnis"
+
+msgid "not mounted"
+msgstr "nicht eingehängt"
+
+msgid "Page"
+msgstr "Seite"
+
+msgid "Pictures, Movies, and Slideshows"
+msgstr "Bilder, Filme und Diashows"
+
+msgid "Plugin"
+msgstr "Plugin"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Copyright"
+msgstr "Copyright"
+
+msgid "License"
+msgstr "Lizenz"
+
+msgid "End"
+msgstr "Ende"
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Defaults"
+msgstr "Standard"
+
+msgid "Really close without saving settings?"
+msgstr "Fortfahren ohne Speichern der Einstellungen?"
+
+msgid "Loading default settings will overwrite all settings, really load them?"
+msgstr ""
+"Das Laden der Standardeinstellungen überschreibt alle aktuellen "
+"Einstellungen.\n"
+"Sollen die Standardeinstellungen wirklich geladen werden?"
+
+msgid "Some changes require a GUI restart"
+msgstr "Einige Änderungen erfordern einen Neustart der GUI"
+
+msgid "Restart GUI now?"
+msgstr "Soll die GUI jetzt neu gestartet werden?"
+
+msgid "Path does not exist"
+msgstr "Verzeichnis existiert nicht"
+
+msgid "File operation(s)"
+msgstr "Dateioperationen"
+
+msgid "Remaining files"
+msgstr "Verbleibende Dateien"
+
+msgid "Cancelling, please wait"
+msgstr "Breche ab, bitte warten"
+
+msgid "Cancelled"
+msgstr "Abgebrochen"
+
+msgid "Please wait"
+msgstr "Bitte warten"
+
+msgid "Done"
+msgstr "Fertig"
+
+msgid "No file operation in process"
+msgstr "Keine Dateioperation aktiv"
+
+msgid "File Task"
+msgstr "Datei-Operation"
+
+msgid "Loading"
+msgstr "Lade"
+
+msgid "Deleting"
+msgstr "Löschen"
+
+msgid "Moving"
+msgstr "Verschieben"
+
+msgid "Copying"
+msgstr "Kopieren"
+
+msgid "FSTrim"
+msgstr "FSTrimmen"
+
+msgid "Close"
+msgstr "Schliessen"
+
+msgid "Hide"
+msgstr "Ausblenden"
+
+msgid "Processing"
+msgstr "In Bearbeitung"
+
+msgid "of"
+msgstr "von"

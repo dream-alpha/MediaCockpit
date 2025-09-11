@@ -1,0 +1,4 @@
+	<widget backgroundColor="$red" font="Regular;30" foregroundColor="$white" halign="center" name="key_red" position="0,0" shadowColor="$black" shadowOffset="-2,-2" size="$width,70" transparent="1" valign="center" zPosition="1"/>
+	<widget backgroundColor="$green" font="Regular;30" foregroundColor="$white" halign="center" name="key_green" position="$width,0" shadowColor="$black" shadowOffset="-2,-2" size="$width,70" transparent="1" valign="center" zPosition="1"/>
+	<widget backgroundColor="$yellow" font="Regular;30" foregroundColor="$white" halign="center" name="key_yellow" position="eval($width*$2),0" shadowColor="$black" shadowOffset="-2,-2" size="$width,70" transparent="1" valign="center" zPosition="1"/>
+	<widget backgroundColor="$blue" font="Regular;30" foregroundColor="$white" halign="center" name="key_blue" position="eval($width*$3),0" shadowColor="$black" shadowOffset="-2,-2" size="$width,70" transparent="1" valign="center" zPosition="1"/>

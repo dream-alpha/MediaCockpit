@@ -1,0 +1,15 @@
+	<colors>
+		<color name="black" value="#000000"/>
+		<color name="white" value="#ffffff"/>
+		<color name="grey" value="#aaaaaa"/>
+		<color name="dark" value="#20062748"/>
+		<color name="red" value="#f23d21"/>
+		<color name="green" value="#389416"/>
+		<color name="blue" value="#0064c7"/>
+		<color name="yellow" value="#e6bd00"/>
+		<color name="transparent" value="#ff000000"/>
+		<color name="transpBlack" value="#80000000"/>
+		<color name="transpWhite" value="#80ffffff"/>
+		<color name="background" value="#200d1940"/>
+		<color name="foreground" value="#ffffff"/>
+	</colors>

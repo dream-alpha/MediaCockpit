@@ -1,0 +1,7 @@
+	<screen flags="wfNoBorder" name="MDCSlideshow" position="0,0" size="2560,1440">
+		<widget name="image" position="0,0" size="2560,1440" zPosition="3"/>
+		<widget name="picture_background" position="0,0" size="2560,1440" zPosition="1"/>
+		<widget name="picture" position="0,0" size="2560,1440" zPosition="2"/>
+		<widget font="Regular;27" halign="left" name="osd_info" noWrap="1" position="27,13" size="2513,33" transparent="1" zPosition="2"/>
+		<xmlinc file="screenpart_4Buttons_name" position="0,1373" width="640"/>
+	</screen>

@@ -1,0 +1,678 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MediaCockpit\n"
+"POT-Creation-Date: 2022-02-11 13:41+0100\n"
+"PO-Revision-Date: 2022-10-10 15:42+0200\n"
+"Last-Translator: Dario Croci <spaeleus@croci.org>\n"
+"Language-Team: Dario Croci <spaeleus@croci.org>\n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+msgid "Plugin"
+msgstr "Plugin"
+
+msgid "Version"
+msgstr "Versione"
+
+msgid "Copyright"
+msgstr "Copyright"
+
+msgid "License"
+msgstr "Licenza"
+
+msgid "End"
+msgstr "Fine"
+
+msgid "Stop playback"
+msgstr "Arrestare la riproduzione"
+
+msgid "Skip forward"
+msgstr "Skip avanti"
+
+msgid "Skip backward"
+msgstr "Skip indietro"
+
+msgid "EPG Info"
+msgstr "Info EPG"
+
+msgid "Do you want to resume playback at position: %d:%02d:%02d?"
+msgstr "Riprendere la riproduzione dalla posizione %d:%02d:%02d?"
+
+msgid "Cancel"
+msgstr "Annullare"
+
+msgid "Save"
+msgstr "Salvare"
+
+msgid "Defaults"
+msgstr "Predefiniti"
+
+msgid "Really close without saving settings?"
+msgstr "Uscire senza salvare le modifiche?"
+
+msgid "Setup"
+msgstr "Impostazioni"
+
+msgid "Loading default settings will overwrite all settings, really load them?"
+msgstr "Le impostazioni predefinite sovrascriveranno tutte quelle presenti. Eseguire?"
+
+msgid "Some changes require a GUI restart"
+msgstr "Alcune modifiche richiedono il riavvio della GUI"
+
+msgid "Restart GUI now?"
+msgstr "Riavviare la GUI ora?"
+
+msgid "Bookmarks"
+msgstr "Segnalibri"
+
+msgid "Select directory"
+msgstr "Selezionare una directory"
+
+msgid "Path does not exist"
+msgstr "Percorso non presente"
+
+msgid "Close"
+msgstr "Chiudere"
+
+msgid "Hide"
+msgstr "Nascondere"
+
+msgid "Cancelling, please wait"
+msgstr "Annullamento in corso, attendere"
+
+msgid "Processing"
+msgstr "Elaborazione in corso"
+
+msgid "of"
+msgstr "di"
+
+msgid "Done"
+msgstr "Fatto"
+
+msgid "Cancelled"
+msgstr "Cancellato"
+
+msgid "Please wait"
+msgstr "Attendere"
+
+msgid "min"
+msgstr "min"
+
+msgid "Select function"
+msgstr "Selezionare la funzione"
+
+msgid "About"
+msgstr "Informazioni"
+
+msgid "No override"
+msgstr "Non sovrascrivere"
+
+msgid "Video-button"
+msgstr "Pulsante Video"
+
+msgid "TV-button"
+msgstr "Pulsante TV"
+
+msgid "Radio-button"
+msgstr "Pulsante Radio"
+
+msgid "Quick-button"
+msgstr "Quick-button"
+
+msgid "Timeshift-button"
+msgstr "Pulsante Timeshift"
+
+msgid "DD.MM.YYYY"
+msgstr "GG.MM.AAAA"
+
+msgid "WD DD.MM.YYYY"
+msgstr "GS GG.MM.AAAA"
+
+msgid "DD.MM.YYYY HH:MM"
+msgstr "GG.MM.YYYY HH:MM"
+
+msgid "WD DD.MM.YYYY HH:MM"
+msgstr "GS GG.MM.AAAA HH:MM"
+
+msgid "DD.MM. HH:MM"
+msgstr "GG.MM. HH:MM"
+
+msgid "WD DD.MM. HH:MM"
+msgstr "GS GG.MM. HH:MM"
+
+msgid "YYYY/MM/DD"
+msgstr "AAAA/MM/GG"
+
+msgid "WD YYYY/MM/DD"
+msgstr "GS AAAA/MM/GG"
+
+msgid "YYYY/MM/DD HH:MM"
+msgstr "AAAA/MM/GG HH:MM"
+
+msgid "WD YYYY/MM/DD HH:MM"
+msgstr "GS AAAA/MM/GG HH:MM"
+
+msgid "MM/DD HH:MM"
+msgstr "MM/GG HH:MM"
+
+msgid "WD MM/DD HH:MM"
+msgstr "GS MM/GG HH:MM"
+
+msgid "None"
+msgstr "Nessuna"
+
+msgid "Date sort down"
+msgstr "Ordinare (data-)"
+
+msgid "Date sort up"
+msgstr "Ordinare (data+)"
+
+msgid "Alpha sort up"
+msgstr "Ordine alfabetico (A-Z)"
+
+msgid "Alpha sort down"
+msgstr "Ord. alfabetico (Z-A)"
+
+msgid "blinds"
+msgstr "Tendine"
+
+msgid "rotate"
+msgstr "Rotazione"
+
+msgid "circular waves"
+msgstr "Onde circolari"
+
+msgid "door"
+msgstr "Porta"
+
+msgid "dice"
+msgstr "Dadi"
+
+msgid "checkerboard"
+msgstr "Scacchiera"
+
+msgid "shutter"
+msgstr "Diaframma"
+
+msgid "waves"
+msgstr "Onde"
+
+msgid "windmill"
+msgstr "Mulino a vento"
+
+msgid "earthquake"
+msgstr "Terremoto"
+
+msgid "crossfade"
+msgstr "Dissolvenza incrociata"
+
+msgid "random"
+msgstr "Casuale"
+
+msgid "Crossfade fast"
+msgstr "Dissolvenza incrociata veloce"
+
+msgid "Crossfade slow"
+msgstr "Dissolvenza incrociata lenta"
+
+msgid "Crossfade accelerated"
+msgstr "Dissolvenza incrociata accelerata"
+
+msgid "Crossfade regular"
+msgstr "Dissolvenza incrociata standard"
+
+msgid "default"
+msgstr "Predefinito"
+
+msgid "beginning"
+msgstr "All'inizio"
+
+msgid "first mark"
+msgstr "Primo contrassegno"
+
+msgid "event start"
+msgstr "Inizio evento"
+
+msgid "COCKPIT"
+msgstr "COCKPIT"
+
+msgid "Start plugin with key"
+msgstr "Avviare il plugin con un tasto"
+
+msgid "Select a key to start the plugin with."
+msgstr "Selezionare un tasto per l'avvio del plugin."
+
+msgid "Start with home directory"
+msgstr "Avviarsi nella directory home"
+
+msgid "Should the plugin load the home directory or the one that was used last?"
+msgstr "All'avvio caricare la directory home o l'ultima utilizzata?"
+
+msgid "Home directory"
+msgstr "Directory home"
+
+msgid "Select the directory to be considered the home directory"
+msgstr "Selezionare la directory da utilizzare come home"
+
+msgid "Sort"
+msgstr "Ordinare"
+
+msgid "Select the list sort mode."
+msgstr "Selezionare l'ordinamento elenco."
+
+msgid "Sort across directories"
+msgstr "Ordinamento tra le directory"
+
+msgid "Should directories be sorted recursively?"
+msgstr "Ordinare le directory in modo ricorsivo?"
+
+msgid "Show parent directory tile"
+msgstr "Mostrare la casella della directory padre"
+
+msgid "Should a tile be displayed for navigation to the parent directory?"
+msgstr "Mostrare una casella per la navigazione verso la directory padre?"
+
+msgid "Tile foreground color"
+msgstr "Colore primo piano casella"
+
+msgid "Select the tile foreground color."
+msgstr "Selezionare il colore di primo piano della casella."
+
+msgid "Tile background color"
+msgstr "Colore sfondo casella"
+
+msgid "Select the tile background color."
+msgstr "Selezionare il colore di sfondo della casella."
+
+msgid "Tile selection foreground color"
+msgstr "Colore primo piano casella selezionata"
+
+msgid "Select the tile selection foreground color."
+msgstr "Selezionare il colore per il primo piano della casella selezionata."
+
+msgid "Tile selection background color"
+msgstr "Colore sfondo casella selezionata"
+
+msgid "Select the tile selection background color."
+msgstr "Selezionare il colore di sfondo della casella selezionata."
+
+msgid "Tile selection size offset"
+msgstr "Offset dimensioni selezione casella"
+
+msgid "Select the tile selection size offset."
+msgstr "Selezionare l'offset delle dimensioni selezione casella."
+
+msgid "Tile selection font offset"
+msgstr "Offset carattere casella selezionata"
+
+msgid "Select the tile selection font offset."
+msgstr "Selezionare l'offset caratteri della casella selezionata."
+
+msgid "Tile selection frame"
+msgstr "Cornice selezione casella"
+
+msgid "Should a tile selection frame be displayed?"
+msgstr "Visualizzare una cornice di selezione caselle?"
+
+msgid "Tile selection frame color"
+msgstr "Colore cornice selezione caselle"
+
+msgid "Select the tile selection frame color."
+msgstr "Selezionare il colore della cornice selezione caselle."
+
+msgid "Create thumbnails"
+msgstr "Creare miniature"
+
+msgid "Should thumbnails be created automatically?"
+msgstr "Creare automaticamente le miniature?"
+
+msgid "Show detailed loading info"
+msgstr "Mostrare informazioni dettagliate caricamento"
+
+msgid "Should detailed loading info be shown?"
+msgstr "Mostrare informazioni dettagliate sul caricamento?"
+
+msgid "SLIDESHOW"
+msgstr "SLIDESHOW"
+
+msgid "Duration"
+msgstr "Durata"
+
+msgid "Select the duration for the display of a slide."
+msgstr "Selezionare il tempo di visualizzazione di una diapositiva nelle presentazioni."
+
+msgid "Animation"
+msgstr "Animazione"
+
+msgid "Which animation should be used for slide transistions?"
+msgstr "Quale animazione utilizzare nelle transizione diapositive?"
+
+msgid "Endless loop"
+msgstr "Loop infinito"
+
+msgid "Should slideshows be run in an endless loop?"
+msgstr "Eseguire le presentazioni in un loop infinito?"
+
+msgid "PLAYLIST"
+msgstr "PLAYLIST"
+
+msgid "Recurse directories"
+msgstr "Caricamento ricorsivo delle directory"
+
+msgid "Should directories be loaded recursively?"
+msgstr "Caricare le directory in modo ricorsivo?"
+
+msgid "PICTURE"
+msgstr "IMMAGINI"
+
+msgid "Foreground color"
+msgstr "Colore primo piano"
+
+msgid "Select the forground color of icons."
+msgstr "Selezionare il colore di primo piano delle icone."
+
+msgid "Background color"
+msgstr "Colore di sfondo"
+
+msgid "Select the background color for icons."
+msgstr "Selezionare il colore di sfondo delle icone."
+
+msgid "VIDEO"
+msgstr "VIDEO"
+
+msgid "No resume below 10 seconds"
+msgstr "Non riprendere sotto 10 secondi"
+
+msgid "Should marks below 10s be ignored when resuming video playback?"
+msgstr "Riavviando una riproduzione ignorare i contrassegni sotto i 10 secondi?"
+
+msgid "Jump to first mark when playing movie"
+msgstr "Passare al primo contrassegno in riproduzione video"
+
+msgid "Should videos automatically be started at the first mark?"
+msgstr "Avviare i filmati automaticamente dal primo contrassegno?"
+
+msgid "Resume video at last position"
+msgstr "Riprendere dall'ultima posizione"
+
+msgid "Select whether video should be resumed at last stop position."
+msgstr "Determinare se il video debba essere fatto ripartire dall'ultima posizione."
+
+msgid "Video start at"
+msgstr "Avviare il video a"
+
+msgid "Select at which position video is started at."
+msgstr "Determinate da quale posizione il video debba essere avviato."
+
+msgid "Date format"
+msgstr "Formato data"
+
+msgid "Select the date format."
+msgstr "Selezionare il formato delle date."
+
+msgid "Enable playback auto-audio track selection"
+msgstr "Abilitare la selezione automatica della lingua"
+
+msgid "Enable playback of auto-audio track selection?"
+msgstr "Abilitare la selezione automatica della lingua?"
+
+msgid "Enable playback AC3-track first"
+msgstr "Preferire la traccia AC3"
+
+msgid "Enable playback of AC3-track first?"
+msgstr "Abilitare prioritariamente la traccia AC3?"
+
+msgid "Primary playback audio language"
+msgstr "Lingua audio: opzione preferenziale"
+
+msgid "Select the primary playback audio language."
+msgstr "Selezionare la traccia audio primaria."
+
+msgid "Secondary playback audio language"
+msgstr "Lingua audio: opzione secondaria"
+
+msgid "Select the secondary playback audio language."
+msgstr "Selezionare la traccia audio secondaria."
+
+msgid "Tertiary playback audio language"
+msgstr "Lingua audio: terza opzione"
+
+msgid "Select the tertiary playback audio language."
+msgstr "Selezionare la terza opzione per la traccia audio."
+
+msgid "Enable playback auto-subtitling"
+msgstr "Abilitare la riproduzione automatica dei sottotitoli"
+
+msgid "Enable playback of auto-subtitling?"
+msgstr "Abilitare la riproduzione automatica dei sottotitoli?"
+
+msgid "Primary playback subtitle language"
+msgstr "Lingua sottotitoli: opzione preferenziale"
+
+msgid "Select the primary playback subtitle language."
+msgstr "Selezionare la lingua sottotitoli primaria."
+
+msgid "Secondary playback subtitle language"
+msgstr "Lingua sottotitoli: opzione secondaria"
+
+msgid "Select the secondary playback subtitle language."
+msgstr "Selezionare la lingua sottotitoli secondaria."
+
+msgid "Tertiary playback subtitle language"
+msgstr "Lingua sottotitoli: terza opzione"
+
+msgid "Select the tertiary playback subtitle language."
+msgstr "Selezionare la terza opzione per la lingua sottotitoli."
+
+msgid "MUSIC"
+msgstr "MUSICA"
+
+msgid "Gapless playback"
+msgstr "Riproduzione senza pause"
+
+msgid "Should gapless playback be used?"
+msgstr "Utilizzare la riproduzione senza intervalli?"
+
+msgid "Alsasink"
+msgstr "Alsasink"
+
+msgid "Should the GStreamer Alsasink decoder be used?"
+msgstr "Utilizzare il decoder GStreamer Alsasink?"
+
+msgid "Cover download path"
+msgstr "Percorso download cover"
+
+msgid "Select the path for cover downloads."
+msgstr "Selezionare un percorso per il download cover."
+
+msgid "DEBUG"
+msgstr "DEBUG"
+
+msgid "Debug log"
+msgstr "Log di debug"
+
+msgid "Should a debug log be activated?"
+msgstr "Attivare un log di debug?"
+
+msgid "Log file path"
+msgstr "Percorso file di log"
+
+msgid "Select the path for a log file."
+msgstr "Selezionare il percorso del file di log."
+
+msgid "MediaCockpit"
+msgstr "MediaCockpit"
+
+msgid "Loading"
+msgstr "Caricamento in corso"
+
+msgid "files"
+msgstr "file"
+
+msgid "Play/Pause"
+msgstr "Play/Pausa"
+
+msgid "Slideshow"
+msgstr "Proiezione"
+
+msgid "Previous page"
+msgstr "Pagina precedente"
+
+msgid "Next page"
+msgstr "Pagina successiva"
+
+msgid "Next picture"
+msgstr "Immagine successiva"
+
+msgid "Previous picture"
+msgstr "Immagine precedente"
+
+msgid "Previous row"
+msgstr "Riga precedente"
+
+msgid "Next row"
+msgstr "Riga successiva"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Information"
+msgstr "Informazione"
+
+msgid "Context menu"
+msgstr "Menu contestuale"
+
+msgid "Delete file"
+msgstr "Rimuovere file"
+
+msgid "Exit"
+msgstr "Uscire"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Previous directory"
+msgstr "Directory precedente"
+
+msgid "Do you really want to delete the file?"
+msgstr "Rimuovere il file?"
+
+msgid "Thumbnail"
+msgstr "Miniatura"
+
+msgid "Media Infos"
+msgstr "Info media"
+
+msgid "Directory"
+msgstr "Directory"
+
+msgid "Filename"
+msgstr "Nome file"
+
+msgid "Date"
+msgstr "Data"
+
+msgid "unknown"
+msgstr "Sconosciuto"
+
+msgid "not defined"
+msgstr "Non definito"
+
+msgid "Model"
+msgstr "Modello"
+
+msgid "Producer"
+msgstr "Produttore"
+
+msgid "Time"
+msgstr "Orario"
+
+msgid "Width"
+msgstr "Larghezza"
+
+msgid "Height"
+msgstr "Altezza"
+
+msgid "Orientation"
+msgstr "Orientamento"
+
+msgid "Flash"
+msgstr "Flash"
+
+msgid "Metering Mode"
+msgstr "Modalità di misurazione"
+
+msgid "ISO Speed Rating"
+msgstr "Valutazione velocità ISO"
+
+msgid "Photographic Sensitivity"
+msgstr "Sensibilità fotografica"
+
+msgid "Exposure Program"
+msgstr "Programma di esposizione"
+
+msgid "Software"
+msgstr "Software"
+
+msgid "GPS Altitude"
+msgstr "Altitudine GPS"
+
+msgid "GPS Latitude"
+msgstr "Latitudine GPS"
+
+msgid "GPS Longitude"
+msgstr "Longitudine GPS"
+
+msgid "Exif Version"
+msgstr "Versione Exif"
+
+msgid "Song"
+msgstr "Brano"
+
+msgid "Next song"
+msgstr "Brano successivo"
+
+msgid "Previous song"
+msgstr "Brano precedente"
+
+msgid "Toggle shuffle"
+msgstr "Riproduzione casuale On/Off"
+
+msgid "Toggle repeat"
+msgstr "Ripetizione On/Off"
+
+msgid "This Dreambox can't decode %s streams!"
+msgstr "Impossibile decodificare stream %s su questo Dreambox."
+
+msgid "Stop video/slideshow"
+msgstr "Stop video/presentazione"
+
+msgid "Rotate picture"
+msgstr "Ruotare l'immagine"
+
+msgid "Toggle transition"
+msgstr "Commutare transizione"
+
+msgid "Rotating picture..."
+msgstr "Rotazione immagine in corso..."
+
+msgid "File"
+msgstr "File"
+
+msgid "Path"
+msgstr "Percorso"
+
+msgid "not mounted"
+msgstr "non montato"
+
+msgid "Page"
+msgstr "Pagina"
+
+msgid "Pictures, Movies, and Slideshows"
+msgstr "Immagini, filmati e presentazioni"

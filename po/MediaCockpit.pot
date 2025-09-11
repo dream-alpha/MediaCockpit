@@ -1,0 +1,634 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MediaCockpit\n"
+"POT-Creation-Date: 2024-11-09 12:54+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: dream-alpha\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+msgid "Exit"
+msgstr ""
+
+msgid "Play/Pause"
+msgstr ""
+
+msgid "Song"
+msgstr ""
+
+msgid "Stop playback"
+msgstr ""
+
+msgid "Next song"
+msgstr ""
+
+msgid "Previous song"
+msgstr ""
+
+msgid "Toggle shuffle"
+msgstr ""
+
+msgid "Toggle repeat"
+msgstr ""
+
+msgid "This Dreambox can't decode %s streams!"
+msgstr ""
+
+msgid "Skip forward"
+msgstr ""
+
+msgid "Skip backward"
+msgstr ""
+
+msgid "EPG Info"
+msgstr ""
+
+msgid "Do you want to resume playback at position: %d:%02d:%02d?"
+msgstr ""
+
+msgid "DD.MM.YYYY"
+msgstr ""
+
+msgid "WD DD.MM.YYYY"
+msgstr ""
+
+msgid "DD.MM.YYYY HH:MM"
+msgstr ""
+
+msgid "WD DD.MM.YYYY HH:MM"
+msgstr ""
+
+msgid "DD.MM. HH:MM"
+msgstr ""
+
+msgid "WD DD.MM. HH:MM"
+msgstr ""
+
+msgid "YYYY/MM/DD"
+msgstr ""
+
+msgid "WD YYYY/MM/DD"
+msgstr ""
+
+msgid "YYYY/MM/DD HH:MM"
+msgstr ""
+
+msgid "WD YYYY/MM/DD HH:MM"
+msgstr ""
+
+msgid "MM/DD HH:MM"
+msgstr ""
+
+msgid "WD MM/DD HH:MM"
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Date sort down"
+msgstr ""
+
+msgid "Date sort up"
+msgstr ""
+
+msgid "Alpha sort up"
+msgstr ""
+
+msgid "Alpha sort down"
+msgstr ""
+
+msgid "blinds"
+msgstr ""
+
+msgid "rotate"
+msgstr ""
+
+msgid "circular waves"
+msgstr ""
+
+msgid "door"
+msgstr ""
+
+msgid "dice"
+msgstr ""
+
+msgid "checkerboard"
+msgstr ""
+
+msgid "shutter"
+msgstr ""
+
+msgid "waves"
+msgstr ""
+
+msgid "windmill"
+msgstr ""
+
+msgid "earthquake"
+msgstr ""
+
+msgid "crossfade"
+msgstr ""
+
+msgid "random"
+msgstr ""
+
+msgid "Crossfade fast"
+msgstr ""
+
+msgid "Crossfade slow"
+msgstr ""
+
+msgid "Crossfade accelerated"
+msgstr ""
+
+msgid "Crossfade regular"
+msgstr ""
+
+msgid "default"
+msgstr ""
+
+msgid "beginning"
+msgstr ""
+
+msgid "first mark"
+msgstr ""
+
+msgid "event start"
+msgstr ""
+
+msgid "COCKPIT"
+msgstr ""
+
+msgid "Start with top level favorites"
+msgstr ""
+
+msgid ""
+"Should the plugin load the top level favorite directories or the directory "
+"that was used last?"
+msgstr ""
+
+msgid "Sort"
+msgstr ""
+
+msgid "Select the list sort mode."
+msgstr ""
+
+msgid "Sort across directories"
+msgstr ""
+
+msgid "Should directories be sorted recursively?"
+msgstr ""
+
+msgid "Show parent directory tile"
+msgstr ""
+
+msgid "Should a tile be displayed for navigation to the parent directory?"
+msgstr ""
+
+msgid "Tile foreground color"
+msgstr ""
+
+msgid "Select the tile foreground color."
+msgstr ""
+
+msgid "Tile background color"
+msgstr ""
+
+msgid "Select the tile background color."
+msgstr ""
+
+msgid "Tile selection foreground color"
+msgstr ""
+
+msgid "Select the tile selection foreground color."
+msgstr ""
+
+msgid "Tile selection background color"
+msgstr ""
+
+msgid "Select the tile selection background color."
+msgstr ""
+
+msgid "Tile selection size offset"
+msgstr ""
+
+msgid "Select the tile selection size offset."
+msgstr ""
+
+msgid "Tile selection font offset"
+msgstr ""
+
+msgid "Select the tile selection font offset."
+msgstr ""
+
+msgid "Tile selection frame"
+msgstr ""
+
+msgid "Should a tile selection frame be displayed?"
+msgstr ""
+
+msgid "Tile selection frame color"
+msgstr ""
+
+msgid "Select the tile selection frame color."
+msgstr ""
+
+msgid "Create thumbnails"
+msgstr ""
+
+msgid "Should thumbnails be created automatically?"
+msgstr ""
+
+msgid "SLIDESHOW"
+msgstr ""
+
+msgid "Duration"
+msgstr ""
+
+msgid "Select the duration for the display of a slide."
+msgstr ""
+
+msgid "Animation"
+msgstr ""
+
+msgid "Which animation should be used for slide transistions?"
+msgstr ""
+
+msgid "Endless loop"
+msgstr ""
+
+msgid "Should slideshows be run in an endless loop?"
+msgstr ""
+
+msgid "PLAYLIST"
+msgstr ""
+
+msgid "Recurse directories"
+msgstr ""
+
+msgid "Should directories be loaded recursively?"
+msgstr ""
+
+msgid "PICTURE"
+msgstr ""
+
+msgid "Foreground color"
+msgstr ""
+
+msgid "Select the forground color of icons."
+msgstr ""
+
+msgid "Background color"
+msgstr ""
+
+msgid "Select the background color for icons."
+msgstr ""
+
+msgid "VIDEO"
+msgstr ""
+
+msgid "Resume video at last position"
+msgstr ""
+
+msgid "Select whether video should be resumed at last stop position."
+msgstr ""
+
+msgid "Video start at"
+msgstr ""
+
+msgid "Select at which position video is started at."
+msgstr ""
+
+msgid "Date format"
+msgstr ""
+
+msgid "Select the date format."
+msgstr ""
+
+msgid "MUSIC"
+msgstr ""
+
+msgid "Gapless playback"
+msgstr ""
+
+msgid "Should gapless playback be used?"
+msgstr ""
+
+msgid "Alsasink"
+msgstr ""
+
+msgid "Should the GStreamer Alsasink decoder be used?"
+msgstr ""
+
+msgid "Cover download path"
+msgstr ""
+
+msgid "Select the path for cover downloads."
+msgstr ""
+
+msgid "CACHE"
+msgstr ""
+
+msgid "Cache directory"
+msgstr ""
+
+msgid "Select directory for cache database file."
+msgstr ""
+
+msgid "DEBUG"
+msgstr ""
+
+msgid "Debug log"
+msgstr ""
+
+msgid "Should a debug log be activated?"
+msgstr ""
+
+msgid "MediaCockpit"
+msgstr ""
+
+msgid "Delete file"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Load cache directory"
+msgstr ""
+
+msgid "Bookmarks"
+msgstr ""
+
+msgid "Slideshow"
+msgstr ""
+
+msgid "Previous page"
+msgstr ""
+
+msgid "Next page"
+msgstr ""
+
+msgid "Next picture"
+msgstr ""
+
+msgid "Previous picture"
+msgstr ""
+
+msgid "Previous row"
+msgstr ""
+
+msgid "Next row"
+msgstr ""
+
+msgid "Ok"
+msgstr ""
+
+msgid "Information"
+msgstr ""
+
+msgid "Context menu"
+msgstr ""
+
+msgid "Menu"
+msgstr ""
+
+msgid "Start of list"
+msgstr ""
+
+msgid "Show load progress"
+msgstr ""
+
+msgid "Previous directory"
+msgstr ""
+
+msgid "Do you really want to delete the file?"
+msgstr ""
+
+msgid "Select directory"
+msgstr ""
+
+msgid "Do you really want to load the following directory?"
+msgstr ""
+
+msgid "Can't load directory because it is not mounted."
+msgstr ""
+
+msgid "Do you really want to load the following bookmark?"
+msgstr ""
+
+msgid "Can't load bookmark because it is not mounted."
+msgstr ""
+
+msgid "Thumbnail"
+msgstr ""
+
+msgid "Media Infos"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Directory"
+msgstr ""
+
+msgid "Filename"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "unknown"
+msgstr ""
+
+msgid "not defined"
+msgstr ""
+
+msgid "Model"
+msgstr ""
+
+msgid "Producer"
+msgstr ""
+
+msgid "Time"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Orientation"
+msgstr ""
+
+msgid "Flash"
+msgstr ""
+
+msgid "Metering Mode"
+msgstr ""
+
+msgid "ISO Speed Rating"
+msgstr ""
+
+msgid "Photographic Sensitivity"
+msgstr ""
+
+msgid "Exposure Program"
+msgstr ""
+
+msgid "Software"
+msgstr ""
+
+msgid "GPS Altitude"
+msgstr ""
+
+msgid "GPS Latitude"
+msgstr ""
+
+msgid "GPS Longitude"
+msgstr ""
+
+msgid "Exif Version"
+msgstr ""
+
+msgid "Load cache bookmark"
+msgstr ""
+
+msgid "Setup"
+msgstr ""
+
+msgid "About"
+msgstr ""
+
+msgid "Input"
+msgstr ""
+
+msgid "min"
+msgstr ""
+
+msgid "Rotate picture"
+msgstr ""
+
+msgid "Toggle Transition"
+msgstr ""
+
+msgid "Toggle buttons"
+msgstr ""
+
+msgid "Stop video/slideshow"
+msgstr ""
+
+msgid "Toggle transition"
+msgstr ""
+
+msgid "Rotating picture..."
+msgstr ""
+
+msgid "File"
+msgstr ""
+
+msgid "Path"
+msgstr ""
+
+msgid "not mounted"
+msgstr ""
+
+msgid "Page"
+msgstr ""
+
+msgid "Pictures, Movies, and Slideshows"
+msgstr ""
+
+msgid "Plugin"
+msgstr ""
+
+msgid "Version"
+msgstr ""
+
+msgid "Copyright"
+msgstr ""
+
+msgid "License"
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Defaults"
+msgstr ""
+
+msgid "Really close without saving settings?"
+msgstr ""
+
+msgid "Loading default settings will overwrite all settings, really load them?"
+msgstr ""
+
+msgid "Some changes require a GUI restart"
+msgstr ""
+
+msgid "Restart GUI now?"
+msgstr ""
+
+msgid "Path does not exist"
+msgstr ""
+
+msgid "File operation(s)"
+msgstr ""
+
+msgid "Remaining files"
+msgstr ""
+
+msgid "Cancelling, please wait"
+msgstr ""
+
+msgid "Cancelled"
+msgstr ""
+
+msgid "Please wait"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+msgid "No file operation in process"
+msgstr ""
+
+msgid "File Task"
+msgstr ""
+
+msgid "Loading"
+msgstr ""
+
+msgid "Deleting"
+msgstr ""
+
+msgid "Moving"
+msgstr ""
+
+msgid "Copying"
+msgstr ""
+
+msgid "FSTrim"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Hide"
+msgstr ""
+
+msgid "Processing"
+msgstr ""
+
+msgid "of"
+msgstr ""

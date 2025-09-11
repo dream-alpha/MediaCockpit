@@ -1,0 +1,4 @@
+	<xmlinc color="$red" file="screenpart_1Button_icon" position="0,0" width="eval($screen_width/$4)"/>
+	<xmlinc color="$green" file="screenpart_1Button_icon" position="$width,0" width="eval($screen_width/$4)"/>
+	<xmlinc color="$yellow" file="screenpart_1Button_icon" position="eval($2*$width),0" width="eval($screen_width/$4)"/>
+	<xmlinc color="$blue" file="screenpart_1Button_icon" position="eval($3*$width),0" width="eval($screen_width/$4)"/>

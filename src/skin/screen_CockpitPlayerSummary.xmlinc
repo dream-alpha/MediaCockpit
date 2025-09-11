@@ -1,0 +1,21 @@
+	<screen id="3" name="MDCCockpitPlayerSummary" position="0,0" size="400,240">
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/%RESOLUTION%/images/display_bg.png" position="0,0" size="400,240" zPosition="-1"/>
+		<widget font="Display;60" halign="center" position="5,5" render="Label" size="390,125" source="parent.Service" transparent="1" valign="center">
+			<convert type="COCEventName">Name</convert>
+		</widget>
+		<widget borderWidth="1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/progress_rec_lcd.png" position="center,140" render="Progress" size="380,15" source="parent.Service" transparent="1" zPosition="2">
+			<convert type="COCRecordPosition">Position</convert>
+		</widget>
+		<widget borderWidth="1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/progress_before_lcd.png" position="center,140" render="Progress" size="380,15" source="parent.Service" transparent="1" zPosition="3">
+			<convert type="COCBeforeTSPosition">Position</convert>
+		</widget>
+		<widget borderWidth="1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/progress_lcd.png" position="center,140" render="Progress" size="380,15" source="parent.Service" transparent="1" zPosition="2">
+			<convert type="COCServicePosition">Position</convert>
+		</widget>
+		<widget font="Display;75" halign="left" position="5,160" render="Label" size="235,80" source="parent.Service" transparent="1" valign="center">
+			<convert type="COCServicePosition">EndTime,ShowNoSeconds</convert>
+		</widget>
+		<widget font="Display;75" halign="right" position="240,160" render="Label" size="155,80" source="parent.Service" transparent="1" valign="center">
+			<convert type="COCServicePosition">Remaining,ShowNoSeconds</convert>
+		</widget>
+	</screen>

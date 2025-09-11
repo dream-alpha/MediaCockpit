@@ -1,0 +1,66 @@
+	<screen flags="wfNoBorder" name="MDCCockpitPlayer" position="0,825" size="1920,225">
+		<ePixmap alphatest="off" pixmap="skin_default/infobar.png" position="0,0" size="1920,225" zPosition="-1"/>
+		<widget font="Regular;40" noWrap="1" position="230,13" render="Label" size="1100,45" source="Service" transparent="1">
+			<convert type="COCEventName">Name</convert>
+		</widget>
+		<ePixmap pixmap="skin_default/icons/ico_dolby_off.png" position="1460,40" size="74,35"/>
+		<widget pixmap="skin_default/icons/ico_dolby_on.png" position="1460,40" render="Pixmap" size="74,35" source="Service" zPosition="1">
+			<convert type="COCServiceInfo">IsMultichannel</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<ePixmap pixmap="skin_default/icons/ico_format_off.png" position="1550,40" size="74,35"/>
+		<widget pixmap="skin_default/icons/ico_format_on.png" position="1550,40" render="Pixmap" size="74,35" source="Service" zPosition="1">
+			<convert type="COCServiceInfo">IsWidescreen</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget pixmap="skin_default/icons/ico_hd_off.png" position="1640,40" render="Pixmap" size="74,35" source="Service">
+			<convert type="COCServiceInfo">VideoWidth</convert>
+			<convert type="ValueRange">0,720</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget pixmap="skin_default/icons/ico_hd_on.png" position="1640,40" render="Pixmap" size="74,35" source="Service" zPosition="1">
+			<convert type="COCServiceInfo">VideoWidth</convert>
+			<convert type="ValueRange">721,1980</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget pixmap="Default-FHD/skin_default/icons/uhd.svg" position="1640,40" render="Pixmap" size="74,35" source="Service" zPosition="1">
+			<convert type="COCServiceInfo">VideoWidth</convert>
+			<convert type="ValueRange">2160,3840</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget pixmap="Default-FHD/skin_default/icons/hdr.svg" position="1730,40" render="Pixmap" size="74,35" source="Service" zPosition="1">
+			<convert type="COCServiceInfo">IsHdr</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget pixmap="skin_default/icons/icon_rec.png" position="1820,40" render="Pixmap" size="74,35" source="session.RecordState">
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/images/player.svg" position="50,80" size="132,132" zPosition="2"/>
+		<widget backgroundColor="background" font="Regular;34" position="230,88" render="Label" size="140,40" source="Service" transparent="1">
+			<convert type="COCServicePosition">Position</convert>
+		</widget>
+		<eLabel backgroundColor="grey" position="370,143" size="1330,4"/>
+		<widget pointer="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/%RESOLUTION%/images/progress.png:1330,0" position="370,140" render="PositionGauge" size="1330,10" source="Service" transparent="1" zPosition="2">
+			<convert type="COCServicePosition">Gauge</convert>
+		</widget>
+		<widget pointer="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/%RESOLUTION%/images/progress_before.png:1330,0" position="370,140" render="PositionGauge" size="1330,10" source="Service" transparent="1" zPosition="3">
+			<convert type="COCBeforeTSPosition">Gauge</convert>
+		</widget>
+		<widget pointer="/usr/lib/enigma2/python/Plugins/Extensions/MediaCockpit/skin/%RESOLUTION%/images/progress_rec.png:1330,0" position="370,140" render="PositionGauge" size="1330,10" source="Service" transparent="1" zPosition="1">
+			<convert type="COCRecordPosition">Gauge</convert>
+		</widget>
+		<widget backgroundColor="background" font="Regular;34" halign="right" position="1740,88" render="Label" size="140,40" source="Service" transparent="1">
+			<convert type="COCServicePosition">Remaining</convert>
+		</widget>
+		<widget font="Regular;36" foregroundColor="yellow" position="975,166" render="Label" size="300,40" source="Service" transparent="1">
+			<convert type="COCMovieInfo">MovieDuration</convert>
+			<convert type="COCClockToText">InMinutes</convert>
+		</widget>
+		<widget backgroundColor="background" font="Regular;34" position="230,166" render="Label" size="120,40" source="global.CurrentTime" transparent="1">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget backgroundColor="background" font="Regular;34" halign="right" position="1740,166" render="Label" size="140,40" source="Service" transparent="1">
+			<convert type="COCServicePosition">EndTime,ShowNoSeconds</convert>
+		</widget>
+	</screen>
+	<xmlinc file="screen_CockpitPlayerSummary"/>

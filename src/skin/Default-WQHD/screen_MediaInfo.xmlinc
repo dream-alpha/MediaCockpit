@@ -1,0 +1,10 @@
+	<screen backgroundColor="background" flags="wfNoBorder" name="MDCMediaInfo" position="center,147" size="2400,1240">
+		<xmlinc file="screenpart_Background"/>
+		<xmlinc file="screenpart_TitleOnly" source="Title"/>
+		<widget name="icon" position="180,300" size="200,200"/>
+		<widget name="thumbnail" position="13,133" size="533,533"/>
+		<widget enableWrapAround="1" position="613,133" render="Listbox" scrollbarMode="showOnDemand" size="1773,1067" source="list" transparent="1">
+			<convert type="TemplatedMultiContent">{"template":[MultiContentEntryText(pos=(7,0),size=(453,53),flags=RT_VALIGN_CENTER,text=0),MultiContentEntryText(pos=(467,0),size=(1307,53),flags=RT_VALIGN_CENTER,text=1),],"fonts":[gFont("Regular",39)],"itemHeight":53}</convert>
+		</widget>
+		<xmlinc file="screenpart_4Buttons_name" position="0,eval($screen_height-67)" width="eval($screen_width/$4)"/>
+	</screen>

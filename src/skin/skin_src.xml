@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<skin>
+	<colors>
+		<color name="darkblue" value="#000d1940"/>
+		<color name="darkgrey" value="#141414"/>
+		<color name="mediumgrey" value="#808080"/>
+	</colors>
+	<xmlinc file="listboxcontent"/>
+	<xmlinc file="screen_MediaCockpitSummary"/>
+	<xmlinc file="screen_ConfigScreen"/>
+	<xmlinc file="screen_Slideshow"/>
+	<xmlinc file="screen_MediaInfo"/>
+	<xmlinc file="screen_CockpitPlayer"/>
+	<xmlinc file="screen_MediaCockpit"/>
+	<xmlinc file="screen_CockpitMusicPlayer"/>
+	<xmlinc file="screen_CockpitMusicPlayerSummary"/>
+	<xmlinc file="screen_CockpitContextMenu"/>
+	<xmlinc file="screen_ScreenPVRState"/>
+	<xmlinc file="screen_FileManagerProgress"/>
+</skin>

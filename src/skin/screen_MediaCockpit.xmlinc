@@ -1,0 +1,6 @@
+	<screen backgroundColor="background" flags="wfNoBorder" name="MDCMediaCockpit" position="center,center" size="1920,1080">
+		<widget font="Regular;30" name="osd_info" noWrap="1" position="55,20" size="1650,35"/>
+		<xmlinc file="screenpart_Tiles" position="60,85"/>
+		<xmlinc file="screenpart_ColorButtons" position="50,eval($screen_height-75)" width="eval(($screen_width-100)/$4)"/>
+		<xmlinc file="screenpart_ColorButtonsLabels" position="50,eval($screen_height-75)" width="eval(($screen_width-100)/$4)"/>
+	</screen>
